@@ -1,0 +1,4485 @@
+-- SQLite version
+-- Generated on: March 11, 2025
+-- phpMyAdmin SQLite Export
+
+PRAGMA foreign_keys = ON;
+
+-- SQLite doesn't need these MySQL-specific settings
+-- SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+-- SET time_zone = "+00:00";
+
+-- Database: `pos_supermarket`
+-- SQLite creates the database when you connect to it, no explicit CREATE DATABASE needed
+
+-- Table structure for table `accounts`
+CREATE TABLE "accounts" (
+  "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+  "name" TEXT NOT NULL,
+  "type" TEXT NOT NULL CHECK ("type" IN ('SALES','EXPENSE','TAX','REVENUE','DISCOUNT')),
+  "account_number" TEXT NOT NULL,
+  "balance" REAL NOT NULL DEFAULT 0.00,
+  "currency_id" INTEGER NOT NULL,
+  "is_active" INTEGER NOT NULL DEFAULT 1,
+  "created_at" TEXT,  -- SQLite uses TEXT for datetime, typically in ISO8601 format
+  "updated_at" TEXT,
+  "deleted_at" TEXT
+);
+
+-- Table structure for table `authors`
+CREATE TABLE "authors" (
+  "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+  "name" TEXT NOT NULL,
+  "email" TEXT,
+  "phone" TEXT,
+  "biography" TEXT,
+  "country_id" INTEGER,
+  "created_at" TEXT,
+  "updated_at" TEXT,
+  "deleted_at" TEXT
+);
+
+-- Table structure for table `barcodes`
+CREATE TABLE "barcodes" (
+  "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+  "code" TEXT NOT NULL,
+  "created_at" TEXT,
+  "updated_at" TEXT
+);
+
+-- Inserting data for table `barcodes`
+INSERT INTO "barcodes" ("id", "code", "created_at", "updated_at") VALUES
+(1, '711594526134', '2025-03-06 07:46:53', '2025-03-06 07:46:53'),
+(2, '351530231183', '2025-03-08 11:50:16', '2025-03-08 11:50:16'),
+(3, '268300812667', '2025-03-09 14:53:46', '2025-03-09 14:53:46'),
+(4, '933668962395', '2025-03-09 14:54:53', '2025-03-09 14:54:53'),
+(5, '589742472783', '2025-03-10 23:13:14', '2025-03-10 23:13:14');
+
+-- Table structure for table `brand_applicable_items`
+CREATE TABLE "brand_applicable_items" (
+  "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+  "brand_id" INTEGER NOT NULL,
+  "item_id" INTEGER NOT NULL,
+  "created_at" TEXT,
+  "updated_at" TEXT
+);
+--
+-- Table structure for table `cache`
+--
+-- SQLite Conversion for Cache, Cache Locks, Carts, and Cart Extra Charges Tables
+
+-- Table: cache
+CREATE TABLE cache (
+    key TEXT NOT NULL,
+    value TEXT NOT NULL,
+    expiration INTEGER NOT NULL
+);
+
+-- Dumping data for table: cache
+INSERT INTO cache (key, value, expiration) VALUES
+('admin@gmail.com|127.0.0.1', 'i:1;', 1741501860),
+('admin@gmail.com|127.0.0.1:timer', 'i:1741501860;', 1741501860),
+('admin@japango.co.tz|127.0.0.1', 'i:1;', 1741250164),
+('admin@japango.co.tz|127.0.0.1:timer', 'i:1741250164;', 1741250164),
+('ngowi@gmail.com|127.0.0.1', 'i:1;', 1741501866),
+('ngowi@gmail.com|127.0.0.1:timer', 'i:1741501866;', 1741501866);
+
+-- Table: cache_locks
+CREATE TABLE cache_locks (
+    key TEXT NOT NULL,
+    owner TEXT NOT NULL,
+    expiration INTEGER NOT NULL
+);
+
+-- Table: carts
+CREATE TABLE carts (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    order_number TEXT NOT NULL,
+    customer_type_id INTEGER NOT NULL,
+    customer_id INTEGER,
+    total_amount REAL NOT NULL DEFAULT 0.00,
+    status TEXT CHECK(status IN ('in-cart', 'settled', 'voided')) NOT NULL DEFAULT 'in-cart',
+    date DATETIME NOT NULL,
+    created_at DATETIME,
+    updated_at DATETIME
+);
+
+-- Dumping data for table: carts
+INSERT INTO carts (order_number, customer_type_id, customer_id, total_amount, status, date, created_at, updated_at) VALUES
+('ORD-CA7845', 1, NULL, 14000.00, 'in-cart', '2025-03-09 11:12:56', '2025-03-09 05:12:56', '2025-03-09 05:12:56');
+
+-- Table: cart_extra_charges
+CREATE TABLE cart_extra_charges (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    cart_id INTEGER NOT NULL,
+    name TEXT NOT NULL,
+    amount REAL NOT NULL,
+    quantity INTEGER,
+    created_at DATETIME,
+    updated_at DATETIME
+);
+--
+-- Table structure for table `cart_items`
+--
+--
+-- Table structure for table `cart_items`
+--
+
+CREATE TABLE `cart_items` (
+  `id` INTEGER NOT NULL,
+  `cart_id` INTEGER NOT NULL,
+  `item_id` INTEGER NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `unit` varchar(50) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `amount` REAL NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `cart_items`
+--
+
+INSERT INTO `cart_items` (`id`, `cart_id`, `item_id`, `name`, `unit`, `quantity`, `amount`, `created_at`, `updated_at`) VALUES
+(3, 21, 1, 'MANGO', 'Piece', 4, 8000.00, '2025-03-09 05:12:56', '2025-03-09 05:13:09'),
+(4, 21, 2, 'ORANGE', 'Piece', 6, 6000.00, '2025-03-09 05:12:56', '2025-03-09 05:13:09');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` INTEGER NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `item_group_id` INTEGER NOT NULL,
+  `description` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `item_group_id`, `description`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Fruits', 1, NULL, '2025-03-06 06:07:43', '2025-03-06 07:56:06', NULL),
+(2, 'Vegetables', 1, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(3, 'Herbs', 1, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(4, 'Beef', 2, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(5, 'Poultry', 2, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(6, 'Pork', 2, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(7, 'Seafood', 2, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(8, 'Lamb', 2, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(9, 'Milk & Cream', 3, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(10, 'Cheese', 3, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(11, 'Yogurt', 3, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(12, 'Eggs', 3, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(13, 'Butter & Margarine', 3, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(14, 'Bread & Rolls', 4, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(15, 'Pastries & Cakes', 4, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(16, 'Cookies & Biscuits', 4, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(17, 'Donuts', 4, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(18, 'Grains & Rice', 5, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(19, 'Pasta & Noodles', 5, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(20, 'Canned Goods', 5, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(21, 'Condiments & Sauces', 5, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(22, 'Spices & Herbs', 5, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(23, 'Oils & Vinegars', 5, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(24, 'Chips & Pretzels', 6, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(25, 'Crackers', 6, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(26, 'Nuts & Seeds', 6, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(27, 'Popcorn', 6, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(28, 'Soft Drinks', 7, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(29, 'Juices', 7, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(30, 'Water', 7, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(31, 'Coffee & Tea', 7, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(32, 'Alcoholic Beverages', 7, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(33, 'Frozen Meals', 8, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(34, 'Frozen Vegetables', 8, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(35, 'Frozen Desserts', 8, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(36, 'Ice Cream', 8, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(37, 'Cereal & Granola', 9, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(38, 'Pancake Mixes & Syrups', 9, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(39, 'Jams & Spreads', 9, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(40, 'Oatmeal', 9, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(41, 'Diapers & Wipes', 10, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(42, 'Baby Food', 10, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(43, 'Formula', 10, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(44, 'Baby Accessories', 10, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(45, 'Shampoo & Conditioner', 11, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(46, 'Soap & Body Wash', 11, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(47, 'Oral Care', 11, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(48, 'Skin Care', 11, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(49, 'Hair Care', 11, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(50, 'Laundry Detergents', 12, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(51, 'Dish Soap', 12, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(52, 'Cleaning Supplies', 12, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(53, 'Air Fresheners', 12, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(54, 'Toilet Paper', 13, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(55, 'Paper Towels', 13, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(56, 'Tissues', 13, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(57, 'Napkins', 13, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(58, 'Pet Food', 14, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(59, 'Pet Treats', 14, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(60, 'Pet Supplies', 14, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(61, 'Over-the-Counter Medicines', 15, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(62, 'First Aid', 15, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(63, 'Pain Relief', 15, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(64, 'Kitchenware', 16, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(65, 'Cookware', 16, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(66, 'Home Goods', 16, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(67, 'Greeting Cards & Stationery', 17, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(68, 'Holiday Decorations', 17, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(69, 'Seasonal Snacks', 17, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(70, 'Vitamins & Supplements', 18, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(71, 'Sports Nutrition', 18, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(72, 'Weight Management', 18, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(73, 'Organic Snacks', 19, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(74, 'Natural Beverages', 19, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(75, 'Gluten-Free Products', 19, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(76, 'Asian Foods', 20, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(77, 'Mexican Foods', 20, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(78, 'European Foods', 20, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(79, 'Deli Meats', 21, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(80, 'Prepared Salads', 21, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(81, 'Hot Foods', 21, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(82, 'Plates & Cups', 22, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(83, 'Decorations', 22, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL),
+(84, 'Balloons', 22, NULL, '2025-03-06 06:07:43', '2025-03-06 06:07:43', NULL);
+--
+-- Table structure for table `cities`
+--
+--
+-- Table structure for table `cities`
+--
+
+CREATE TABLE `cities` (
+  `id` INTEGER NOT NULL,
+  `country_id` INTEGER NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `latitude` REAL DEFAULT NULL,
+  `longitude` REAL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `cities`
+--
+
+INSERT INTO `cities` (`id`, `country_id`, `name`, `latitude`, `longitude`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 108, 'Dar es Salaam', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(2, 108, 'Dodoma', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(3, 108, 'Arusha', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(4, 108, 'Mwanza', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(5, 108, 'Mbeya', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(6, 108, 'Zanzibar City', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(7, 108, 'Moshi', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(8, 108, 'Tanga', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(9, 108, 'Morogoro', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(10, 108, 'Shinyanga', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(11, 108, 'Kigoma', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(12, 108, 'Songea', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(13, 108, 'Tabora', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(14, 108, 'Iringa', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(15, 108, 'Rufiji', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(16, 108, 'Geita', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(17, 108, 'Chato', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(18, 108, 'Bukoba', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(19, 108, 'Njombe', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(20, 108, 'Mpanda', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(21, 108, 'Singida', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(22, 108, 'Bagamoyo', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(23, 108, 'Biharamulo', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(24, 108, 'Kasulu', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(25, 108, 'Makambako', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(26, 108, 'Babati', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(27, 108, 'Sumbawanga', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(28, 108, 'Handeni', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(29, 108, 'Kibaha', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(30, 108, 'Kilwa', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(31, 108, 'Mpwapwa', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(32, 108, 'Kondoa', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(33, 108, 'Lindi', NULL, NULL, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(34, 108, 'Masasi', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL),
+(35, 108, 'Newala', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL),
+(36, 108, 'Mtwara', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL),
+(37, 108, 'Kibondo', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL),
+(38, 108, 'Kahama', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL),
+(39, 108, 'Nzega', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL),
+(40, 108, 'Urambo', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL),
+(41, 108, 'Manyoni', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL),
+(42, 108, 'Kongwa', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL),
+(43, 108, 'Kilosa', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL),
+(44, 108, 'Ifakara', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL),
+(45, 108, 'Mufindi', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL),
+(46, 108, 'Mbinga', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL),
+(47, 108, 'Nachingwea', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL),
+(48, 108, 'Liuli', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL),
+(49, 108, 'Mikumi', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL),
+(50, 108, 'Karatu', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL),
+(51, 108, 'Monduli', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL),
+(52, 108, 'Tarime', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL),
+(53, 108, 'Serengeti', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL),
+(54, 108, 'Musoma', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL),
+(55, 108, 'Rorya', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL),
+(56, 108, 'Ngorongoro', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL),
+(57, 108, 'Mara', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL),
+(58, 108, 'Kiteto', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL),
+(59, 108, 'Simanjiro', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL),
+(60, 108, 'Longido', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL),
+(61, 108, 'Tarangire', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL),
+(62, 108, 'Pangani', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL),
+(63, 108, 'Muheza', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL),
+(64, 108, 'Korogwe', NULL, NULL, '2025-03-06 05:33:42', '2025-03-06 05:33:42', NULL);
+--
+-- Table structure for table `city_ledgers`
+--
+--
+-- Table structure for table `city_ledgers`
+--
+
+CREATE TABLE `city_ledgers` (
+  `id` INTEGER NOT NULL,
+  `customer_id` INTEGER NOT NULL,
+  `ledger_code` varchar(255) NOT NULL,
+  `opening_balance` REAL NOT NULL,
+  `balance_type` TEXT NOT NULL,
+  `current_balance` REAL NOT NULL,
+  `active` INTEGER NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `city_ledgers`
+--
+
+INSERT INTO `city_ledgers` (`id`, `customer_id`, `ledger_code`, `opening_balance`, `balance_type`, `current_balance`, `active`, `created_at`, `updated_at`) VALUES
+(1, 1, 'CL-CUST202503110001', 0.00, 'Dr', 0.00, 1, '2025-03-11 00:13:24', '2025-03-11 00:13:24');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `companies`
+--
+
+CREATE TABLE `companies` (
+  `id` INTEGER NOT NULL,
+  `company_name` varchar(255) NOT NULL,
+  `country_id` INTEGER NOT NULL,
+  `state` varchar(255) DEFAULT NULL,
+  `email` varchar(255) NOT NULL,
+  `website` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `post_code` varchar(255) DEFAULT NULL,
+  `tin_no` varchar(255) DEFAULT NULL,
+  `vrn_no` varchar(255) DEFAULT NULL,
+  `company_logo` varchar(255) DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `is_active` INTEGER NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `companies`
+--
+
+INSERT INTO `companies` (`id`, `company_name`, `country_id`, `state`, `email`, `website`, `phone`, `post_code`, `tin_no`, `vrn_no`, `company_logo`, `address`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'Japango ltd', 108, 'Morogoro', 'info@japango.co.tz', 'https://www.japango.co.tz', '06216726038', '2433', '23445', '12343', 'company_logos/t6Cm1450HO4QgtIOJnL60aSdMW8Tnq7Ggbk4yE2q.png', 'Morogoro Po.box.3000', 1, '2025-03-11 07:24:16', '2025-03-11 07:24:16');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `company_fiscal_years`
+--
+
+CREATE TABLE `company_fiscal_years` (
+  `id` INTEGER NOT NULL,
+  `company_id` INTEGER NOT NULL,
+  `financial_year_from` TEXT NOT NULL,
+  `financial_year_to` TEXT NOT NULL,
+  `description` text DEFAULT NULL,
+  `is_active` INTEGER NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `company_fiscal_years`
+--
+
+INSERT INTO `company_fiscal_years` (`id`, `company_id`, `financial_year_from`, `financial_year_to`, `description`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 1, '2025-03-10', '2026-03-10', 'Best company details', 1, '2025-03-11 07:24:16', '2025-03-11 07:24:16');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `countries`
+--
+
+CREATE TABLE `countries` (
+  `id` INTEGER NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `code` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `countries`
+--
+
+-- No data provided for `countries` table in the original input, so no INSERT statements are generated.
+INSERT INTO `countries` (`id`, `name`, `code`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Afghanistan', 'AF', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(2, 'Albania', 'AL', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(3, 'Algeria', 'DZ', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(4, 'Andorra', 'AD', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(5, 'Angola', 'AO', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(6, 'Antigua and Barbuda', 'AG', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(7, 'Argentina', 'AR', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(8, 'Armenia', 'AM', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(9, 'Australia', 'AU', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(10, 'Austria', 'AT', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(11, 'Azerbaijan', 'AZ', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(12, 'Bahamas', 'BS', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(13, 'Bahrain', 'BH', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(14, 'Bangladesh', 'BD', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(15, 'Barbados', 'BB', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(16, 'Belarus', 'BY', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(17, 'Belgium', 'BE', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(18, 'Belize', 'BZ', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(19, 'Benin', 'BJ', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(20, 'Bhutan', 'BT', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(21, 'Bolivia', 'BO', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(22, 'Bosnia and Herzegovina', 'BA', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(23, 'Botswana', 'BW', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(24, 'Brazil', 'BR', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(25, 'Brunei', 'BN', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(26, 'Bulgaria', 'BG', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(27, 'Burkina Faso', 'BF', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(28, 'Burundi', 'BI', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(29, 'Cambodia', 'KH', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(30, 'Cameroon', 'CM', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(31, 'Canada', 'CA', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(32, 'Cape Verde', 'CV', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(33, 'Cayman Islands', 'KY', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(34, 'Central African Republic', 'CF', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(35, 'Chad', 'TD', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(36, 'Chile', 'CL', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(37, 'China', 'CN', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(38, 'Colombia', 'CO', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(39, 'Comoros', 'KM', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(40, 'Congo (Congo-Brazzaville)', 'CG', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(41, 'Congo (Democratic Republic of the)', 'CD', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(42, 'Costa Rica', 'CR', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(43, 'Croatia', 'HR', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(44, 'Cuba', 'CU', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(45, 'Cyprus', 'CY', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(46, 'Czechia (Czech Republic)', 'CZ', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(47, 'Denmark', 'DK', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(48, 'Djibouti', 'DJ', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(49, 'Dominica', 'DM', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(50, 'Dominican Republic', 'DO', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(51, 'Ecuador', 'EC', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(52, 'Egypt', 'EG', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(53, 'El Salvador', 'SV', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(54, 'Equatorial Guinea', 'GQ', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(55, 'Eritrea', 'ER', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(56, 'Estonia', 'EE', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(57, 'Eswatini', 'SZ', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(58, 'Ethiopia', 'ET', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(59, 'Fiji', 'FJ', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(60, 'Finland', 'FI', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(61, 'France', 'FR', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(62, 'Gabon', 'GA', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(63, 'Gambia', 'GM', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(64, 'Georgia', 'GE', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(65, 'Germany', 'DE', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(66, 'Ghana', 'GH', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(67, 'Greece', 'GR', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(68, 'Grenada', 'GD', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(69, 'Guatemala', 'GT', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(70, 'Guinea', 'GN', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(71, 'Guinea-Bissau', 'GW', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(72, 'Guyana', 'GY', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(73, 'Haiti', 'HT', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(74, 'Honduras', 'HN', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(75, 'Hungary', 'HU', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(76, 'Iceland', 'IS', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(77, 'India', 'IN', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(78, 'Indonesia', 'ID', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(79, 'Iran', 'IR', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(80, 'Iraq', 'IQ', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(81, 'Ireland', 'IE', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(82, 'Israel', 'IL', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(83, 'Italy', 'IT', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(84, 'Jamaica', 'JM', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(85, 'Japan', 'JP', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(86, 'Jordan', 'JO', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(87, 'Kazakhstan', 'KZ', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(88, 'Kenya', 'KE', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(89, 'Kiribati', 'KI', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(90, 'Kuwait', 'KW', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(91, 'Kyrgyzstan', 'KG', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(92, 'Laos', 'LA', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(93, 'Latvia', 'LV', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(94, 'Lebanon', 'LB', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(95, 'Lesotho', 'LS', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(96, 'Liberia', 'LR', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(97, 'Libya', 'LY', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(98, 'Liechtenstein', 'LI', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(99, 'Lithuania', 'LT', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(100, 'Luxembourg', 'LU', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(101, 'Madagascar', 'MG', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(102, 'Malawi', 'MW', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(103, 'Malaysia', 'MY', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(104, 'Maldives', 'MV', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(105, 'Mali', 'ML', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(106, 'Malta', 'MT', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(107, 'Marshall Islands', 'MH', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(108, 'Tanzania', 'TZ', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(109, 'Myanmar', 'MM', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(110, 'Mozambique', 'MZ', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL),
+(111, 'Namibia', 'NA', '2025-03-06 05:33:40', '2025-03-06 05:33:40', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `currencies`
+--
+
+CREATE TABLE `currencies` (
+  `id` INTEGER NOT NULL,
+  `country_id` INTEGER NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `sign` varchar(10) NOT NULL,
+  `sign_placement` TEXT NOT NULL DEFAULT 'before',
+  `currency_name_in_words` varchar(255) DEFAULT NULL,
+  `digits_after_decimal` INTEGER NOT NULL DEFAULT 2,
+  `is_default` INTEGER NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `currencies`
+--
+
+INSERT INTO `currencies` (`id`, `country_id`, `name`, `sign`, `sign_placement`, `currency_name_in_words`, `digits_after_decimal`, `is_default`, `created_at`, `updated_at`) VALUES
+(1, 1, 'US Dollar', '$', 'before', 'United States Dollar', 2, 0, '2025-03-06 05:33:40', '2025-03-06 05:33:40'),
+(2, 2, 'Euro', '€', 'before', NULL, 2, 0, '2025-03-06 05:33:40', '2025-03-06 05:33:40'),
+(3, 3, 'Tanzanian Shilling', 'TZS', 'before', 'Tanzanian Shilling', 0, 0, '2025-03-06 05:33:40', '2025-03-06 05:33:40'),
+(4, 4, 'British Pound', '£', 'before', 'Pound Sterling', 2, 0, '2025-03-06 05:33:40', '2025-03-06 05:33:40'),
+(5, 5, 'Canadian Dollar', 'CA$', 'before', 'Canadian Dollar', 2, 0, '2025-03-06 05:33:40', '2025-03-06 05:33:40'),
+(6, 6, 'Australian Dollar', 'AU$', 'before', 'Australian Dollar', 2, 0, '2025-03-06 05:33:40', '2025-03-06 05:33:40'),
+(7, 7, 'Japanese Yen', '¥', 'before', 'Japanese Yen', 0, 0, '2025-03-06 05:33:40', '2025-03-06 05:33:40'),
+(8, 8, 'Swiss Franc', 'CHF', 'before', 'Swiss Franc', 2, 0, '2025-03-06 05:33:40', '2025-03-06 05:33:40'),
+(9, 9, 'Indian Rupee', '₹', 'before', 'Indian Rupee', 2, 0, '2025-03-06 05:33:40', '2025-03-06 05:33:40'),
+(10, 10, 'South African Rand', 'R', 'before', 'South African Rand', 2, 0, '2025-03-06 05:33:40', '2025-03-06 05:33:40'),
+(11, 11, 'Brazilian Real', 'R$', 'before', 'Brazilian Real', 2, 0, '2025-03-06 05:33:40', '2025-03-06 05:33:40'),
+(12, 12, 'Chinese Yuan', '¥', 'before', 'Chinese Yuan', 2, 0, '2025-03-06 05:33:40', '2025-03-06 05:33:40'),
+(13, 13, 'Russian Ruble', '₽', 'before', 'Russian Ruble', 2, 0, '2025-03-06 05:33:40', '2025-03-06 05:33:40'),
+(14, 14, 'Mexican Peso', '$', 'before', 'Mexican Peso', 2, 0, '2025-03-06 05:33:40', '2025-03-06 05:33:40'),
+(15, 15, 'Singapore Dollar', 'S$', 'before', 'Singapore Dollar', 2, 0, '2025-03-06 05:33:40', '2025-03-06 05:33:40');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customers`
+--
+CREATE TABLE `customers` (
+  `id` INTEGER NOT NULL,
+  `customer_code` varchar(255) NOT NULL,
+  `customer_name` varchar(255) NOT NULL,
+  `customer_type_id` INTEGER NOT NULL,
+  `city_id` INTEGER NOT NULL,
+  `opening_balance` REAL NOT NULL DEFAULT 0.00,
+  `dr_cr` TEXT NOT NULL DEFAULT 'Dr',
+  `mobile_sms_no` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `credit_limit` REAL DEFAULT NULL,
+  `credit_period` int(11) DEFAULT NULL,
+  `active` INTEGER NOT NULL DEFAULT 1,
+  `account_ledger_creation` INTEGER NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+);
+-- Dumping data for table `customers`
+--
+
+INSERT INTO `customers` (`id`, `customer_code`, `customer_name`, `customer_type_id`, `city_id`, `opening_balance`, `dr_cr`, `mobile_sms_no`, `email`, `address`, `credit_limit`, `credit_period`, `active`, `account_ledger_creation`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'CUST202503110001', 'jackson  Ngowi', 2, 1, 0.00, 'Dr', '0632221112', 'jacksonngowi09z@gmail.com', 'Morogoro', 10000.00, 30, 1, 1, '2025-03-11 00:13:24', '2025-03-11 00:13:24', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customer_orders`
+--
+
+CREATE TABLE `customer_orders` (
+  `id` INTEGER NOT NULL,
+  `customer_id` INTEGER NOT NULL,
+  `order_id` INTEGER NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);-----------------------------------------------------
+
+--
+-- Table structure for table `customer_types`
+--
+CREATE TABLE `customer_types` (
+  `id` INTEGER NOT NULL,
+  `name` varchar(255) NOT NULL DEFAULT 'walk-in',
+  `is_active` INTEGER NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+--
+-- Dumping data for table `customer_types`
+--
+
+INSERT INTO `customer_types` (`id`, `name`, `is_active`, `created_at`, `updated_at`) VALUES
+(1, 'Walk In', 1, '2025-03-06 08:31:41', '2025-03-06 08:31:41'),
+(2, 'Registered', 1, '2025-03-06 08:31:41', '2025-03-06 08:31:41'),
+(3, 'Sundry Debtors', 1, '2025-03-06 08:31:41', '2025-03-06 08:31:41'),
+(4, 'Regular', 1, '2025-03-06 08:31:41', '2025-03-06 08:31:41'),
+(5, 'Corporate', 1, '2025-03-06 08:31:41', '2025-03-06 08:31:41');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `discounts`
+--
+CREATE TABLE `discounts` (
+  `id` INTEGER NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `code` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `discount_type_id` INTEGER NOT NULL,
+  `value` REAL NOT NULL,
+  `minimum_purchase_amount` REAL NOT NULL DEFAULT 0.00,
+  `maximum_discount_amount` REAL DEFAULT NULL,
+  `is_active` INTEGER NOT NULL DEFAULT 1,
+  `usage_limit` int(11) DEFAULT NULL,
+  `usage_count` int(11) NOT NULL DEFAULT 0,
+  `is_combinable` INTEGER NOT NULL DEFAULT 0,
+  `starts_at` timestamp NULL DEFAULT NULL,
+  `expires_at` timestamp NULL DEFAULT NULL,
+  `created_by` INTEGER DEFAULT NULL,
+  `updated_by` INTEGER DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+);
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `discount_applicable_categories`
+--
+CREATE TABLE `discount_applicable_categories` (
+  `id` INTEGER NOT NULL,
+  `discount_id` INTEGER NOT NULL,
+  `category_id` INTEGER NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `discount_applicable_items`
+--
+CREATE TABLE `discount_applicable_items` (
+  `id` INTEGER NOT NULL,
+  `discount_id` INTEGER NOT NULL,
+  `item_id` INTEGER NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `discount_exclusions`
+--
+CREATE TABLE `discount_exclusions` (
+  `id` INTEGER NOT NULL,
+  `discount_id` INTEGER NOT NULL,
+  `excludable_type` varchar(255) NOT NULL,
+  `excludable_id` INTEGER NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `discount_types`
+--
+CREATE TABLE `discount_types` (
+  `id` INTEGER NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `discount_types`
+--
+
+INSERT INTO `discount_types` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
+(1, 'Percentage', 'Percentage off the total amount', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(2, 'Fixed Amount', 'Fixed amount off the total', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(3, 'Buy X Get Y', 'Buy X items get Y items free', '2025-03-06 05:33:41', '2025-03-06 05:33:41');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `discount_usage_histories`
+--
+
+CREATE TABLE `discount_usage_histories` (
+  `id` INTEGER NOT NULL,
+  `discount_id` INTEGER NOT NULL,
+  `order_id` INTEGER NOT NULL,
+  `user_id` INTEGER DEFAULT NULL,
+  `discount_amount` REAL NOT NULL,
+  `used_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `employees`
+--
+
+CREATE TABLE `employees` (
+  `id` INTEGER NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `gender_id` INTEGER NOT NULL,
+  `date_of_birth` TEXT DEFAULT NULL,
+  `address` text DEFAULT NULL,
+  `city_id` INTEGER DEFAULT NULL,
+  `position_id` INTEGER DEFAULT NULL,
+  `salary` REAL DEFAULT NULL,
+  `date_of_joining` TEXT DEFAULT NULL,
+  `dob` TEXT DEFAULT NULL,
+  `user_id` INTEGER DEFAULT NULL,
+  `status` varchar(255) NOT NULL DEFAULT 'active',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `expenses`
+--
+
+CREATE TABLE `expenses` (
+  `id` INTEGER NOT NULL,
+  `expense_category_id` INTEGER NOT NULL,
+  `payment_type_id` INTEGER NOT NULL,
+  `vendor_id` INTEGER DEFAULT NULL,
+  `user_id` INTEGER NOT NULL,
+  `expense_status_id` INTEGER NOT NULL,
+  `expense_date` TEXT NOT NULL,
+  `amount` REAL NOT NULL,
+  `currency` varchar(3) NOT NULL DEFAULT 'TZS',
+  `description` text DEFAULT NULL,
+  `reference_number` varchar(255) DEFAULT NULL,
+  `receipt_path` varchar(255) DEFAULT NULL,
+  `purchase_order_id` INTEGER DEFAULT NULL,
+  `item_id` INTEGER DEFAULT NULL,
+  `pos_location_id` INTEGER DEFAULT NULL,
+  `approval_status` varchar(255) NOT NULL DEFAULT 'Pending',
+  `approval_date` timestamp NULL DEFAULT NULL,
+  `approved_by_user_id` INTEGER DEFAULT NULL,
+  `payment_date` TEXT DEFAULT NULL,
+  `payment_account_id` INTEGER DEFAULT NULL,
+  `tax_rate` REAL DEFAULT NULL,
+  `tax_amount` REAL DEFAULT NULL,
+  `tax_code` varchar(255) DEFAULT NULL,
+  `is_reimbursable` INTEGER NOT NULL DEFAULT 0,
+  `notes` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `expense_categories`
+--
+
+CREATE TABLE `expense_categories` (
+  `id` INTEGER NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `expense_statuses`
+--
+
+CREATE TABLE `expense_statuses` (
+  `id` INTEGER NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `extra_charges`
+--
+CREATE TABLE `extra_charges` (
+  `id` INTEGER NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `amount` REAL NOT NULL,
+  `tax_id` INTEGER DEFAULT NULL,
+  `charge_type_id` INTEGER NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `extra_charge_types`
+--
+
+CREATE TABLE `extra_charge_types` (
+  `id` INTEGER NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `failed_jobs`
+--
+
+CREATE TABLE `failed_jobs` (
+  `id` INTEGER NOT NULL,
+  `uuid` varchar(255) NOT NULL,
+  `connection` text NOT NULL,
+  `queue` text NOT NULL,
+  `payload` text NOT NULL,
+  `exception` text NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `genders`
+--
+
+CREATE TABLE `genders` (
+  `id` INTEGER NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `code` varchar(255) DEFAULT NULL,
+  `is_default` INTEGER NOT NULL DEFAULT 0,
+  `is_active` INTEGER NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `good_receipt_notes`
+--
+
+CREATE TABLE `good_receipt_notes` (
+  `id` INTEGER NOT NULL,
+  `grn_number` varchar(255) NOT NULL,
+  `purchase_order_id` INTEGER DEFAULT NULL,
+  `supplier_id` INTEGER NOT NULL,
+  `received_by` INTEGER DEFAULT NULL,
+  `received_date` TEXT NOT NULL,
+  `delivery_note_number` varchar(255) DEFAULT NULL,
+  `status` TEXT NOT NULL DEFAULT 'Pending',
+  `remarks` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `good_receipt_note_extra_charges`
+--
+
+CREATE TABLE `good_receipt_note_extra_charges` (
+  `id` INTEGER NOT NULL,
+  `grn_id` INTEGER NOT NULL,
+  `extra_charge_id` INTEGER NOT NULL,
+  `unit_id` INTEGER NOT NULL,
+  `amount` REAL NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `good_receive_note_documents`
+--
+CREATE TABLE `good_receive_note_documents` (
+  `id` INTEGER NOT NULL,
+  `grn_id` INTEGER NOT NULL,
+  `document_type` varchar(50) NOT NULL,
+  `file_name` varchar(255) NOT NULL,
+  `file_path` varchar(500) NOT NULL,
+  `uploaded_by` INTEGER NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `good_receive_note_items`
+--
+
+CREATE TABLE `good_receive_note_items` (
+  `id` INTEGER NOT NULL,
+  `grn_id` INTEGER NOT NULL,
+  `purchase_order_item_id` INTEGER DEFAULT NULL,
+  `item_id` INTEGER NOT NULL,
+  `ordered_quantity` REAL NOT NULL,
+  `received_quantity` REAL NOT NULL,
+  `accepted_quantity` REAL NOT NULL,
+  `rejected_quantity` REAL NOT NULL DEFAULT 0.00,
+  `unit_price` REAL NOT NULL,
+  `received_condition` TEXT NOT NULL DEFAULT 'Good',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `good_receive_note_quality_checks`
+--
+
+CREATE TABLE `good_receive_note_quality_checks` (
+  `id` INTEGER NOT NULL,
+  `grn_id` INTEGER NOT NULL,
+  `grn_item_id` INTEGER NOT NULL,
+  `checked_by` INTEGER NOT NULL,
+  `check_date` timestamp NOT NULL,
+  `status` TEXT NOT NULL,
+  `remarks` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `images`
+--
+
+CREATE TABLE `images` (
+  `id` INTEGER NOT NULL,
+  `file_path` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `images`
+--
+
+INSERT INTO `images` (`id`, `file_path`, `created_at`, `updated_at`) VALUES
+(1, 'uploads/item_images/Km5hnG15xu69OdpgOgbodVRBCoQ4af5X0ZrQ98cI.png', '2025-03-06 07:46:53', '2025-03-06 07:46:53');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `items`
+--
+
+CREATE TABLE `items` (
+  `id` INTEGER NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `category_id` INTEGER NOT NULL,
+  `item_type_id` INTEGER DEFAULT NULL,
+  `item_group_id` INTEGER DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `exprire_date` TEXT DEFAULT NULL,
+  `status` TEXT NOT NULL DEFAULT 'active',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `items`
+--
+
+INSERT INTO `items` (`id`, `name`, `category_id`, `item_type_id`, `item_group_id`, `description`, `exprire_date`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Mango', 1, 3, 1, NULL, '2025-03-20', 'active', '2025-03-06 07:46:53', '2025-03-08 11:48:52'),
+(2, 'Orange', 1, 3, NULL, NULL, '2025-03-14', 'active', '2025-03-08 11:50:16', '2025-03-08 11:50:16'),
+(3, 'Pineaple', 1, 3, NULL, NULL, '2025-03-20', 'active', '2025-03-09 14:53:46', '2025-03-09 14:53:46'),
+(4, 'Lemon', 1, 3, NULL, NULL, '2025-03-13', 'active', '2025-03-09 14:54:53', '2025-03-09 14:54:53'),
+(5, 'Water Melon from soko la sabasaba mtwara', 1, 3, 1, NULL, '2025-03-11', 'active', '2025-03-10 23:13:14', '2025-03-10 23:33:08');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `item_barcodes`
+--CREATE TABLE `item_barcodes` (
+  `id` INTEGER NOT NULL,
+  `item_id` INTEGER NOT NULL,
+  `barcode_id` INTEGER NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `item_barcodes`
+--
+
+INSERT INTO `item_barcodes` (`id`, `item_id`, `barcode_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, '2025-03-06 07:46:53', '2025-03-06 07:46:53'),
+(2, 2, 2, '2025-03-08 11:50:16', '2025-03-08 11:50:16'),
+(3, 3, 3, '2025-03-09 14:53:46', '2025-03-09 14:53:46'),
+(4, 4, 4, '2025-03-09 14:54:53', '2025-03-09 14:54:53'),
+(5, 5, 5, '2025-03-10 23:13:14', '2025-03-10 23:13:14');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `item_brands`
+--
+
+CREATE TABLE `item_brands` (
+  `id` INTEGER NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
+  `is_active` INTEGER NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `item_categories`
+--
+
+CREATE TABLE `item_categories` (
+  `id` INTEGER NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `item_group_id` INTEGER NOT NULL,
+  `description` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `item_costs`
+--
+
+CREATE TABLE `item_costs` (
+  `id` INTEGER NOT NULL,
+  `item_id` INTEGER NOT NULL,
+  `store_id` INTEGER NOT NULL,
+  `unit_id` INTEGER NOT NULL,
+  `amount` REAL NOT NULL DEFAULT 0.00,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `item_costs`
+--
+
+INSERT INTO `item_costs` (`id`, `item_id`, `store_id`, `unit_id`, `amount`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 1, 23, 1500.00, '2025-03-06 07:46:53', '2025-03-06 07:46:53', NULL),
+(2, 2, 1, 23, 500.00, '2025-03-08 11:50:16', '2025-03-08 11:50:16', NULL),
+(3, 3, 1, 23, 1000.00, '2025-03-09 14:53:46', '2025-03-09 14:53:46', NULL),
+(4, 4, 1, 23, 200.00, '2025-03-09 14:54:53', '2025-03-09 14:54:53', NULL),
+(5, 5, 1, 23, 1000.00, '2025-03-10 23:13:14', '2025-03-10 23:13:14', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `item_groups`
+--
+
+CREATE TABLE `item_groups` (
+  `id` INTEGER NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `item_groups`
+--
+INSERT INTO `item_groups` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Fresh Produce', '2025-03-06 06:07:23', '2025-03-06 06:07:23'),
+(2, 'Meat & Seafood', '2025-03-06 06:07:23', '2025-03-06 06:07:23'),
+(3, 'Dairy & Eggs', '2025-03-06 06:07:23', '2025-03-06 06:07:23'),
+(4, 'Bakery', '2025-03-06 06:07:23', '2025-03-06 06:07:23'),
+(5, 'Pantry Staples', '2025-03-06 06:07:23', '2025-03-06 06:07:23'),
+(6, 'Snacks', '2025-03-06 06:07:23', '2025-03-06 06:07:23'),
+(7, 'Beverages', '2025-03-06 06:07:23', '2025-03-06 06:07:23'),
+(8, 'Frozen Foods', '2025-03-06 06:07:23', '2025-03-06 06:07:23'),
+(9, 'Breakfast Foods', '2025-03-06 06:07:23', '2025-03-06 06:07:23'),
+(10, 'Baby Care', '2025-03-06 06:07:23', '2025-03-06 06:07:23'),
+(11, 'Personal Care', '2025-03-06 06:07:23', '2025-03-06 06:07:23'),
+(12, 'Household Cleaning', '2025-03-06 06:07:23', '2025-03-06 06:07:23'),
+(13, 'Paper Products', '2025-03-06 06:07:23', '2025-03-06 06:07:23'),
+(14, 'Pet Care', '2025-03-06 06:07:23', '2025-03-06 06:07:23'),
+(15, 'Pharmacy', '2025-03-06 06:07:23', '2025-03-06 06:07:23'),
+(16, 'Home & Kitchen', '2025-03-06 06:07:23', '2025-03-06 06:07:23'),
+(17, 'Seasonal Items', '2025-03-06 06:07:23', '2025-03-06 06:07:23'),
+(18, 'Health & Wellness', '2025-03-06 06:07:23', '2025-03-06 06:07:23'),
+(19, 'Organic & Natural Foods', '2025-03-06 06:07:23', '2025-03-06 06:07:23'),
+(20, 'International Foods', '2025-03-06 06:07:23', '2025-03-06 06:07:23'),
+(21, 'Ready Meals', '2025-03-06 06:07:23', '2025-03-06 06:07:23'),
+(22, 'Party Supplies', '2025-03-06 06:07:23', '2025-03-06 06:07:23');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `item_images`
+--CREATE TABLE `item_images` (
+  `id` INTEGER NOT NULL,
+  `item_id` INTEGER NOT NULL,
+  `image_id` INTEGER NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `item_images`
+--
+
+INSERT INTO `item_images` (`id`, `item_id`, `image_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, '2025-03-06 07:46:53', '2025-03-06 07:46:53');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `item_prices`
+--
+
+CREATE TABLE `item_prices` (
+  `id` INTEGER NOT NULL,
+  `item_id` INTEGER NOT NULL,
+  `store_id` INTEGER NOT NULL,
+  `unit_id` INTEGER NOT NULL,
+  `amount` REAL NOT NULL DEFAULT 0.00,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `item_prices`
+--
+
+INSERT INTO `item_prices` (`id`, `item_id`, `store_id`, `unit_id`, `amount`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 1, 23, 2000.00, '2025-03-06 07:46:53', '2025-03-06 07:46:53', NULL),
+(2, 2, 1, 23, 1000.00, '2025-03-08 11:50:16', '2025-03-08 11:50:16', NULL),
+(3, 3, 1, 23, 3000.00, '2025-03-09 14:53:46', '2025-03-09 14:53:46', NULL),
+(4, 4, 1, 23, 400.00, '2025-03-09 14:54:53', '2025-03-09 14:54:53', NULL),
+(5, 5, 1, 23, 2000.00, '2025-03-10 23:13:14', '2025-03-10 23:13:14', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `item_stocks`
+--
+
+CREATE TABLE `item_stocks` (
+  `id` INTEGER NOT NULL,
+  `item_id` INTEGER NOT NULL,
+  `stock_id` INTEGER NOT NULL,
+  `stock_quantity` REAL NOT NULL DEFAULT 0.00,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `item_stocks`
+--
+
+INSERT INTO `item_stocks` (`id`, `item_id`, `stock_id`, `stock_quantity`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 1, 20.00, '2025-03-06 07:46:53', '2025-03-11 08:45:58', NULL),
+(2, 2, 2, 30.00, '2025-03-08 11:50:16', '2025-03-11 08:45:58', NULL),
+(3, 3, 3, 20.00, '2025-03-09 14:53:46', '2025-03-11 08:45:58', NULL),
+(4, 4, 4, 30.00, '2025-03-09 14:54:53', '2025-03-09 14:54:53', NULL),
+(5, 5, 5, 30.00, '2025-03-10 23:13:14', '2025-03-10 23:13:14', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `item_stores`
+--
+
+CREATE TABLE `item_stores` (
+  `id` INTEGER NOT NULL,
+  `item_id` INTEGER NOT NULL,
+  `store_id` INTEGER NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `item_stores`
+--
+
+INSERT INTO `item_stores` (`id`, `item_id`, `store_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, '2025-03-06 07:46:53', '2025-03-06 07:46:53'),
+(2, 2, 1, '2025-03-08 11:50:16', '2025-03-08 11:50:16'),
+(3, 3, 1, '2025-03-09 14:53:46', '2025-03-09 14:53:46'),
+(4, 4, 1, '2025-03-09 14:54:53', '2025-03-09 14:54:53'),
+(5, 5, 1, '2025-03-10 23:13:14', '2025-03-10 23:13:14');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `item_taxes`
+--CREATE TABLE `item_taxes` (
+  `id` INTEGER NOT NULL,
+  `item_id` INTEGER NOT NULL,
+  `store_id` INTEGER NOT NULL,
+  `tax_id` INTEGER NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `item_types`
+--
+
+CREATE TABLE `item_types` (
+  `id` INTEGER NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `item_types`
+--
+
+INSERT INTO `item_types` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Assets', '2025-03-06 06:10:48', '2025-03-06 06:10:48'),
+(2, 'Liabilities', '2025-03-06 06:10:48', '2025-03-06 06:10:48'),
+(3, 'Inventory', '2025-03-06 06:10:48', '2025-03-06 06:10:48');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `item_units`
+--
+
+CREATE TABLE `item_units` (
+  `id` INTEGER NOT NULL,
+  `item_id` INTEGER NOT NULL,
+  `buying_unit_id` INTEGER NOT NULL,
+  `selling_unit_id` INTEGER NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `item_units`
+--
+
+INSERT INTO `item_units` (`id`, `item_id`, `buying_unit_id`, `selling_unit_id`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 23, 23, '2025-03-06 07:46:53', '2025-03-06 07:46:53', NULL),
+(2, 2, 23, 23, '2025-03-08 11:50:16', '2025-03-08 11:50:16', NULL),
+(3, 3, 23, 23, '2025-03-09 14:53:46', '2025-03-09 14:53:46', NULL),
+(4, 4, 23, 23, '2025-03-09 14:54:53', '2025-03-09 14:54:53', NULL),
+(5, 5, 23, 23, '2025-03-10 23:13:14', '2025-03-10 23:13:14', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jobs`
+--
+
+CREATE TABLE `jobs` (
+  `id` INTEGER NOT NULL,
+  `queue` varchar(255) NOT NULL,
+  `payload` text NOT NULL,
+  `attempts` INTEGER NOT NULL,
+  `reserved_at` INTEGER DEFAULT NULL,
+  `available_at` INTEGER NOT NULL,
+  `created_at` INTEGER NOT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `job_batches`
+--
+
+CREATE TABLE `job_batches` (
+  `id` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `total_jobs` int(11) NOT NULL,
+  `pending_jobs` int(11) NOT NULL,
+  `failed_jobs` int(11) NOT NULL,
+  `failed_job_ids` text NOT NULL,
+  `options` text DEFAULT NULL,
+  `cancelled_at` int(11) DEFAULT NULL,
+  `created_at` int(11) NOT NULL,
+  `finished_at` int(11) DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) NOT NULL,
+  `batch` int(11) NOT NULL
+);
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '0001_01_01_000000_create_users_table', 1),
+(2, '0001_01_01_000001_create_cache_table', 1),
+(3, '0001_01_01_000002_create_jobs_table', 1),
+(4, '2014_12_19_212655_create_countries_table', 1),
+(5, '2014_12_19_212656_create_currencies_table', 1),
+(6, '2020_12_16_092738_create_genders_table', 1),
+(7, '2020_12_19_213034_create_accounts_table', 1),
+(8, '2024_00_16_191819_create_cities_table', 1),
+(9, '2024_12_16_185712_create_personal_access_tokens_table', 2),
+(10, '2024_12_16_192422_create_positions_table', 2),
+(11, '2024_12_16_193220_create_employees_table', 2),
+(12, '2024_12_16_194846_create_authors_table', 2),
+(14, '2024_12_17_105544_create_vendors_table', 2),
+(15, '2024_12_17_113417_create_stores_table', 2),
+(16, '2024_12_19_223138_create_permission_tables', 2),
+(17, '2025_01_14_125459_create_user_permissions_table', 2),
+(18, '2025_01_15_104843_create_user_roles', 2),
+(20, '2025_01_16_072319_create_units_table', 2),
+(21, '2025_01_16_072654_create_barcodes', 2),
+(22, '2025_01_16_082654_create_images', 2),
+(23, '2025_01_16_082753_create_taxes_table', 2),
+(24, '2025_01_16_082754_create_item_types', 2),
+(25, '2025_01_16_082755_create_items_table', 2),
+(26, '2025_01_16_100947_create_item_units_table', 2),
+(27, '2025_01_17_095733_create_item_barcodes', 2),
+(28, '2025_01_17_095803_create_item_images', 2),
+(29, '2025_01_17_135658_create_payment_types_table', 2),
+(30, '2025_01_17_135659_create_payments_table', 2),
+(31, '2025_01_17_164304_create_reason_types_table', 2),
+(32, '2025_01_17_164305_create_reasons_table', 2),
+(33, '2025_01_19_143242_create_extra_charge_types_table', 2),
+(34, '2025_01_19_143243_create_extra_charges_table', 2),
+(35, '2025_01_19_161637_create_discount_types_table', 2),
+(36, '2025_01_19_162051_create_discounts_table', 2),
+(37, '2025_01_19_162052_create_discount_applicable_items_table', 2),
+(38, '2025_01_19_163725_create_discount_applicable_categories_table', 2),
+(39, '2025_01_19_163837_create_discount_exclusions_table', 2),
+(40, '2025_01_19_164006_create_customer_types_table', 2),
+(41, '2025_01_19_164007_create_customers_table', 2),
+(42, '2025_01_19_164008_create_orders_table', 2),
+(43, '2025_01_19_164009_create_discount_usage_histories_table', 2),
+(44, '2025_01_20_152352_create_item_brands_table', 2),
+(45, '2025_01_20_165236_create_brand_applicable_items_table', 2),
+(46, '2025_01_21_173040_create_item_costs_table', 2),
+(47, '2025_01_21_173121_create_stocks_table', 2),
+(48, '2025_01_21_173122_create_item_stocks_table', 2),
+(49, '2025_01_21_173134_create_item_stores_table', 2),
+(50, '2025_01_22_055832_create_item_taxes_table', 2),
+(51, '2025_01_23_064448_create_purchase_orders_table', 2),
+(52, '2025_01_23_064457_create_purchase_order_items_table', 2),
+(53, '2025_01_28_154548_create_order_extra_charges_table', 2),
+(54, '2025_01_28_154556_create_order_items_table', 2),
+(55, '2025_01_28_154921_create_stock_movements_table', 2),
+(56, '2025_01_30_141543_create_companies_table', 2),
+(57, '2025_01_30_143208_create_company_fiscal_years_table', 2),
+(58, '2025_02_01_083941_create_order_types_table', 2),
+(59, '2025_02_01_094101_create_payment_methods_table', 2),
+(60, '2025_02_01_125907_create_order_payments_table', 2),
+(61, '2025_02_04_141725_create_virtual_devices_table', 2),
+(62, '2025_02_05_111102_create_peripheral_devices_table', 2),
+(63, '2025_02_05_111156_create_printer_settings_table', 2),
+(64, '2025_02_08_093350_create_item_prices_table', 2),
+(65, '2025_02_11_085123_create_good_receive_notes_table', 2),
+(66, '2025_02_11_085124_create_good_receive_note_items_table', 2),
+(67, '2025_02_11_085620_create_good_receive_note_quality_checks_table', 2),
+(68, '2025_02_11_085638_create_good_receive_note_documents_table', 2),
+(69, '2025_02_11_160247_create_good_receipt_note_extra_charges_table', 2),
+(70, '2025_02_13_194528_add_is_default_to_currencies_table', 2),
+(71, '2025_02_14_070736_create_expense_categories_table', 2),
+(72, '2025_02_14_071043_create_expense_statuses_table', 2),
+(73, '2025_02_14_071101_create_pos_locations_table', 2),
+(74, '2025_02_14_071114_create_payment_accounts_table', 2),
+(75, '2025_02_14_071115_create_expenses_table', 2),
+(76, '2025_02_22_065430_create_city_ledgers_table', 2),
+(77, '2025_03_04_181202_create_customer_orders_table', 2),
+(78, '2024_12_16_200832_create_item_groups', 3),
+(79, '2024_12_16_200833_create_categories_table', 4),
+(82, '2025_03_06_133530_create_cart_extra_charges_table', 5),
+(83, '2025_03_06_133453_create_carts_table', 6),
+(84, '2025_03_06_133501_create_cart_items_table', 7),
+(85, '2025_03_08_170105_create_void_reasons_table', 8);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `model_has_permissions`
+--
+CREATE TABLE `model_has_permissions` (
+  `permission_id` INTEGER NOT NULL,
+  `model_type` varchar(255) NOT NULL,
+  `model_id` INTEGER NOT NULL
+);
+
+--
+-- Dumping data for table `model_has_permissions`
+--
+
+INSERT INTO `model_has_permissions` (`permission_id`, `model_type`, `model_id`) VALUES
+(1, 'App\\Models\\User', 1),
+(1, 'App\\Models\\User', 2),
+(2, 'App\\Models\\User', 1),
+(2, 'App\\Models\\User', 2),
+(3, 'App\\Models\\User', 1),
+(3, 'App\\Models\\User', 2),
+(4, 'App\\Models\\User', 1),
+(4, 'App\\Models\\User', 2),
+(5, 'App\\Models\\User', 1),
+(5, 'App\\Models\\User', 2),
+(6, 'App\\Models\\User', 1),
+(6, 'App\\Models\\User', 2),
+(7, 'App\\Models\\User', 1),
+(7, 'App\\Models\\User', 2),
+(8, 'App\\Models\\User', 1),
+(8, 'App\\Models\\User', 2),
+(9, 'App\\Models\\User', 1),
+(9, 'App\\Models\\User', 2),
+(10, 'App\\Models\\User', 1),
+(10, 'App\\Models\\User', 2),
+(11, 'App\\Models\\User', 1),
+(11, 'App\\Models\\User', 2),
+(12, 'App\\Models\\User', 1),
+(12, 'App\\Models\\User', 2),
+(13, 'App\\Models\\User', 1),
+(13, 'App\\Models\\User', 2),
+(14, 'App\\Models\\User', 1),
+(14, 'App\\Models\\User', 2),
+(15, 'App\\Models\\User', 1),
+(15, 'App\\Models\\User', 2),
+(16, 'App\\Models\\User', 1),
+(16, 'App\\Models\\User', 2),
+(17, 'App\\Models\\User', 1),
+(17, 'App\\Models\\User', 2),
+(18, 'App\\Models\\User', 1),
+(18, 'App\\Models\\User', 2),
+(19, 'App\\Models\\User', 1),
+(19, 'App\\Models\\User', 2),
+(20, 'App\\Models\\User', 1),
+(20, 'App\\Models\\User', 2),
+(21, 'App\\Models\\User', 1),
+(21, 'App\\Models\\User', 2),
+(22, 'App\\Models\\User', 1),
+(22, 'App\\Models\\User', 2),
+(23, 'App\\Models\\User', 1),
+(23, 'App\\Models\\User', 2),
+(24, 'App\\Models\\User', 1),
+(24, 'App\\Models\\User', 2),
+(25, 'App\\Models\\User', 1),
+(25, 'App\\Models\\User', 2),
+(26, 'App\\Models\\User', 1),
+(26, 'App\\Models\\User', 2),
+(27, 'App\\Models\\User', 1),
+(27, 'App\\Models\\User', 2),
+(28, 'App\\Models\\User', 1),
+(28, 'App\\Models\\User', 2),
+(29, 'App\\Models\\User', 1),
+(29, 'App\\Models\\User', 2),
+(30, 'App\\Models\\User', 1),
+(30, 'App\\Models\\User', 2),
+(31, 'App\\Models\\User', 1),
+(31, 'App\\Models\\User', 2),
+(32, 'App\\Models\\User', 1),
+(32, 'App\\Models\\User', 2),
+(33, 'App\\Models\\User', 1),
+(33, 'App\\Models\\User', 2),
+(34, 'App\\Models\\User', 1),
+(34, 'App\\Models\\User', 2),
+(35, 'App\\Models\\User', 1),
+(35, 'App\\Models\\User', 2),
+(36, 'App\\Models\\User', 1),
+(36, 'App\\Models\\User', 2),
+(37, 'App\\Models\\User', 1),
+(37, 'App\\Models\\User', 2),
+(38, 'App\\Models\\User', 1),
+(38, 'App\\Models\\User', 2),
+(39, 'App\\Models\\User', 1),
+(39, 'App\\Models\\User', 2),
+(40, 'App\\Models\\User', 1),
+(40, 'App\\Models\\User', 2),
+(41, 'App\\Models\\User', 1),
+(41, 'App\\Models\\User', 2),
+(42, 'App\\Models\\User', 1),
+(42, 'App\\Models\\User', 2),
+(43, 'App\\Models\\User', 1),
+(43, 'App\\Models\\User', 2),
+(44, 'App\\Models\\User', 1),
+(44, 'App\\Models\\User', 2),
+(45, 'App\\Models\\User', 1),
+(45, 'App\\Models\\User', 2),
+(46, 'App\\Models\\User', 1),
+(46, 'App\\Models\\User', 2),
+(47, 'App\\Models\\User', 1),
+(47, 'App\\Models\\User', 2),
+(48, 'App\\Models\\User', 1),
+(48, 'App\\Models\\User', 2),
+(49, 'App\\Models\\User', 1),
+(49, 'App\\Models\\User', 2),
+(50, 'App\\Models\\User', 1),
+(50, 'App\\Models\\User', 2),
+(51, 'App\\Models\\User', 1),
+(51, 'App\\Models\\User', 2),
+(52, 'App\\Models\\User', 1),
+(52, 'App\\Models\\User', 2),
+(53, 'App\\Models\\User', 1),
+(53, 'App\\Models\\User', 2),
+(54, 'App\\Models\\User', 1),
+(54, 'App\\Models\\User', 2),
+(55, 'App\\Models\\User', 1),
+(55, 'App\\Models\\User', 2),
+(56, 'App\\Models\\User', 1),
+(56, 'App\\Models\\User', 2),
+(57, 'App\\Models\\User', 1),
+(57, 'App\\Models\\User', 2),
+(58, 'App\\Models\\User', 1),
+(58, 'App\\Models\\User', 2),
+(59, 'App\\Models\\User', 1),
+(59, 'App\\Models\\User', 2),
+(60, 'App\\Models\\User', 1),
+(60, 'App\\Models\\User', 2),
+(61, 'App\\Models\\User', 1),
+(61, 'App\\Models\\User', 2),
+(62, 'App\\Models\\User', 1),
+(62, 'App\\Models\\User', 2),
+(63, 'App\\Models\\User', 1),
+(63, 'App\\Models\\User', 2),
+(64, 'App\\Models\\User', 1),
+(64, 'App\\Models\\User', 2),
+(65, 'App\\Models\\User', 1),
+(65, 'App\\Models\\User', 2),
+(66, 'App\\Models\\User', 1),
+(66, 'App\\Models\\User', 2),
+(67, 'App\\Models\\User', 1),
+(67, 'App\\Models\\User', 2),
+(68, 'App\\Models\\User', 1),
+(68, 'App\\Models\\User', 2),
+(69, 'App\\Models\\User', 1),
+(69, 'App\\Models\\User', 2),
+(70, 'App\\Models\\User', 1),
+(70, 'App\\Models\\User', 2),
+(71, 'App\\Models\\User', 1),
+(71, 'App\\Models\\User', 2),
+(72, 'App\\Models\\User', 1),
+(72, 'App\\Models\\User', 2),
+(73, 'App\\Models\\User', 1),
+(73, 'App\\Models\\User', 2),
+(74, 'App\\Models\\User', 1),
+(74, 'App\\Models\\User', 2),
+(75, 'App\\Models\\User', 1),
+(75, 'App\\Models\\User', 2),
+(76, 'App\\Models\\User', 1),
+(76, 'App\\Models\\User', 2),
+(77, 'App\\Models\\User', 1),
+(77, 'App\\Models\\User', 2),
+(78, 'App\\Models\\User', 1),
+(78, 'App\\Models\\User', 2),
+(79, 'App\\Models\\User', 1),
+(79, 'App\\Models\\User', 2),
+(80, 'App\\Models\\User', 1),
+(80, 'App\\Models\\User', 2),
+(81, 'App\\Models\\User', 1),
+(81, 'App\\Models\\User', 2),
+(82, 'App\\Models\\User', 1),
+(82, 'App\\Models\\User', 2),
+(83, 'App\\Models\\User', 1),
+(83, 'App\\Models\\User', 2),
+(84, 'App\\Models\\User', 1),
+(84, 'App\\Models\\User', 2),
+(85, 'App\\Models\\User', 1),
+(85, 'App\\Models\\User', 2),
+(86, 'App\\Models\\User', 1),
+(86, 'App\\Models\\User', 2),
+(87, 'App\\Models\\User', 1),
+(87, 'App\\Models\\User', 2),
+(88, 'App\\Models\\User', 1),
+(88, 'App\\Models\\User', 2),
+(89, 'App\\Models\\User', 1),
+(89, 'App\\Models\\User', 2),
+(90, 'App\\Models\\User', 1),
+(90, 'App\\Models\\User', 2),
+(91, 'App\\Models\\User', 1),
+(91, 'App\\Models\\User', 2),
+(92, 'App\\Models\\User', 1),
+(92, 'App\\Models\\User', 2),
+(93, 'App\\Models\\User', 1),
+(93, 'App\\Models\\User', 2),
+(94, 'App\\Models\\User', 1),
+(94, 'App\\Models\\User', 2),
+(95, 'App\\Models\\User', 1),
+(95, 'App\\Models\\User', 2),
+(96, 'App\\Models\\User', 1),
+(96, 'App\\Models\\User', 2),
+(97, 'App\\Models\\User', 1),
+(97, 'App\\Models\\User', 2),
+(98, 'App\\Models\\User', 1),
+(98, 'App\\Models\\User', 2),
+(99, 'App\\Models\\User', 1),
+(99, 'App\\Models\\User', 2),
+(100, 'App\\Models\\User', 1),
+(100, 'App\\Models\\User', 2),
+(101, 'App\\Models\\User', 1),
+(101, 'App\\Models\\User', 2),
+(102, 'App\\Models\\User', 1),
+(102, 'App\\Models\\User', 2),
+(103, 'App\\Models\\User', 1),
+(103, 'App\\Models\\User', 2),
+(104, 'App\\Models\\User', 1),
+(104, 'App\\Models\\User', 2),
+(105, 'App\\Models\\User', 1),
+(105, 'App\\Models\\User', 2),
+(106, 'App\\Models\\User', 1),
+(106, 'App\\Models\\User', 2),
+(107, 'App\\Models\\User', 1),
+(107, 'App\\Models\\User', 2),
+(108, 'App\\Models\\User', 1),
+(108, 'App\\Models\\User', 2),
+(109, 'App\\Models\\User', 1),
+(109, 'App\\Models\\User', 2),
+(110, 'App\\Models\\User', 1),
+(110, 'App\\Models\\User', 2),
+(111, 'App\\Models\\User', 1),
+(111, 'App\\Models\\User', 2),
+(112, 'App\\Models\\User', 1),
+(112, 'App\\Models\\User', 2),
+(113, 'App\\Models\\User', 1),
+(113, 'App\\Models\\User', 2),
+(114, 'App\\Models\\User', 1),
+(114, 'App\\Models\\User', 2),
+(115, 'App\\Models\\User', 1),
+(115, 'App\\Models\\User', 2),
+(116, 'App\\Models\\User', 1),
+(116, 'App\\Models\\User', 2),
+(117, 'App\\Models\\User', 1),
+(117, 'App\\Models\\User', 2),
+(118, 'App\\Models\\User', 1),
+(118, 'App\\Models\\User', 2),
+(119, 'App\\Models\\User', 1),
+(119, 'App\\Models\\User', 2),
+(120, 'App\\Models\\User', 1),
+(120, 'App\\Models\\User', 2),
+(121, 'App\\Models\\User', 1),
+(121, 'App\\Models\\User', 2),
+(122, 'App\\Models\\User', 1),
+(122, 'App\\Models\\User', 2),
+(123, 'App\\Models\\User', 1),
+(123, 'App\\Models\\User', 2),
+(124, 'App\\Models\\User', 1),
+(124, 'App\\Models\\User', 2),
+(125, 'App\\Models\\User', 1),
+(125, 'App\\Models\\User', 2),
+(126, 'App\\Models\\User', 1),
+(126, 'App\\Models\\User', 2),
+(127, 'App\\Models\\User', 1),
+(127, 'App\\Models\\User', 2),
+(128, 'App\\Models\\User', 1),
+(128, 'App\\Models\\User', 2),
+(129, 'App\\Models\\User', 1),
+(129, 'App\\Models\\User', 2),
+(130, 'App\\Models\\User', 1),
+(130, 'App\\Models\\User', 2),
+(131, 'App\\Models\\User', 1),
+(131, 'App\\Models\\User', 2),
+(132, 'App\\Models\\User', 1),
+(132, 'App\\Models\\User', 2),
+(133, 'App\\Models\\User', 1),
+(133, 'App\\Models\\User', 2),
+(134, 'App\\Models\\User', 1),
+(134, 'App\\Models\\User', 2),
+(135, 'App\\Models\\User', 1),
+(135, 'App\\Models\\User', 2),
+(136, 'App\\Models\\User', 1),
+(136, 'App\\Models\\User', 2),
+(137, 'App\\Models\\User', 1),
+(137, 'App\\Models\\User', 2),
+(138, 'App\\Models\\User', 1),
+(138, 'App\\Models\\User', 2),
+(139, 'App\\Models\\User', 1),
+(139, 'App\\Models\\User', 2),
+(140, 'App\\Models\\User', 1),
+(140, 'App\\Models\\User', 2),
+(141, 'App\\Models\\User', 1),
+(141, 'App\\Models\\User', 2),
+(142, 'App\\Models\\User', 1),
+(142, 'App\\Models\\User', 2),
+(143, 'App\\Models\\User', 1),
+(143, 'App\\Models\\User', 2),
+(144, 'App\\Models\\User', 1),
+(144, 'App\\Models\\User', 2),
+(145, 'App\\Models\\User', 1),
+(145, 'App\\Models\\User', 2),
+(146, 'App\\Models\\User', 1),
+(146, 'App\\Models\\User', 2),
+(147, 'App\\Models\\User', 1),
+(147, 'App\\Models\\User', 2),
+(148, 'App\\Models\\User', 1),
+(148, 'App\\Models\\User', 2),
+(149, 'App\\Models\\User', 1),
+(149, 'App\\Models\\User', 2),
+(150, 'App\\Models\\User', 1),
+(150, 'App\\Models\\User', 2),
+(151, 'App\\Models\\User', 1),
+(151, 'App\\Models\\User', 2),
+(152, 'App\\Models\\User', 1),
+(152, 'App\\Models\\User', 2),
+(153, 'App\\Models\\User', 1),
+(153, 'App\\Models\\User', 2),
+(154, 'App\\Models\\User', 1),
+(154, 'App\\Models\\User', 2),
+(155, 'App\\Models\\User', 1),
+(155, 'App\\Models\\User', 2),
+(156, 'App\\Models\\User', 1),
+(156, 'App\\Models\\User', 2),
+(157, 'App\\Models\\User', 1),
+(157, 'App\\Models\\User', 2),
+(158, 'App\\Models\\User', 1),
+(158, 'App\\Models\\User', 2),
+(159, 'App\\Models\\User', 1),
+(159, 'App\\Models\\User', 2),
+(160, 'App\\Models\\User', 1),
+(160, 'App\\Models\\User', 2),
+(161, 'App\\Models\\User', 1),
+(161, 'App\\Models\\User', 2),
+(162, 'App\\Models\\User', 1),
+(162, 'App\\Models\\User', 2),
+(163, 'App\\Models\\User', 1),
+(163, 'App\\Models\\User', 2),
+(164, 'App\\Models\\User', 1),
+(164, 'App\\Models\\User', 2),
+(165, 'App\\Models\\User', 1),
+(165, 'App\\Models\\User', 2),
+(166, 'App\\Models\\User', 1),
+(166, 'App\\Models\\User', 2),
+(167, 'App\\Models\\User', 1),
+(167, 'App\\Models\\User', 2),
+(168, 'App\\Models\\User', 1),
+(168, 'App\\Models\\User', 2),
+(169, 'App\\Models\\User', 1),
+(169, 'App\\Models\\User', 2),
+(170, 'App\\Models\\User', 1),
+(170, 'App\\Models\\User', 2),
+(171, 'App\\Models\\User', 1),
+(171, 'App\\Models\\User', 2),
+(172, 'App\\Models\\User', 1),
+(172, 'App\\Models\\User', 2),
+(173, 'App\\Models\\User', 1),
+(173, 'App\\Models\\User', 2),
+(174, 'App\\Models\\User', 1),
+(174, 'App\\Models\\User', 2),
+(175, 'App\\Models\\User', 1),
+(175, 'App\\Models\\User', 2),
+(176, 'App\\Models\\User', 1),
+(176, 'App\\Models\\User', 2),
+(177, 'App\\Models\\User', 1),
+(177, 'App\\Models\\User', 2),
+(178, 'App\\Models\\User', 1),
+(178, 'App\\Models\\User', 2),
+(179, 'App\\Models\\User', 1),
+(179, 'App\\Models\\User', 2),
+(180, 'App\\Models\\User', 1),
+(180, 'App\\Models\\User', 2),
+(181, 'App\\Models\\User', 1),
+(181, 'App\\Models\\User', 2),
+(182, 'App\\Models\\User', 1),
+(182, 'App\\Models\\User', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `model_has_roles`
+--
+CREATE TABLE `model_has_roles` (
+  `role_id` INTEGER NOT NULL,
+  `model_type` varchar(255) NOT NULL,
+  `model_id` INTEGER NOT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` INTEGER NOT NULL,
+  `order_number` varchar(50) NOT NULL,
+  `receipt_number` varchar(50) NOT NULL,
+  `date` timestamp NOT NULL,
+  `customer_type_id` INTEGER NOT NULL,
+  `total_amount` REAL NOT NULL,
+  `tip` REAL NOT NULL DEFAULT 0.00,
+  `discount` REAL NOT NULL DEFAULT 0.00,
+  `ground_total` REAL NOT NULL DEFAULT 0.00,
+  `status` TEXT NOT NULL DEFAULT 'all',
+  `is_active` INTEGER NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `order_number`, `receipt_number`, `date`, `customer_type_id`, `total_amount`, `tip`, `discount`, `ground_total`, `status`, `is_active`, `created_at`, `updated_at`) VALUES
+(4, 'ORD-4CF08F', 'REC-CF096', '2025-03-06 11:47:32', 1, 6000.00, 0.00, 0.00, 0.00, 'all', 0, '2025-03-06 08:47:32', '2025-03-06 08:47:32'),
+(5, 'ORD-C3DC72', 'REC-3DC78', '2025-03-08 12:50:36', 1, 10000.00, 0.00, 0.00, 0.00, 'all', 0, '2025-03-08 09:50:36', '2025-03-08 09:50:36'),
+(7, 'ORD-391710', 'REC-91718', '2025-03-08 15:21:39', 1, 6000.00, 0.00, 0.00, 0.00, 'all', 0, '2025-03-08 12:21:39', '2025-03-08 12:21:39'),
+(8, 'ORD-C39075', 'REC-89106', '2025-03-08 19:38:11', 1, 9000.00, 0.00, 0.00, 0.00, 'all', 0, '2025-03-08 13:39:40', '2025-03-08 13:39:40'),
+(9, 'ORD-1F3A96', 'REC-F3AA0', '2025-03-11 11:44:17', 1, 6000.00, 0.00, 0.00, 0.00, 'all', 0, '2025-03-11 08:44:18', '2025-03-11 08:44:18'),
+(10, 'ORD-644298', 'REC-442A1', '2025-03-11 11:45:58', 1, 39000.00, 0.00, 0.00, 0.00, 'all', 0, '2025-03-11 08:45:58', '2025-03-11 08:45:58');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_extra_charges`
+--
+
+CREATE TABLE `order_extra_charges` (
+  `id` INTEGER NOT NULL,
+  `order_id` INTEGER NOT NULL,
+  `extra_charge_id` INTEGER NOT NULL,
+  `amount` REAL NOT NULL DEFAULT 0.00,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_items`
+--
+
+CREATE TABLE `order_items` (
+  `id` INTEGER NOT NULL,
+  `order_id` INTEGER NOT NULL,
+  `item_id` INTEGER NOT NULL,
+  `total_price` REAL NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `order_items`
+--
+
+INSERT INTO `order_items` (`id`, `order_id`, `item_id`, `total_price`, `quantity`, `created_at`, `updated_at`) VALUES
+(1, 4, 1, 6000.00, 3, '2025-03-06 08:47:32', '2025-03-06 08:47:32'),
+(2, 5, 1, 10000.00, 5, '2025-03-08 09:50:36', '2025-03-08 09:50:36'),
+(3, 7, 1, 4000.00, 2, '2025-03-08 12:21:39', '2025-03-08 12:21:39'),
+(4, 7, 2, 2000.00, 2, '2025-03-08 12:21:39', '2025-03-08 12:21:39'),
+(5, 8, 1, 6000.00, 3, '2025-03-08 13:39:40', '2025-03-08 13:39:40'),
+(6, 8, 2, 3000.00, 3, '2025-03-08 13:39:40', '2025-03-08 13:39:40'),
+(7, 9, 1, 2000.00, 1, '2025-03-11 08:44:18', '2025-03-11 08:44:18'),
+(8, 9, 2, 1000.00, 1, '2025-03-11 08:44:18', '2025-03-11 08:44:18'),
+(9, 9, 3, 3000.00, 1, '2025-03-11 08:44:18', '2025-03-11 08:44:18'),
+(10, 10, 1, 8000.00, 4, '2025-03-11 08:45:58', '2025-03-11 08:45:58'),
+(11, 10, 2, 4000.00, 4, '2025-03-11 08:45:58', '2025-03-11 08:45:58'),
+(12, 10, 3, 27000.00, 9, '2025-03-11 08:45:58', '2025-03-11 08:45:58');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_payments`
+--
+
+CREATE TABLE `order_payments` (
+  `id` INTEGER NOT NULL,
+  `order_id` INTEGER NOT NULL,
+  `payment_id` INTEGER NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `order_payments`
+--
+
+INSERT INTO `order_payments` (`id`, `order_id`, `payment_id`, `created_at`, `updated_at`) VALUES
+(4, 4, 4, '2025-03-06 08:47:32', '2025-03-06 08:47:32'),
+(5, 5, 2, '2025-03-08 09:50:36', '2025-03-08 09:50:36'),
+(7, 7, 4, '2025-03-08 12:21:39', '2025-03-08 12:21:39'),
+(8, 8, 4, '2025-03-08 13:39:40', '2025-03-08 13:39:40'),
+(9, 9, 1, '2025-03-11 08:44:18', '2025-03-11 08:44:18'),
+(10, 10, 1, '2025-03-11 08:45:58', '2025-03-11 08:45:58');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_types`
+--
+
+CREATE TABLE `order_types` (
+  `id` INTEGER NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_reset_tokens`
+--
+
+CREATE TABLE `password_reset_tokens` (
+  `email` varchar(255) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payments`
+--
+
+CREATE TABLE `payments` (
+  `id` INTEGER NOT NULL,
+  `short_code` varchar(255) NOT NULL,
+  `payment_method` varchar(255) NOT NULL,
+  `payment_type_id` INTEGER NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+-- Dumping data for table `payments`
+--
+
+INSERT INTO `payments` (`id`, `short_code`, `payment_method`, `payment_type_id`, `created_at`, `updated_at`) VALUES
+(1, 'Mix-By-Yas', 'Online Transaction', 3, '2025-03-06 08:42:29', '2025-03-06 08:42:29'),
+(2, 'Halopesaxx', 'Online Transaction', 3, '2025-03-06 08:42:39', '2025-03-06 08:42:39'),
+(3, 'Bank Transfer', 'Bank', 2, '2025-03-06 08:42:54', '2025-03-06 08:42:54'),
+(4, 'Cash', 'Cash Payment', 1, '2025-03-06 08:43:09', '2025-03-06 08:43:09'),
+(5, 'Cheque', 'Bank Cheque', 2, '2025-03-06 08:43:26', '2025-03-06 08:43:26');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment_accounts`
+--
+CREATE TABLE `payment_accounts` (
+  `id` INTEGER NOT NULL,
+  `account_name` varchar(255) NOT NULL,
+  `account_number` varchar(255) DEFAULT NULL,
+  `bank_name` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment_methods`
+--
+
+CREATE TABLE `payment_methods` (
+  `id` INTEGER NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment_types`
+--
+
+CREATE TABLE `payment_types` (
+  `id` INTEGER NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `payment_types`
+--
+
+INSERT INTO `payment_types` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'Cash', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(2, 'Bank', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(3, 'Mobile Transaction', '2025-03-06 05:33:41', '2025-03-06 05:33:41');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `peripheral_devices`
+--
+
+CREATE TABLE `peripheral_devices` (
+  `id` INTEGER NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `permissions`
+--
+
+CREATE TABLE `permissions` (
+  `id` INTEGER NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `guard_name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+-- Dumping data for table `permissions`
+--
+
+INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+(1, 'can view dashboard', 'web', '2025-03-06 05:32:14', '2025-03-06 05:32:14'),
+(2, 'can view store', 'web', '2025-03-06 05:32:14', '2025-03-06 05:32:14'),
+(3, 'can edit store', 'web', '2025-03-06 05:32:14', '2025-03-06 05:32:14'),
+(4, 'can delete store', 'web', '2025-03-06 05:32:14', '2025-03-06 05:32:14'),
+(5, 'can create store', 'web', '2025-03-06 05:32:14', '2025-03-06 05:32:14'),
+(6, 'can view item category', 'web', '2025-03-06 05:32:14', '2025-03-06 05:32:14'),
+(7, 'can edit item category', 'web', '2025-03-06 05:32:14', '2025-03-06 05:32:14'),
+(8, 'can delete item category', 'web', '2025-03-06 05:32:14', '2025-03-06 05:32:14'),
+(9, 'can create item category', 'web', '2025-03-06 05:32:14', '2025-03-06 05:32:14'),
+(10, 'can view item group', 'web', '2025-03-06 05:32:14', '2025-03-06 05:32:14'),
+(11, 'can edit item group', 'web', '2025-03-06 05:32:14', '2025-03-06 05:32:14'),
+(12, 'can delete item group', 'web', '2025-03-06 05:32:14', '2025-03-06 05:32:14'),
+(13, 'can create item group', 'web', '2025-03-06 05:32:14', '2025-03-06 05:32:14'),
+(14, 'can view item type', 'web', '2025-03-06 05:32:14', '2025-03-06 05:32:14'),
+(15, 'can edit item type', 'web', '2025-03-06 05:32:14', '2025-03-06 05:32:14'),
+(16, 'can delete item type', 'web', '2025-03-06 05:32:14', '2025-03-06 05:32:14'),
+(17, 'can create item type', 'web', '2025-03-06 05:32:14', '2025-03-06 05:32:14'),
+(18, 'can view item brand', 'web', '2025-03-06 05:32:14', '2025-03-06 05:32:14'),
+(19, 'can edit item brand', 'web', '2025-03-06 05:32:14', '2025-03-06 05:32:14'),
+(20, 'can delete item brand', 'web', '2025-03-06 05:32:14', '2025-03-06 05:32:14'),
+(21, 'can create item brand', 'web', '2025-03-06 05:32:14', '2025-03-06 05:32:14'),
+(22, 'can view unit', 'web', '2025-03-06 05:32:14', '2025-03-06 05:32:14'),
+(23, 'can edit unit', 'web', '2025-03-06 05:32:14', '2025-03-06 05:32:14'),
+(24, 'can delete unit', 'web', '2025-03-06 05:32:15', '2025-03-06 05:32:15'),
+(25, 'can create unit', 'web', '2025-03-06 05:32:15', '2025-03-06 05:32:15'),
+(26, 'can view items', 'web', '2025-03-06 05:32:15', '2025-03-06 05:32:15'),
+(27, 'can edit items', 'web', '2025-03-06 05:32:15', '2025-03-06 05:32:15'),
+(28, 'can delete items', 'web', '2025-03-06 05:32:15', '2025-03-06 05:32:15'),
+(29, 'can create items', 'web', '2025-03-06 05:32:15', '2025-03-06 05:32:15'),
+(30, 'can view cost & stock', 'web', '2025-03-06 05:32:15', '2025-03-06 05:32:15'),
+(31, 'can update cost & stock', 'web', '2025-03-06 05:32:15', '2025-03-06 05:32:15'),
+(32, 'can view purchase order', 'web', '2025-03-06 05:32:15', '2025-03-06 05:32:15'),
+(33, 'can edit purchase order', 'web', '2025-03-06 05:32:15', '2025-03-06 05:32:15'),
+(34, 'can delete purchase order', 'web', '2025-03-06 05:32:15', '2025-03-06 05:32:15'),
+(35, 'can create purchase order', 'web', '2025-03-06 05:32:15', '2025-03-06 05:32:15'),
+(36, 'can view purchase order items', 'web', '2025-03-06 05:32:15', '2025-03-06 05:32:15'),
+(37, 'can edit purchase order items', 'web', '2025-03-06 05:32:15', '2025-03-06 05:32:15'),
+(38, 'can delete purchase order items', 'web', '2025-03-06 05:32:15', '2025-03-06 05:32:15'),
+(39, 'can create purchase order items', 'web', '2025-03-06 05:32:15', '2025-03-06 05:32:15'),
+(40, 'approve PO', 'web', '2025-03-06 05:32:15', '2025-03-06 05:32:15'),
+(41, 'reject PO', 'web', '2025-03-06 05:32:15', '2025-03-06 05:32:15'),
+(42, 'receive PO', 'web', '2025-03-06 05:32:15', '2025-03-06 05:32:15'),
+(43, 'complete PO', 'web', '2025-03-06 05:32:15', '2025-03-06 05:32:15'),
+(44, 'cancel PO', 'web', '2025-03-06 05:32:15', '2025-03-06 05:32:15'),
+(45, 'can view good receive note', 'web', '2025-03-06 05:32:15', '2025-03-06 05:32:15'),
+(46, 'can edit good receive note', 'web', '2025-03-06 05:32:15', '2025-03-06 05:32:15'),
+(47, 'can delete good receive note', 'web', '2025-03-06 05:32:15', '2025-03-06 05:32:15'),
+(48, 'can create good receive note', 'web', '2025-03-06 05:32:15', '2025-03-06 05:32:15'),
+(49, 'can view good receive note items', 'web', '2025-03-06 05:32:15', '2025-03-06 05:32:15'),
+(50, 'can edit good receive note items', 'web', '2025-03-06 05:32:15', '2025-03-06 05:32:15'),
+(51, 'can delete good receive note items', 'web', '2025-03-06 05:32:15', '2025-03-06 05:32:15'),
+(52, 'can create good receive note items', 'web', '2025-03-06 05:32:16', '2025-03-06 05:32:16'),
+(53, 'verify GRN', 'web', '2025-03-06 05:32:16', '2025-03-06 05:32:16'),
+(54, 'reject GRN', 'web', '2025-03-06 05:32:16', '2025-03-06 05:32:16'),
+(55, 'accept GRN', 'web', '2025-03-06 05:32:16', '2025-03-06 05:32:16'),
+(56, 'complete GRN', 'web', '2025-03-06 05:32:16', '2025-03-06 05:32:16'),
+(57, 'reopen GRN', 'web', '2025-03-06 05:32:16', '2025-03-06 05:32:16'),
+(58, 'cancel GRN', 'web', '2025-03-06 05:32:16', '2025-03-06 05:32:16'),
+(59, 'can view goods returns', 'web', '2025-03-06 05:32:16', '2025-03-06 05:32:16'),
+(60, 'can edit goods returns', 'web', '2025-03-06 05:32:16', '2025-03-06 05:32:16'),
+(61, 'can delete goods returns', 'web', '2025-03-06 05:32:16', '2025-03-06 05:32:16'),
+(62, 'can create goods returns', 'web', '2025-03-06 05:32:16', '2025-03-06 05:32:16'),
+(63, 'can view goods issued note', 'web', '2025-03-06 05:32:16', '2025-03-06 05:32:16'),
+(64, 'can edit goods issued note', 'web', '2025-03-06 05:32:16', '2025-03-06 05:32:16'),
+(65, 'can delete goods issued note', 'web', '2025-03-06 05:32:16', '2025-03-06 05:32:16'),
+(66, 'can create goods issued note', 'web', '2025-03-06 05:32:16', '2025-03-06 05:32:16'),
+(67, 'can view pos', 'web', '2025-03-06 05:32:16', '2025-03-06 05:32:16'),
+(68, 'can edit pos', 'web', '2025-03-06 05:32:16', '2025-03-06 05:32:16'),
+(69, 'can delete pos', 'web', '2025-03-06 05:32:16', '2025-03-06 05:32:16'),
+(70, 'can create pos', 'web', '2025-03-06 05:32:16', '2025-03-06 05:32:16'),
+(71, 'can view user role', 'web', '2025-03-06 05:32:16', '2025-03-06 05:32:16'),
+(72, 'can edit user role', 'web', '2025-03-06 05:32:16', '2025-03-06 05:32:16'),
+(73, 'can delete user role', 'web', '2025-03-06 05:32:16', '2025-03-06 05:32:16'),
+(74, 'can create user role', 'web', '2025-03-06 05:32:17', '2025-03-06 05:32:17'),
+(75, 'can view users', 'web', '2025-03-06 05:32:17', '2025-03-06 05:32:17'),
+(76, 'can edit users', 'web', '2025-03-06 05:32:17', '2025-03-06 05:32:17'),
+(77, 'can delete users', 'web', '2025-03-06 05:32:17', '2025-03-06 05:32:17'),
+(78, 'can create users', 'web', '2025-03-06 05:32:17', '2025-03-06 05:32:17'),
+(79, 'can view permissions', 'web', '2025-03-06 05:32:17', '2025-03-06 05:32:17'),
+(80, 'can edit permissions', 'web', '2025-03-06 05:32:17', '2025-03-06 05:32:17'),
+(81, 'can delete permissions', 'web', '2025-03-06 05:32:17', '2025-03-06 05:32:17'),
+(82, 'can create permissions', 'web', '2025-03-06 05:32:17', '2025-03-06 05:32:17'),
+(83, 'can view vendors', 'web', '2025-03-06 05:32:17', '2025-03-06 05:32:17'),
+(84, 'can edit vendors', 'web', '2025-03-06 05:32:17', '2025-03-06 05:32:17'),
+(85, 'can delete vendors', 'web', '2025-03-06 05:32:17', '2025-03-06 05:32:17'),
+(86, 'can create vendors', 'web', '2025-03-06 05:32:17', '2025-03-06 05:32:17'),
+(87, 'can view payments', 'web', '2025-03-06 05:32:17', '2025-03-06 05:32:17'),
+(88, 'can edit payments', 'web', '2025-03-06 05:32:17', '2025-03-06 05:32:17'),
+(89, 'can delete payments', 'web', '2025-03-06 05:32:17', '2025-03-06 05:32:17'),
+(90, 'can create payments', 'web', '2025-03-06 05:32:17', '2025-03-06 05:32:17'),
+(91, 'can view currency', 'web', '2025-03-06 05:32:17', '2025-03-06 05:32:17'),
+(92, 'can edit currency', 'web', '2025-03-06 05:32:17', '2025-03-06 05:32:17'),
+(93, 'can delete currency', 'web', '2025-03-06 05:32:18', '2025-03-06 05:32:18'),
+(94, 'can create currency', 'web', '2025-03-06 05:32:18', '2025-03-06 05:32:18'),
+(95, 'can view tax', 'web', '2025-03-06 05:32:18', '2025-03-06 05:32:18'),
+(96, 'can edit tax', 'web', '2025-03-06 05:32:18', '2025-03-06 05:32:18'),
+(97, 'can delete tax', 'web', '2025-03-06 05:32:18', '2025-03-06 05:32:18'),
+(98, 'can create tax', 'web', '2025-03-06 05:32:18', '2025-03-06 05:32:18'),
+(99, 'can view extra charges', 'web', '2025-03-06 05:32:18', '2025-03-06 05:32:18'),
+(100, 'can edit extra charges', 'web', '2025-03-06 05:32:18', '2025-03-06 05:32:18'),
+(101, 'can delete extra charges', 'web', '2025-03-06 05:32:18', '2025-03-06 05:32:18'),
+(102, 'can create extra charges', 'web', '2025-03-06 05:32:18', '2025-03-06 05:32:18'),
+(103, 'can view discounts', 'web', '2025-03-06 05:32:18', '2025-03-06 05:32:18'),
+(104, 'can edit discounts', 'web', '2025-03-06 05:32:18', '2025-03-06 05:32:18'),
+(105, 'can delete discounts', 'web', '2025-03-06 05:32:18', '2025-03-06 05:32:18'),
+(106, 'can create discounts', 'web', '2025-03-06 05:32:18', '2025-03-06 05:32:18'),
+(107, 'can view reason', 'web', '2025-03-06 05:32:18', '2025-03-06 05:32:18'),
+(108, 'can edit reason', 'web', '2025-03-06 05:32:18', '2025-03-06 05:32:18'),
+(109, 'can delete reason', 'web', '2025-03-06 05:32:18', '2025-03-06 05:32:18'),
+(110, 'can create reason', 'web', '2025-03-06 05:32:19', '2025-03-06 05:32:19'),
+(111, 'can preview inventory stock level report', 'web', '2025-03-06 05:32:19', '2025-03-06 05:32:19'),
+(112, 'can generate inventory stock level report', 'web', '2025-03-06 05:32:19', '2025-03-06 05:32:19'),
+(113, 'can preview inventory stock movement report', 'web', '2025-03-06 05:32:19', '2025-03-06 05:32:19'),
+(114, 'can generate inventory stock movement report', 'web', '2025-03-06 05:32:19', '2025-03-06 05:32:19'),
+(115, 'can preview inventory low stock report', 'web', '2025-03-06 05:32:19', '2025-03-06 05:32:19'),
+(116, 'can generate inventory low stock report', 'web', '2025-03-06 05:32:19', '2025-03-06 05:32:19'),
+(117, 'can preview inventory dead stock report', 'web', '2025-03-06 05:32:19', '2025-03-06 05:32:19'),
+(118, 'can generate inventory dead stock report', 'web', '2025-03-06 05:32:19', '2025-03-06 05:32:19'),
+(119, 'can preview purchase order history report', 'web', '2025-03-06 05:32:19', '2025-03-06 05:32:19'),
+(120, 'can generate purchase order history report', 'web', '2025-03-06 05:32:19', '2025-03-06 05:32:19'),
+(121, 'can preview pending purchase orders report', 'web', '2025-03-06 05:32:19', '2025-03-06 05:32:19'),
+(122, 'can generate pending purchase orders report', 'web', '2025-03-06 05:32:19', '2025-03-06 05:32:19'),
+(123, 'can preview supplier performance report', 'web', '2025-03-06 05:32:19', '2025-03-06 05:32:19'),
+(124, 'can generate supplier performance report', 'web', '2025-03-06 05:32:19', '2025-03-06 05:32:19'),
+(125, 'can preview supplier payments report', 'web', '2025-03-06 05:32:19', '2025-03-06 05:32:19'),
+(126, 'can generate supplier payments report', 'web', '2025-03-06 05:32:20', '2025-03-06 05:32:20'),
+(127, 'can preview sales summary report', 'web', '2025-03-06 05:32:20', '2025-03-06 05:32:20'),
+(128, 'can generate sales summary report', 'web', '2025-03-06 05:32:20', '2025-03-06 05:32:20'),
+(129, 'can preview top selling products report', 'web', '2025-03-06 05:32:20', '2025-03-06 05:32:20'),
+(130, 'can generate top selling products report', 'web', '2025-03-06 05:32:20', '2025-03-06 05:32:20'),
+(131, 'can preview customer analysis report', 'web', '2025-03-06 05:32:20', '2025-03-06 05:32:20'),
+(132, 'can generate customer analysis report', 'web', '2025-03-06 05:32:20', '2025-03-06 05:32:20'),
+(133, 'can preview payment methods analysis report', 'web', '2025-03-06 05:32:20', '2025-03-06 05:32:20'),
+(134, 'can generate payment methods analysis report', 'web', '2025-03-06 05:32:20', '2025-03-06 05:32:20'),
+(135, 'can preview cost of goods sold report', 'web', '2025-03-06 05:32:20', '2025-03-06 05:32:20'),
+(136, 'can generate cost of goods sold report', 'web', '2025-03-06 05:32:20', '2025-03-06 05:32:20'),
+(137, 'can preview profit margins report', 'web', '2025-03-06 05:32:20', '2025-03-06 05:32:20'),
+(138, 'can generate profit margins report', 'web', '2025-03-06 05:32:20', '2025-03-06 05:32:20'),
+(139, 'can preview operating expenses report', 'web', '2025-03-06 05:32:20', '2025-03-06 05:32:20'),
+(140, 'can generate operating expenses report', 'web', '2025-03-06 05:32:20', '2025-03-06 05:32:20'),
+(141, 'can preview payment aging report', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(142, 'can generate payment aging report', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(143, 'can preview sales tax summary report', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(144, 'can generate sales tax summary report', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(145, 'can preview tax collected report', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(146, 'can generate tax collected report', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(147, 'can preview tax payments due report', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(148, 'can generate tax payments due report', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(149, 'can preview price change history report', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(150, 'can generate price change history report', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(151, 'can preview user activity logs report', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(152, 'can generate user activity logs report', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(153, 'can preview system access logs report', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(154, 'can generate system access logs report', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(155, 'can view company details', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(156, 'can edit company details', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(157, 'can create company details', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(158, 'can delete company details', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(159, 'can view virtual devices', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(160, 'can edit virtual devices', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(161, 'can delete virtual devices', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(162, 'can create virtual devices', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(163, 'can view expenses', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(164, 'can edit expenses', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(165, 'can delete expenses', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(166, 'can create expenses', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(167, 'can view employee', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(168, 'can view employee list', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(169, 'can view designation', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(170, 'can view payroll', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(171, 'can view month target', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(172, 'can view recover target', 'web', '2025-03-06 05:32:21', '2025-03-06 05:32:21'),
+(173, 'can view sales commission', 'web', '2025-03-06 05:32:22', '2025-03-06 05:32:22'),
+(174, 'can view month salary generated', 'web', '2025-03-06 05:32:22', '2025-03-06 05:32:22'),
+(175, 'can view attendance', 'web', '2025-03-06 05:32:22', '2025-03-06 05:32:22'),
+(176, 'can view leave management', 'web', '2025-03-06 05:32:22', '2025-03-06 05:32:22'),
+(177, 'can view performance review', 'web', '2025-03-06 05:32:22', '2025-03-06 05:32:22'),
+(178, 'can view customer', 'web', '2025-03-06 05:32:22', '2025-03-06 05:32:22'),
+(179, 'can create customer', 'web', '2025-03-06 05:32:22', '2025-03-06 05:32:22'),
+(180, 'can edit customer', 'web', '2025-03-06 05:32:22', '2025-03-06 05:32:22'),
+(181, 'can delete customer', 'web', '2025-03-06 05:32:22', '2025-03-06 05:32:22'),
+(182, 'can view reports', 'web', '2025-03-06 05:33:39', '2025-03-06 05:33:39');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `personal_access_tokens`
+--
+CREATE TABLE `personal_access_tokens` (
+  `id` INTEGER NOT NULL,
+  `tokenable_type` varchar(255) NOT NULL,
+  `tokenable_id` INTEGER NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `abilities` text DEFAULT NULL,
+  `last_used_at` timestamp NULL DEFAULT NULL,
+  `expires_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `positions`
+--
+
+CREATE TABLE `positions` (
+  `id` INTEGER NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text DEFAULT NULL,
+  `base_salary` REAL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `positions`
+--
+
+INSERT INTO `positions` (`id`, `title`, `description`, `base_salary`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Manager', 'Oversees the operations of the department or company.', 60000.00, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(2, 'Developer', 'Responsible for developing and maintaining software applications.', 50000.00, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(3, 'HR Specialist', 'Handles recruitment, employee relations, and performance management.', 45000.00, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(4, 'Sales Representative', 'Generates sales and builds relationships with clients.', 40000.00, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(5, 'Accountant', 'Manages financial records and ensures compliance with tax laws.', 55000.00, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL),
+(6, 'Marketing Executive', 'Develops and executes marketing campaigns to promote the company.', 48000.00, '2025-03-06 05:33:41', '2025-03-06 05:33:41', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pos_locations`
+--
+
+CREATE TABLE `pos_locations` (
+  `id` INTEGER NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `address` text DEFAULT NULL,
+  `contact_phone` varchar(255) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `notes` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `printer_settings`
+--
+
+CREATE TABLE `printer_settings` (
+  `id` INTEGER NOT NULL,
+  `virtual_device_id` INTEGER NOT NULL,
+  `printer_name` varchar(255) NOT NULL,
+  `printer_ip` varchar(255) NOT NULL,
+  `printer_type` varchar(255) NOT NULL,
+  `paper_size` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `purchase_orders`
+--
+
+CREATE TABLE `purchase_orders` (
+  `id` INTEGER NOT NULL,
+  `order_number` varchar(255) NOT NULL,
+  `supplier_id` INTEGER NOT NULL,
+  `order_date` TEXT NOT NULL,
+  `expected_delivery_date` TEXT DEFAULT NULL,
+  `status` TEXT NOT NULL DEFAULT 'Pending',
+  `total_amount` REAL NOT NULL DEFAULT 0.00,
+  `currency` varchar(10) NOT NULL DEFAULT 'USD',
+  `notes` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `purchase_order_items`
+--
+
+CREATE TABLE `purchase_order_items` (
+  `id` INTEGER NOT NULL,
+  `purchase_order_id` INTEGER NOT NULL,
+  `item_id` INTEGER NOT NULL,
+  `unit_id` INTEGER NOT NULL,
+  `quantity` INTEGER NOT NULL,
+  `discount` int(11) DEFAULT NULL,
+  `unit_price` REAL NOT NULL,
+  `tax_id` INTEGER DEFAULT NULL,
+  `total_price` REAL NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reasons`
+--
+
+CREATE TABLE `reasons` (
+  `id` INTEGER NOT NULL,
+  `reason_type_id` INTEGER NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+-- Dumping data for table `reasons`
+--
+
+INSERT INTO `reasons` (`id`, `reason_type_id`, `description`, `created_at`, `updated_at`) VALUES
+(1, 3, 'customer cancel', '2025-03-08 14:20:16', '2025-03-08 14:20:16');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reason_types`
+--
+CREATE TABLE `reason_types` (
+  `id` INTEGER NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `reason_types`
+--
+
+INSERT INTO `reason_types` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, 'void', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(2, 'incorrect_entry', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(3, 'customer_request_void', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(4, 'transaction_error', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(5, 'cancel', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(6, 'customer_request_cancel', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(7, 'out_of_stock', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(8, 'processing_delay', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(9, 'shipping_issue', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(10, 'pricing_error_cancel', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(11, 'refund', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(12, 'customer_return', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(13, 'damaged_item', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(14, 'defective_item', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(15, 'quality_issue', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(16, 'pricing_error_refund', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(17, 'duplicate_transaction', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(18, 'partial_refund', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(19, 'discount_adjustment', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(20, 'manager_override', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(21, 'training_purpose', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(22, 'other', '2025-03-06 05:33:41', '2025-03-06 05:33:41');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` INTEGER NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `guard_name` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+(1, 'Super Admin', 'web', '2025-03-06 05:33:39', '2025-03-06 05:33:39'),
+(2, 'Admin', 'web', '2025-03-06 05:33:39', '2025-03-06 05:33:39'),
+(3, 'Manager', 'web', '2025-03-06 05:33:39', '2025-03-06 05:33:39'),
+(4, 'Cashier', 'web', '2025-03-06 05:33:39', '2025-03-06 05:33:39'),
+(5, 'Customer Support', 'web', '2025-03-06 05:33:39', '2025-03-06 05:33:39'),
+(6, 'Inventory Manager', 'web', '2025-03-06 05:33:39', '2025-03-06 05:33:39'),
+(7, 'Accountant', 'web', '2025-03-06 05:33:39', '2025-03-06 05:33:39');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `role_has_permissions`
+--
+
+CREATE TABLE `role_has_permissions` (
+  `permission_id` INTEGER NOT NULL,
+  `role_id` INTEGER NOT NULL
+);
+--
+-- Dumping data for table `role_has_permissions`
+--
+
+INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
+(1, 1),
+(2, 1),
+(2, 3),
+(3, 1),
+(3, 3),
+(4, 1),
+(5, 1),
+(5, 3),
+(6, 1),
+(6, 3),
+(6, 6),
+(7, 1),
+(7, 6),
+(8, 1),
+(8, 6),
+(9, 1),
+(9, 6),
+(10, 1),
+(10, 3),
+(10, 6),
+(11, 1),
+(11, 6),
+(12, 1),
+(12, 6),
+(13, 1),
+(13, 6),
+(14, 1),
+(14, 3),
+(14, 6),
+(15, 1),
+(15, 6),
+(16, 1),
+(16, 6),
+(17, 1),
+(17, 6),
+(18, 1),
+(19, 1),
+(20, 1),
+(21, 1),
+(22, 1),
+(22, 6),
+(23, 1),
+(23, 6),
+(24, 1),
+(24, 6),
+(25, 1),
+(25, 6),
+(26, 1),
+(26, 3),
+(26, 4),
+(26, 6),
+(27, 1),
+(27, 6),
+(28, 1),
+(28, 6),
+(29, 1),
+(29, 6),
+(30, 1),
+(30, 6),
+(31, 1),
+(32, 1),
+(32, 3),
+(32, 4),
+(32, 6),
+(33, 1),
+(34, 1),
+(35, 1),
+(36, 1),
+(37, 1),
+(38, 1),
+(39, 1),
+(40, 1),
+(41, 1),
+(42, 1),
+(43, 1),
+(44, 1),
+(45, 1),
+(45, 3),
+(45, 6),
+(46, 1),
+(47, 1),
+(48, 1),
+(49, 1),
+(50, 1),
+(51, 1),
+(52, 1),
+(53, 1),
+(54, 1),
+(55, 1),
+(56, 1),
+(57, 1),
+(58, 1),
+(59, 1),
+(59, 6),
+(60, 1),
+(61, 1),
+(62, 1),
+(63, 1),
+(63, 6),
+(64, 1),
+(65, 1),
+(66, 1),
+(67, 1),
+(67, 4),
+(68, 1),
+(69, 1),
+(70, 1),
+(70, 4),
+(71, 1),
+(71, 3),
+(72, 1),
+(73, 1),
+(74, 1),
+(75, 1),
+(75, 3),
+(75, 5),
+(76, 1),
+(77, 1),
+(78, 1),
+(79, 1),
+(80, 1),
+(81, 1),
+(82, 1),
+(83, 1),
+(83, 3),
+(83, 5),
+(83, 7),
+(84, 1),
+(85, 1),
+(86, 1),
+(87, 1),
+(87, 3),
+(87, 5),
+(87, 7),
+(88, 1),
+(88, 7),
+(89, 1),
+(90, 1),
+(91, 1),
+(91, 7),
+(92, 1),
+(92, 7),
+(93, 1),
+(94, 1),
+(95, 1),
+(95, 3),
+(95, 7),
+(96, 1),
+(96, 7),
+(97, 1),
+(98, 1),
+(99, 1),
+(99, 7),
+(100, 1),
+(100, 7),
+(101, 1),
+(102, 1),
+(103, 1),
+(103, 3),
+(103, 7),
+(104, 1),
+(104, 7),
+(105, 1),
+(106, 1),
+(107, 1),
+(108, 1),
+(109, 1),
+(110, 1),
+(111, 1),
+(112, 1),
+(113, 1),
+(114, 1),
+(115, 1),
+(116, 1),
+(117, 1),
+(118, 1),
+(119, 1),
+(120, 1),
+(121, 1),
+(122, 1),
+(123, 1),
+(124, 1),
+(125, 1),
+(126, 1),
+(127, 1),
+(128, 1),
+(129, 1),
+(130, 1),
+(131, 1),
+(132, 1),
+(133, 1),
+(134, 1),
+(135, 1),
+(136, 1),
+(137, 1),
+(138, 1),
+(139, 1),
+(140, 1),
+(141, 1),
+(142, 1),
+(143, 1),
+(144, 1),
+(145, 1),
+(146, 1),
+(147, 1),
+(148, 1),
+(149, 1),
+(150, 1),
+(151, 1),
+(152, 1),
+(153, 1),
+(154, 1),
+(155, 1),
+(155, 7),
+(156, 1),
+(157, 1),
+(158, 1),
+(159, 1),
+(160, 1),
+(161, 1),
+(162, 1),
+(163, 1),
+(164, 1),
+(165, 1),
+(166, 1),
+(167, 1),
+(168, 1),
+(169, 1),
+(170, 1),
+(171, 1),
+(172, 1),
+(173, 1),
+(174, 1),
+(175, 1),
+(176, 1),
+(177, 1),
+(178, 1),
+(179, 1),
+(180, 1),
+(181, 1),
+(182, 1),
+(182, 3),
+(182, 7);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sessions`
+--
+CREATE TABLE `sessions` (
+  `id` varchar(255) NOT NULL,
+  `user_id` INTEGER DEFAULT NULL,
+  `ip_address` varchar(45) DEFAULT NULL,
+  `user_agent` text DEFAULT NULL,
+  `payload` text NOT NULL,
+  `last_activity` int(11) NOT NULL
+);
+
+--
+-- Dumping data for table `sessions`
+--
+
+INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
+('fwlL1mFYjxy4hDo4etTOAWEe4JmyF5cdg25fyp69', 1, '127.0.0.1', 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:136.0) Gecko/20100101 Firefox/136.0', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiU2xhSXJMYk1tWW1UNkx0ejVuT2NLYVM2Z1JsT01BaEtPME9GMGsxMCI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjY0OiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvcG9pbnRfb2Zfc2FsZS9wb3MvaXRlbXM/aXRlbV9jYXRlZ29yeV9pZD0xIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjQ6ImF1dGgiO2E6MTp7czoyMToicGFzc3dvcmRfY29uZmlybWVkX2F0IjtpOjE3NDE2ODI2MDQ7fX0=', 1741696315);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stocks`
+--
+
+CREATE TABLE `stocks` (
+  `id` INTEGER NOT NULL,
+  `item_id` INTEGER NOT NULL,
+  `store_id` INTEGER NOT NULL,
+  `min_quantity` REAL NOT NULL DEFAULT 0.00,
+  `max_quantity` REAL NOT NULL DEFAULT 0.00,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `stocks`
+--
+
+INSERT INTO `stocks` (`id`, `item_id`, `store_id`, `min_quantity`, `max_quantity`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 1, 1, 10.00, 30.00, '2025-03-06 07:46:53', '2025-03-08 11:48:52', NULL),
+(2, 2, 1, 10.00, 40.00, '2025-03-08 11:50:16', '2025-03-08 11:50:16', NULL),
+(3, 3, 1, 12.00, 30.00, '2025-03-09 14:53:46', '2025-03-09 14:53:46', NULL),
+(4, 4, 1, 10.00, 30.00, '2025-03-09 14:54:53', '2025-03-09 14:54:53', NULL),
+(5, 5, 1, 20.00, 30.00, '2025-03-10 23:13:14', '2025-03-10 23:13:14', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stock_movements`
+--
+
+CREATE TABLE `stock_movements` (
+  `id` INTEGER NOT NULL,
+  `item_id` INTEGER NOT NULL,
+  `order_id` INTEGER DEFAULT NULL,
+  `movement_type` TEXT NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `movement_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `stock_movements`
+--
+
+INSERT INTO `stock_movements` (`id`, `item_id`, `order_id`, `movement_type`, `quantity`, `movement_date`, `created_at`, `updated_at`) VALUES
+(1, 1, 4, 'sale', -3, '2025-03-06 08:47:32', '2025-03-06 08:47:32', '2025-03-06 08:47:32'),
+(2, 1, 5, 'sale', -5, '2025-03-08 09:50:36', '2025-03-08 09:50:36', '2025-03-08 09:50:36'),
+(3, 1, 7, 'sale', -2, '2025-03-08 12:21:39', '2025-03-08 12:21:39', '2025-03-08 12:21:39'),
+(4, 2, 7, 'sale', -2, '2025-03-08 12:21:39', '2025-03-08 12:21:39', '2025-03-08 12:21:39'),
+(5, 1, 8, 'sale', -3, '2025-03-08 13:39:40', '2025-03-08 13:39:40', '2025-03-08 13:39:40'),
+(6, 2, 8, 'sale', -3, '2025-03-08 13:39:40', '2025-03-08 13:39:40', '2025-03-08 13:39:40'),
+(7, 1, 9, 'sale', -1, '2025-03-11 08:44:18', '2025-03-11 08:44:18', '2025-03-11 08:44:18'),
+(8, 2, 9, 'sale', -1, '2025-03-11 08:44:18', '2025-03-11 08:44:18', '2025-03-11 08:44:18'),
+(9, 3, 9, 'sale', -1, '2025-03-11 08:44:18', '2025-03-11 08:44:18', '2025-03-11 08:44:18'),
+(10, 1, 10, 'sale', -4, '2025-03-11 08:45:58', '2025-03-11 08:45:58', '2025-03-11 08:45:58'),
+(11, 2, 10, 'sale', -4, '2025-03-11 08:45:58', '2025-03-11 08:45:58', '2025-03-11 08:45:58'),
+(12, 3, 10, 'sale', -9, '2025-03-11 08:45:58', '2025-03-11 08:45:58', '2025-03-11 08:45:58');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `stores`
+--
+
+CREATE TABLE `stores` (
+  `id` INTEGER NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `location` varchar(255) NOT NULL,
+  `manager_id` INTEGER NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `stores`
+--
+
+INSERT INTO `stores` (`id`, `name`, `location`, `manager_id`, `created_at`, `updated_at`) VALUES
+(1, 'Kingalu', 'Forest', 1, '2025-03-06 05:39:32', '2025-03-06 05:39:32');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `taxes`
+--
+
+CREATE TABLE `taxes` (
+  `id` INTEGER NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `tax_type` TEXT NOT NULL DEFAULT 'exclusive',
+  `tax_mode` TEXT NOT NULL DEFAULT 'percentage',
+  `tax_percentage` REAL DEFAULT NULL,
+  `tax_amount` REAL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `units`
+--
+
+CREATE TABLE `units` (
+  `id` INTEGER NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `status` TEXT NOT NULL DEFAULT 'active',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+--
+-- Dumping data for table `units`
+--
+
+INSERT INTO `units` (`id`, `name`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Milligram (MG)', 'active', '2025-03-06 05:33:40', '2025-03-06 05:33:40'),
+(2, 'Gram (G)', 'active', '2025-03-06 05:33:40', '2025-03-06 05:33:40'),
+(3, 'Kilogram (KG)', 'active', '2025-03-06 05:33:40', '2025-03-06 05:33:40'),
+(4, 'Tonne (T)', 'active', '2025-03-06 05:33:40', '2025-03-06 05:33:40'),
+(5, 'Ounce (OZ)', 'active', '2025-03-06 05:33:40', '2025-03-06 05:33:40'),
+(6, 'Pound (LB)', 'active', '2025-03-06 05:33:40', '2025-03-06 05:33:40'),
+(7, 'Stone (ST)', 'active', '2025-03-06 05:33:40', '2025-03-06 05:33:40'),
+(8, 'Milliliter (ML)', 'active', '2025-03-06 05:33:40', '2025-03-06 05:33:40'),
+(9, 'Centiliter (CL)', 'active', '2025-03-06 05:33:40', '2025-03-06 05:33:40'),
+(10, 'Liter (L)', 'active', '2025-03-06 05:33:40', '2025-03-06 05:33:40'),
+(11, 'Gallon (GAL)', 'active', '2025-03-06 05:33:40', '2025-03-06 05:33:40'),
+(12, 'Teaspoon (TSP)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(13, 'Tablespoon (TBSP)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(14, 'Cup', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(15, 'Pint (PT)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(16, 'Quart (QT)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(17, 'Millimeter (MM)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(18, 'Centimeter (CM)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(19, 'Meter (M)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(20, 'Inch (IN)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(21, 'Foot (FT)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(22, 'Yard (YD)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(23, 'Piece (PCS)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(24, 'Pack (PK)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(25, 'Box (BX)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(26, 'Bottle (BTL)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(27, 'Can (CAN)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(28, 'Tube (TUBE)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(29, 'Vial (VIAL)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(30, 'Ampoule (AMP)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(31, 'Carton (CTN)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(32, 'Sachet (SACHET)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(33, 'Tablet (TAB)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(34, 'Capsule (CAP)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(35, 'Syringe (SYR)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(36, 'Drop (DROP)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(37, 'Strip (STRIP)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(38, 'Blister Pack (BLISTER)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(39, 'Dozen (DOZ)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(40, 'Bundle (BDL)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(41, 'Tray (TRY)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(42, 'Roll (ROLL)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(43, 'Bar (BAR)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(44, 'Pair (PR)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(45, 'Set (SET)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41'),
+(46, 'Unit (UNIT)', 'active', '2025-03-06 05:33:41', '2025-03-06 05:33:41');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--CREATE TABLE `users` (
+  `id` INTEGER NOT NULL,
+  `fullname` varchar(255) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `phone_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `pin` INTEGER NOT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `fullname`, `username`, `email`, `phone`, `email_verified_at`, `phone_verified_at`, `password`, `pin`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'jackson ngowi', 'ngowi', 'ngowi@japango.co.tz', '0621672603', NULL, NULL, '$2y$12$W3xMATJXc7aCfykCdYTPAO9n81sExTE2vDo3vn3Pyl4ZMTL162V8O', 1234, NULL, '2025-03-06 05:38:10', '2025-03-06 05:38:10'),
+(2, 'Jackson Paradiso', 'admin', 'admin@japango.co.tz', '12345678', NULL, NULL, '$2y$12$3.8Qst56tvmP01s0L22Z5.e4qMMZqQBZjtxmtp5ovDV/auQtoYJbS', 5678, NULL, '2025-03-06 05:38:11', '2025-03-06 05:38:11');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_permissions`
+--
+
+CREATE TABLE `user_permissions` (
+  `id` INTEGER NOT NULL,
+  `user_id` INTEGER NOT NULL,
+  `permission_id` INTEGER NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_roles`
+--
+
+CREATE TABLE `user_roles` (
+  `id` INTEGER NOT NULL,
+  `user_id` INTEGER NOT NULL,
+  `role_id` INTEGER NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Dumping data for table `user_roles`
+--
+
+INSERT INTO `user_roles` (`id`, `user_id`, `role_id`, `created_at`, `updated_at`) VALUES
+(1, 1, 1, NULL, NULL),
+(2, 2, 1, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vendors`
+--
+
+CREATE TABLE `vendors` (
+  `id` INTEGER NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `address` text NOT NULL,
+  `city_id` INTEGER NOT NULL,
+  `state` varchar(100) NOT NULL,
+  `postal_code` varchar(20) DEFAULT NULL,
+  `country_id` INTEGER NOT NULL,
+  `contact_person` varchar(255) DEFAULT NULL,
+  `tin` varchar(100) DEFAULT NULL,
+  `vrn` varchar(100) DEFAULT NULL,
+  `status` TEXT NOT NULL DEFAULT 'active',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `virtual_devices`
+--
+
+CREATE TABLE `virtual_devices` (
+  `id` INTEGER NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `is_active` INTEGER NOT NULL DEFAULT 1,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `void_reasons`
+--
+
+CREATE TABLE `void_reasons` (
+  `id` INTEGER NOT NULL,
+  `order_id` INTEGER NOT NULL,
+  `reason_id` INTEGER NOT NULL,
+  `details` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `accounts`
+--
+CREATE INDEX accounts_account_number_unique ON `accounts` (`account_number`);
+CREATE INDEX accounts_currency_id_foreign ON `accounts` (`currency_id`);
+
+--
+-- Indexes for table `authors`
+--
+CREATE INDEX authors_email_unique ON `authors` (`email`);
+CREATE INDEX authors_country_id_foreign ON `authors` (`country_id`);
+
+--
+-- Indexes for table `barcodes`
+--
+CREATE INDEX barcodes_code_unique ON `barcodes` (`code`);
+
+--
+-- Indexes for table `brand_applicable_items`
+--
+CREATE INDEX brand_applicable_items_item_id_foreign ON `brand_applicable_items` (`item_id`);
+CREATE INDEX brand_applicable_items_brand_id_foreign ON `brand_applicable_items` (`brand_id`);
+
+--
+-- Indexes for table `carts`
+--
+CREATE INDEX carts_order_number_unique ON `carts` (`order_number`);
+CREATE INDEX carts_customer_type_id_foreign ON `carts` (`customer_type_id`);
+CREATE INDEX carts_customer_id_foreign ON `carts` (`customer_id`);
+
+--
+-- Indexes for table `cart_extra_charges`
+--
+CREATE INDEX cart_extra_charges_cart_id_foreign ON `cart_extra_charges` (`cart_id`);
+
+--
+-- Indexes for table `cart_items`
+--
+CREATE INDEX cart_items_item_id_foreign ON `cart_items` (`item_id`);
+CREATE INDEX cart_items_cart_id_foreign ON `cart_items` (`cart_id`);
+
+--
+-- Indexes for table `categories`
+--
+CREATE INDEX categories_item_group_id_foreign ON `categories` (`item_group_id`);
+
+--
+-- Indexes for table `cities`
+--
+CREATE INDEX cities_name_unique ON `cities` (`name`);
+CREATE INDEX cities_country_id_foreign ON `cities` (`country_id`);
+--
+-- Indexes for table `city_ledgers`
+--
+ALTER TABLE `city_ledgers`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `city_ledgers_ledger_code_unique` (`ledger_code`),
+  ADD KEY `city_ledgers_customer_id_foreign` (`customer_id`);
+
+--
+-- Indexes for table `companies`
+--
+ALTER TABLE `companies`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `companies_country_id_foreign` (`country_id`),
+  ADD KEY `companies_company_name_index` (`company_name`),
+  ADD KEY `companies_email_index` (`email`),
+  ADD KEY `companies_tin_no_index` (`tin_no`);
+
+--
+-- Indexes for table `company_fiscal_years`
+--
+ALTER TABLE `company_fiscal_years`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `company_fiscal_years_company_id_foreign` (`company_id`),
+  ADD KEY `company_fiscal_years_financial_year_from_financial_year_to_index` (`financial_year_from`,`financial_year_to`);
+
+--
+-- Indexes for table `countries`
+----
+-- Indexes for table `countries`
+--
+CREATE UNIQUE INDEX countries_name_unique ON `countries` (`name`);
+
+--
+-- Indexes for table `currencies`
+--
+CREATE INDEX currencies_country_id_foreign ON `currencies` (`country_id`);
+
+--
+-- Indexes for table `customers`
+--
+CREATE UNIQUE INDEX customers_customer_code_unique ON `customers` (`customer_code`);
+CREATE INDEX customers_customer_type_id_foreign ON `customers` (`customer_type_id`);
+CREATE INDEX customers_city_id_foreign ON `customers` (`city_id`);
+
+--
+-- Indexes for table `customer_orders`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+
+--
+-- Indexes for table `customer_types`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+
+--
+-- Indexes for table `discounts`
+--
+CREATE UNIQUE INDEX discounts_code_unique ON `discounts` (`code`);
+CREATE INDEX discounts_discount_type_id_foreign ON `discounts` (`discount_type_id`);
+CREATE INDEX discounts_created_by_foreign ON `discounts` (`created_by`);
+CREATE INDEX discounts_updated_by_foreign ON `discounts` (`updated_by`);
+
+--
+-- Indexes for table `discount_applicable_categories`
+--
+CREATE INDEX discount_applicable_categories_discount_id_foreign ON `discount_applicable_categories` (`discount_id`);
+CREATE INDEX discount_applicable_categories_category_id_foreign ON `discount_applicable_categories` (`category_id`);
+
+--
+-- Indexes for table `discount_applicable_items`
+--
+CREATE INDEX discount_applicable_items_discount_id_foreign ON `discount_applicable_items` (`discount_id`);
+CREATE INDEX discount_applicable_items_item_id_foreign ON `discount_applicable_items` (`item_id`);
+
+--
+-- Indexes for table `discount_exclusions`
+--
+CREATE INDEX discount_exclusions_discount_id_foreign ON `discount_exclusions` (`discount_id`);
+CREATE INDEX discount_exclusions_excludable_type_excludable_id_index ON `discount_exclusions` (`excludable_type`, `excludable_id`);
+
+--
+-- Indexes for table `discount_types`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+
+--
+-- Indexes for table `discount_usage_histories`
+--
+CREATE INDEX discount_usage_histories_discount_id_foreign ON `discount_usage_histories` (`discount_id`);
+CREATE INDEX discount_usage_histories_order_id_foreign ON `discount_usage_histories` (`order_id`);
+CREATE INDEX discount_usage_histories_user_id_foreign ON `discount_usage_histories` (`user_id`);
+
+--
+-- Indexes for table `employees`
+--
+CREATE UNIQUE INDEX employees_email_unique ON `employees` (`email`);
+CREATE INDEX employees_user_id_foreign ON `employees` (`user_id`);
+CREATE INDEX employees_city_id_foreign ON `employees` (`city_id`);
+CREATE INDEX employees_position_id_foreign ON `employees` (`position_id`);
+CREATE INDEX employees_gender_id_foreign ON `employees` (`gender_id`);
+
+--
+-- Indexes for table `expenses`
+--
+CREATE INDEX expenses_expense_category_id_foreign ON `expenses` (`expense_category_id`);
+CREATE INDEX expenses_payment_type_id_foreign ON `expenses` (`payment_type_id`);
+CREATE INDEX expenses_vendor_id_foreign ON `expenses` (`vendor_id`);
+CREATE INDEX expenses_user_id_foreign ON `expenses` (`user_id`);
+CREATE INDEX expenses_expense_status_id_foreign ON `expenses` (`expense_status_id`);
+CREATE INDEX expenses_purchase_order_id_foreign ON `expenses` (`purchase_order_id`);
+CREATE INDEX expenses_item_id_foreign ON `expenses` (`item_id`);
+CREATE INDEX expenses_pos_location_id_foreign ON `expenses` (`pos_location_id`);
+CREATE INDEX expenses_approved_by_user_id_foreign ON `expenses` (`approved_by_user_id`);
+CREATE INDEX expenses_payment_account_id_foreign ON `expenses` (`payment_account_id`);
+
+--
+-- Indexes for table `expense_categories`
+--
+CREATE UNIQUE INDEX expense_categories_name_unique ON `expense_categories` (`name`);
+
+--
+-- Indexes for table `expense_statuses`
+--
+CREATE UNIQUE INDEX expense_statuses_name_unique ON `expense_statuses` (`name`);
+
+--
+-- Indexes for table `extra_charges`
+--
+CREATE INDEX extra_charges_tax_id_foreign ON `extra_charges` (`tax_id`);
+CREATE INDEX extra_charges_charge_type_id_foreign ON `extra_charges` (`charge_type_id`);
+
+--
+-- Indexes for table `extra_charge_types`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+
+--
+-- Indexes for table `failed_jobs`
+--
+CREATE UNIQUE INDEX failed_jobs_uuid_unique ON `failed_jobs` (`uuid`);
+
+--
+-- Indexes for table `genders`
+--
+CREATE UNIQUE INDEX genders_name_unique ON `genders` (`name`);
+
+--
+-- Indexes for table `good_receipt_notes`
+--
+CREATE UNIQUE INDEX good_receipt_notes_grn_number_unique ON `good_receipt_notes` (`grn_number`);
+CREATE INDEX good_receipt_notes_purchase_order_id_foreign ON `good_receipt_notes` (`purchase_order_id`);
+CREATE INDEX good_receipt_notes_supplier_id_foreign ON `good_receipt_notes` (`supplier_id`);
+CREATE INDEX good_receipt_notes_received_by_foreign ON `good_receipt_notes` (`received_by`);
+
+--
+-- Indexes for table `good_receipt_note_extra_charges`
+--
+CREATE INDEX good_receipt_note_extra_charges_grn_id_foreign ON `good_receipt_note_extra_charges` (`grn_id`);
+CREATE INDEX good_receipt_note_extra_charges_extra_charge_id_foreign ON `good_receipt_note_extra_charges` (`extra_charge_id`);
+CREATE INDEX good_receipt_note_extra_charges_unit_id_foreign ON `good_receipt_note_extra_charges` (`unit_id`);
+
+--
+-- Indexes for table `good_receive_note_documents`
+--
+CREATE INDEX good_receive_note_documents_uploaded_by_foreign ON `good_receive_note_documents` (`uploaded_by`);
+CREATE INDEX good_receive_note_documents_grn_id_foreign ON `good_receive_note_documents` (`grn_id`);
+--
+-- Indexes for table `good_receive_note_items`
+----
+-- Indexes for table `good_receive_note_items`
+--
+CREATE INDEX good_receive_note_items_purchase_order_item_id_foreign ON `good_receive_note_items` (`purchase_order_item_id`);
+CREATE INDEX good_receive_note_items_item_id_foreign ON `good_receive_note_items` (`item_id`);
+CREATE INDEX good_receive_note_items_grn_id_foreign ON `good_receive_note_items` (`grn_id`);
+
+--
+-- Indexes for table `good_receive_note_quality_checks`
+--
+CREATE INDEX good_receive_note_quality_checks_grn_item_id_foreign ON `good_receive_note_quality_checks` (`grn_item_id`);
+CREATE INDEX good_receive_note_quality_checks_checked_by_foreign ON `good_receive_note_quality_checks` (`checked_by`);
+CREATE INDEX good_receive_note_quality_checks_grn_id_foreign ON `good_receive_note_quality_checks` (`grn_id`);
+
+--
+-- Indexes for table `images`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+
+--
+-- Indexes for table `items`
+--
+CREATE INDEX items_category_id_foreign ON `items` (`category_id`);
+CREATE INDEX items_item_type_id_foreign ON `items` (`item_type_id`);
+CREATE INDEX items_item_group_id_foreign ON `items` (`item_group_id`);
+
+--
+-- Indexes for table `item_barcodes`
+--
+CREATE INDEX item_barcodes_item_id_foreign ON `item_barcodes` (`item_id`);
+CREATE INDEX item_barcodes_barcode_id_foreign ON `item_barcodes` (`barcode_id`);
+
+--
+-- Indexes for table `item_brands`
+--
+CREATE UNIQUE INDEX item_brands_name_unique ON `item_brands` (`name`);
+
+--
+-- Indexes for table `item_categories`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+
+--
+-- Indexes for table `item_costs`
+--
+CREATE UNIQUE INDEX item_costs_item_id_store_id_unique ON `item_costs` (`item_id`, `store_id`);
+CREATE INDEX item_costs_store_id_foreign ON `item_costs` (`store_id`);
+CREATE INDEX item_costs_unit_id_foreign ON `item_costs` (`unit_id`);
+
+--
+-- Indexes for table `item_groups`
+--
+CREATE UNIQUE INDEX item_groups_name_unique ON `item_groups` (`name`);
+
+--
+-- Indexes for table `item_images`
+--
+CREATE INDEX item_images_item_id_foreign ON `item_images` (`item_id`);
+CREATE INDEX item_images_image_id_foreign ON `item_images` (`image_id`);
+
+--
+-- Indexes for table `item_prices`
+--
+CREATE UNIQUE INDEX item_prices_item_id_store_id_unique ON `item_prices` (`item_id`, `store_id`);
+CREATE INDEX item_prices_store_id_foreign ON `item_prices` (`store_id`);
+CREATE INDEX item_prices_unit_id_foreign ON `item_prices` (`unit_id`);
+
+--
+-- Indexes for table `item_stocks`
+--
+CREATE UNIQUE INDEX item_stocks_item_id_stock_id_unique ON `item_stocks` (`item_id`, `stock_id`);
+CREATE INDEX item_stocks_stock_id_foreign ON `item_stocks` (`stock_id`);
+
+--
+-- Indexes for table `item_stores`
+--
+CREATE INDEX item_stores_item_id_foreign ON `item_stores` (`item_id`);
+CREATE INDEX item_stores_store_id_foreign ON `item_stores` (`store_id`);
+
+--
+-- Indexes for table `item_taxes`
+--
+CREATE UNIQUE INDEX item_taxes_item_id_store_id_tax_id_unique ON `item_taxes` (`item_id`, `store_id`, `tax_id`);
+CREATE INDEX item_taxes_store_id_foreign ON `item_taxes` (`store_id`);
+CREATE INDEX item_taxes_tax_id_foreign ON `item_taxes` (`tax_id`);
+
+--
+-- Indexes for table `item_types`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+
+--
+-- Indexes for table `item_units`
+--
+CREATE UNIQUE INDEX item_units_item_id_unique ON `item_units` (`item_id`);
+CREATE INDEX item_units_buying_unit_id_foreign ON `item_units` (`buying_unit_id`);
+CREATE INDEX item_units_selling_unit_id_foreign ON `item_units` (`selling_unit_id`);
+
+--
+-- Indexes for table `jobs`
+--
+CREATE INDEX jobs_queue_index ON `jobs` (`queue`);
+
+--
+-- Indexes for table `job_batches`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+
+--
+-- Indexes for table `migrations`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+
+--
+-- Indexes for table `model_has_permissions`
+--
+CREATE INDEX model_has_permissions_model_id_model_type_index ON `model_has_permissions` (`model_id`, `model_type`);
+
+--
+-- Indexes for table `model_has_roles`
+--
+CREATE INDEX model_has_roles_model_id_model_type_index ON `model_has_roles` (`model_id`, `model_type`);
+
+--
+-- Indexes for table `orders`
+--
+CREATE INDEX orders_customer_type_id_foreign ON `orders` (`customer_type_id`);
+
+--
+-- Indexes for table `order_extra_charges`
+--
+CREATE INDEX order_extra_charges_extra_charge_id_foreign ON `order_extra_charges` (`extra_charge_id`);
+CREATE INDEX order_extra_charges_order_id_foreign ON `order_extra_charges` (`order_id`);
+
+--
+-- Indexes for table `order_items`
+--
+CREATE INDEX order_items_order_id_foreign ON `order_items` (`order_id`);
+CREATE INDEX order_items_item_id_foreign ON `order_items` (`item_id`);
+
+--
+-- Indexes for table `order_payments`
+--
+CREATE INDEX order_payments_order_id_foreign ON `order_payments` (`order_id`);
+CREATE INDEX order_payments_payment_id_foreign ON `order_payments` (`payment_id`);
+
+--
+-- Indexes for table `order_types`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+
+----
+-- Indexes for table `password_reset_tokens`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+
+--
+-- Indexes for table `payments`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+CREATE INDEX payments_payment_type_id_foreign ON `payments` (`payment_type_id`);
+
+--
+-- Indexes for table `payment_accounts`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+
+--
+-- Indexes for table `payment_methods`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+
+--
+-- Indexes for table `payment_types`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+
+--
+-- Indexes for table `peripheral_devices`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+
+--
+-- Indexes for table `permissions`
+--
+CREATE UNIQUE INDEX permissions_name_guard_name_unique ON `permissions` (`name`, `guard_name`);
+
+--
+-- Indexes for table `personal_access_tokens`
+--
+CREATE UNIQUE INDEX personal_access_tokens_token_unique ON `personal_access_tokens` (`token`);
+CREATE INDEX personal_access_tokens_tokenable_type_tokenable_id_index ON `personal_access_tokens` (`tokenable_type`, `tokenable_id`);
+
+--
+-- Indexes for table `positions`
+--
+CREATE UNIQUE INDEX positions_title_unique ON `positions` (`title`);
+
+--
+-- Indexes for table `pos_locations`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+
+--
+-- Indexes for table `printer_settings`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+CREATE INDEX printer_settings_virtual_device_id_foreign ON `printer_settings` (`virtual_device_id`);
+
+--
+-- Indexes for table `purchase_orders`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+CREATE UNIQUE INDEX purchase_orders_order_number_unique ON `purchase_orders` (`order_number`);
+CREATE INDEX purchase_orders_supplier_id_foreign ON `purchase_orders` (`supplier_id`);
+
+--
+-- Indexes for table `purchase_order_items`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+CREATE INDEX purchase_order_items_purchase_order_id_foreign ON `purchase_order_items` (`purchase_order_id`);
+CREATE INDEX purchase_order_items_item_id_foreign ON `purchase_order_items` (`item_id`);
+CREATE INDEX purchase_order_items_unit_id_foreign ON `purchase_order_items` (`unit_id`);
+CREATE INDEX purchase_order_items_tax_id_foreign ON `purchase_order_items` (`tax_id`);
+
+--
+-- Indexes for table `reasons`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+CREATE INDEX reasons_reason_type_id_foreign ON `reasons` (`reason_type_id`);
+
+--
+-- Indexes for table `reason_types`
+--
+CREATE UNIQUE INDEX reason_types_name_unique ON `reason_types` (`name`);
+
+--
+-- Indexes for table `roles`
+--
+CREATE UNIQUE INDEX roles_name_guard_name_unique ON `roles` (`name`, `guard_name`);
+
+--
+-- Indexes for table `role_has_permissions`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+CREATE INDEX role_has_permissions_role_id_foreign ON `role_has_permissions` (`role_id`);
+
+--
+-- Indexes for table `sessions`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+CREATE INDEX sessions_user_id_index ON `sessions` (`user_id`);
+CREATE INDEX sessions_last_activity_index ON `sessions` (`last_activity`);
+
+--
+-- Indexes for table `stocks`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+CREATE INDEX stocks_item_id_foreign ON `stocks` (`item_id`);
+CREATE INDEX stocks_store_id_foreign ON `stocks` (`store_id`);
+
+--
+-- Indexes for table `stock_movements`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+CREATE INDEX stock_movements_item_id_foreign ON `stock_movements` (`item_id`);
+CREATE INDEX stock_movements_order_id_foreign ON `stock_movements` (`order_id`);
+
+--
+-- Indexes for table `stores`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+CREATE INDEX stores_manager_id_foreign ON `stores` (`manager_id`);
+
+--
+-- Indexes for table `taxes`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+
+--
+-- Indexes for table `units`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+
+--
+-- Indexes for table `users`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+CREATE UNIQUE INDEX users_username_unique ON `users` (`username`);
+CREATE UNIQUE INDEX users_pin_unique ON `users` (`pin`);
+CREATE UNIQUE INDEX users_email_unique ON `users` (`email`);
+CREATE UNIQUE INDEX users_phone_unique ON `users` (`phone`);
+
+--
+-- Indexes for table `user_permissions`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+CREATE INDEX user_permissions_user_id_foreign ON `user_permissions` (`user_id`);
+CREATE INDEX user_permissions_permission_id_foreign ON `user_permissions` (`permission_id`);
+
+--
+-- Indexes for table `user_roles`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+CREATE INDEX user_roles_user_id_foreign ON `user_roles` (`user_id`);
+CREATE INDEX user_roles_role_id_foreign ON `user_roles` (`role_id`);
+
+--
+-- Indexes for table `vendors`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+CREATE UNIQUE INDEX vendors_email_unique ON `vendors` (`email`);
+CREATE INDEX vendors_city_id_foreign ON `vendors` (`city_id`);
+CREATE INDEX vendors_country_id_foreign ON `vendors` (`country_id`);
+
+--
+-- Indexes for table `virtual_devices`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+
+--
+-- Indexes for table `void_reasons`
+--
+-- No explicit index creation for PRIMARY KEY in SQLite
+CREATE INDEX void_reasons_order_id_foreign ON `void_reasons` (`order_id`);
+CREATE INDEX void_reasons_reason_id_foreign ON `void_reasons` (`reason_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables is not applicable for SQLite
+--
+-- AUTO_INCREMENT for table `accounts`
+--
+-- ALTER TABLE `accounts`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+-- AUTO_INCREMENT for table `authors`
+--
+ALTER TABLE `authors`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `barcodes`
+--
+ALTER TABLE `barcodes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `brand_applicable_items`
+--
+ALTER TABLE `brand_applicable_items`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `carts`
+--
+ALTER TABLE `carts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `cart_extra_charges`
+--
+ALTER TABLE `cart_extra_charges`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `cart_items`
+--
+ALTER TABLE `cart_items`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+
+---- AUTO_INCREMENT for table `cities`
+--
+-- ALTER TABLE `cities`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `city_ledgers`
+--
+-- ALTER TABLE `city_ledgers`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `companies`
+--
+-- ALTER TABLE `companies`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `company_fiscal_years`
+--
+-- ALTER TABLE `company_fiscal_years`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `countries`
+--
+-- ALTER TABLE `countries`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `currencies`
+--
+-- ALTER TABLE `currencies`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `customers`
+--
+-- ALTER TABLE `customers`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `customer_orders`
+--
+-- ALTER TABLE `customer_orders`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `customer_types`
+--
+-- ALTER TABLE `customer_types`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `discounts`
+--
+-- ALTER TABLE `discounts`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `discount_applicable_categories`
+--
+-- ALTER TABLE `discount_applicable_categories`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `discount_applicable_items`
+--
+-- ALTER TABLE `discount_applicable_items`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `discount_exclusions`
+--
+-- ALTER TABLE `discount_exclusions`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `discount_types`
+--
+-- ALTER TABLE `discount_types`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `discount_usage_histories`
+--
+-- ALTER TABLE `discount_usage_histories`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `employees`
+--
+-- ALTER TABLE `employees`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `expenses`
+--
+-- ALTER TABLE `expenses`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `expense_categories`
+--
+-- ALTER TABLE `expense_categories`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `expense_statuses`
+--
+-- ALTER TABLE `expense_statuses`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `extra_charges`
+--
+-- ALTER TABLE `extra_charges`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `extra_charge_types`
+--
+-- ALTER TABLE `extra_charge_types`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `failed_jobs`
+--
+-- ALTER TABLE `failed_jobs`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `genders`
+--
+-- ALTER TABLE `genders`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `good_receipt_notes`
+--
+-- ALTER TABLE `good_receipt_notes`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `good_receipt_note_extra_charges`
+--
+-- ALTER TABLE `good_receipt_note_extra_charges`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `good_receive_note_documents`
+--
+-- ALTER TABLE `good_receive_note_documents`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `good_receive_note_items`
+--
+-- ALTER TABLE `good_receive_note_items`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `good_receive_note_quality_checks`
+--
+-- ALTER TABLE `good_receive_note_quality_checks`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `images`
+--
+-- ALTER TABLE `images`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `items`
+--
+-- ALTER TABLE `items`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `item_barcodes`
+--
+-- ALTER TABLE `item_barcodes`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `item_brands`
+--
+-- ALTER TABLE `item_brands`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `item_categories`
+--
+-- ALTER TABLE `item_categories`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `item_costs`
+--
+-- ALTER TABLE `item_costs`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `item_groups`
+--
+-- ALTER TABLE `item_groups`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `item_images`
+--
+-- ALTER TABLE `item_images`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `item_prices`
+--
+-- ALTER TABLE `item_prices`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `item_stocks`
+--
+-- ALTER TABLE `item_stocks`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `item_stores`
+--
+-- ALTER TABLE `item_stores`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `item_taxes`
+--
+-- ALTER TABLE `item_taxes`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `item_types`
+--
+-- ALTER TABLE `item_types`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `item_units`
+--
+-- ALTER TABLE `item_units`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `jobs`
+--
+-- ALTER TABLE `jobs`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+-- ALTER TABLE `migrations`
+--   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+-- ALTER TABLE `orders`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `order_extra_charges`
+--
+-- ALTER TABLE `order_extra_charges`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `order_items`
+--
+-- ALTER TABLE `order_items`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `order_payments`
+--
+-- ALTER TABLE `order_payments`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `order_types`
+--
+-- ALTER TABLE `order_types`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `payments`
+--
+-- ALTER TABLE `payments`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `payment_accounts`
+--
+-- ALTER TABLE `payment_accounts`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `payment_methods`
+--
+-- ALTER TABLE `payment_methods`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `payment_types`
+--
+-- ALTER TABLE `payment_types`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `peripheral_devices`
+--
+-- ALTER TABLE `peripheral_devices`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `permissions`
+--
+-- ALTER TABLE `permissions`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=183; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `personal_access_tokens`
+--
+-- ALTER TABLE `personal_access_tokens`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `positions`
+--
+-- ALTER TABLE `positions`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `pos_locations`
+--
+-- ALTER TABLE `pos_locations`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `printer_settings`
+--
+-- ALTER TABLE `printer_settings`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `purchase_orders`
+--
+-- ALTER TABLE `purchase_orders`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `purchase_order_items`
+--
+-- ALTER TABLE `purchase_order_items`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `reasons`
+--
+-- ALTER TABLE `reasons`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `reason_types`
+--
+-- ALTER TABLE `reason_types`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `roles`
+--
+-- ALTER TABLE `roles`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `stocks`
+--
+-- ALTER TABLE `stocks`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `stock_movements`
+--
+-- ALTER TABLE `stock_movements`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `stores`
+--
+-- ALTER TABLE `stores`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `taxes`
+--
+-- ALTER TABLE `taxes`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `units`
+--
+-- ALTER TABLE `units`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+-- ALTER TABLE `users`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `user_permissions`
+--
+-- ALTER TABLE `user_permissions`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `user_roles`
+--
+-- ALTER TABLE `user_roles`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `vendors`
+--
+-- ALTER TABLE `vendors`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `virtual_devices`
+--
+-- ALTER TABLE `virtual_devices`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- AUTO_INCREMENT for table `void_reasons`
+--
+-- ALTER TABLE `void_reasons`
+--   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3; -- AUTO_INCREMENT is handled differently in SQLite
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `accounts`
+--
+-- ALTER TABLE `accounts`
+--   ADD CONSTRAINT `accounts_currency_id_foreign` FOREIGN KEY (`currency_id`) REFERENCES `currencies` (`id`) ON DELETE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `authors`
+--
+-- ALTER TABLE `authors`
+--   ADD CONSTRAINT `authors_country_id_foreign` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `brand_applicable_items`
+--
+-- ALTER TABLE `brand_applicable_items`
+--   ADD CONSTRAINT `brand_applicable_items_brand_id_foreign` FOREIGN KEY (`brand_id`) REFERENCES `item_brands` (`id`) ON UPDATE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `brand_applicable_items_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`) ON UPDATE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `carts`
+--
+-- ALTER TABLE `carts`
+--   ADD CONSTRAINT `carts_customer_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE SET NULL, -- Foreign Key Constraint
+--   ADD CONSTRAINT `carts_customer_type_id_foreign` FOREIGN KEY (`customer_type_id`) REFERENCES `customer_types` (`id`); -- Foreign Key Constraint
+
+--
+-- Constraints for table `cart_extra_charges`
+--
+-- ALTER TABLE `cart_extra_charges`
+--   ADD CONSTRAINT `cart_extra_charges_cart_id_foreign` FOREIGN KEY (`cart_id`) REFERENCES `carts` (`id`) ON DELETE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `cart_items`
+--
+-- ALTER TABLE `cart_items`
+--   ADD CONSTRAINT `cart_items_cart_id_foreign` FOREIGN KEY (`cart_id`) REFERENCES `carts` (`id`) ON DELETE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `cart_items_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`) ON DELETE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `categories`
+--
+-- ALTER TABLE `categories`
+--   ADD CONSTRAINT `categories_item_group_id_foreign` FOREIGN KEY (`item_group_id`) REFERENCES `item_groups` (`id`) ON DELETE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `cities`
+--
+-- ALTER TABLE `cities`
+--   ADD CONSTRAINT `cities_country_id_foreign` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `city_ledgers`
+--
+-- ALTER TABLE `city_ledgers`
+--   ADD CONSTRAINT `city_ledgers_customer_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`) ON DELETE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `companies`
+--
+-- ALTER TABLE `companies`
+--   ADD CONSTRAINT `companies_country_id_foreign` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON DELETE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `company_fiscal_years`
+--
+-- ALTER TABLE `company_fiscal_years`
+--   ADD CONSTRAINT `company_fiscal_years_company_id_foreign` FOREIGN KEY (`company_id`) REFERENCES `companies` (`id`) ON DELETE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `currencies`
+--
+-- ALTER TABLE `currencies`
+--   ADD CONSTRAINT `currencies_country_id_foreign` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON UPDATE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `customers`
+--
+-- ALTER TABLE `customers`
+--   ADD CONSTRAINT `customers_city_id_foreign` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`), -- Foreign Key Constraint
+--   ADD CONSTRAINT `customers_customer_type_id_foreign` FOREIGN KEY (`customer_type_id`) REFERENCES `customer_types` (`id`); -- Foreign Key Constraint
+
+--
+-- Constraints for table `discounts`
+--
+-- ALTER TABLE `discounts`
+--   ADD CONSTRAINT `discounts_created_by_foreign` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE SET NULL, -- Foreign Key Constraint
+--   ADD CONSTRAINT `discounts_discount_type_id_foreign` FOREIGN KEY (`discount_type_id`) REFERENCES `discount_types` (`id`) ON DELETE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `discounts_updated_by_foreign` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`) ON DELETE SET NULL; -- Foreign Key Constraint
+
+--
+-- Constraints for table `discount_applicable_categories`
+--
+-- ALTER TABLE `discount_applicable_categories`
+--   ADD CONSTRAINT `discount_applicable_categories_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `discount_applicable_categories_discount_id_foreign` FOREIGN KEY (`discount_id`) REFERENCES `discounts` (`id`) ON DELETE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `discount_applicable_items`
+--
+-- ALTER TABLE `discount_applicable_items`
+--   ADD CONSTRAINT `discount_applicable_items_discount_id_foreign` FOREIGN KEY (`discount_id`) REFERENCES `discounts` (`id`) ON DELETE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `discount_applicable_items_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`) ON DELETE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `discount_exclusions`
+--
+-- ALTER TABLE `discount_exclusions`
+--   ADD CONSTRAINT `discount_exclusions_discount_id_foreign` FOREIGN KEY (`discount_id`) REFERENCES `discounts` (`id`) ON DELETE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `discount_usage_histories`
+--
+-- ALTER TABLE `discount_usage_histories`
+--   ADD CONSTRAINT `discount_usage_histories_discount_id_foreign` FOREIGN KEY (`discount_id`) REFERENCES `discounts` (`id`) ON DELETE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `discount_usage_histories_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `discount_usage_histories_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL; -- Foreign Key Constraint
+
+--
+-- Constraints for table `employees`
+--
+-- ALTER TABLE `employees`
+--   ADD CONSTRAINT `employees_city_id_foreign` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON DELETE SET NULL, -- Foreign Key Constraint
+--   ADD CONSTRAINT `employees_gender_id_foreign` FOREIGN KEY (`gender_id`) REFERENCES `genders` (`id`) ON DELETE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `employees_position_id_foreign` FOREIGN KEY (`position_id`) REFERENCES `positions` (`id`) ON DELETE SET NULL, -- Foreign Key Constraint
+--   ADD CONSTRAINT `employees_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL; -- Foreign Key Constraint
+
+--
+-- Constraints for table `expenses`
+--
+-- ALTER TABLE `expenses`
+--   ADD CONSTRAINT `expenses_approved_by_user_id_foreign` FOREIGN KEY (`approved_by_user_id`) REFERENCES `users` (`id`), -- Foreign Key Constraint
+--   ADD CONSTRAINT `expenses_expense_category_id_foreign` FOREIGN KEY (`expense_category_id`) REFERENCES `expense_categories` (`id`), -- Foreign Key Constraint
+--   ADD CONSTRAINT `expenses_expense_status_id_foreign` FOREIGN KEY (`expense_status_id`) REFERENCES `expense_statuses` (`id`), -- Foreign Key Constraint
+--   ADD CONSTRAINT `expenses_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`), -- Foreign Key Constraint
+--   ADD CONSTRAINT `expenses_payment_account_id_foreign` FOREIGN KEY (`payment_account_id`) REFERENCES `payment_accounts` (`id`), -- Foreign Key Constraint
+--   ADD CONSTRAINT `expenses_payment_type_id_foreign` FOREIGN KEY (`payment_type_id`) REFERENCES `payment_types` (`id`), -- Foreign Key Constraint
+--   ADD CONSTRAINT `expenses_pos_location_id_foreign` FOREIGN KEY (`pos_location_id`) REFERENCES `pos_locations` (`id`), -- Foreign Key Constraint
+--   ADD CONSTRAINT `expenses_purchase_order_id_foreign` FOREIGN KEY (`purchase_order_id`) REFERENCES `purchase_orders` (`id`), -- Foreign Key Constraint
+--   ADD CONSTRAINT `expenses_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`), -- Foreign Key Constraint
+--   ADD CONSTRAINT `expenses_vendor_id_foreign` FOREIGN KEY (`vendor_id`) REFERENCES `vendors` (`id`); -- Foreign Key Constraint
+
+--
+-- Constraints for table `extra_charges`
+--
+-- ALTER TABLE `extra_charges`
+--   ADD CONSTRAINT `extra_charges_charge_type_id_foreign` FOREIGN KEY (`charge_type_id`) REFERENCES `extra_charge_types` (`id`) ON UPDATE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `extra_charges_tax_id_foreign` FOREIGN KEY (`tax_id`) REFERENCES `taxes` (`id`) ON UPDATE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `good_receipt_notes`
+--
+-- ALTER TABLE `good_receipt_notes`
+--   ADD CONSTRAINT `good_receipt_notes_purchase_order_id_foreign` FOREIGN KEY (`purchase_order_id`) REFERENCES `purchase_orders` (`id`) ON DELETE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `good_receipt_notes_received_by_foreign` FOREIGN KEY (`received_by`) REFERENCES `users` (`id`) ON DELETE SET NULL, -- Foreign Key Constraint
+--   ADD CONSTRAINT `good_receipt_notes_supplier_id_foreign` FOREIGN KEY (`supplier_id`) REFERENCES `vendors` (`id`) ON DELETE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `good_receipt_note_extra_charges`
+--
+-- ALTER TABLE `good_receipt_note_extra_charges`
+--   ADD CONSTRAINT `good_receipt_note_extra_charges_extra_charge_id_foreign` FOREIGN KEY (`extra_charge_id`) REFERENCES `extra_charges` (`id`) ON DELETE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `good_receipt_note_extra_charges_grn_id_foreign` FOREIGN KEY (`grn_id`) REFERENCES `good_receipt_notes` (`id`) ON DELETE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `good_receipt_note_extra_charges_unit_id_foreign` FOREIGN KEY (`unit_id`) REFERENCES `units` (`id`) ON DELETE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `good_receive_note_documents`
+--
+-- ALTER TABLE `good_receive_note_documents`
+--   ADD CONSTRAINT `good_receive_note_documents_grn_id_foreign` FOREIGN KEY (`grn_id`) REFERENCES `good_receipt_notes` (`id`) ON DELETE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `good_receive_note_documents_uploaded_by_foreign` FOREIGN KEY (`uploaded_by`) REFERENCES `users` (`id`); -- Foreign Key Constraint
+
+--
+-- Constraints for table `good_receive_note_items`
+--
+-- ALTER TABLE `good_receive_note_items`
+--   ADD CONSTRAINT `good_receive_note_items_grn_id_foreign` FOREIGN KEY (`grn_id`) REFERENCES `good_receipt_notes` (`id`) ON DELETE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `good_receive_note_items_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`) ON DELETE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `good_receive_note_items_purchase_order_item_id_foreign` FOREIGN KEY (`purchase_order_item_id`) REFERENCES `purchase_order_items` (`id`) ON DELETE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `good_receive_note_quality_checks`
+--
+-- ALTER TABLE `good_receive_note_quality_checks`
+--   ADD CONSTRAINT `good_receive_note_quality_checks_checked_by_foreign` FOREIGN KEY (`checked_by`) REFERENCES `users` (`id`), -- Foreign Key Constraint
+--   ADD CONSTRAINT `good_receive_note_quality_checks_grn_id_foreign` FOREIGN KEY (`grn_id`) REFERENCES `good_receipt_notes` (`id`) ON DELETE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `good_receive_note_quality_checks_grn_item_id_foreign` FOREIGN KEY (`grn_item_id`) REFERENCES `good_receive_note_items` (`id`); -- Foreign Key Constraint
+
+--
+-- Constraints for table `items`
+--
+-- ALTER TABLE `items`
+--   ADD CONSTRAINT `items_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `items_item_group_id_foreign` FOREIGN KEY (`item_group_id`) REFERENCES `item_groups` (`id`) ON DELETE SET NULL, -- Foreign Key Constraint
+--   ADD CONSTRAINT `items_item_type_id_foreign` FOREIGN KEY (`item_type_id`) REFERENCES `item_types` (`id`) ON DELETE SET NULL; -- Foreign Key Constraint
+
+--
+-- Constraints for table `item_barcodes`
+--
+-- ALTER TABLE `item_barcodes`
+--   ADD CONSTRAINT `item_barcodes_barcode_id_foreign` FOREIGN KEY (`barcode_id`) REFERENCES `barcodes` (`id`) ON DELETE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `item_barcodes_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`) ON DELETE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `item_costs`
+--
+-- ALTER TABLE `item_costs`
+--   ADD CONSTRAINT `item_costs_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`) ON DELETE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `item_costs_store_id_foreign` FOREIGN KEY (`store_id`) REFERENCES `stores` (`id`) ON DELETE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `item_costs_unit_id_foreign` FOREIGN KEY (`unit_id`) REFERENCES `units` (`id`); -- Foreign Key Constraint
+
+--
+-- Constraints for table `item_images`
+--
+-- ALTER TABLE `item_images`
+--   ADD CONSTRAINT `item_images_image_id_foreign` FOREIGN KEY (`image_id`) REFERENCES `images` (`id`) ON DELETE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `item_images_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`) ON DELETE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `item_prices`
+--
+-- ALTER TABLE `item_prices`
+--   ADD CONSTRAINT `item_prices_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`) ON DELETE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `item_prices_store_id_foreign` FOREIGN KEY (`store_id`) REFERENCES `stores` (`id`) ON DELETE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `item_prices_unit_id_foreign` FOREIGN KEY (`unit_id`) REFERENCES `units` (`id`); -- Foreign Key Constraint
+
+--
+-- Constraints for table `item_stocks`
+--
+-- ALTER TABLE `item_stocks`
+--   ADD CONSTRAINT `item_stocks_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`) ON DELETE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `item_stocks_stock_id_foreign` FOREIGN KEY (`stock_id`) REFERENCES `stocks` (`id`) ON DELETE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `item_stores`
+--
+-- ALTER TABLE `item_stores`
+--   ADD CONSTRAINT `item_stores_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `item_stores_store_id_foreign` FOREIGN KEY (`store_id`) REFERENCES `stores` (`id`) ON DELETE CASCADE ON UPDATE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `item_taxes`
+--
+-- ALTER TABLE `item_taxes`
+--   ADD CONSTRAINT `item_taxes_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`) ON DELETE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `item_taxes_store_id_foreign` FOREIGN KEY (`store_id`) REFERENCES `stores` (`id`) ON DELETE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `item_taxes_tax_id_foreign` FOREIGN KEY (`tax_id`) REFERENCES `taxes` (`id`); -- Foreign Key Constraint
+
+--
+-- Constraints for table `item_units`
+--
+-- ALTER TABLE `item_units`
+--   ADD CONSTRAINT `item_units_buying_unit_id_foreign` FOREIGN KEY (`buying_unit_id`) REFERENCES `units` (`id`), -- Foreign Key Constraint
+--   ADD CONSTRAINT `item_units_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`) ON DELETE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `item_units_selling_unit_id_foreign` FOREIGN KEY (`selling_unit_id`) REFERENCES `units` (`id`); -- Foreign Key Constraint
+
+--
+-- Constraints for table `model_has_permissions`
+--
+-- ALTER TABLE `model_has_permissions`
+--   ADD CONSTRAINT `model_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `model_has_roles`
+--
+-- ALTER TABLE `model_has_roles`
+--   ADD CONSTRAINT `model_has_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `orders`
+--
+-- ALTER TABLE `orders`
+--   ADD CONSTRAINT `orders_customer_type_id_foreign` FOREIGN KEY (`customer_type_id`) REFERENCES `customer_types` (`id`) ON UPDATE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `order_extra_charges`
+--
+-- ALTER TABLE `order_extra_charges`
+--   ADD CONSTRAINT `order_extra_charges_extra_charge_id_foreign` FOREIGN KEY (`extra_charge_id`) REFERENCES `extra_charges` (`id`) ON DELETE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `order_extra_charges_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `order_items`
+--
+-- ALTER TABLE `order_items`
+--   ADD CONSTRAINT `order_items_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`), -- Foreign Key Constraint
+--   ADD CONSTRAINT `order_items_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `order_payments`
+--
+-- ALTER TABLE `order_payments`
+--   ADD CONSTRAINT `order_payments_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON UPDATE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `order_payments_payment_id_foreign` FOREIGN KEY (`payment_id`) REFERENCES `payments` (`id`) ON UPDATE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `payments`
+--
+-- ALTER TABLE `payments`
+--   ADD CONSTRAINT `payments_payment_type_id_foreign` FOREIGN KEY (`payment_type_id`) REFERENCES `payment_types` (`id`) ON UPDATE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `printer_settings`
+--
+-- ALTER TABLE `printer_settings`
+--   ADD CONSTRAINT `printer_settings_virtual_device_id_foreign` FOREIGN KEY (`virtual_device_id`) REFERENCES `virtual_devices` (`id`) ON DELETE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `purchase_orders`
+--
+-- ALTER TABLE `purchase_orders`
+--   ADD CONSTRAINT `purchase_orders_supplier_id_foreign` FOREIGN KEY (`supplier_id`) REFERENCES `vendors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `purchase_order_items`
+--
+-- ALTER TABLE `purchase_order_items`
+--   ADD CONSTRAINT `purchase_order_items_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`) ON DELETE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `purchase_order_items_purchase_order_id_foreign` FOREIGN KEY (`purchase_order_id`) REFERENCES `purchase_orders` (`id`) ON DELETE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `purchase_order_items_tax_id_foreign` FOREIGN KEY (`tax_id`) REFERENCES `taxes` (`id`) ON DELETE SET NULL, -- Foreign Key Constraint
+--   ADD CONSTRAINT `purchase_order_items_unit_id_foreign` FOREIGN KEY (`unit_id`) REFERENCES `units` (`id`) ON DELETE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `reasons`
+--
+-- ALTER TABLE `reasons`
+--   ADD CONSTRAINT `reasons_reason_type_id_foreign` FOREIGN KEY (`reason_type_id`) REFERENCES `reason_types` (`id`) ON DELETE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `role_has_permissions`
+--
+-- ALTER TABLE `role_has_permissions`
+--   ADD CONSTRAINT `role_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `role_has_permissions_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `stocks`
+--
+-- ALTER TABLE `stocks`
+--   ADD CONSTRAINT `stocks_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`), -- Foreign Key Constraint
+--   ADD CONSTRAINT `stocks_store_id_foreign` FOREIGN KEY (`store_id`) REFERENCES `stores` (`id`); -- Foreign Key Constraint
+
+--
+-- Constraints for table `stock_movements`
+--
+-- ALTER TABLE `stock_movements`
+--   ADD CONSTRAINT `stock_movements_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`), -- Foreign Key Constraint
+--   ADD CONSTRAINT `stock_movements_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`); -- Foreign Key Constraint
+
+--
+-- Constraints for table `stores`
+--
+-- ALTER TABLE `stores`
+--   ADD CONSTRAINT `stores_manager_id_foreign` FOREIGN KEY (`manager_id`) REFERENCES `users` (`id`) ON DELETE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `user_permissions`
+--
+-- ALTER TABLE `user_permissions`
+--   ADD CONSTRAINT `user_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `user_permissions_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `user_roles`
+--
+-- ALTER TABLE `user_roles`
+--   ADD CONSTRAINT `user_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON UPDATE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `user_roles_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON UPDATE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `vendors`
+--
+-- ALTER TABLE `vendors`
+--   ADD CONSTRAINT `vendors_city_id_foreign` FOREIGN KEY (`city_id`) REFERENCES `cities` (`id`) ON UPDATE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `vendors_country_id_foreign` FOREIGN KEY (`country_id`) REFERENCES `countries` (`id`) ON UPDATE CASCADE; -- Foreign Key Constraint
+
+--
+-- Constraints for table `void_reasons`
+--
+-- ALTER TABLE `void_reasons`
+--   ADD CONSTRAINT `void_reasons_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE, -- Foreign Key Constraint
+--   ADD CONSTRAINT `void_reasons_reason_id_foreign` FOREIGN KEY (`reason_id`) REFERENCES `reasons` (`id`); -- Foreign Key Constraint
+-- COMMIT; -- COMMIT is not needed for schema changes in SQLite when using .read in CLI
+
+-- /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */; -- MySQL client directive - not needed in SQLite
+-- /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */; -- MySQL client directive - not needed in SQLite
+-- /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */; -- MySQL client directive - not needed in SQLite
