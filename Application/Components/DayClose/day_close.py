@@ -79,7 +79,7 @@ class DayCloseView(QWidget):
             cursor = conn.cursor()
             cursor.execute(
                 """
-                SELECT 
+                SELECT
                     s.name,
                     dc.working_date,
                     dc.next_working_date,
@@ -130,9 +130,10 @@ class DayCloseView(QWidget):
 
                 audit_button = QPushButton("Audit")
                 audit_button.clicked.connect(
-                    lambda checked, sn=store_name, wd=working_date: self.open_audit_dialog(
-                        sn, wd
+                    lambda checked, sn=store_name, wd=working_date: print(
+                        f"Button signal - Store: {sn}, Date: {wd}"
                     )
+                    or self.open_audit_dialog(sn, wd)
                 )
                 audit_button.setStyleSheet(
                     "background-color: #e0f7fa; color: #00838f; border: 1px solid #b2ebf2; border-radius: 5px; padding: 5px;"
@@ -150,12 +151,16 @@ class DayCloseView(QWidget):
             print(f"Error populating table: {e}")
 
     def open_audit_dialog(self, store_name, working_date):
+        print(f"Audit button clicked for store: {store_name}, date: {working_date}")
         working_qdate = QDate(working_date.year, working_date.month, working_date.day)
         next_audit_qdate = working_qdate.addDays(1)
         next_audit = next_audit_qdate.toPyDate()
 
         running_count, total_amount, voided_count = self.db_helper.get_orders_status(
             working_date
+        )
+        print(
+            f"Retrieved order status - Running: {running_count}, Total: {total_amount}, Voided: {voided_count}"
         )
 
         dialog = AuditDialog(
@@ -196,6 +201,9 @@ class AuditDialog(QDialog):
             f"Day Close Summary for {store_name} from {working_date.strftime('%Y-%m-%d')} To {next_working_date.strftime('%Y-%m-%d')}"
         )
         self.setGeometry(200, 200, 400, 350)
+        print(
+            f"AuditDialog initialized with - Store: {store_name}, Working Date: {working_date}, Next Date: {next_working_date}, Running: {running_orders}, Total: {total_amount}, Voided: {voided_orders}"
+        )
 
         main_layout = QVBoxLayout()
         main_layout.setContentsMargins(20, 20, 20, 20)
@@ -240,6 +248,9 @@ class AuditDialog(QDialog):
     def finish_and_redirect(self):
         next_working_date = self.next_audit_date_edit.date().toPyDate()
         stores = self.db_helper.get_stores_data()
+        print(
+            f"Finish button clicked - Next Working Date: {next_working_date}, Stores: {stores}"
+        )
         if not stores:
             QMessageBox.critical(self, "Error", "No stores found in database.")
             return
@@ -253,6 +264,7 @@ class AuditDialog(QDialog):
             total_amount=float(self.total_amount_label.text().replace("$", "")),
             voided_orders=int(self.voided_orders_label.text()),
         )
+        print(f"Save day close data result: {success}")
 
         if success:
             QMessageBox.information(self, "Success", "Day close saved successfully.")
