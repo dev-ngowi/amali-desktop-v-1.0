@@ -2,12 +2,14 @@ import os
 import socket
 import sqlite3
 import sys
-from datetime import datetime
+from datetime import datetime, date, timedelta
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import QIcon, QPixmap
-from Application.Components.DayClose.day_close import DayCloseView
+from Application.Components.DayClose.day_close import DayCloseManager
+from Application.Components.Inventory.Expenses.model import ExpenseManager
 from Application.Components.Inventory.Main import InventoryView, MainInventoryWindow
+from Application.Components.OrderSummary.Carts.modal import CartModel
 from Application.Components.Reports.View import ReportView
 from Application.Components.components import Sidebar, ProductCard, PaymentCard
 from Application.Components.OrderSummary.order_summary import OrderSummaryView
@@ -33,6 +35,280 @@ def get_resource_path(relative_path):
         f"Resolved path for {relative_path}: {full_path}, exists: {os.path.exists(full_path)}"
     )
     return full_path
+
+
+class AuditWidget(QDialog):
+    def __init__(
+        self,
+        store_name,
+        working_date,
+        next_working_date,
+        running_orders,
+        total_amount,
+        voided_orders,
+        total_expenses,  # Added total_expenses parameter
+        db_helper,
+        parent=None,
+    ):
+        super().__init__(parent)
+        self.store_name = store_name
+        self.working_date = working_date
+        self.next_working_date = next_working_date
+        self.db_helper = db_helper
+        self.setWindowTitle(
+            f"Day Close Audit for {store_name} - {working_date.strftime('%Y-%m-%d')}"
+        )
+        self.setModal(True)
+        self.setGeometry(100, 100, 400, 300)
+
+        layout = QVBoxLayout()
+        info_label = QLabel(
+            f"Your working date is {working_date.strftime('%Y-%m-%d')}, orders are now frozen for that day"
+        )
+        info_label.setAlignment(Qt.AlignCenter)
+        layout.addWidget(info_label)
+
+        next_audit_layout = QHBoxLayout()
+        next_audit_label = QLabel("Next Working Date")
+        self.next_audit_date_edit = QDateEdit()
+        self.next_audit_date_edit.setDate(next_working_date)
+        self.next_audit_date_edit.setCalendarPopup(True)
+        next_audit_layout.addWidget(next_audit_label)
+        next_audit_layout.addWidget(self.next_audit_date_edit)
+        layout.addLayout(next_audit_layout)
+
+        summary_grid = QGridLayout()
+        summary_grid.addWidget(QLabel("Running Orders"), 0, 0)
+        self.running_orders_label = QLabel(str(running_orders))
+        summary_grid.addWidget(self.running_orders_label, 0, 1)
+        summary_grid.addWidget(QLabel("Total Amount"), 1, 0)
+        self.total_amount_label = QLabel(f"TZS {total_amount:.2f}")
+        summary_grid.addWidget(self.total_amount_label, 1, 1)
+        summary_grid.addWidget(QLabel("Voided Orders"), 2, 0)
+        self.voided_orders_label = QLabel(str(voided_orders))
+        summary_grid.addWidget(self.voided_orders_label, 2, 1)
+        summary_grid.addWidget(QLabel("Total Expenses"), 3, 0)  # Added expenses display
+        self.total_expenses_label = QLabel(f"TZS {total_expenses:.2f}")
+        summary_grid.addWidget(self.total_expenses_label, 3, 1)
+        layout.addLayout(summary_grid)
+
+        back_button = QPushButton("Cancel")
+        back_button.clicked.connect(self.reject)
+        layout.addWidget(back_button)
+
+        finish_button = QPushButton("Finish")
+        finish_button.clicked.connect(self.finish_and_save)
+        layout.addWidget(finish_button)
+
+        self.setLayout(layout)
+
+    def finish_and_save(self):
+        next_working_date = self.next_audit_date_edit.date().toPyDate()
+        stores = self.db_helper.get_stores_data()
+        if not stores:
+            QMessageBox.critical(self, "Error", "No stores found in database.")
+            return
+        store_id = stores[0]["id"]
+
+        success = self.db_helper.save_day_close_data(
+            store_id=store_id,
+            working_date=self.working_date.strftime("%Y-%m-%d"),
+            next_working_date=next_working_date.strftime("%Y-%m-%d"),
+            running_orders=int(self.running_orders_label.text()),
+            total_amount=float(self.total_amount_label.text().replace("TZS ", "")),
+            voided_orders=int(self.voided_orders_label.text()),
+        )
+
+        if success:
+            QMessageBox.information(self, "Success", "Day close saved successfully.")
+            self.accept()
+        else:
+            QMessageBox.critical(self, "Error", "Failed to save day close data.")
+
+
+class DayCloseView(QWidget):
+    day_close_saved = pyqtSignal()
+
+    def __init__(self, db_helper=None):
+        super().__init__()
+        self.db_helper = DayCloseManager() if db_helper is None else db_helper
+        self.expenses_manager = ExpenseManager()  # Added expenses manager
+        self.setWindowTitle("Day Close")
+        self.setGeometry(100, 100, 800, 400)
+
+        self.main_layout = QVBoxLayout()
+        title_label = QLabel("Day Close Summary")
+        title_label.setAlignment(Qt.AlignCenter)
+        self.main_layout.addWidget(title_label)
+
+        self.day_close_button = QPushButton("Perform Day Close")
+        self.day_close_button.clicked.connect(self.perform_daily_close)
+        self.main_layout.addWidget(self.day_close_button)
+
+        self.table_widget = QTableWidget()
+        self.table_widget.setColumnCount(8)
+        self.table_widget.setHorizontalHeaderLabels(
+            [
+                "Store Name",
+                "Working Date",
+                "Next Working Date",
+                "Running Orders",
+                "Total Amount",
+                "Voided Orders",
+                "Total Expenses",
+                "Action",
+            ]
+        )
+        self.table_widget.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        self.main_layout.addWidget(self.table_widget)
+
+        self.setLayout(self.main_layout)
+        self.populate_table()
+
+    def perform_daily_close(self):
+        current_date = date.today() - timedelta(days=1)
+        stores = self.db_helper.get_stores_data()
+
+        if not stores:
+            QMessageBox.critical(
+                self, "Error", "No stores found. Please contact support."
+            )
+            return
+
+        for store in stores:
+            if not self.db_helper.check_day_close_exists(store["id"], current_date):
+                success = self.db_helper.perform_day_close(store["id"], current_date)
+                if success:
+                    print(f"Day close completed for {store['name']} on {current_date}")
+                    self.show_audit_details(store["name"], current_date)
+                else:
+                    print(f"Failed to close day for {store['name']}")
+        self.populate_table()
+
+    def _get_total_expenses_for_date(self, target_date):
+        if not self.expenses_manager:
+            return 0.0
+        total = 0.0
+        expenses_data = self.expenses_manager.get_expenses_data()
+        for expense in expenses_data:
+            if expense["expense_date"] == target_date.strftime("%Y-%m-%d"):
+                total += expense["amount"]
+        return total
+
+    def show_audit_details(self, store_name, working_date):
+        if isinstance(working_date, str):
+            working_date = date.fromisoformat(working_date)
+
+        next_audit_date = working_date + timedelta(days=1)
+
+        try:
+            running_count, total_amount, voided_count = (
+                self.db_helper.get_orders_status(working_date)
+            )
+            total_expenses = self._get_total_expenses_for_date(
+                working_date
+            )  # Calculate expenses
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"Failed to fetch audit details: {e}")
+            return
+
+        audit_dialog = AuditWidget(
+            store_name=store_name,
+            working_date=working_date,
+            next_working_date=next_audit_date,
+            running_orders=running_count,
+            total_amount=total_amount,
+            voided_orders=voided_count,
+            total_expenses=total_expenses,  # Pass total expenses
+            db_helper=self.db_helper,
+            parent=self,
+        )
+        if audit_dialog.exec_() == QDialog.Accepted:
+            self.populate_table()
+            self.day_close_saved.emit()
+
+    def populate_table(self):
+        try:
+            conn = self.db_helper._get_connection()
+            cursor = conn.cursor()
+            cursor.execute(
+                """
+                SELECT
+                    s.name,
+                    dc.working_date,
+                    dc.next_working_date,
+                    dc.running_orders,
+                    dc.total_amount,
+                    dc.voided_orders,
+                    COALESCE(SUM(e.amount), 0) as total_expenses
+                FROM day_close dc
+                JOIN stores s ON dc.store_id = s.id
+                LEFT JOIN expenses e ON e.expense_date = dc.working_date
+                GROUP BY s.name, dc.working_date, dc.next_working_date,
+                        dc.running_orders, dc.total_amount, dc.voided_orders
+                ORDER BY dc.working_date DESC
+                LIMIT 1
+                """
+            )
+            data = cursor.fetchall()
+            print(f"DayCloseView: Day Close Data fetched: {data}")
+
+            self.table_widget.setRowCount(len(data))
+            if data:
+                (
+                    store_name,
+                    working_date,
+                    next_working_date,
+                    running_orders,
+                    total_amount,
+                    voided_orders,
+                    total_expenses,
+                ) = data[0]
+
+                if isinstance(working_date, str):
+                    working_date = date.fromisoformat(working_date)
+                if isinstance(next_working_date, str):
+                    next_working_date = date.fromisoformat(next_working_date)
+
+                self.table_widget.setItem(0, 0, QTableWidgetItem(store_name))
+                self.table_widget.setItem(
+                    0, 1, QTableWidgetItem(working_date.strftime("%Y-%m-%d"))
+                )
+                self.table_widget.setItem(
+                    0, 2, QTableWidgetItem(next_working_date.strftime("%Y-%m-%d"))
+                )
+                self.table_widget.setItem(0, 3, QTableWidgetItem(str(running_orders)))
+                self.table_widget.setItem(
+                    0, 4, QTableWidgetItem(f"TZS {total_amount:.2f}")
+                )
+                self.table_widget.setItem(0, 5, QTableWidgetItem(str(voided_orders)))
+                self.table_widget.setItem(
+                    0, 6, QTableWidgetItem(f"TZS {total_expenses:.2f}")
+                )
+
+                audit_button = QPushButton("Audit")
+                store_name_copy = str(store_name)
+                working_date_copy = date(
+                    working_date.year, working_date.month, working_date.day
+                )
+                audit_button.clicked.connect(
+                    lambda checked=False, s=store_name_copy, w=working_date_copy: self.show_audit_details(
+                        s, w
+                    )
+                )
+                audit_button.setStyleSheet(
+                    "background-color: #e0f7fa; color: #00838f; border: 1px solid #b2ebf2; border-radius: 5px; padding: 5px;"
+                )
+                self.table_widget.setCellWidget(0, 7, audit_button)
+                self.table_widget.setColumnWidth(7, 100)
+            else:
+                self.table_widget.setRowCount(0)
+            self.db_helper._commit_and_close(conn)
+        except Exception as e:
+            print(f"DayCloseView: Error populating table: {e}")
+            import traceback
+
+            traceback.print_exc()
 
 
 class PrinterSettingsWindow(QDialog):
@@ -303,6 +579,8 @@ class DashboardView(QMainWindow):
         self.setGeometry(0, 0, screen_size.width(), screen_size.height())
         self.setStyleSheet("background-color: #f5f5f5;")
 
+        self.db_helper = DayCloseManager()
+        self.cart_model = CartModel()  # Initialize CartModel
         self.main_widget = QWidget()
         self.setCentralWidget(self.main_widget)
         self.main_layout = QVBoxLayout(self.main_widget)
@@ -316,7 +594,6 @@ class DashboardView(QMainWindow):
 
         # Left Controls Layout
         left_controls_layout = QHBoxLayout()
-        # "Sales" Button
         sales_btn = QPushButton("Sales")
         sales_btn.setStyleSheet(
             """
@@ -327,7 +604,6 @@ class DashboardView(QMainWindow):
         sales_btn.clicked.connect(self.open_sales_view)
         left_controls_layout.addWidget(sales_btn)
 
-        # "Sales Summary" Button
         sales_summary_btn = QPushButton("Sales Summary")
         sales_summary_btn.setStyleSheet(
             """
@@ -338,7 +614,6 @@ class DashboardView(QMainWindow):
         sales_summary_btn.clicked.connect(self.open_sales_summary_view)
         left_controls_layout.addWidget(sales_summary_btn)
 
-        # "Delivery" Button
         delivery_btn = QPushButton("Delivery")
         delivery_btn.setStyleSheet(
             """
@@ -369,18 +644,16 @@ class DashboardView(QMainWindow):
 
         # Right Controls Layout
         right_controls_layout = QHBoxLayout()
-        # Add the "Day Close" button here
-        day_close_btn = QPushButton("Day close")
+        day_close_btn = QPushButton("Day Close")
         day_close_btn.setStyleSheet(
             """
             QPushButton { color: white; background: transparent; padding: 8px 12px; border-radius: 6px; border: 2px solid gray; font-weight: bold; }
             QPushButton:hover { background: blue; }
             """
         )
-        day_close_btn.clicked.connect(self.open_day_close_view)  # Connect the button
+        day_close_btn.clicked.connect(self.open_day_close_view)
         right_controls_layout.addWidget(day_close_btn)
 
-        # Add the "Inventory" button here
         inventory_btn = QPushButton("Inventory")
         inventory_btn.setStyleSheet(
             """
@@ -391,7 +664,6 @@ class DashboardView(QMainWindow):
         inventory_btn.clicked.connect(self.open_inventory_view)
         right_controls_layout.addWidget(inventory_btn)
 
-        # Add the "Report" button here
         report_btn = QPushButton("Report")
         report_btn.setStyleSheet(
             """
@@ -399,7 +671,7 @@ class DashboardView(QMainWindow):
             QPushButton:hover { background: blue; }
             """
         )
-        report_btn.clicked.connect(self.open_report_view)  # Connect the button
+        report_btn.clicked.connect(self.open_report_view)
         right_controls_layout.addWidget(report_btn)
 
         for text in ["Settings", "Help"]:
@@ -425,7 +697,6 @@ class DashboardView(QMainWindow):
         logo_btn.clicked.connect(self.open_printer_settings)
         right_controls_layout.addWidget(logo_btn)
 
-        # Arrange layouts in the header
         header_layout.addLayout(left_controls_layout)
         header_layout.addStretch(1)
         header_layout.addLayout(title_layout)
@@ -437,7 +708,7 @@ class DashboardView(QMainWindow):
         self.stacked_widget = QStackedWidget()
         self.main_layout.addWidget(self.stacked_widget)
 
-        # Content
+        # Dashboard Content
         self.dashboard_content = QWidget()
         content_layout = QHBoxLayout(self.dashboard_content)
         content_layout.setContentsMargins(5, 5, 5, 5)
@@ -457,28 +728,21 @@ class DashboardView(QMainWindow):
             "background-color: transparent; border: 0.5rem solid gray; padding-left: 10px;"
         )
 
-        # Create the container widget for categories
         category_container = QWidget()
         category_container.setMinimumWidth(1200)
-
         self.category_layout = QHBoxLayout(category_container)
         self.category_layout.setContentsMargins(0, 0, 0, 0)
         self.category_layout.setSpacing(10)
 
-        # Set the container as the scroll area's widget
         category_scroll_area.setMaximumHeight(60)
         category_scroll_area.setWidget(category_container)
-
-        # Add the scroll area to the product layout
         product_layout.addWidget(category_scroll_area)
 
         product_layout.addSpacing(15)
 
-        # Redesigned Search Container with Switch
         search_container = QHBoxLayout()
         search_container.setSpacing(10)
 
-        # Normal Search Field
         self.product_search = QLineEdit()
         self.product_search.setPlaceholderText("Search Items")
         self.product_search.setStyleSheet(
@@ -495,17 +759,16 @@ class DashboardView(QMainWindow):
         self.product_search.textChanged.connect(self.filter_products)
         search_container.addWidget(self.product_search, 3)
 
-        # Switch Button
-        self.mode_switch = QPushButton("Barcode Mode")  # Initial text as Barcode Mode
+        self.mode_switch = QPushButton("Barcode Mode")
         self.mode_switch.setCheckable(True)
-        self.mode_switch.setChecked(True)  # Default to Barcode Mode (checked state)
+        self.mode_switch.setChecked(True)
         self.mode_switch.setStyleSheet(
             """
             QPushButton {
                 background: #4a9dff; color: white; border: none; border-radius: 8px; padding: 8px; font-size: 14px; font-weight: bold; min-width: 100px;
             }
             QPushButton:checked {
-                background: #28a745; /* Green for Barcode Mode */
+                background: #28a745;
             }
             QPushButton:hover:!checked {
                 background: #4a9dff80;
@@ -518,7 +781,6 @@ class DashboardView(QMainWindow):
         self.mode_switch.clicked.connect(self.toggle_search_mode)
         search_container.addWidget(self.mode_switch, 1)
 
-        # Barcode Search Field
         self.product_barcode_search = QLineEdit()
         self.product_barcode_search.setPlaceholderText("Scan Barcode")
         self.product_barcode_search.setStyleSheet(
@@ -539,7 +801,6 @@ class DashboardView(QMainWindow):
         self.barcode_timer.timeout.connect(self.process_pending_barcode)
         search_container.addWidget(self.product_barcode_search, 3)
 
-        # Initial Mode Setup
         self.is_barcode_mode = True
         self.product_barcode_search.setEnabled(True)
         self.product_search.setEnabled(False)
@@ -565,7 +826,7 @@ class DashboardView(QMainWindow):
 
         content_layout.addWidget(product_widget, 5)
 
-        # Checkout Widget [Unchanged]
+        # Checkout Widget
         self.checkout_widget = QWidget()
         self.checkout_widget.setStyleSheet("background: #f8f9fa; border-radius: 12px;")
         self.checkout_layout = QVBoxLayout(self.checkout_widget)
@@ -598,8 +859,6 @@ class DashboardView(QMainWindow):
         self.checkout_layout.addWidget(self.customer_label)
         self.checkout_layout.addWidget(self.customer_select)
 
-        self.customer_type.currentTextChanged.connect(self.on_customer_type_changed)
-
         self.table = QTableWidget(0, 5)
         self.table.setHorizontalHeaderLabels(["Item", "Unit", "Qty", "Price", "Action"])
         self.table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
@@ -629,6 +888,7 @@ class DashboardView(QMainWindow):
             QPushButton:hover { background: #4a9dff80; }
             """
         )
+        self.add_to_cart_btn.clicked.connect(self.add_to_cart)
         btn_layout.addWidget(self.add_to_cart_btn)
 
         self.checkout_btn = QPushButton("Check Out")
@@ -644,15 +904,16 @@ class DashboardView(QMainWindow):
         self.checkout_layout.addLayout(btn_layout)
         content_layout.addWidget(self.checkout_widget, 3)
 
-        # Order summary view
+        # Order Summary View
         self.order_summary_view = OrderSummaryView(self)
         self.stacked_widget.addWidget(self.order_summary_view)
-        self.order_summary_index = 1  # Assuming order summary is the second widget
+        self.order_summary_index = 1
 
         # Day Close View
-        self.day_close_view = DayCloseView()
+        self.day_close_view = DayCloseView(db_helper=self.db_helper)
         self.stacked_widget.addWidget(self.day_close_view)
-        self.day_close_index = 2  # Assuming day close is the third widget
+        self.day_close_index = 2
+        self.day_close_view.day_close_saved.connect(self.enable_header)
 
         # Report View
         self.report_view = ReportView()
@@ -665,10 +926,8 @@ class DashboardView(QMainWindow):
         self.inventory_index = 4
 
         # Connections
-        # self.icon_buttons["Cart"].clicked.connect(self.show_order_summary)
-        # self.icon_buttons["Cash Out"].clicked.connect(self.dashboard_view)
+        self.sidebar.group_selected.connect(self.update_category_cards)
         self.customer_type.currentTextChanged.connect(self.on_customer_type_changed)
-        self.is_barcode_mode = False
 
         self.payment_card = PaymentCard(0.0, self)
         content_layout.addWidget(self.payment_card, 3)
@@ -676,7 +935,6 @@ class DashboardView(QMainWindow):
 
         self.setCentralWidget(self.main_widget)
 
-        self.sidebar.group_selected.connect(self.update_category_cards)
         self.current_items = []
         self.current_category_id = None
         self.product_cards = {}
@@ -692,20 +950,61 @@ class DashboardView(QMainWindow):
         self.sync_thread = None
         self.check_internet_on_startup()
 
+        # Check and perform day close on startup
+        self.check_and_perform_day_close()
+
+    def disable_header(self):
+        self.header.setEnabled(False)
+
+    def enable_header(self):
+        self.header.setEnabled(True)
+
+    def check_and_perform_day_close(self):
+        current_date = date.today() - timedelta(days=1)
+        stores = self.db_helper.get_stores_data()
+
+        if not stores:
+            print("DashboardView: No stores available to check day close.")
+            return
+
+        for store in stores:
+            if not self.db_helper.check_day_close_exists(store["id"], current_date):
+                print("DashboardView: No day close found, switching to DayCloseView")
+                self.stacked_widget.setCurrentIndex(self.day_close_index)
+                self.disable_header()
+                reply = QMessageBox.question(
+                    self,
+                    "Day Close Required",
+                    f"No day close found for {current_date.strftime('%Y-%m-%d')}. Would you like to perform it now?",
+                    QMessageBox.Yes | QMessageBox.No,
+                    QMessageBox.No,
+                )
+                if reply == QMessageBox.Yes:
+                    self.day_close_view.perform_daily_close()
+                break
+        else:
+            print("DashboardView: Day close already exists, proceeding to dashboard")
+            self.enable_header()
+
+    def open_day_close_view(self):
+        print("Opening Day Close View")
+        current_date = date.today() - timedelta(days=1)
+        stores = self.db_helper.get_stores_data()
+        day_close_pending = any(
+            not self.db_helper.check_day_close_exists(store["id"], current_date)
+            for store in stores
+        )
+        self.stacked_widget.setCurrentIndex(self.day_close_index)
+        if day_close_pending:
+            self.disable_header()
+
     def open_inventory_view(self):
-        """Opens the Inventory view within the stacked widget."""
         print("Opening Inventory View")
         self.stacked_widget.setCurrentIndex(self.inventory_index)
 
     def open_report_view(self):
-        """Opens the Report view within the stacked widget."""
         print("Opening Report View")
         self.stacked_widget.setCurrentIndex(self.report_index)
-
-    def open_day_close_view(self):
-        """Opens the Day Close view within the stacked widget."""
-        print("Opening Day Close View")
-        self.stacked_widget.setCurrentIndex(self.day_close_index)
 
     def dashboard_view(self):
         self.stacked_widget.setCurrentIndex(0)
@@ -733,24 +1032,78 @@ class DashboardView(QMainWindow):
                     "item_id": item_id,
                     "name": name,
                     "unit": unit,
-                    "qty": qty,
-                    "price": price,
+                    "quantity": qty,
+                    "amount": price * qty,
                 }
             )
         return items
 
+    def add_to_cart(self):
+        cart_items = self.get_cart_items()
+        if not cart_items:
+            QMessageBox.warning(
+                self, "Error", "No items in cart to add!", QMessageBox.Ok
+            )
+            return
+
+        total_amount = sum(item["amount"] for item in cart_items)
+        customer_type_name = self.customer_type.currentText()
+        customer_type_id = next(
+            (
+                ct["id"]
+                for ct in self.customer_types_data
+                if ct["name"] == customer_type_name
+            ),
+            None,
+        )
+        if not customer_type_id:
+            QMessageBox.critical(
+                self, "Error", "Invalid customer type selected!", QMessageBox.Ok
+            )
+            return
+
+        customer_id = None
+        if self.customer_select.isVisible():
+            customer_id = self.customer_select.currentData()
+
+        order_number = f"CART-{datetime.now().strftime('%Y%m%d%H%M%S')}"
+        cart_data = {
+            "order_number": order_number,
+            "customer_type_id": customer_type_id,
+            "customer_id": customer_id,
+            "total_amount": total_amount,
+            "date": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "items": cart_items,
+            "status": "in-cart",
+        }
+
+        result = self.cart_model.create_cart(cart_data)
+        if result["success"]:
+            QMessageBox.information(
+                self,
+                "Success",
+                f"Cart saved successfully with ID: {result['cart_id']}",
+                QMessageBox.Ok,
+            )
+            self.clear_checkout()
+        else:
+            QMessageBox.critical(
+                self,
+                "Error",
+                f"Failed to save cart: {result['message']}",
+                QMessageBox.Ok,
+            )
+
     def open_sales_view(self):
-        """Switch to the default Sales view (dashboard)."""
         print("Switching to Sales View (Dashboard)")
         self.stacked_widget.setCurrentIndex(0)
 
     def open_sales_summary_view(self):
-        """Switch to the Sales Summary view."""
         print("Switching to Sales Summary View")
         cart_items = self.get_cart_items()
         orders = []
         for idx, item in enumerate(cart_items):
-            total_amount = item["qty"] * item["price"]
+            total_amount = item["amount"]
             orders.append(
                 {
                     "order_no": f"ORD-{idx + 1:03d}",
@@ -764,12 +1117,11 @@ class DashboardView(QMainWindow):
         self.stacked_widget.setCurrentIndex(self.order_summary_index)
 
     def open_delivery_view(self):
-        """Switch to the Delivery view (using OrderSummaryView for now)."""
         print("Switching to Delivery View")
         cart_items = self.get_cart_items()
         orders = []
         for idx, item in enumerate(cart_items):
-            total_amount = item["qty"] * item["price"]
+            total_amount = item["amount"]
             orders.append(
                 {
                     "order_no": f"DEL-{idx + 1:03d}",
@@ -783,20 +1135,19 @@ class DashboardView(QMainWindow):
         self.stacked_widget.setCurrentIndex(self.order_summary_index)
 
     def toggle_search_mode(self):
-        """Toggle between Search Mode and Barcode Mode."""
         self.is_barcode_mode = not self.is_barcode_mode
         if self.is_barcode_mode:
             self.mode_switch.setText("Barcode Mode")
             self.product_search.setEnabled(False)
             self.product_barcode_search.setEnabled(True)
             self.product_barcode_search.setFocus()
-            self.product_search.clear()  # Clear search field when switching
+            self.product_search.clear()
         else:
             self.mode_switch.setText("Search Mode")
             self.product_search.setEnabled(True)
             self.product_barcode_search.setEnabled(False)
             self.product_search.setFocus()
-            self.product_barcode_search.clear()  # Clear barcode field when switching
+            self.product_barcode_search.clear()
 
     def start_sync_thread(self):
         if self.sync_thread is None or not self.sync_thread.isRunning():
@@ -833,26 +1184,17 @@ class DashboardView(QMainWindow):
             return False
 
     def update_ui_after_sync(self):
-        """Refresh UI components with updated local data."""
-        # Update sidebar groups
         self.sidebar.update_group_buttons(db.get_local_item_groups())
-
-        # Update product grid if a category is selected
         if self.current_category_id:
             self.update_product_grid(self.current_category_id)
-
-        # Update customer-related data
         self.customer_types_data = db.get_customer_types()
         self.customers_data = db.get_customers()
         self.customer_type.clear()
         self.customer_type.addItems([ct["name"] for ct in self.customer_types_data])
         self.populate_customers_combobox()
-
-        # Refresh product cards to reflect new data
         self.refresh_product_cards()
 
     def refresh_product_cards(self):
-        """Refresh all product cards with updated local data."""
         if self.current_category_id:
             items = db.get_local_items_for_category(self.current_category_id)
             self.current_items = items
@@ -903,7 +1245,6 @@ class DashboardView(QMainWindow):
 
     def update_product_grid(self, category_id, filtered_items=None):
         self.current_category_id = category_id
-        # Clear the existing grid
         for i in reversed(range(self.product_grid.count())):
             widget = self.product_grid.itemAt(i).widget()
             if widget:
@@ -920,11 +1261,9 @@ class DashboardView(QMainWindow):
         self.product_cards.clear()
         if items:
             row, col = 0, 0
-            # Keep track of added item IDs to avoid duplicates
             added_item_ids = set()
             for item in items:
                 item_id = item["item_id"]
-                # Skip if this item_id has already been added
                 if item_id in added_item_ids:
                     print(
                         f"Skipping duplicate item: {item['item_name']} (ID: {item_id})"
@@ -936,7 +1275,7 @@ class DashboardView(QMainWindow):
                 card.clicked.connect(self.add_item_to_checkout)
                 self.product_grid.addWidget(card, row, col, alignment=Qt.AlignTop)
                 self.product_cards[item_id] = card
-                added_item_ids.add(item_id)  # Mark this item as added
+                added_item_ids.add(item_id)
                 col += 1
                 if col > 4:
                     col = 0
@@ -962,7 +1301,6 @@ class DashboardView(QMainWindow):
             if text
             else self.current_items
         )
-        # Deduplicate filtered items based on item_id
         seen_item_ids = set()
         deduplicated_filtered_items = []
         for item in filtered_items:
@@ -972,89 +1310,169 @@ class DashboardView(QMainWindow):
         self.update_product_grid(self.current_category_id, deduplicated_filtered_items)
 
     def add_item_to_checkout(self, item):
-            try:
-                item_id = item["item_id"]
-                if not item_id:
-                    raise ValueError(f"No item ID found in {item}")
+        try:
+            item_id = item["item_id"]
+            if not item_id:
+                raise ValueError(f"No item ID found in {item}")
 
-                stock_quantity = float(item["stock_quantity"])
-                if stock_quantity <= 0:
-                    QMessageBox.warning(
-                        self,
-                        "Out of Stock",
-                        f"{item['item_name']} is out of stock!",
-                        QMessageBox.Ok,
-                    )
-                    return
+            stock_quantity = float(item["stock_quantity"])
+            if stock_quantity <= 0:
+                QMessageBox.warning(
+                    self,
+                    "Out of Stock",
+                    f"{item['item_name']} is out of stock!",
+                    QMessageBox.Ok,
+                )
+                return
 
-                for row in range(self.table.rowCount()):
-                    name_item = self.table.item(row, 0)
-                    if name_item and name_item.text() == item["item_name"]:
-                        qty_item = self.table.item(row, 2)
-                        current_qty = float(qty_item.text())
+            # Check if item already exists in the table
+            for row in range(self.table.rowCount()):
+                name_item = self.table.item(row, 0)
+                if name_item and name_item.text() == item["item_name"]:
+                    qty_item = self.table.item(row, 2)
+                    current_qty = float(qty_item.text())
 
-                        if current_qty + 1 > stock_quantity:
-                            QMessageBox.warning(
-                                self,
-                                "Stock Limit",
-                                f"Only {stock_quantity} {item['item_name']} available!",
-                                QMessageBox.Ok,
-                            )
-                            return
-
-                        qty_item.setText(str(int(current_qty + 1)))
-                        if not name_item.data(Qt.UserRole):
-                            name_item.setData(Qt.UserRole, item_id)
-                        self.update_totals()
-                        print(
-                            f"Updated quantity for {item['item_name']} in checkout, Item ID: {name_item.data(Qt.UserRole)}"
+                    if current_qty + 1 > stock_quantity:
+                        QMessageBox.warning(
+                            self,
+                            "Stock Limit",
+                            f"Only {stock_quantity} {item['item_name']} available!",
+                            QMessageBox.Ok,
                         )
                         return
 
-                row_count = self.table.rowCount()
-                self.table.insertRow(row_count)
+                    qty_item.setText(str(int(current_qty + 1)))
+                    if not name_item.data(Qt.UserRole):
+                        name_item.setData(Qt.UserRole, item_id)
+                    self.update_totals()
+                    print(
+                        f"Updated quantity for {item['item_name']} in checkout, Item ID: {name_item.data(Qt.UserRole)}"
+                    )
+                    return
 
-                name_item = QTableWidgetItem(item["item_name"])
-                name_item.setData(Qt.UserRole, item_id)
-                name_item.setFlags(name_item.flags() & ~Qt.ItemIsEditable)
+            # Add new item to the table
+            row_count = self.table.rowCount()
+            self.table.insertRow(row_count)
 
-                unit_item = QTableWidgetItem(item["item_unit"])
-                unit_item.setFlags(unit_item.flags() & ~Qt.ItemIsEditable)
+            name_item = QTableWidgetItem(item["item_name"])
+            name_item.setData(Qt.UserRole, item_id)
+            name_item.setFlags(name_item.flags() & ~Qt.ItemIsEditable)  # Non-editable
 
-                qty_item = QTableWidgetItem("1")
-                qty_item.setFlags(qty_item.flags() & ~Qt.ItemIsEditable)
+            unit_item = QTableWidgetItem(item["item_unit"])
+            unit_item.setFlags(unit_item.flags() & ~Qt.ItemIsEditable)  # Non-editable
 
-                price_item = QTableWidgetItem(f"{float(item['item_price']):.2f}")
-                price_item.setFlags(price_item.flags() & ~Qt.ItemIsEditable)
+            qty_item = QTableWidgetItem("1")
+            qty_item.setFlags(qty_item.flags() | Qt.ItemIsEditable)  # Editable
 
-                self.table.setItem(row_count, 0, name_item)
-                self.table.setItem(row_count, 1, unit_item)
-                self.table.setItem(row_count, 2, qty_item)
-                self.table.setItem(row_count, 3, price_item)
+            price_item = QTableWidgetItem(f"{float(item['item_price']):.2f}")
+            price_item.setFlags(price_item.flags() & ~Qt.ItemIsEditable)  # Non-editable
 
-                remove_btn = QPushButton()
-                remove_btn.setIcon(
-                    load_icon(get_resource_path("Resources/Images/trash_icon.png"))
+            self.table.setItem(row_count, 0, name_item)
+            self.table.setItem(row_count, 1, unit_item)
+            self.table.setItem(row_count, 2, qty_item)
+            self.table.setItem(row_count, 3, price_item)
+
+            remove_btn = QPushButton()
+            remove_btn.setIcon(
+                load_icon(get_resource_path("Resources/Images/trash_icon.png"))
+            )
+            remove_btn.setIconSize(QSize(16, 16))
+            remove_btn.setStyleSheet(
+                "QPushButton { border-radius: 4px; padding: 2px; min-width: 24px; min-height: 24px; } QPushButton:hover { background: #c82333; }"
+            )
+            remove_btn.clicked.connect(lambda _, r=row_count: self.remove_item(r))
+            self.table.setCellWidget(row_count, 4, remove_btn)
+
+            print(
+                f"Added {item['item_name']} to checkout at row {row_count}, Item ID: {self.table.item(row_count, 0).data(Qt.UserRole)}"
+            )
+            self.update_totals()
+
+            # Connect itemChanged signal to handle quantity edits
+            if not self.table.receivers(self.table.itemChanged):
+                self.table.itemChanged.connect(self.handle_quantity_change)
+
+        except Exception as e:
+            import traceback
+
+            traceback.print_exc()
+            QMessageBox.critical(
+                self, "Error", f"Failed to add item: {str(e)}", QMessageBox.Ok
+            )
+
+    def handle_quantity_change(self, item):
+        try:
+            if item.column() != 2:  # Only handle changes in the "Qty" column
+                return
+
+            row = item.row()
+            name_item = self.table.item(row, 0)
+            if not name_item:
+                return
+
+            item_id = name_item.data(Qt.UserRole)
+            if not item_id:
+                QMessageBox.warning(self, "Error", "Item ID not found!", QMessageBox.Ok)
+                return
+
+            # Get item details from the database
+            item_data = db.get_item_by_id(item_id)
+            if not item_data:
+                QMessageBox.warning(
+                    self,
+                    "Error",
+                    f"Item with ID {item_id} not found in database!",
+                    QMessageBox.Ok,
                 )
-                remove_btn.setIconSize(QSize(16, 16))
-                remove_btn.setStyleSheet(
-                    "QPushButton { border-radius: 4px; padding: 2px; min-width: 24px; min-height: 24px; } QPushButton:hover { background: #c82333; }"
-                )
-                remove_btn.clicked.connect(lambda _, r=row_count: self.remove_item(r))
-                self.table.setCellWidget(row_count, 4, remove_btn)
+                return
 
-                print(
-                    f"Added {item['item_name']} to checkout at row {row_count}, Item ID: {self.table.item(row_count, 0).data(Qt.UserRole)}"
+            stock_quantity = float(item_data["stock_quantity"])
+            new_qty_text = item.text().strip()
+
+            # Validate the new quantity
+            try:
+                new_qty = float(new_qty_text)
+                if new_qty <= 0:
+                    QMessageBox.warning(
+                        self,
+                        "Invalid Quantity",
+                        "Quantity must be greater than 0!",
+                        QMessageBox.Ok,
+                    )
+                    item.setText("1")  # Reset to default
+                    self.update_totals()
+                    return
+                if new_qty > stock_quantity:
+                    QMessageBox.warning(
+                        self,
+                        "Stock Limit",
+                        f"Only {stock_quantity} {item_data['item_name']} available!",
+                        QMessageBox.Ok,
+                    )
+                    item.setText(str(int(stock_quantity)))  # Set to max available
+                    self.update_totals()
+                    return
+            except ValueError:
+                QMessageBox.warning(
+                    self,
+                    "Invalid Input",
+                    "Please enter a valid number!",
+                    QMessageBox.Ok,
                 )
+                item.setText("1")  # Reset to default
                 self.update_totals()
+                return
 
-            except Exception as e:
-                import traceback
+            self.update_totals()
+            print(f"Quantity updated for {item_data['item_name']} to {new_qty}")
 
-                traceback.print_exc()
-                QMessageBox.critical(
-                    self, "Error", f"Failed to add item: {str(e)}", QMessageBox.Ok
-                )
+        except Exception as e:
+            import traceback
+
+            traceback.print_exc()
+            QMessageBox.critical(
+                self, "Error", f"Failed to update quantity: {str(e)}", QMessageBox.Ok
+            )
 
     def update_totals(self):
         try:
@@ -1157,7 +1575,13 @@ class DashboardView(QMainWindow):
                 )
                 return
 
-            required_fields = ["item_name", "item_unit", "item_price", "stock_quantity"]
+            required_fields = [
+                "item_name",
+                "item_unit",
+                "item_price",
+                "stock_quantity",
+                "item_id",
+            ]
             missing_fields = [
                 field
                 for field in required_fields
