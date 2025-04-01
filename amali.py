@@ -8,12 +8,10 @@ import os
 from Helper.db_conn import db
 from Application.Components.main import DashboardView
 import bcrypt
-from datetime import date, timedelta
-from Application.Components.DayClose.day_close import DayCloseView
-from Application.Components.DayClose.modal import DayCloseManager
 
 
 def get_resource_path(relative_path):
+    """Get the absolute path to a resource, works for dev and PyInstaller."""
     if hasattr(sys, "_MEIPASS"):
         base_path = sys._MEIPASS
     else:
@@ -25,7 +23,6 @@ class Boot(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setWindowTitle("AMALI Login")
-        self.db_helper = DayCloseManager()
         screen = QApplication.primaryScreen()
         screen_size = screen.size()
         width = screen_size.width()
@@ -52,11 +49,11 @@ class Boot(QDialog):
                     200, 100, Qt.KeepAspectRatio, Qt.SmoothTransformation
                 )
             )
-            print(f"Logo loaded from: {logo_path}")
+            print(f"Boot: Logo loaded from: {logo_path}")
         else:
             self.logo_label.setText("Logo Not Found")
             self.logo_label.setStyleSheet("color: white; font-size: 20px;")
-            print(f"Failed to load logo from: {logo_path}")
+            print(f"Boot: Failed to load logo from: {logo_path}")
         self.logo_label.setAlignment(Qt.AlignCenter)
 
         centerContainer = QWidget()
@@ -126,22 +123,23 @@ class Boot(QDialog):
                 if bcrypt.checkpw(
                     password.encode("utf-8"), stored_hashed_password.encode("utf-8")
                 ):
-                    print("Login successful!")
+                    print("Boot: Login successful!")
                     self.ensure_store_exists()
-                    self.check_day_close()
+                    self.accept()  # Proceed to DashboardView
                 else:
                     QMessageBox.warning(self, "Error", "Incorrect username or password")
             else:
                 QMessageBox.warning(self, "Error", "Incorrect username or password")
         except sqlite3.OperationalError as e:
-            QMessageBox.critical(self, "Error", f"Database error: {e}")
+            QMessageBox.critical(self, "Error", f"Boot: Database error: {e}")
 
     def ensure_store_exists(self):
-        stores = self.db_helper.get_stores_data()
-        if not stores:
-            print("No stores found. Creating default store after login.")
-            with db.get_connection() as conn:
-                cursor = conn.cursor()
+        with db.get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT COUNT(*) FROM stores")
+            store_count = cursor.fetchone()[0]
+            if store_count == 0:
+                print("Boot: No stores found. Creating default store after login.")
                 cursor.execute("SELECT id FROM users WHERE username = 'admin'")
                 admin = cursor.fetchone()
                 if not admin:
@@ -168,41 +166,9 @@ class Boot(QDialog):
                     (1, "Mohalal Shop", "Forest", admin_id),
                 )
                 conn.commit()
-                print("Default store 'Mohalal Shop' created successfully.")
-        else:
-            print(f"Found {len(stores)} existing stores: {stores}")
-
-    def check_day_close(self):
-        current_date = date.today() - timedelta(days=1)
-        with db.get_connection() as conn:
-            cursor = conn.cursor()
-            cursor.execute(
-                "SELECT COUNT(*) FROM day_close WHERE working_date = ?",
-                (current_date.strftime("%Y-%m-%d"),),
-            )
-            count = cursor.fetchone()[0]
-
-        if count == 0:
-            reply = QMessageBox.question(
-                self,
-                "Day Close Required",
-                f"No day close record found for {current_date.strftime('%Y-%m-%d')}. Would you like to perform it now?",
-                QMessageBox.Yes | QMessageBox.No,
-                QMessageBox.Yes,
-            )
-            if reply == QMessageBox.Yes:
-                day_close_window = DayCloseView(db_helper=self.db_helper)
-                day_close_window.show()
-                # Wait for the day close window to close before proceeding
-                loop = QEventLoop()
-                day_close_window.destroyed.connect(loop.quit)
-                loop.exec_()
-                # After day close, proceed to dashboard
-                self.accept()
+                print("Boot: Default store 'Mohalal Shop' created successfully.")
             else:
-                self.accept()
-        else:
-            self.accept()
+                print(f"Boot: Found {store_count} existing stores.")
 
 
 if __name__ == "__main__":
@@ -210,9 +176,9 @@ if __name__ == "__main__":
     app.setStyle("fusion")
     bootUI = Boot()
     if bootUI.exec_() == QDialog.Accepted:
-        print("Opening DashboardView...")
+        print("Boot: Opening DashboardView...")
         main_window = DashboardView()
         main_window.showMaximized()
     else:
-        print("Login dialog was rejected or closed.")
+        print("Boot: Login dialog was rejected or closed.")
     sys.exit(app.exec_())

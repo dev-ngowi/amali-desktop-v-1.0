@@ -403,20 +403,20 @@ class DatabaseManager:
 
                 cursor.execute(
                     """
-                CREATE TABLE IF NOT EXISTS carts (
-                    id INTEGER PRIMARY KEY AUTOINCREMENT,
-                    order_number TEXT NOT NULL UNIQUE,
-                    customer_type_id INTEGER NOT NULL,
-                    customer_id INTEGER,
-                    total_amount REAL NOT NULL DEFAULT 0.00,
-                    status TEXT CHECK(status IN ('in-cart', 'settled', 'voided')) NOT NULL DEFAULT 'in-cart',
-                    date DATETIME NOT NULL,
-                    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-                    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-                    FOREIGN KEY (customer_type_id) REFERENCES customer_types(id),
-                    FOREIGN KEY (customer_id) REFERENCES customers(id)
-                )
-            """
+                        CREATE TABLE IF NOT EXISTS carts (
+                            id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            order_number TEXT NOT NULL UNIQUE,
+                            customer_type_id INTEGER NOT NULL,
+                            customer_id INTEGER,
+                            total_amount REAL NOT NULL DEFAULT 0.00,
+                            status TEXT CHECK(status IN ('in-cart', 'settled', 'voided')) NOT NULL DEFAULT 'in-cart',
+                            date DATETIME NOT NULL,
+                            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+                            updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+                            FOREIGN KEY (customer_type_id) REFERENCES customer_types(id),
+                            FOREIGN KEY (customer_id) REFERENCES customers(id)
+                        )
+                    """
                 )
 
                 # Add cart_items table
@@ -1575,7 +1575,39 @@ class DatabaseManager:
         except sqlite3.Error as e:
             print(f"Error getting all local companies: {e}")
             return []
-
+    def get_item_by_id(self, item_id):
+        try:
+            with self.get_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute(
+                    """
+                    SELECT 
+                        i.name AS item_name,
+                        u.name AS item_unit,
+                        ip.amount AS item_price,
+                        s.stock_quantity
+                    FROM items i
+                    LEFT JOIN item_units iu ON i.id = iu.item_id
+                    LEFT JOIN units u ON iu.selling_unit_id = u.id
+                    LEFT JOIN item_prices ip ON i.id = ip.item_id AND ip.store_id = 1
+                    LEFT JOIN item_stocks s ON i.id = s.item_id
+                    WHERE i.id = ?
+                    """,
+                    (item_id,),
+                )
+                row = cursor.fetchone()
+                if row:
+                    return {
+                        "item_name": row[0],
+                        "item_unit": row[1] if row[1] else "Unit",  # Default to "Unit" if null
+                        "item_price": float(row[2]) if row[2] is not None else 0.0,
+                        "stock_quantity": float(row[3]) if row[3] is not None else 0.0
+                    }
+                print(f"No item found with ID {item_id}")
+                return None
+        except sqlite3.Error as e:
+            print(f"Error fetching item by ID {item_id}: {e}")
+            return None
     def get_all_local_items(self):
         """Get all items from local database with barcode and store details"""
         try:
