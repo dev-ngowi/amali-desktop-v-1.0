@@ -1290,31 +1290,50 @@ class DashboardView(QMainWindow):
         self.product_grid.parentWidget().adjustSize()
 
     def filter_products(self, text):
-        if not self.current_category_id:
+        """Filter products globally across all items based on search text."""
+        if not text.strip():
+            # If search text is empty, revert to current category view
+            if self.current_category_id:
+                self.update_product_grid(self.current_category_id)
             return
-        filtered_items = (
-            [
-                item
-                for item in self.current_items
-                if text.lower() in item["item_name"].lower()
-            ]
-            if text
-            else self.current_items
-        )
+
+        # Fetch all items from the database
+        all_items = db.get_all_local_items()
+        if not all_items:
+            print("No items found in database for global search")
+            self.update_product_grid(self.current_category_id, [])
+            return
+
+        # Filter items based on 'name' (case-insensitive)
+        filtered_items = [
+            item for item in all_items if text.lower() in item.get("name", "Unnamed Item").lower()
+        ]
+
+        # Deduplicate items by 'id' and adapt to expected UI structure
         seen_item_ids = set()
         deduplicated_filtered_items = []
         for item in filtered_items:
-            if item["item_id"] not in seen_item_ids:
-                deduplicated_filtered_items.append(item)
-                seen_item_ids.add(item["item_id"])
-        self.update_product_grid(self.current_category_id, deduplicated_filtered_items)
+            item_id = item.get("id")
+            if item_id and item_id not in seen_item_ids:
+                # Transform to match UI expected structure
+                ui_item = {
+                    "item_id": item_id,
+                    "item_name": item.get("name", "Unnamed Item"),
+                    "item_unit": item.get("selling_unit_name", ""),
+                    "item_price": list(item.get("prices", {}).values())[0] if item.get("prices") else 0.0,
+                    "stock_quantity": list(item.get("stocks", {}).values())[0].get("stock_quantity", 0.0) if item.get("stocks") else 0.0,
+                }
+                deduplicated_filtered_items.append(ui_item)
+                seen_item_ids.add(item_id)
+
+        self.update_product_grid(None, deduplicated_filtered_items)
+        print(f"Filtered {len(deduplicated_filtered_items)} items globally with query: '{text}'")
 
     def add_item_to_checkout(self, item):
         try:
             item_id = item["item_id"]
             if not item_id:
                 raise ValueError(f"No item ID found in {item}")
-
             stock_quantity = float(item["stock_quantity"])
             if stock_quantity <= 0:
                 QMessageBox.warning(
