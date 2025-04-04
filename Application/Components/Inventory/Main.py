@@ -1,4 +1,5 @@
 import sys
+
 from PyQt5.QtWidgets import (
     QApplication,
     QMainWindow,
@@ -10,12 +11,18 @@ from PyQt5.QtWidgets import (
     QTreeWidgetItem,
     QStackedWidget,
 )
+
 from PyQt5.QtCore import Qt
 
 from Application.Components.Inventory.Category.category import CategoriesView
 from Application.Components.Inventory.Expenses.view import ExpensesView
+from Application.Components.Inventory.ItemCosts.view import CostStockView
 from Application.Components.Inventory.ItemGroup.item_group import ItemGroupView
 from Application.Components.Inventory.ItemType.view import ItemTypeView
+from Application.Components.Inventory.Items.model import ItemManager
+from Application.Components.Inventory.Items.register import AddItemWindow
+from Application.Components.Inventory.Items.update import EditItemWindow
+from Application.Components.Inventory.Items.view import ItemsView
 from Application.Components.Inventory.Stores.store import StoresView
 from Application.Components.Inventory.Units.view import UnitView
 from Application.Components.Settings.Payments.view import PaymentsMainView
@@ -29,29 +36,13 @@ class InventoryView(QWidget):
         self.setLayout(layout)
 
 
-class ItemsView(QWidget):
-    def __init__(self):
-        super().__init__()
-        layout = QVBoxLayout()
-        layout.addWidget(QLabel("This is the Items View"))
-        self.setLayout(layout)
-
-
-class CostStockView(QWidget):
-    def __init__(self):
-        super().__init__()
-        layout = QVBoxLayout()
-        layout.addWidget(QLabel("This is the Cost & Stock View"))
-        self.setLayout(layout)
-
-
 class MainInventoryWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Main Application")
         self.setGeometry(100, 100, 800, 600)
 
-        # Sidebar setup using QTreeWidget for collapsible menu
+        self.item_manager = ItemManager()
         self.sidebar = QDockWidget("Menu", self)
         self.sidebar.setFeatures(QDockWidget.NoDockWidgetFeatures)
         self.sidebar.setAllowedAreas(Qt.LeftDockWidgetArea)
@@ -59,18 +50,37 @@ class MainInventoryWindow(QMainWindow):
         self.sidebar_layout = QVBoxLayout(self.sidebar_widget)
 
         self.menu_tree = QTreeWidget()
-        self.menu_tree.setHeaderHidden(True)  # Hide the header
-
-        # Main menu items
+        self.menu_tree.setHeaderHidden(True)
+        self.menu_tree.setStyleSheet(
+            """
+            QTreeWidget {
+                background-color: #f0f0f0;
+                border: none;
+                font-size: 14px;
+            }
+            QTreeWidget::item {
+                padding: 5px;
+                height: 25px;
+            }
+            QTreeWidget::item:hover {
+                background-color: #e0e0e0;
+            }
+            QTreeWidget::item:selected {
+                background-color: #d0d0d0;
+                color: black;
+            }
+            QTreeWidget::branch {
+                background: transparent;
+            }
+        """
+        )
+        self.menu_tree.setRootIsDecorated(False)
 
         stores_item = QTreeWidgetItem(self.menu_tree, ["Stores"])
         expenses = QTreeWidgetItem(self.menu_tree, ["Expenses"])
         payments_item = QTreeWidgetItem(self.menu_tree, ["Payments"])
-        self.inventory_item = QTreeWidgetItem(
-            self.menu_tree, ["Inventory +"]
-        )  # Initial state with +
+        self.inventory_item = QTreeWidgetItem(self.menu_tree, ["Inventory +"])
 
-        # Inventory submenu items
         item_category_item = QTreeWidgetItem(self.inventory_item, ["Item Category"])
         item_group_item = QTreeWidgetItem(self.inventory_item, ["Item Group"])
         item_type_item = QTreeWidgetItem(self.inventory_item, ["Item Type"])
@@ -78,16 +88,13 @@ class MainInventoryWindow(QMainWindow):
         items_item = QTreeWidgetItem(self.inventory_item, ["Items"])
         cost_stock_item = QTreeWidgetItem(self.inventory_item, ["Cost & Stock"])
 
-        # Optionally expand Inventory by default (now it will show '-')
-        # self.menu_tree.expandItem(self.inventory_item)
-        # self.inventory_item.setText(0, "Inventory -")
+        self.menu_tree.setIndentation(20)
 
         self.sidebar_layout.addWidget(self.menu_tree)
         self.sidebar_widget.setLayout(self.sidebar_layout)
         self.sidebar.setWidget(self.sidebar_widget)
         self.addDockWidget(Qt.LeftDockWidgetArea, self.sidebar)
 
-        # Central widget setup
         self.central_widget = QStackedWidget()
         self.setCentralWidget(self.central_widget)
 
@@ -99,7 +106,7 @@ class MainInventoryWindow(QMainWindow):
         self.item_group_view = ItemGroupView()
         self.item_type_view = ItemTypeView()
         self.unit_view = UnitView()
-        self.items_view = ItemsView()
+        self.items_view = ItemsView()  # Only ItemsView is added to the stack
         self.cost_stock_view = CostStockView()
 
         self.central_widget.addWidget(self.stores_view)
@@ -113,34 +120,35 @@ class MainInventoryWindow(QMainWindow):
         self.central_widget.addWidget(self.items_view)
         self.central_widget.addWidget(self.cost_stock_view)
 
-        # Connect signals
         self.menu_tree.itemClicked.connect(self.handle_menu_click)
-        self.menu_tree.itemExpanded.connect(self.update_inventory_indicator_expanded)
-        self.menu_tree.itemCollapsed.connect(self.update_inventory_indicator_collapsed)
+        self.menu_tree.itemExpanded.connect(self.update_indicator_expanded)
+        self.menu_tree.itemCollapsed.connect(self.update_indicator_collapsed)
 
-        # Initial view
         self.central_widget.setCurrentWidget(self.stores_view)
 
-    def update_inventory_indicator_expanded(self, item):
-        if item == self.inventory_item:
-            self.inventory_item.setText(0, "Inventory -")
+    def update_indicator_expanded(self, item):
+        if item.childCount() > 0:
+            item.setText(0, item.text(0).replace("+", "-"))
 
-    def update_inventory_indicator_collapsed(self, item):
-        if item == self.inventory_item:
-            self.inventory_item.setText(0, "Inventory +")
+    def update_indicator_collapsed(self, item):
+        if item.childCount() > 0:
+            item.setText(0, item.text(0).replace("-", "+"))
 
     def handle_menu_click(self, item, column):
         text = item.text(column)
+        if item.childCount() > 0:
+            if text.endswith("+"):
+                self.menu_tree.expandItem(item)
+            elif text.endswith("-"):
+                self.menu_tree.collapseItem(item)
+            return
+
         if text == "Stores":
             self.central_widget.setCurrentWidget(self.stores_view)
         elif text == "Expenses":
             self.central_widget.setCurrentWidget(self.expenses_view)
         elif text == "Payments":
             self.central_widget.setCurrentWidget(self.payments_view)
-        elif text == "Inventory -":  # Handle the expanded state click
-            self.menu_tree.collapseItem(self.inventory_item)
-        elif text == "Inventory +":  # Handle the collapsed state click
-            self.menu_tree.expandItem(self.inventory_item)
         elif text == "Item Category":
             self.central_widget.setCurrentWidget(self.item_category_view)
         elif text == "Item Group":

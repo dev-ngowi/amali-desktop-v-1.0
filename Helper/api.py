@@ -455,22 +455,19 @@ def save_and_sync_order(order_data, items, payment_id, customer_id):
 def sync_data_with_server():
     """Synchronize local database with server data, treating server as source of truth."""
     try:
+        # Sync Item Groups
         server_groups = get_item_groups_from_api()
         if not server_groups:
             print("No server groups retrieved, aborting sync")
             return False
-
         local_groups = db.get_local_item_groups()
         group_mapping = {}
-
         for group in server_groups:
             if not isinstance(group, dict) or "name" not in group or "id" not in group:
                 print(f"Invalid group data: {group}, skipping")
                 continue
-
             if group["name"] not in local_groups:
                 db.insert_item_group(group["name"])
-
             with db.get_connection() as conn:
                 cursor = conn.cursor()
                 cursor.execute(
@@ -495,37 +492,31 @@ def sync_data_with_server():
                     row = cursor.fetchone()
                     if row:
                         group_mapping[row[1]] = row[0]
-
+        # Sync Categories and Items
         all_server_items = []
         server_category_ids = set()
-
         for group in server_groups:
             group_name = group["name"]
             group_id = group_mapping.get(group_name)
             if not group_id:
                 continue
-
             server_categories = get_categories_for_group(group_name)
             if not server_categories:
                 continue
-
             server_category_ids.update(cat["id"] for cat in server_categories)
             local_categories = db.get_local_categories_for_group(group_name)
             local_cat_ids = {cat["id"] for cat in local_categories}
-
             for cat in server_categories:
                 if cat["id"] not in local_cat_ids:
                     db.insert_category(cat["id"], cat["name"], group_id)
-
             for cat in server_categories:
                 items = get_items_by_category_from_api(cat["id"])
                 if items:
                     all_server_items.extend(items)
-
+        # Handle Item Synchronization
         local_items = db.get_all_local_items()
         local_item_ids = {item["id"] for item in local_items}
         server_item_ids = {item["id"] for item in all_server_items}
-
         with db.get_connection() as conn:
             cursor = conn.cursor()
             items_to_delete = local_item_ids - server_item_ids
@@ -536,61 +527,120 @@ def sync_data_with_server():
                     ),
                     tuple(items_to_delete),
                 )
-                # ... (delete related records as in original code)
                 conn.commit()
-
+                print(f"Deleted {len(items_to_delete)} local items not on server")
         items_synced = 0
         for item in all_server_items:
             local_item = next(
                 (li for li in local_items if li["id"] == item["id"]), None
             )
-            if not local_item:
-                db.insert_item(
-                    item["id"],
-                    item["name"],
-                    item["barcode"],
-                    item["item_unit"],
-                    item["item_price"],
-                    item["stock_quantity"],
-                    item["category_id"],
-                )
-                items_synced += 1
-            elif (
-                local_item["name"] != item["name"]
-                or local_item.get("selling_unit_name", "Unit") != item["item_unit"]
-                or local_item.get("prices", {}).get(1, 0.0) != item["item_price"]
-                or local_item.get("stocks", {}).get(1, {"stock_quantity": 0.0})[
-                    "stock_quantity"
-                ]
-                != item["stock_quantity"]
-            ):
-                db.update_item(
-                    item["id"],
-                    item["name"],
-                    item["barcode"],
-                    item["category_id"],
-                    1,
-                    None,
-                    None,
-                    item["item_unit"],
-                    item["item_unit"],
-                    {1: item["item_price"]},
-                    {
-                        1: {
-                            "stock_quantity": item["stock_quantity"],
-                            "min_quantity": 0.0,
-                            "max_quantity": 0.0,
-                        }
-                    },
-                )
-                items_synced += 1
 
+            # Map server response to insert_item parameters with error handling
+            try:
+                server_item_data = {
+                    "id": item["id"],
+                    "name": item.get("item_name"),
+                    "barcode": item.get("barcode", ""),
+                    "selling_unit": item.get("selling_unit", "Unit"),
+                    "buying_unit": item.get("buying_unit", "Unit"),
+                    "item_price": float(item.get("item_price", "0.0")),
+                    "item_cost": float(item.get("item_cost", "0.0")),
+                    "stock_quantity": float(item.get("stock_quantity", "0.0")),
+                    "category_id": item.get("category_id"),
+                    "min_quantity": float(item.get("min_quantity", "0.0")),
+                    "max_quantity": float(item.get("max_quantity", "0.0")),
+                    "store_id": item.get("store_id", 1),
+                    "store_name": item.get("store_name", "Default Store"),
+                    "expire_date": item.get("expire_date"),
+                }
+                # Validate required fields
+                if not server_item_data["category_id"]:
+                    print(f"Skipping item {item['id']} - missing category_id")
+                    continue
+                if not server_item_data["name"]:
+                    print(f"Skipping item {item['id']} - missing name")
+                    continue
+                if not local_item:
+                    db.insert_item(
+                        server_item_data["id"],
+                        server_item_data["name"],
+                        server_item_data["barcode"],
+                        server_item_data["selling_unit"],
+                        server_item_data["item_price"],
+                        server_item_data["item_cost"],
+                        server_item_data["stock_quantity"],
+                        server_item_data["category_id"],
+                        server_item_data["min_quantity"],
+                        server_item_data["max_quantity"],
+                        server_item_data["store_id"],
+                        server_item_data["store_name"],
+                        server_item_data["expire_date"],
+                        server_item_data["buying_unit"],
+                    )
+                    items_synced += 1
+                elif (
+                    local_item["name"] != server_item_data["name"]
+                    or local_item.get("selling_unit_name", "Unit")
+                    != server_item_data["selling_unit"]
+                    or local_item.get("buying_unit_name", "Unit")
+                    != server_item_data["buying_unit"]
+                    or local_item.get("prices", {}).get(
+                        server_item_data["store_id"], 0.0
+                    )
+                    != server_item_data["item_price"]
+                    or local_item.get("costs", {}).get(
+                        server_item_data["store_id"], 0.0
+                    )
+                    != server_item_data["item_cost"]
+                    or local_item.get("stocks", {}).get(
+                        server_item_data["store_id"], {"stock_quantity": 0.0}
+                    )["stock_quantity"]
+                    != server_item_data["stock_quantity"]
+                    or local_item.get("min_quantity")
+                    != server_item_data["min_quantity"]
+                    or local_item.get("max_quantity")
+                    != server_item_data["max_quantity"]
+                    or local_item.get("expire_date") != server_item_data["expire_date"]
+                ):
+                    # Assuming you have an update_item function that can handle all these details
+                    db.update_item(
+                        server_item_data["id"],
+                        server_item_data["name"],
+                        server_item_data["barcode"],
+                        server_item_data["category_id"],
+                        1,  # item_type_id (assuming a default)
+                        None,  # item_group_id
+                        server_item_data["expire_date"],
+                        server_item_data["buying_unit"],
+                        server_item_data["selling_unit"],
+                        {server_item_data["store_id"]: server_item_data["item_price"]},
+                        {server_item_data["store_id"]: server_item_data["item_cost"]},
+                        {
+                            server_item_data["store_id"]: {
+                                "stock_quantity": server_item_data["stock_quantity"],
+                                "min_quantity": server_item_data["min_quantity"],
+                                "max_quantity": server_item_data["max_quantity"],
+                            }
+                        },
+                        server_item_data["store_id"],
+                        server_item_data["store_name"],
+                    )
+                    items_synced += 1
+            except ValueError as ve:
+                print(
+                    f"Error processing item {item.get('id', 'unknown')}: Invalid numeric value - {ve}"
+                )
+                continue
+            except KeyError as ke:
+                print(
+                    f"Error processing item {item.get('id', 'unknown')}: Missing key - {ke}. Item data: {item}"
+                )
+                continue
         # Sync Payments
         server_payments = get_payments_from_api()
         local_payments = db.get_all_local_payments()
         local_payment_ids = {p["id"] for p in local_payments}
         server_payment_ids = {p["id"] for p in server_payments}
-
         with db.get_connection() as conn:
             cursor = conn.cursor()
             payments_to_delete = local_payment_ids - server_payment_ids
@@ -603,7 +653,6 @@ def sync_data_with_server():
                 )
                 conn.commit()
                 print(f"Deleted {len(payments_to_delete)} local payments not on server")
-
         for payment in server_payments:
             local_payment = next(
                 (lp for lp in local_payments if lp["id"] == payment["id"]), None
@@ -626,13 +675,11 @@ def sync_data_with_server():
                     payment["payment_method"],
                     payment["payment_type_id"],
                 )
-
         # Sync Customers
         server_customers = get_customers_from_api()
         local_customers = db.get_all_local_customers()
         local_customer_ids = {c["id"] for c in local_customers}
         server_customer_ids = {c["id"] for c in server_customers}
-
         with db.get_connection() as conn:
             cursor = conn.cursor()
             customers_to_delete = local_customer_ids - server_customer_ids
@@ -647,7 +694,6 @@ def sync_data_with_server():
                 print(
                     f"Deleted {len(customers_to_delete)} local customers not on server"
                 )
-
         for customer in server_customers:
             local_customer = next(
                 (lc for lc in local_customers if lc["id"] == customer["id"]), None
@@ -667,13 +713,11 @@ def sync_data_with_server():
                     customer["customer_name"],
                     customer["active"],
                 )
-
         # Sync Customer Types
         server_customer_types = get_customer_types_from_api()
         local_customer_types = db.get_all_local_customer_types()
         local_customer_type_ids = {ct["id"] for ct in local_customer_types}
         server_customer_type_ids = {ct["id"] for ct in server_customer_types}
-
         with db.get_connection() as conn:
             cursor = conn.cursor()
             customer_types_to_delete = (
@@ -690,7 +734,6 @@ def sync_data_with_server():
                 print(
                     f"Deleted {len(customer_types_to_delete)} local customer types not on server"
                 )
-
         for customer_type in server_customer_types:
             local_customer_type = next(
                 (
@@ -720,7 +763,6 @@ def sync_data_with_server():
         local_companies = db.get_all_local_companies()
         local_company_ids = {c["id"] for c in local_companies if c["id"] is not None}
         server_company_ids = {c["id"] for c in server_companies if c["id"] is not None}
-
         with db.get_connection() as conn:
             cursor = conn.cursor()
             companies_to_delete = local_company_ids - server_company_ids
@@ -735,13 +777,12 @@ def sync_data_with_server():
                 print(
                     f"Deleted {len(companies_to_delete)} local companies not on server"
                 )
-
         for company in server_companies:
             local_company = next(
                 (lc for lc in local_companies if lc["id"] == company["id"]), None
             )
             if not local_company:
-                db.update_company_details(company)  # Insert new company
+                db.update_company_details(company)
                 print(f"Inserted company {company['id']} ({company['company_name']})")
             elif (
                 local_company["company_name"] != company["company_name"]
@@ -759,9 +800,8 @@ def sync_data_with_server():
             ):
                 db.update_company_details(company)
                 print(f"Updated company {company['id']} ({company['company_name']})")
-
         print(
-            f"Synchronization completed: {items_synced} items, payments, customers, and customer types synced"
+            f"Synchronization completed: {items_synced} items synced along with payments, customers, customer types, and companies"
         )
         return True
     except Exception as e:
