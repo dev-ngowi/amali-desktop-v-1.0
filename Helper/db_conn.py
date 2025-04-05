@@ -681,7 +681,8 @@ class DatabaseManager:
                         """
                 )
 
-                cursor.execute("""
+                cursor.execute(
+                    """
                                CREATE TABLE IF NOT EXISTS good_receipt_notes (
                                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                                     grn_number TEXT NOT NULL,
@@ -698,8 +699,10 @@ class DatabaseManager:
                                     FOREIGN KEY (supplier_id) REFERENCES vendors(id),
                                     FOREIGN KEY (received_by) REFERENCES users(id)
                                 );
-                               """)
-                cursor.execute("""
+                               """
+                )
+                cursor.execute(
+                    """
                                CREATE TABLE IF NOT EXISTS good_receive_note_items (
                                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                                 grn_id INTEGER NOT NULL,
@@ -718,8 +721,10 @@ class DatabaseManager:
                                 FOREIGN KEY (item_id) REFERENCES items(id)
                             );
 
-                               """)
-                cursor.execute("""
+                               """
+                )
+                cursor.execute(
+                    """
                                CREATE TABLE IF NOT EXISTS daily_financials (
                                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                                     date TEXT NOT NULL UNIQUE,  -- Date in 'YYYY-MM-DD' format
@@ -729,7 +734,8 @@ class DatabaseManager:
                                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                                     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                                 );
-                               """)
+                               """
+                )
                 hashed_password = (
                     "$2y$12$BlLtxbg53w4RNZmkwRq7T.R/6NMzKD0maVtGpMe1aeVBcCjghcckG"
                 )
@@ -807,42 +813,106 @@ class DatabaseManager:
                 cursor.execute(
                     "INSERT OR IGNORE INTO cities (country_id, name) VALUES (4, 'Dubai')"
                 )
+               
+            #         cursor.execute(
+            #             """
+            #             UPDATE good_receipt_notes
+            #             SET store_id = (SELECT store_id FROM purchase_orders po WHERE po.id = good_receipt_notes.purchase_order_id)
+            #             WHERE purchase_order_id IS NOT NULL
+            #             """
+            #         )
+            #         cursor.execute(
+            #         """
+            #         ALTER TABLE orders ADD COLUMN store_id INTEGER
+            #         """
+            #         )
+            #         cursor.execute(
+            #             """
+            #             UPDATE orders
+            #             SET store_id = 1
+            #             WHERE store_id IS NULL
+            #             """
+            #         )
 
-                conn.commit()
-                # Verify insertions
-                cursor.execute("SELECT id FROM users WHERE username = 'admin'")
-                admin_user = cursor.fetchone()
-                if admin_user:
-                    print(f"Admin user created with ID: {admin_user[0]}")
-                else:
-                    print("Failed to create admin user!")
+            #         conn.commit()
+            #         # Verify insertions
+            #         cursor.execute("SELECT id FROM users WHERE username = 'admin'")
+            #         admin_user = cursor.fetchone()
+            #         if admin_user:
+            #             print(f"Admin user created with ID: {admin_user[0]}")
+            #         else:
+            #             print("Failed to create admin user!")
 
-                cursor.execute("SELECT id FROM stores WHERE name = 'Mohalal Shop'")
-                store = cursor.fetchone()
-                if store:
-                    print(f"Store created with ID: {store[0]}")
-                else:
-                    print("Failed to create default store!")
+            #         cursor.execute("SELECT id FROM stores WHERE name = 'Mohalal Shop'")
+            #         store = cursor.fetchone()
+            #         if store:
+            #             print(f"Store created with ID: {store[0]}")
+            #         else:
+            #             print("Failed to create default store!")
 
-                cursor.execute("SELECT id FROM payment_types WHERE name = 'Cash'")
-                payment_type = cursor.fetchone()
-                if payment_type:
-                    print(f"Payment type created with ID: {payment_type[0]}")
-                else:
-                    print("Failed to create default payment type!")
+            #         cursor.execute("SELECT id FROM payment_types WHERE name = 'Cash'")
+            #         payment_type = cursor.fetchone()
+            #         if payment_type:
+            #             print(f"Payment type created with ID: {payment_type[0]}")
+            #         else:
+            #             print("Failed to create default payment type!")
 
-                cursor.execute("SELECT id FROM payments WHERE short_code = 'Cash'")
-                payment = cursor.fetchone()
-                if payment:
-                    print(f"Payment created with ID: {payment[0]}")
-                else:
-                    print("Failed to create default payment!")
+            #         cursor.execute("SELECT id FROM payments WHERE short_code = 'Cash'")
+            #         payment = cursor.fetchone()
+            #         if payment:
+            #             print(f"Payment created with ID: {payment[0]}")
+            #         else:
+            #             print("Failed to create default payment!")
 
+            # except sqlite3.Error as e:
+            #     print(f"Error initializing database: {e}")
+            #     if "conn" in locals():
+            #         conn.rollback()
+            #     raise
+            # Check if store_id column exists in good_receipt_notes before adding
+            cursor.execute("PRAGMA table_info(good_receipt_notes)")
+            columns = [col[1] for col in cursor.fetchall()]
+            if "store_id" not in columns:
+                cursor.execute(
+                    """
+                    ALTER TABLE good_receipt_notes ADD COLUMN store_id INTEGER
+                    """
+                )
+                cursor.execute(
+                    """
+                    UPDATE good_receipt_notes
+                    SET store_id = (SELECT store_id FROM purchase_orders po WHERE po.id = good_receipt_notes.purchase_order_id)
+                    WHERE purchase_order_id IS NOT NULL
+                    """
+                )
+
+            # Check if store_id column exists in orders before adding
+            cursor.execute("PRAGMA table_info(orders)")
+            columns = [col[1] for col in cursor.fetchall()]
+            if "store_id" not in columns:
+                cursor.execute(
+                    """
+                    ALTER TABLE orders ADD COLUMN store_id INTEGER
+                    """
+                )
+                cursor.execute(
+                    """
+                    UPDATE orders
+                    SET store_id = 1  -- Default to a store ID, e.g., Mohalal Shop (id=1)
+                    WHERE store_id IS NULL
+                    """
+                )
+
+            conn.commit()
         except sqlite3.Error as e:
-            print(f"Error initializing database: {e}")
-            if "conn" in locals():
-                conn.rollback()
-            raise
+            print(f"Database error: {e}")
+            conn.rollback()  # Rollback before closing the connection
+            raise  # Re-raise the exception for debugging
+        finally:
+            conn.close()  # Close the connection after rollback (if needed)
+
+    def get_connection(self):
+        return sqlite3.connect(self.db_path)
 
     def get_local_item_groups(self):
         try:

@@ -132,7 +132,7 @@ class DayCloseView(QWidget):
     def __init__(self, db_helper=None):
         super().__init__()
         self.db_helper = DayCloseManager() if db_helper is None else db_helper
-        self.expenses_manager = ExpenseManager()  # Added expenses manager
+        self.expenses_manager = ExpenseManager()  
         self.setWindowTitle("Day Close")
         self.setGeometry(100, 100, 800, 400)
 
@@ -732,7 +732,7 @@ class DashboardView(QMainWindow):
         report_btn.clicked.connect(self.open_report_view)
         right_controls_layout.addWidget(report_btn)
 
-        for text in ["Settings", "Help"]:
+        for text in ["Help"]:
             btn = QPushButton(text)
             btn.setStyleSheet(
                 """
@@ -1785,5 +1785,4 @@ if __name__ == "__main__":
     except Exception as e:
         print(f"Application crashed: {e}")
         import traceback
-
         traceback.print_exc()

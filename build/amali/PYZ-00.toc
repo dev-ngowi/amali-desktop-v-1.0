@@ -26,6 +26,27 @@
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Category/model.py',
    'PYMODULE'),
+  ('Application.Components.Inventory.Customers', '-', 'PYMODULE'),
+  ('Application.Components.Inventory.Customers.model',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Customers/model.py',
+   'PYMODULE'),
+  ('Application.Components.Inventory.Customers.register',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Customers/register.py',
+   'PYMODULE'),
+  ('Application.Components.Inventory.Customers.update',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Customers/update.py',
+   'PYMODULE'),
+  ('Application.Components.Inventory.Customers.view',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Customers/view.py',
+   'PYMODULE'),
   ('Application.Components.Inventory.Expenses', '-', 'PYMODULE'),
   ('Application.Components.Inventory.Expenses.model',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
@@ -107,6 +128,27 @@
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Stores/store.py',
    'PYMODULE'),
+  ('Application.Components.Inventory.Suppliers', '-', 'PYMODULE'),
+  ('Application.Components.Inventory.Suppliers.model',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Suppliers/model.py',
+   'PYMODULE'),
+  ('Application.Components.Inventory.Suppliers.register',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Suppliers/register.py',
+   'PYMODULE'),
+  ('Application.Components.Inventory.Suppliers.update',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Suppliers/update.py',
+   'PYMODULE'),
+  ('Application.Components.Inventory.Suppliers.view',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Suppliers/view.py',
+   'PYMODULE'),
   ('Application.Components.Inventory.Units', '-', 'PYMODULE'),
   ('Application.Components.Inventory.Units.model',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
@@ -140,6 +182,37 @@
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/OrderSummary/order_summary.py',
+   'PYMODULE'),
+  ('Application.Components.PurchaseOrders', '-', 'PYMODULE'),
+  ('Application.Components.PurchaseOrders.invoice',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/invoice.py',
+   'PYMODULE'),
+  ('Application.Components.PurchaseOrders.model',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/model.py',
+   'PYMODULE'),
+  ('Application.Components.PurchaseOrders.received',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/received.py',
+   'PYMODULE'),
+  ('Application.Components.PurchaseOrders.register',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/register.py',
+   'PYMODULE'),
+  ('Application.Components.PurchaseOrders.update',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/update.py',
+   'PYMODULE'),
+  ('Application.Components.PurchaseOrders.view',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/view.py',
    'PYMODULE'),
   ('Application.Components.Reports', '-', 'PYMODULE'),
   ('Application.Components.Reports.View',

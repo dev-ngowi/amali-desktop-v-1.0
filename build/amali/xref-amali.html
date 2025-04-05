@@ -499,6 +499,7 @@ imported by:
     <a href="#Application.Components.DayClose">Application.Components.DayClose</a>
  &#8226;   <a href="#Application.Components.Inventory">Application.Components.Inventory</a>
  &#8226;   <a href="#Application.Components.OrderSummary">Application.Components.OrderSummary</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders">Application.Components.PurchaseOrders</a>
  &#8226;   <a href="#Application.Components.Reports">Application.Components.Reports</a>
  &#8226;   <a href="#Application.Components.Settings">Application.Components.Settings</a>
  &#8226;   <a href="#Application.Components.components">Application.Components.components</a>
@@ -578,6 +579,7 @@ imports:
   <div class="import">
 imported by:
     <a href="#Application.Components.Inventory.Category">Application.Components.Inventory.Category</a>
+ &#8226;   <a href="#Application.Components.Inventory.Customers">Application.Components.Inventory.Customers</a>
  &#8226;   <a href="#Application.Components.Inventory.Expenses">Application.Components.Inventory.Expenses</a>
  &#8226;   <a href="#Application.Components.Inventory.ItemCosts">Application.Components.Inventory.ItemCosts</a>
  &#8226;   <a href="#Application.Components.Inventory.ItemGroup">Application.Components.Inventory.ItemGroup</a>
@@ -585,6 +587,7 @@ imported by:
  &#8226;   <a href="#Application.Components.Inventory.Items">Application.Components.Inventory.Items</a>
  &#8226;   <a href="#Application.Components.Inventory.Main">Application.Components.Inventory.Main</a>
  &#8226;   <a href="#Application.Components.Inventory.Stores">Application.Components.Inventory.Stores</a>
+ &#8226;   <a href="#Application.Components.Inventory.Suppliers">Application.Components.Inventory.Suppliers</a>
  &#8226;   <a href="#Application.Components.Inventory.Units">Application.Components.Inventory.Units</a>
 
   </div>
@@ -643,6 +646,110 @@ imports:
   <div class="import">
 imported by:
     <a href="#Application.Components.Inventory.Category.category">Application.Components.Inventory.Category.category</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="Application.Components.Inventory.Customers"></a>
+  <a target="code" href="-" type="text/plain"><tt>Application.Components.Inventory.Customers</tt></a>
+<span class="moduletype">NamespacePackage</span>  <div class="import">
+imports:
+    <a href="#Application.Components.Inventory">Application.Components.Inventory</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#Application.Components.Inventory.Customers.model">Application.Components.Inventory.Customers.model</a>
+ &#8226;   <a href="#Application.Components.Inventory.Customers.register">Application.Components.Inventory.Customers.register</a>
+ &#8226;   <a href="#Application.Components.Inventory.Customers.update">Application.Components.Inventory.Customers.update</a>
+ &#8226;   <a href="#Application.Components.Inventory.Customers.view">Application.Components.Inventory.Customers.view</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="Application.Components.Inventory.Customers.model"></a>
+  <a target="code" href="/home/japango/Desktop/JAPANGO%20COMPANY%20LIMITED/JAPANGO%20GROUP%20OF%20COMPANIES/2025/COMPANY%20PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Customers/model.py" type="text/plain"><tt>Application.Components.Inventory.Customers.model</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#Application.Components.Inventory.Customers">Application.Components.Inventory.Customers</a>
+ &#8226;   <a href="#Helper.db_conn">Helper.db_conn</a>
+ &#8226;   <a href="#datetime">datetime</a>
+ &#8226;   <a href="#logging">logging</a>
+ &#8226;   <a href="#sqlite3">sqlite3</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#Application.Components.Inventory.Customers.register">Application.Components.Inventory.Customers.register</a>
+ &#8226;   <a href="#Application.Components.Inventory.Customers.update">Application.Components.Inventory.Customers.update</a>
+ &#8226;   <a href="#Application.Components.Inventory.Customers.view">Application.Components.Inventory.Customers.view</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="Application.Components.Inventory.Customers.register"></a>
+  <a target="code" href="/home/japango/Desktop/JAPANGO%20COMPANY%20LIMITED/JAPANGO%20GROUP%20OF%20COMPANIES/2025/COMPANY%20PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Customers/register.py" type="text/plain"><tt>Application.Components.Inventory.Customers.register</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#Application.Components.Inventory.Customers">Application.Components.Inventory.Customers</a>
+ &#8226;   <a href="#Application.Components.Inventory.Customers.model">Application.Components.Inventory.Customers.model</a>
+ &#8226;   <a href="#PyQt5.QtCore">PyQt5.QtCore</a>
+ &#8226;   <a href="#PyQt5.QtWidgets">PyQt5.QtWidgets</a>
+ &#8226;   <a href="#sys">sys</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#Application.Components.Inventory.Customers.view">Application.Components.Inventory.Customers.view</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="Application.Components.Inventory.Customers.update"></a>
+  <a target="code" href="/home/japango/Desktop/JAPANGO%20COMPANY%20LIMITED/JAPANGO%20GROUP%20OF%20COMPANIES/2025/COMPANY%20PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Customers/update.py" type="text/plain"><tt>Application.Components.Inventory.Customers.update</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#Application.Components.Inventory.Customers">Application.Components.Inventory.Customers</a>
+ &#8226;   <a href="#Application.Components.Inventory.Customers.model">Application.Components.Inventory.Customers.model</a>
+ &#8226;   <a href="#PyQt5.QtCore">PyQt5.QtCore</a>
+ &#8226;   <a href="#PyQt5.QtWidgets">PyQt5.QtWidgets</a>
+ &#8226;   <a href="#sys">sys</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#Application.Components.Inventory.Customers.view">Application.Components.Inventory.Customers.view</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="Application.Components.Inventory.Customers.view"></a>
+  <a target="code" href="/home/japango/Desktop/JAPANGO%20COMPANY%20LIMITED/JAPANGO%20GROUP%20OF%20COMPANIES/2025/COMPANY%20PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Customers/view.py" type="text/plain"><tt>Application.Components.Inventory.Customers.view</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#Application.Components.Inventory.Customers">Application.Components.Inventory.Customers</a>
+ &#8226;   <a href="#Application.Components.Inventory.Customers.model">Application.Components.Inventory.Customers.model</a>
+ &#8226;   <a href="#Application.Components.Inventory.Customers.register">Application.Components.Inventory.Customers.register</a>
+ &#8226;   <a href="#Application.Components.Inventory.Customers.update">Application.Components.Inventory.Customers.update</a>
+ &#8226;   <a href="#PyQt5.QtCore">PyQt5.QtCore</a>
+ &#8226;   <a href="#PyQt5.QtWidgets">PyQt5.QtWidgets</a>
+ &#8226;   <a href="#logging">logging</a>
+ &#8226;   <a href="#sys">sys</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#Application.Components.Inventory.Main">Application.Components.Inventory.Main</a>
 
   </div>
 
@@ -928,6 +1035,7 @@ imports:
     <a href="#Application.Components.Inventory.Items">Application.Components.Inventory.Items</a>
  &#8226;   <a href="#Application.Components.Inventory.Items.model">Application.Components.Inventory.Items.model</a>
  &#8226;   <a href="#PyQt5.QtCore">PyQt5.QtCore</a>
+ &#8226;   <a href="#PyQt5.QtGui">PyQt5.QtGui</a>
  &#8226;   <a href="#PyQt5.QtWidgets">PyQt5.QtWidgets</a>
  &#8226;   <a href="#random">random</a>
  &#8226;   <a href="#sys">sys</a>
@@ -936,7 +1044,6 @@ imports:
   <div class="import">
 imported by:
     <a href="#Application.Components.Inventory.Items.view">Application.Components.Inventory.Items.view</a>
- &#8226;   <a href="#Application.Components.Inventory.Main">Application.Components.Inventory.Main</a>
 
   </div>
 
@@ -949,13 +1056,13 @@ imported by:
 imports:
     <a href="#Application.Components.Inventory.Items">Application.Components.Inventory.Items</a>
  &#8226;   <a href="#PyQt5.QtCore">PyQt5.QtCore</a>
+ &#8226;   <a href="#PyQt5.QtGui">PyQt5.QtGui</a>
  &#8226;   <a href="#PyQt5.QtWidgets">PyQt5.QtWidgets</a>
 
   </div>
   <div class="import">
 imported by:
     <a href="#Application.Components.Inventory.Items.view">Application.Components.Inventory.Items.view</a>
- &#8226;   <a href="#Application.Components.Inventory.Main">Application.Components.Inventory.Main</a>
 
   </div>
 
@@ -991,16 +1098,17 @@ imported by:
 imports:
     <a href="#Application.Components.Inventory">Application.Components.Inventory</a>
  &#8226;   <a href="#Application.Components.Inventory.Category.category">Application.Components.Inventory.Category.category</a>
+ &#8226;   <a href="#Application.Components.Inventory.Customers.view">Application.Components.Inventory.Customers.view</a>
  &#8226;   <a href="#Application.Components.Inventory.Expenses.view">Application.Components.Inventory.Expenses.view</a>
  &#8226;   <a href="#Application.Components.Inventory.ItemCosts.view">Application.Components.Inventory.ItemCosts.view</a>
  &#8226;   <a href="#Application.Components.Inventory.ItemGroup.item_group">Application.Components.Inventory.ItemGroup.item_group</a>
  &#8226;   <a href="#Application.Components.Inventory.ItemType.view">Application.Components.Inventory.ItemType.view</a>
  &#8226;   <a href="#Application.Components.Inventory.Items.model">Application.Components.Inventory.Items.model</a>
- &#8226;   <a href="#Application.Components.Inventory.Items.register">Application.Components.Inventory.Items.register</a>
- &#8226;   <a href="#Application.Components.Inventory.Items.update">Application.Components.Inventory.Items.update</a>
  &#8226;   <a href="#Application.Components.Inventory.Items.view">Application.Components.Inventory.Items.view</a>
  &#8226;   <a href="#Application.Components.Inventory.Stores.store">Application.Components.Inventory.Stores.store</a>
+ &#8226;   <a href="#Application.Components.Inventory.Suppliers.view">Application.Components.Inventory.Suppliers.view</a>
  &#8226;   <a href="#Application.Components.Inventory.Units.view">Application.Components.Inventory.Units.view</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.view">Application.Components.PurchaseOrders.view</a>
  &#8226;   <a href="#Application.Components.Settings.Payments.view">Application.Components.Settings.Payments.view</a>
  &#8226;   <a href="#PyQt5.QtCore">PyQt5.QtCore</a>
  &#8226;   <a href="#PyQt5.QtWidgets">PyQt5.QtWidgets</a>
@@ -1058,6 +1166,110 @@ imported by:
 imports:
     <a href="#Application.Components.Inventory.Stores">Application.Components.Inventory.Stores</a>
  &#8226;   <a href="#Application.Components.Inventory.Stores.modal">Application.Components.Inventory.Stores.modal</a>
+ &#8226;   <a href="#PyQt5.QtCore">PyQt5.QtCore</a>
+ &#8226;   <a href="#PyQt5.QtWidgets">PyQt5.QtWidgets</a>
+ &#8226;   <a href="#logging">logging</a>
+ &#8226;   <a href="#sys">sys</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#Application.Components.Inventory.Main">Application.Components.Inventory.Main</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="Application.Components.Inventory.Suppliers"></a>
+  <a target="code" href="-" type="text/plain"><tt>Application.Components.Inventory.Suppliers</tt></a>
+<span class="moduletype">NamespacePackage</span>  <div class="import">
+imports:
+    <a href="#Application.Components.Inventory">Application.Components.Inventory</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#Application.Components.Inventory.Suppliers.model">Application.Components.Inventory.Suppliers.model</a>
+ &#8226;   <a href="#Application.Components.Inventory.Suppliers.register">Application.Components.Inventory.Suppliers.register</a>
+ &#8226;   <a href="#Application.Components.Inventory.Suppliers.update">Application.Components.Inventory.Suppliers.update</a>
+ &#8226;   <a href="#Application.Components.Inventory.Suppliers.view">Application.Components.Inventory.Suppliers.view</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="Application.Components.Inventory.Suppliers.model"></a>
+  <a target="code" href="/home/japango/Desktop/JAPANGO%20COMPANY%20LIMITED/JAPANGO%20GROUP%20OF%20COMPANIES/2025/COMPANY%20PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Suppliers/model.py" type="text/plain"><tt>Application.Components.Inventory.Suppliers.model</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#Application.Components.Inventory.Suppliers">Application.Components.Inventory.Suppliers</a>
+ &#8226;   <a href="#Helper.db_conn">Helper.db_conn</a>
+ &#8226;   <a href="#datetime">datetime</a>
+ &#8226;   <a href="#logging">logging</a>
+ &#8226;   <a href="#sqlite3">sqlite3</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#Application.Components.Inventory.Suppliers.register">Application.Components.Inventory.Suppliers.register</a>
+ &#8226;   <a href="#Application.Components.Inventory.Suppliers.update">Application.Components.Inventory.Suppliers.update</a>
+ &#8226;   <a href="#Application.Components.Inventory.Suppliers.view">Application.Components.Inventory.Suppliers.view</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="Application.Components.Inventory.Suppliers.register"></a>
+  <a target="code" href="/home/japango/Desktop/JAPANGO%20COMPANY%20LIMITED/JAPANGO%20GROUP%20OF%20COMPANIES/2025/COMPANY%20PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Suppliers/register.py" type="text/plain"><tt>Application.Components.Inventory.Suppliers.register</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#Application.Components.Inventory.Suppliers">Application.Components.Inventory.Suppliers</a>
+ &#8226;   <a href="#Application.Components.Inventory.Suppliers.model">Application.Components.Inventory.Suppliers.model</a>
+ &#8226;   <a href="#PyQt5.QtCore">PyQt5.QtCore</a>
+ &#8226;   <a href="#PyQt5.QtWidgets">PyQt5.QtWidgets</a>
+ &#8226;   <a href="#sys">sys</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#Application.Components.Inventory.Suppliers.view">Application.Components.Inventory.Suppliers.view</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="Application.Components.Inventory.Suppliers.update"></a>
+  <a target="code" href="/home/japango/Desktop/JAPANGO%20COMPANY%20LIMITED/JAPANGO%20GROUP%20OF%20COMPANIES/2025/COMPANY%20PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Suppliers/update.py" type="text/plain"><tt>Application.Components.Inventory.Suppliers.update</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#Application.Components.Inventory.Suppliers">Application.Components.Inventory.Suppliers</a>
+ &#8226;   <a href="#Application.Components.Inventory.Suppliers.model">Application.Components.Inventory.Suppliers.model</a>
+ &#8226;   <a href="#PyQt5.QtCore">PyQt5.QtCore</a>
+ &#8226;   <a href="#PyQt5.QtWidgets">PyQt5.QtWidgets</a>
+ &#8226;   <a href="#sys">sys</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#Application.Components.Inventory.Suppliers.view">Application.Components.Inventory.Suppliers.view</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="Application.Components.Inventory.Suppliers.view"></a>
+  <a target="code" href="/home/japango/Desktop/JAPANGO%20COMPANY%20LIMITED/JAPANGO%20GROUP%20OF%20COMPANIES/2025/COMPANY%20PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Suppliers/view.py" type="text/plain"><tt>Application.Components.Inventory.Suppliers.view</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#Application.Components.Inventory.Suppliers">Application.Components.Inventory.Suppliers</a>
+ &#8226;   <a href="#Application.Components.Inventory.Suppliers.model">Application.Components.Inventory.Suppliers.model</a>
+ &#8226;   <a href="#Application.Components.Inventory.Suppliers.register">Application.Components.Inventory.Suppliers.register</a>
+ &#8226;   <a href="#Application.Components.Inventory.Suppliers.update">Application.Components.Inventory.Suppliers.update</a>
  &#8226;   <a href="#PyQt5.QtCore">PyQt5.QtCore</a>
  &#8226;   <a href="#PyQt5.QtWidgets">PyQt5.QtWidgets</a>
  &#8226;   <a href="#logging">logging</a>
@@ -1267,6 +1479,172 @@ imported by:
 </div>
 
 <div class="node">
+  <a name="Application.Components.PurchaseOrders"></a>
+  <a target="code" href="-" type="text/plain"><tt>Application.Components.PurchaseOrders</tt></a>
+<span class="moduletype">NamespacePackage</span>  <div class="import">
+imports:
+    <a href="#Application.Components">Application.Components</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#Application.Components.PurchaseOrders.invoice">Application.Components.PurchaseOrders.invoice</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.model">Application.Components.PurchaseOrders.model</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.received">Application.Components.PurchaseOrders.received</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.register">Application.Components.PurchaseOrders.register</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.update">Application.Components.PurchaseOrders.update</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.view">Application.Components.PurchaseOrders.view</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="Application.Components.PurchaseOrders.invoice"></a>
+  <a target="code" href="/home/japango/Desktop/JAPANGO%20COMPANY%20LIMITED/JAPANGO%20GROUP%20OF%20COMPANIES/2025/COMPANY%20PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/invoice.py" type="text/plain"><tt>Application.Components.PurchaseOrders.invoice</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#Application.Components.PurchaseOrders">Application.Components.PurchaseOrders</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.model">Application.Components.PurchaseOrders.model</a>
+ &#8226;   <a href="#PyQt5.QtCore">PyQt5.QtCore</a>
+ &#8226;   <a href="#PyQt5.QtGui">PyQt5.QtGui</a>
+ &#8226;   <a href="#PyQt5.QtWidgets">PyQt5.QtWidgets</a>
+ &#8226;   <a href="#logging">logging</a>
+ &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#reportlab.lib">reportlab.lib</a>
+ &#8226;   <a href="#reportlab.lib.colors">reportlab.lib.colors</a>
+ &#8226;   <a href="#reportlab.lib.pagesizes">reportlab.lib.pagesizes</a>
+ &#8226;   <a href="#reportlab.lib.styles">reportlab.lib.styles</a>
+ &#8226;   <a href="#reportlab.platypus">reportlab.platypus</a>
+ &#8226;   <a href="#sys">sys</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#Application.Components.PurchaseOrders.view">Application.Components.PurchaseOrders.view</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="Application.Components.PurchaseOrders.model"></a>
+  <a target="code" href="/home/japango/Desktop/JAPANGO%20COMPANY%20LIMITED/JAPANGO%20GROUP%20OF%20COMPANIES/2025/COMPANY%20PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/model.py" type="text/plain"><tt>Application.Components.PurchaseOrders.model</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#Application.Components.PurchaseOrders">Application.Components.PurchaseOrders</a>
+ &#8226;   <a href="#Helper.db_conn">Helper.db_conn</a>
+ &#8226;   <a href="#datetime">datetime</a>
+ &#8226;   <a href="#logging">logging</a>
+ &#8226;   <a href="#sqlite3">sqlite3</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#Application.Components.PurchaseOrders.invoice">Application.Components.PurchaseOrders.invoice</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.received">Application.Components.PurchaseOrders.received</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.register">Application.Components.PurchaseOrders.register</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.update">Application.Components.PurchaseOrders.update</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.view">Application.Components.PurchaseOrders.view</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="Application.Components.PurchaseOrders.received"></a>
+  <a target="code" href="/home/japango/Desktop/JAPANGO%20COMPANY%20LIMITED/JAPANGO%20GROUP%20OF%20COMPANIES/2025/COMPANY%20PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/received.py" type="text/plain"><tt>Application.Components.PurchaseOrders.received</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#Application.Components.PurchaseOrders">Application.Components.PurchaseOrders</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.model">Application.Components.PurchaseOrders.model</a>
+ &#8226;   <a href="#PyQt5.QtCore">PyQt5.QtCore</a>
+ &#8226;   <a href="#PyQt5.QtWidgets">PyQt5.QtWidgets</a>
+ &#8226;   <a href="#datetime">datetime</a>
+ &#8226;   <a href="#logging">logging</a>
+ &#8226;   <a href="#sys">sys</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#Application.Components.PurchaseOrders.view">Application.Components.PurchaseOrders.view</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="Application.Components.PurchaseOrders.register"></a>
+  <a target="code" href="/home/japango/Desktop/JAPANGO%20COMPANY%20LIMITED/JAPANGO%20GROUP%20OF%20COMPANIES/2025/COMPANY%20PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/register.py" type="text/plain"><tt>Application.Components.PurchaseOrders.register</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#Application.Components.PurchaseOrders">Application.Components.PurchaseOrders</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.model">Application.Components.PurchaseOrders.model</a>
+ &#8226;   <a href="#PyQt5.QtCore">PyQt5.QtCore</a>
+ &#8226;   <a href="#PyQt5.QtGui">PyQt5.QtGui</a>
+ &#8226;   <a href="#PyQt5.QtWidgets">PyQt5.QtWidgets</a>
+ &#8226;   <a href="#logging">logging</a>
+ &#8226;   <a href="#random">random</a>
+ &#8226;   <a href="#sys">sys</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#Application.Components.PurchaseOrders.view">Application.Components.PurchaseOrders.view</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="Application.Components.PurchaseOrders.update"></a>
+  <a target="code" href="/home/japango/Desktop/JAPANGO%20COMPANY%20LIMITED/JAPANGO%20GROUP%20OF%20COMPANIES/2025/COMPANY%20PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/update.py" type="text/plain"><tt>Application.Components.PurchaseOrders.update</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#Application.Components.PurchaseOrders">Application.Components.PurchaseOrders</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.model">Application.Components.PurchaseOrders.model</a>
+ &#8226;   <a href="#PyQt5.QtCore">PyQt5.QtCore</a>
+ &#8226;   <a href="#PyQt5.QtGui">PyQt5.QtGui</a>
+ &#8226;   <a href="#PyQt5.QtWidgets">PyQt5.QtWidgets</a>
+ &#8226;   <a href="#logging">logging</a>
+ &#8226;   <a href="#sys">sys</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#Application.Components.PurchaseOrders.view">Application.Components.PurchaseOrders.view</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="Application.Components.PurchaseOrders.view"></a>
+  <a target="code" href="/home/japango/Desktop/JAPANGO%20COMPANY%20LIMITED/JAPANGO%20GROUP%20OF%20COMPANIES/2025/COMPANY%20PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/view.py" type="text/plain"><tt>Application.Components.PurchaseOrders.view</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#Application.Components.PurchaseOrders">Application.Components.PurchaseOrders</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.invoice">Application.Components.PurchaseOrders.invoice</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.model">Application.Components.PurchaseOrders.model</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.received">Application.Components.PurchaseOrders.received</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.register">Application.Components.PurchaseOrders.register</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.update">Application.Components.PurchaseOrders.update</a>
+ &#8226;   <a href="#PyQt5.QtCore">PyQt5.QtCore</a>
+ &#8226;   <a href="#PyQt5.QtWidgets">PyQt5.QtWidgets</a>
+ &#8226;   <a href="#datetime">datetime</a>
+ &#8226;   <a href="#logging">logging</a>
+ &#8226;   <a href="#sys">sys</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#Application.Components.Inventory.Main">Application.Components.Inventory.Main</a>
+
+  </div>
+
+</div>
+
+<div class="node">
   <a name="Application.Components.Reports"></a>
   <a target="code" href="-" type="text/plain"><tt>Application.Components.Reports</tt></a>
 <span class="moduletype">NamespacePackage</span>  <div class="import">
@@ -1425,6 +1803,7 @@ imports:
  &#8226;   <a href="#random">random</a>
  &#8226;   <a href="#sqlite3">sqlite3</a>
  &#8226;   <a href="#sys">sys</a>
+ &#8226;   <a href="#time">time</a>
  &#8226;   <a href="#usb">usb</a>
 
   </div>
@@ -1492,8 +1871,10 @@ imports:
  &#8226;   <a href="#Helper.modal">Helper.modal</a>
  &#8226;   <a href="#PyQt5.QtCore">PyQt5.QtCore</a>
  &#8226;   <a href="#PyQt5.QtGui">PyQt5.QtGui</a>
+ &#8226;   <a href="#concurrent.futures">concurrent.futures</a>
  &#8226;   <a href="#json">json</a>
  &#8226;   <a href="#requests">requests</a>
+ &#8226;   <a href="#sqlite3">sqlite3</a>
  &#8226;   <a href="#traceback">traceback</a>
 
   </div>
@@ -1526,15 +1907,18 @@ imports:
 imported by:
     <a href="#Application.Components.DayClose.modal">Application.Components.DayClose.modal</a>
  &#8226;   <a href="#Application.Components.Inventory.Category.model">Application.Components.Inventory.Category.model</a>
+ &#8226;   <a href="#Application.Components.Inventory.Customers.model">Application.Components.Inventory.Customers.model</a>
  &#8226;   <a href="#Application.Components.Inventory.Expenses.model">Application.Components.Inventory.Expenses.model</a>
  &#8226;   <a href="#Application.Components.Inventory.ItemCosts.model">Application.Components.Inventory.ItemCosts.model</a>
  &#8226;   <a href="#Application.Components.Inventory.ItemGroup.model">Application.Components.Inventory.ItemGroup.model</a>
  &#8226;   <a href="#Application.Components.Inventory.ItemType.model">Application.Components.Inventory.ItemType.model</a>
  &#8226;   <a href="#Application.Components.Inventory.Items.model">Application.Components.Inventory.Items.model</a>
  &#8226;   <a href="#Application.Components.Inventory.Stores.modal">Application.Components.Inventory.Stores.modal</a>
+ &#8226;   <a href="#Application.Components.Inventory.Suppliers.model">Application.Components.Inventory.Suppliers.model</a>
  &#8226;   <a href="#Application.Components.Inventory.Units.model">Application.Components.Inventory.Units.model</a>
  &#8226;   <a href="#Application.Components.OrderSummary.Carts.modal">Application.Components.OrderSummary.Carts.modal</a>
  &#8226;   <a href="#Application.Components.OrderSummary.modal">Application.Components.OrderSummary.modal</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.model">Application.Components.PurchaseOrders.model</a>
  &#8226;   <a href="#Application.Components.Reports.modal">Application.Components.Reports.modal</a>
  &#8226;   <a href="#Application.Components.Settings.Payments.modal">Application.Components.Settings.Payments.modal</a>
  &#8226;   <a href="#Application.Components.components">Application.Components.components</a>
@@ -4023,6 +4407,9 @@ imports:
 imported by:
     <a href="#Application.Components.DayClose.day_close">Application.Components.DayClose.day_close</a>
  &#8226;   <a href="#Application.Components.Inventory.Category.category">Application.Components.Inventory.Category.category</a>
+ &#8226;   <a href="#Application.Components.Inventory.Customers.register">Application.Components.Inventory.Customers.register</a>
+ &#8226;   <a href="#Application.Components.Inventory.Customers.update">Application.Components.Inventory.Customers.update</a>
+ &#8226;   <a href="#Application.Components.Inventory.Customers.view">Application.Components.Inventory.Customers.view</a>
  &#8226;   <a href="#Application.Components.Inventory.Expenses.view">Application.Components.Inventory.Expenses.view</a>
  &#8226;   <a href="#Application.Components.Inventory.ItemCosts.view">Application.Components.Inventory.ItemCosts.view</a>
  &#8226;   <a href="#Application.Components.Inventory.ItemGroup.item_group">Application.Components.Inventory.ItemGroup.item_group</a>
@@ -4032,9 +4419,17 @@ imported by:
  &#8226;   <a href="#Application.Components.Inventory.Items.view">Application.Components.Inventory.Items.view</a>
  &#8226;   <a href="#Application.Components.Inventory.Main">Application.Components.Inventory.Main</a>
  &#8226;   <a href="#Application.Components.Inventory.Stores.store">Application.Components.Inventory.Stores.store</a>
+ &#8226;   <a href="#Application.Components.Inventory.Suppliers.register">Application.Components.Inventory.Suppliers.register</a>
+ &#8226;   <a href="#Application.Components.Inventory.Suppliers.update">Application.Components.Inventory.Suppliers.update</a>
+ &#8226;   <a href="#Application.Components.Inventory.Suppliers.view">Application.Components.Inventory.Suppliers.view</a>
  &#8226;   <a href="#Application.Components.Inventory.Units.view">Application.Components.Inventory.Units.view</a>
  &#8226;   <a href="#Application.Components.OrderSummary.Recall.view">Application.Components.OrderSummary.Recall.view</a>
  &#8226;   <a href="#Application.Components.OrderSummary.order_summary">Application.Components.OrderSummary.order_summary</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.invoice">Application.Components.PurchaseOrders.invoice</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.received">Application.Components.PurchaseOrders.received</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.register">Application.Components.PurchaseOrders.register</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.update">Application.Components.PurchaseOrders.update</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.view">Application.Components.PurchaseOrders.view</a>
  &#8226;   <a href="#Application.Components.Reports.View">Application.Components.Reports.View</a>
  &#8226;   <a href="#Application.Components.Settings.Payments.view">Application.Components.Settings.Payments.view</a>
  &#8226;   <a href="#Application.Components.components">Application.Components.components</a>
@@ -4059,8 +4454,13 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#Application.Components.OrderSummary.Recall.view">Application.Components.OrderSummary.Recall.view</a>
+    <a href="#Application.Components.Inventory.Items.register">Application.Components.Inventory.Items.register</a>
+ &#8226;   <a href="#Application.Components.Inventory.Items.update">Application.Components.Inventory.Items.update</a>
+ &#8226;   <a href="#Application.Components.OrderSummary.Recall.view">Application.Components.OrderSummary.Recall.view</a>
  &#8226;   <a href="#Application.Components.OrderSummary.order_summary">Application.Components.OrderSummary.order_summary</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.invoice">Application.Components.PurchaseOrders.invoice</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.register">Application.Components.PurchaseOrders.register</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.update">Application.Components.PurchaseOrders.update</a>
  &#8226;   <a href="#Application.Components.Reports.View">Application.Components.Reports.View</a>
  &#8226;   <a href="#Application.Components.components">Application.Components.components</a>
  &#8226;   <a href="#Application.Components.main">Application.Components.main</a>
@@ -4104,6 +4504,9 @@ imports:
 imported by:
     <a href="#Application.Components.DayClose.day_close">Application.Components.DayClose.day_close</a>
  &#8226;   <a href="#Application.Components.Inventory.Category.category">Application.Components.Inventory.Category.category</a>
+ &#8226;   <a href="#Application.Components.Inventory.Customers.register">Application.Components.Inventory.Customers.register</a>
+ &#8226;   <a href="#Application.Components.Inventory.Customers.update">Application.Components.Inventory.Customers.update</a>
+ &#8226;   <a href="#Application.Components.Inventory.Customers.view">Application.Components.Inventory.Customers.view</a>
  &#8226;   <a href="#Application.Components.Inventory.Expenses.view">Application.Components.Inventory.Expenses.view</a>
  &#8226;   <a href="#Application.Components.Inventory.ItemCosts.view">Application.Components.Inventory.ItemCosts.view</a>
  &#8226;   <a href="#Application.Components.Inventory.ItemGroup.item_group">Application.Components.Inventory.ItemGroup.item_group</a>
@@ -4113,9 +4516,17 @@ imported by:
  &#8226;   <a href="#Application.Components.Inventory.Items.view">Application.Components.Inventory.Items.view</a>
  &#8226;   <a href="#Application.Components.Inventory.Main">Application.Components.Inventory.Main</a>
  &#8226;   <a href="#Application.Components.Inventory.Stores.store">Application.Components.Inventory.Stores.store</a>
+ &#8226;   <a href="#Application.Components.Inventory.Suppliers.register">Application.Components.Inventory.Suppliers.register</a>
+ &#8226;   <a href="#Application.Components.Inventory.Suppliers.update">Application.Components.Inventory.Suppliers.update</a>
+ &#8226;   <a href="#Application.Components.Inventory.Suppliers.view">Application.Components.Inventory.Suppliers.view</a>
  &#8226;   <a href="#Application.Components.Inventory.Units.view">Application.Components.Inventory.Units.view</a>
  &#8226;   <a href="#Application.Components.OrderSummary.Recall.view">Application.Components.OrderSummary.Recall.view</a>
  &#8226;   <a href="#Application.Components.OrderSummary.order_summary">Application.Components.OrderSummary.order_summary</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.invoice">Application.Components.PurchaseOrders.invoice</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.received">Application.Components.PurchaseOrders.received</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.register">Application.Components.PurchaseOrders.register</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.update">Application.Components.PurchaseOrders.update</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.view">Application.Components.PurchaseOrders.view</a>
  &#8226;   <a href="#Application.Components.Reports.View">Application.Components.Reports.View</a>
  &#8226;   <a href="#Application.Components.Settings.Payments.view">Application.Components.Settings.Payments.view</a>
  &#8226;   <a href="#Application.Components.components">Application.Components.components</a>
@@ -8959,7 +9370,8 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#asyncio.base_events">asyncio.base_events</a>
+    <a href="#Helper.api">Helper.api</a>
+ &#8226;   <a href="#asyncio.base_events">asyncio.base_events</a>
  &#8226;   <a href="#asyncio.futures">asyncio.futures</a>
  &#8226;   <a href="#asyncio.tasks">asyncio.tasks</a>
  &#8226;   <a href="#concurrent.futures._base">concurrent.futures._base</a>
@@ -9440,7 +9852,12 @@ imports:
 imported by:
     <a href="#Application.Components.DayClose.day_close">Application.Components.DayClose.day_close</a>
  &#8226;   <a href="#Application.Components.DayClose.modal">Application.Components.DayClose.modal</a>
+ &#8226;   <a href="#Application.Components.Inventory.Customers.model">Application.Components.Inventory.Customers.model</a>
  &#8226;   <a href="#Application.Components.Inventory.Items.model">Application.Components.Inventory.Items.model</a>
+ &#8226;   <a href="#Application.Components.Inventory.Suppliers.model">Application.Components.Inventory.Suppliers.model</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.model">Application.Components.PurchaseOrders.model</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.received">Application.Components.PurchaseOrders.received</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.view">Application.Components.PurchaseOrders.view</a>
  &#8226;   <a href="#Application.Components.components">Application.Components.components</a>
  &#8226;   <a href="#Application.Components.main">Application.Components.main</a>
  &#8226;   <a href="#Helper.modal">Helper.modal</a>
@@ -15401,6 +15818,8 @@ imported by:
     <a href="#Application.Components.DayClose.modal">Application.Components.DayClose.modal</a>
  &#8226;   <a href="#Application.Components.Inventory.Category.category">Application.Components.Inventory.Category.category</a>
  &#8226;   <a href="#Application.Components.Inventory.Category.model">Application.Components.Inventory.Category.model</a>
+ &#8226;   <a href="#Application.Components.Inventory.Customers.model">Application.Components.Inventory.Customers.model</a>
+ &#8226;   <a href="#Application.Components.Inventory.Customers.view">Application.Components.Inventory.Customers.view</a>
  &#8226;   <a href="#Application.Components.Inventory.Expenses.model">Application.Components.Inventory.Expenses.model</a>
  &#8226;   <a href="#Application.Components.Inventory.Expenses.view">Application.Components.Inventory.Expenses.view</a>
  &#8226;   <a href="#Application.Components.Inventory.ItemCosts.model">Application.Components.Inventory.ItemCosts.model</a>
@@ -15413,12 +15832,20 @@ imported by:
  &#8226;   <a href="#Application.Components.Inventory.Items.view">Application.Components.Inventory.Items.view</a>
  &#8226;   <a href="#Application.Components.Inventory.Stores.modal">Application.Components.Inventory.Stores.modal</a>
  &#8226;   <a href="#Application.Components.Inventory.Stores.store">Application.Components.Inventory.Stores.store</a>
+ &#8226;   <a href="#Application.Components.Inventory.Suppliers.model">Application.Components.Inventory.Suppliers.model</a>
+ &#8226;   <a href="#Application.Components.Inventory.Suppliers.view">Application.Components.Inventory.Suppliers.view</a>
  &#8226;   <a href="#Application.Components.Inventory.Units.model">Application.Components.Inventory.Units.model</a>
  &#8226;   <a href="#Application.Components.Inventory.Units.view">Application.Components.Inventory.Units.view</a>
  &#8226;   <a href="#Application.Components.OrderSummary.Carts.modal">Application.Components.OrderSummary.Carts.modal</a>
  &#8226;   <a href="#Application.Components.OrderSummary.Recall.view">Application.Components.OrderSummary.Recall.view</a>
  &#8226;   <a href="#Application.Components.OrderSummary.modal">Application.Components.OrderSummary.modal</a>
  &#8226;   <a href="#Application.Components.OrderSummary.order_summary">Application.Components.OrderSummary.order_summary</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.invoice">Application.Components.PurchaseOrders.invoice</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.model">Application.Components.PurchaseOrders.model</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.received">Application.Components.PurchaseOrders.received</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.register">Application.Components.PurchaseOrders.register</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.update">Application.Components.PurchaseOrders.update</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.view">Application.Components.PurchaseOrders.view</a>
  &#8226;   <a href="#Application.Components.Reports.modal">Application.Components.Reports.modal</a>
  &#8226;   <a href="#Application.Components.Settings.Payments.modal">Application.Components.Settings.Payments.modal</a>
  &#8226;   <a href="#Application.Components.Settings.Payments.view">Application.Components.Settings.Payments.view</a>
@@ -16698,6 +17125,7 @@ imported by:
     <a href="#Application.Components.Inventory.ItemCosts.view">Application.Components.Inventory.ItemCosts.view</a>
  &#8226;   <a href="#Application.Components.OrderSummary.Recall.view">Application.Components.OrderSummary.Recall.view</a>
  &#8226;   <a href="#Application.Components.OrderSummary.order_summary">Application.Components.OrderSummary.order_summary</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.invoice">Application.Components.PurchaseOrders.invoice</a>
  &#8226;   <a href="#Application.Components.components">Application.Components.components</a>
  &#8226;   <a href="#Application.Components.main">Application.Components.main</a>
  &#8226;   <a href="#PIL.BlpImagePlugin">PIL.BlpImagePlugin</a>
@@ -18578,6 +19006,7 @@ imports:
   <div class="import">
 imported by:
     <a href="#Application.Components.Inventory.Items.register">Application.Components.Inventory.Items.register</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.register">Application.Components.PurchaseOrders.register</a>
  &#8226;   <a href="#Application.Components.components">Application.Components.components</a>
  &#8226;   <a href="#PIL.ImagePalette">PIL.ImagePalette</a>
  &#8226;   <a href="#email.generator">email.generator</a>
@@ -19629,7 +20058,8 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#Application.Components.Reports.View">Application.Components.Reports.View</a>
+    <a href="#Application.Components.PurchaseOrders.invoice">Application.Components.PurchaseOrders.invoice</a>
+ &#8226;   <a href="#Application.Components.Reports.View">Application.Components.Reports.View</a>
  &#8226;   <a href="#reportlab.graphics.charts.legends">reportlab.graphics.charts.legends</a>
  &#8226;   <a href="#reportlab.graphics.charts.piecharts">reportlab.graphics.charts.piecharts</a>
  &#8226;   <a href="#reportlab.graphics.charts.textlabels">reportlab.graphics.charts.textlabels</a>
@@ -19798,7 +20228,8 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#Application.Components.Reports.View">Application.Components.Reports.View</a>
+    <a href="#Application.Components.PurchaseOrders.invoice">Application.Components.PurchaseOrders.invoice</a>
+ &#8226;   <a href="#Application.Components.Reports.View">Application.Components.Reports.View</a>
  &#8226;   <a href="#reportlab.graphics.charts.areas">reportlab.graphics.charts.areas</a>
  &#8226;   <a href="#reportlab.graphics.charts.legends">reportlab.graphics.charts.legends</a>
  &#8226;   <a href="#reportlab.graphics.charts.piecharts">reportlab.graphics.charts.piecharts</a>
@@ -19979,7 +20410,8 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#Application.Components.Reports.View">Application.Components.Reports.View</a>
+    <a href="#Application.Components.PurchaseOrders.invoice">Application.Components.PurchaseOrders.invoice</a>
+ &#8226;   <a href="#Application.Components.Reports.View">Application.Components.Reports.View</a>
  &#8226;   <a href="#reportlab.rl_config">reportlab.rl_config</a>
 
   </div>
@@ -20177,7 +20609,8 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#Application.Components.Reports.View">Application.Components.Reports.View</a>
+    <a href="#Application.Components.PurchaseOrders.invoice">Application.Components.PurchaseOrders.invoice</a>
+ &#8226;   <a href="#Application.Components.Reports.View">Application.Components.Reports.View</a>
  &#8226;   <a href="#reportlab.graphics.charts.textlabels">reportlab.graphics.charts.textlabels</a>
  &#8226;   <a href="#reportlab.platypus.doctemplate">reportlab.platypus.doctemplate</a>
  &#8226;   <a href="#reportlab.platypus.flowables">reportlab.platypus.flowables</a>
@@ -21189,7 +21622,8 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#Application.Components.Reports.View">Application.Components.Reports.View</a>
+    <a href="#Application.Components.PurchaseOrders.invoice">Application.Components.PurchaseOrders.invoice</a>
+ &#8226;   <a href="#Application.Components.Reports.View">Application.Components.Reports.View</a>
  &#8226;   <a href="#reportlab.graphics.charts.textlabels">reportlab.graphics.charts.textlabels</a>
  &#8226;   <a href="#reportlab.graphics.renderPDF">reportlab.graphics.renderPDF</a>
  &#8226;   <a href="#reportlab.graphics.shapes">reportlab.graphics.shapes</a>
@@ -26787,18 +27221,22 @@ imports:
 imported by:
     <a href="#Application.Components.DayClose.modal">Application.Components.DayClose.modal</a>
  &#8226;   <a href="#Application.Components.Inventory.Category.model">Application.Components.Inventory.Category.model</a>
+ &#8226;   <a href="#Application.Components.Inventory.Customers.model">Application.Components.Inventory.Customers.model</a>
  &#8226;   <a href="#Application.Components.Inventory.Expenses.model">Application.Components.Inventory.Expenses.model</a>
  &#8226;   <a href="#Application.Components.Inventory.ItemCosts.model">Application.Components.Inventory.ItemCosts.model</a>
  &#8226;   <a href="#Application.Components.Inventory.ItemGroup.model">Application.Components.Inventory.ItemGroup.model</a>
  &#8226;   <a href="#Application.Components.Inventory.ItemType.model">Application.Components.Inventory.ItemType.model</a>
  &#8226;   <a href="#Application.Components.Inventory.Items.model">Application.Components.Inventory.Items.model</a>
  &#8226;   <a href="#Application.Components.Inventory.Stores.modal">Application.Components.Inventory.Stores.modal</a>
+ &#8226;   <a href="#Application.Components.Inventory.Suppliers.model">Application.Components.Inventory.Suppliers.model</a>
  &#8226;   <a href="#Application.Components.Inventory.Units.model">Application.Components.Inventory.Units.model</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.model">Application.Components.PurchaseOrders.model</a>
  &#8226;   <a href="#Application.Components.Reports.modal">Application.Components.Reports.modal</a>
  &#8226;   <a href="#Application.Components.Settings.Payments.modal">Application.Components.Settings.Payments.modal</a>
  &#8226;   <a href="#Application.Components.Settings.Payments.view">Application.Components.Settings.Payments.view</a>
  &#8226;   <a href="#Application.Components.components">Application.Components.components</a>
  &#8226;   <a href="#Application.Components.main">Application.Components.main</a>
+ &#8226;   <a href="#Helper.api">Helper.api</a>
  &#8226;   <a href="#Helper.db_conn">Helper.db_conn</a>
  &#8226;   <a href="#Helper.modal">Helper.modal</a>
  &#8226;   <a href="#amali.py">amali.py</a>
@@ -27214,6 +27652,9 @@ imported by:
 imported by:
     <a href="#Application.Components.DayClose.day_close">Application.Components.DayClose.day_close</a>
  &#8226;   <a href="#Application.Components.Inventory.Category.category">Application.Components.Inventory.Category.category</a>
+ &#8226;   <a href="#Application.Components.Inventory.Customers.register">Application.Components.Inventory.Customers.register</a>
+ &#8226;   <a href="#Application.Components.Inventory.Customers.update">Application.Components.Inventory.Customers.update</a>
+ &#8226;   <a href="#Application.Components.Inventory.Customers.view">Application.Components.Inventory.Customers.view</a>
  &#8226;   <a href="#Application.Components.Inventory.Expenses.view">Application.Components.Inventory.Expenses.view</a>
  &#8226;   <a href="#Application.Components.Inventory.ItemCosts.view">Application.Components.Inventory.ItemCosts.view</a>
  &#8226;   <a href="#Application.Components.Inventory.ItemGroup.item_group">Application.Components.Inventory.ItemGroup.item_group</a>
@@ -27222,9 +27663,17 @@ imported by:
  &#8226;   <a href="#Application.Components.Inventory.Items.view">Application.Components.Inventory.Items.view</a>
  &#8226;   <a href="#Application.Components.Inventory.Main">Application.Components.Inventory.Main</a>
  &#8226;   <a href="#Application.Components.Inventory.Stores.store">Application.Components.Inventory.Stores.store</a>
+ &#8226;   <a href="#Application.Components.Inventory.Suppliers.register">Application.Components.Inventory.Suppliers.register</a>
+ &#8226;   <a href="#Application.Components.Inventory.Suppliers.update">Application.Components.Inventory.Suppliers.update</a>
+ &#8226;   <a href="#Application.Components.Inventory.Suppliers.view">Application.Components.Inventory.Suppliers.view</a>
  &#8226;   <a href="#Application.Components.Inventory.Units.view">Application.Components.Inventory.Units.view</a>
  &#8226;   <a href="#Application.Components.OrderSummary.Recall.view">Application.Components.OrderSummary.Recall.view</a>
  &#8226;   <a href="#Application.Components.OrderSummary.order_summary">Application.Components.OrderSummary.order_summary</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.invoice">Application.Components.PurchaseOrders.invoice</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.received">Application.Components.PurchaseOrders.received</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.register">Application.Components.PurchaseOrders.register</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.update">Application.Components.PurchaseOrders.update</a>
+ &#8226;   <a href="#Application.Components.PurchaseOrders.view">Application.Components.PurchaseOrders.view</a>
  &#8226;   <a href="#Application.Components.Reports.View">Application.Components.Reports.View</a>
  &#8226;   <a href="#Application.Components.Settings.Payments.view">Application.Components.Settings.Payments.view</a>
  &#8226;   <a href="#Application.Components.components">Application.Components.components</a>
@@ -27764,7 +28213,8 @@ imports:
   </div>
   <div class="import">
 imported by:
-    <a href="#Helper.db_conn">Helper.db_conn</a>
+    <a href="#Application.Components.components">Application.Components.components</a>
+ &#8226;   <a href="#Helper.db_conn">Helper.db_conn</a>
  &#8226;   <a href="#Helper.modal">Helper.modal</a>
  &#8226;   <a href="#PIL.PdfImagePlugin">PIL.PdfImagePlugin</a>
  &#8226;   <a href="#PIL.PdfParser">PIL.PdfParser</a>
