@@ -8,7 +8,6 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-
 class CostStockViewManager:
     def __init__(self):
         self.db_manager = DatabaseManager()
@@ -19,8 +18,8 @@ class CostStockViewManager:
         conn.row_factory = sqlite3.Row  # Set row_factory to return dict-like rows
         return conn
 
-    def get_cost_stock_data(self, store_id=None):
-        """Fetch cost and stock data for all items, optionally filtered by store_id"""
+    def get_cost_stock_data(self):
+        """Fetch cost and stock data for all items, aggregated across all stores"""
         try:
             with self._get_connection() as conn:
                 cursor = conn.cursor()
@@ -28,46 +27,57 @@ class CostStockViewManager:
                     SELECT
                         i.id as item_id,
                         i.name as item_name,
-                        COALESCE(ist.stock_quantity, 0.00) as stock_quantity,
-                        COALESCE(s.min_quantity, 0.00) as min_quantity,
-                        COALESCE(s.max_quantity, 0.00) as max_quantity,
-                        ic.amount as purchase_rate,
-                        ic.unit_id as purchase_unit_id,
-                        u1.name as purchase_unit_name,
-                        ip.amount as selling_rate,
-                        ip.unit_id as selling_unit_id,
-                        u2.name as selling_unit_name,
-                        t.name as tax_name,
-                        t.id as tax_id
+                        MAX(COALESCE(ist.stock_quantity, 0.00)) as stock_quantity,
+                        MAX(COALESCE(s.min_quantity, 0.00)) as min_quantity,
+                        MAX(COALESCE(s.max_quantity, 0.00)) as max_quantity,
+                        AVG(COALESCE(ic.amount, 0.00)) as purchase_rate,
+                        MAX(ic.unit_id) as purchase_unit_id,
+                        (SELECT u1.name
+                         FROM units u1
+                         WHERE u1.id = (
+                             SELECT ic2.unit_id
+                             FROM item_costs ic2
+                             WHERE ic2.item_id = i.id
+                             ORDER BY ic2.id DESC
+                             LIMIT 1
+                         )) as purchase_unit_name,
+                        AVG(COALESCE(ip.amount, 0.00)) as selling_rate,
+                        MAX(ip.unit_id) as selling_unit_id,
+                        (SELECT u2.name
+                         FROM units u2
+                         WHERE u2.id = (
+                             SELECT ip2.unit_id
+                             FROM item_prices ip2
+                             WHERE ip2.item_id = i.id
+                             ORDER BY ip2.id DESC
+                             LIMIT 1
+                         )) as selling_unit_name,
+                        (SELECT t.name
+                         FROM taxes t
+                         JOIN item_taxes it ON t.id = it.tax_id
+                         WHERE it.item_id = i.id
+                         ORDER BY t.id DESC
+                         LIMIT 1) as tax_name,
+                        (SELECT t.id
+                         FROM taxes t
+                         JOIN item_taxes it ON t.id = it.tax_id
+                         WHERE it.item_id = i.id
+                         ORDER BY t.id DESC
+                         LIMIT 1) as tax_id
                     FROM items i
                     LEFT JOIN item_stocks ist ON i.id = ist.item_id
                     LEFT JOIN stocks s ON ist.stock_id = s.id
-                    LEFT JOIN item_stores istores ON i.id = istores.item_id
-                    LEFT JOIN item_costs ic ON i.id = ic.item_id AND istores.store_id = ic.store_id
-                    LEFT JOIN item_prices ip ON i.id = ip.item_id AND istores.store_id = ip.store_id
-                    LEFT JOIN item_taxes it ON i.id = it.item_id AND istores.store_id = it.store_id
+                    LEFT JOIN item_costs ic ON i.id = ic.item_id
+                    LEFT JOIN item_prices ip ON i.id = ip.item_id
+                    LEFT JOIN item_taxes it ON i.id = it.item_id
                     LEFT JOIN taxes t ON it.tax_id = t.id
                     LEFT JOIN units u1 ON ic.unit_id = u1.id
                     LEFT JOIN units u2 ON ip.unit_id = u2.id
+                    GROUP BY i.id, i.name
                 """
-                params = []
-                if store_id is not None:
-                    query += " WHERE istores.store_id = ?"
-                    params.append(store_id)
-
-                cursor.execute(query, params)
-                results = cursor.fetchall()
-                data = []
-                column_names = [description[0] for description in cursor.description]
-                for row in results:
-                    item = {}
-                    for i, value in enumerate(row):
-                        item[column_names[i]] = value
-                    data.append(item)
-
-                logger.info(
-                    f"Fetched cost and stock data for store_id {store_id}: {len(data)} records"
-                )
+                cursor.execute(query)
+                data = [dict(row) for row in cursor.fetchall()]
+                logger.info(f"Fetched {len(data)} unique items")
                 return {"success": True, "data": data}
         except sqlite3.Error as e:
             logger.error(f"Error fetching cost and stock data: {str(e)}")
@@ -113,79 +123,75 @@ class CostStockViewManager:
             return {"success": False, "message": str(e)}
 
     def update_cost_stock_data(self, items):
-        """Update cost and stock data for multiple items"""
+        """Update cost and stock data for multiple items without store association"""
         try:
             with self._get_connection() as conn:
                 cursor = conn.cursor()
 
                 for item in items:
                     item_id = item["item_id"]
-                    store_id = item["store_id"]
 
-                    # Update stocks table
+                    # Update stocks table (without store_id)
                     cursor.execute(
                         """
-                        INSERT OR REPLACE INTO stocks 
-                        (item_id, store_id, min_quantity, max_quantity, created_at, updated_at)
-                        VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
-                    """,
+                        INSERT OR REPLACE INTO stocks
+                        (item_id, min_quantity, max_quantity, created_at, updated_at)
+                        VALUES (?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+                        """,
                         (
                             item_id,
-                            store_id,
                             item.get("min_quantity", 0.00),
                             item.get("max_quantity", 0.00),
                         ),
                     )
 
-                    # Update item_stocks table
+                    # Update item_stocks table (using the latest stock entry)
                     cursor.execute(
                         """
-                        INSERT OR REPLACE INTO item_stocks 
+                        INSERT OR REPLACE INTO item_stocks
                         (item_id, stock_id, stock_quantity, created_at, updated_at)
-                        VALUES (?, (SELECT id FROM stocks WHERE item_id = ? AND store_id = ?), ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
-                    """,
-                        (item_id, item_id, store_id, item.get("stock_quantity", 0.00)),
+                        VALUES (?, (SELECT id FROM stocks WHERE item_id = ? ORDER BY updated_at DESC LIMIT 1), ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+                        """,
+                        (item_id, item_id, item.get("stock_quantity", 0.00)),
                     )
 
-                    # Update item_costs table
+                    # Update item_costs table (without store_id)
                     cursor.execute(
                         """
-                        INSERT OR REPLACE INTO item_costs 
-                        (item_id, store_id, unit_id, amount, created_at, updated_at)
-                        VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
-                    """,
+                        INSERT OR REPLACE INTO item_costs
+                        (item_id, unit_id, amount, created_at, updated_at)
+                        VALUES (?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+                        """,
                         (
                             item_id,
-                            store_id,
                             item.get("purchase_unit_id"),
                             item.get("purchase_rate", 0.00),
                         ),
                     )
 
-                    # Update item_prices table
+                    # Update item_prices table (without store_id)
                     cursor.execute(
                         """
-                        INSERT OR REPLACE INTO item_prices 
-                        (item_id, store_id, unit_id, amount, created_at, updated_at)
-                        VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
-                    """,
+                        INSERT OR REPLACE INTO item_prices
+                        (item_id, unit_id, amount, created_at, updated_at)
+                        VALUES (?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+                        """,
                         (
                             item_id,
-                            store_id,
                             item.get("selling_unit_id"),
                             item.get("selling_rate", 0.00),
                         ),
                     )
 
-                    # Update item_taxes table if tax_id is provided
+                    # Update item_taxes table if tax_id is provided (without store_id)
                     if item.get("tax_id"):
                         cursor.execute(
                             """
-                            INSERT OR REPLACE INTO item_taxes 
-                            (item_id, store_id, tax_id, created_at, updated_at)
-                            VALUES (?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
-                        """,
-                            (item_id, store_id, item["tax_id"]),
+                            INSERT OR REPLACE INTO item_taxes
+                            (item_id, tax_id, created_at, updated_at)
+                            VALUES (?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+                            """,
+                            (item_id, item["tax_id"]),
                         )
 
                 conn.commit()
@@ -198,3 +204,4 @@ class CostStockViewManager:
         except sqlite3.Error as e:
             logger.error(f"Error updating cost and stock data: {str(e)}")
             return {"success": False, "message": str(e)}
+

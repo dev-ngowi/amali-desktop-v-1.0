@@ -3,6 +3,7 @@ import logging
 import os
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
+
 from Application.Components.Inventory.ItemCosts.model import CostStockViewManager
 
 # Suppress Wayland warning
@@ -32,44 +33,23 @@ class CostStockView(QWidget):
 
     def init_ui(self):
         layout = QVBoxLayout()
-
-        # Header section
         header_layout = QHBoxLayout()
 
-        # Store selection dropdown
-        self.store_combo = QComboBox()
-        self.store_combo.addItem("---Select Store---", -1)
-        stores_result = self.item_type_manager.get_stores()
-        if stores_result["success"]:
-            for store in stores_result["data"]:
-                self.store_combo.addItem(store["name"], store["id"])
-        else:
-            logger.error(f"Failed to load stores: {stores_result['message']}")
-            QMessageBox.warning(self, "Warning", "Could not load stores")
-        self.store_combo.currentIndexChanged.connect(self.populate_table)
-        self.store_combo.setFixedWidth(200)
-        header_layout.addWidget(self.store_combo)
-
-        # Search bar
+        # Search bar only
         self.search_input = QLineEdit()
         self.search_input.setPlaceholderText("Search Items")
         self.search_input.textChanged.connect(self.filter_table)
         self.search_input.setFixedWidth(200)
         header_layout.addWidget(self.search_input)
-
-        # Add stretch to push elements to the left
         header_layout.addStretch()
-
         layout.addLayout(header_layout)
 
-        # Table
+        # Table setup
         self.table = QTableWidget()
-        self.table.setColumnCount(
-            8
-        )  # Removed the hidden "Original Data" column for simplicity
+        self.table.setColumnCount(8)
         self.table.setHorizontalHeaderLabels(
             [
-                "",  # Checkbox
+                "",
                 "ITEM NAME",
                 "STOCK",
                 "MIN QUANTITY",
@@ -103,37 +83,15 @@ class CostStockView(QWidget):
         )
         layout.addWidget(self.table)
 
-        # Update Button
         self.update_button = QPushButton("Update")
         self.update_button.clicked.connect(self.update_selected_items)
-        self.update_button.setStyleSheet(
-            """
-            QPushButton {
-                background-color: #007bff;
-                color: white;
-                padding: 8px 16px;
-                border: none;
-                border-radius: 4px;
-            }
-            QPushButton:hover {
-                background-color: #0056b3;
-            }
-        """
-        )
         layout.addWidget(self.update_button, alignment=Qt.AlignLeft)
-
         self.setLayout(layout)
-
-        # Populate the table initially
         self.populate_table()
 
     def populate_table(self):
         """Populate the table with cost and stock data"""
-        store_id = self.store_combo.currentData()
-        if store_id == -1:
-            store_id = None
-
-        result = self.item_type_manager.get_cost_stock_data(store_id)
+        result = self.item_type_manager.get_cost_stock_data()
         if not result["success"]:
             QMessageBox.critical(self, "Error", result["message"])
             return
@@ -233,13 +191,7 @@ class CostStockView(QWidget):
             self.table.setRowHidden(row, search_text not in item_name)
 
     def update_selected_items(self):
-        """Update the selected items in the table"""
-        # Check if a store is selected
-        store_id = self.store_combo.currentData()
-        if store_id == -1:
-            QMessageBox.warning(self, "Warning", "Please select a store before updating items.")
-            return
-
+        """Update the selected items in the table without store association"""
         updated_items = []
         for row in range(self.table.rowCount()):
             if (
@@ -249,16 +201,13 @@ class CostStockView(QWidget):
                 item_id = self.table.item(row, 1).data(Qt.UserRole)
                 if item_id in self.original_data:
                     original_item = self.original_data[item_id]
-                    updated_data = {
-                        "item_id": item_id,
-                        "store_id": store_id,  # Use the validated store_id
-                    }
+                    updated_data = {"item_id": item_id}
                     has_updates = False
 
                     # Stock Quantity
                     try:
                         stock_quantity = float(self.table.item(row, 2).text())
-                        if stock_quantity != original_item.get("stock_quantity"):
+                        if stock_quantity != original_item.get("stock_quantity", 0.00):
                             updated_data["stock_quantity"] = stock_quantity
                             has_updates = True
                     except ValueError:
@@ -272,7 +221,7 @@ class CostStockView(QWidget):
                     # Min Quantity
                     try:
                         min_quantity = float(self.table.item(row, 3).text())
-                        if min_quantity != original_item.get("min_quantity"):
+                        if min_quantity != original_item.get("min_quantity", 0.00):
                             updated_data["min_quantity"] = min_quantity
                             has_updates = True
                     except ValueError:
@@ -286,7 +235,7 @@ class CostStockView(QWidget):
                     # Max Quantity
                     try:
                         max_quantity = float(self.table.item(row, 4).text())
-                        if max_quantity != original_item.get("max_quantity"):
+                        if max_quantity != original_item.get("max_quantity", 0.00):
                             updated_data["max_quantity"] = max_quantity
                             has_updates = True
                     except ValueError:
@@ -304,10 +253,13 @@ class CostStockView(QWidget):
                     try:
                         purchase_rate = float(purchase_input.text())
                         purchase_unit_id = purchase_unit_combo.currentData()
-                        if (purchase_rate != original_item.get("purchase_rate") or 
-                            purchase_unit_id != original_item.get("purchase_unit_id")):
+                        if purchase_rate != original_item.get(
+                            "purchase_rate", 0.00
+                        ) or purchase_unit_id != original_item.get("purchase_unit_id"):
                             updated_data["purchase_rate"] = purchase_rate
-                            updated_data["purchase_unit_id"] = purchase_unit_id if purchase_unit_id != -1 else None
+                            updated_data["purchase_unit_id"] = (
+                                purchase_unit_id if purchase_unit_id != -1 else None
+                            )
                             has_updates = True
                     except ValueError:
                         QMessageBox.warning(
@@ -324,10 +276,13 @@ class CostStockView(QWidget):
                     try:
                         selling_rate = float(selling_input.text())
                         selling_unit_id = selling_unit_combo.currentData()
-                        if (selling_rate != original_item.get("selling_rate") or 
-                            selling_unit_id != original_item.get("selling_unit_id")):
+                        if selling_rate != original_item.get(
+                            "selling_rate", 0.00
+                        ) or selling_unit_id != original_item.get("selling_unit_id"):
                             updated_data["selling_rate"] = selling_rate
-                            updated_data["selling_unit_id"] = selling_unit_id if selling_unit_id != -1 else None
+                            updated_data["selling_unit_id"] = (
+                                selling_unit_id if selling_unit_id != -1 else None
+                            )
                             has_updates = True
                     except ValueError:
                         QMessageBox.warning(
@@ -341,7 +296,9 @@ class CostStockView(QWidget):
                     tax_combo = self.table.cellWidget(row, 7)
                     current_tax_id = tax_combo.currentData()
                     if current_tax_id != original_item.get("tax_id"):
-                        updated_data["tax_id"] = current_tax_id if current_tax_id != -1 else None
+                        updated_data["tax_id"] = (
+                            current_tax_id if current_tax_id != -1 else None
+                        )
                         has_updates = True
 
                     if has_updates:
@@ -353,13 +310,23 @@ class CostStockView(QWidget):
             )
             return
 
+        # Update items directly without store iteration
         result = self.item_type_manager.update_cost_stock_data(updated_items)
-        if result["success"]:
-            QMessageBox.information(self, "Success", result["message"])
-            self.populate_table()
-        else:
-            QMessageBox.critical(self, "Error", f"Failed to update items: {result['message']}")
-            
+        if not result["success"]:
+            QMessageBox.critical(
+                self,
+                "Error",
+                f"Failed to update items: {result['message']}",
+            )
+            return
+
+        QMessageBox.information(
+            self,
+            "Success",
+            f"Updated {len(updated_items)} items successfully",
+        )
+        self.populate_table()
+
     def find_tax_id_by_name(self, tax_name):
         for tax in self.available_taxes:
             if tax["name"] == tax_name:

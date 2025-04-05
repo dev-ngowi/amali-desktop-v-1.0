@@ -6,10 +6,16 @@ from contextlib import contextmanager
 import threading
 import time
 
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger(__name__)
+
 
 class DatabaseManager:
     def __init__(self):
-        self.db_path = Path("Helper/main_amali.db")
+        self.db_path = Path("Helper/main_japango_02.db")
         self.db_path.parent.mkdir(exist_ok=True)
         self.lock = threading.Lock()
         self.sync_in_progress = False
@@ -19,7 +25,8 @@ class DatabaseManager:
     def get_connection(self):
         with self.lock:
             conn = sqlite3.connect(self.db_path, timeout=30)
-            conn.execute("PRAGMA foreign_keys = ON")  # Enable foreign key constraints
+            conn.row_factory = sqlite3.Row
+            conn.execute("PRAGMA foreign_keys = ON")
             try:
                 yield conn
             finally:
@@ -78,7 +85,7 @@ class DatabaseManager:
                     category_id INTEGER NOT NULL,
                     item_type_id INTEGER,  -- Nullable
                     item_group_id INTEGER,  -- Nullable
-                    exprire_date TEXT,
+                    expire_date TEXT,
                     status TEXT DEFAULT 'active',
                     created_at TEXT DEFAULT CURRENT_TIMESTAMP,
                     updated_at TEXT DEFAULT CURRENT_TIMESTAMP,
@@ -231,17 +238,12 @@ class DatabaseManager:
                     """
                         CREATE TABLE IF NOT EXISTS customers (
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
-                            customer_code TEXT NOT NULL,
                             customer_name TEXT NOT NULL,
                             customer_type_id INTEGER NOT NULL,
                             city_id INTEGER NOT NULL,
-                            opening_balance REAL NOT NULL DEFAULT 0.00,
-                            dr_cr TEXT NOT NULL DEFAULT 'Dr',
-                            mobile_sms_no TEXT DEFAULT NULL,
+                            phone TEXT DEFAULT NULL,
                             email TEXT DEFAULT NULL,
                             address TEXT DEFAULT NULL,
-                            credit_limit REAL DEFAULT NULL,
-                            credit_period INTEGER DEFAULT NULL,
                             active INTEGER NOT NULL DEFAULT 1,
                             created_at TEXT DEFAULT NULL,
                             updated_at TEXT DEFAULT NULL,
@@ -249,6 +251,18 @@ class DatabaseManager:
                             FOREIGN KEY (city_id) REFERENCES cities(id)
                         );
                         """
+                )
+                cursor.execute(
+                    """        
+                               CREATE TABLE IF NOT EXISTS countries (
+                                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                name TEXT NOT NULL,
+                                code TEXT DEFAULT NULL,
+                                created_at TEXT DEFAULT NULL,
+                                updated_at TEXT DEFAULT NULL,
+                                deleted_at TEXT DEFAULT NULL
+                                );
+                               """
                 )
 
                 cursor.execute(
@@ -410,8 +424,8 @@ class DatabaseManager:
                     CREATE TABLE IF NOT EXISTS stores (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
                         name TEXT NOT NULL,
-                        location TEXT NOT NULL,
-                        manager_id INTEGER NOT NULL,
+                        location TEXT,
+                        manager_id INTEGER,
                         created_at DATETIME DEFAULT NULL,
                         updated_at DATETIME DEFAULT NULL,
                         FOREIGN KEY (manager_id) REFERENCES users(id)
@@ -556,6 +570,7 @@ class DatabaseManager:
                         unit_id INTEGER,
                         amount REAL,
                         created_at TIMESTAMP,
+                        updated_at TIMESTAMP,
                         FOREIGN KEY (item_id) REFERENCES items(id) ON DELETE CASCADE,
                         FOREIGN KEY (store_id) REFERENCES stores(id),
                         FOREIGN KEY (unit_id) REFERENCES units(id)
@@ -602,6 +617,119 @@ class DatabaseManager:
                         );
                         """
                 )
+                cursor.execute(
+                    """
+                    CREATE TABLE IF NOT EXISTS purchase_orders (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        order_number TEXT NOT NULL UNIQUE,
+                        supplier_id INTEGER NOT NULL,
+                        order_date TEXT NOT NULL,
+                        expected_delivery_date TEXT DEFAULT NULL,
+                        status TEXT NOT NULL CHECK(status IN ('Pending', 'Approved', 'Shipped', 'Received', 'Cancelled')) DEFAULT 'Pending',
+                        total_amount REAL NOT NULL DEFAULT 0.00 CHECK(total_amount >= 0),
+                        currency TEXT NOT NULL DEFAULT 'TZS' CHECK(currency IN ('USD', 'TZS', 'KES', 'CNY', 'AED')), -- Add more as needed
+                        notes TEXT DEFAULT NULL,
+                        created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+                        updated_at TEXT DEFAULT CURRENT_TIMESTAMP,
+                        FOREIGN KEY (supplier_id) REFERENCES vendors(id) ON DELETE RESTRICT
+                    );
+                    """
+                )
+                cursor.execute(
+                    """
+                    CREATE TABLE IF NOT EXISTS purchase_order_items (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        purchase_order_id INTEGER NOT NULL,
+                        item_id INTEGER NOT NULL,
+                        unit_id INTEGER NOT NULL,
+                        quantity INTEGER NOT NULL CHECK(quantity > 0),
+                        discount REAL DEFAULT 0.0 CHECK(discount >= 0),
+                        unit_price REAL NOT NULL CHECK(unit_price >= 0),
+                        tax_id INTEGER DEFAULT NULL,
+                        total_price REAL NOT NULL CHECK(total_price >= 0),
+                        created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+                        updated_at TEXT DEFAULT CURRENT_TIMESTAMP,
+                        FOREIGN KEY (purchase_order_id) REFERENCES purchase_orders(id) ON DELETE CASCADE,
+                        FOREIGN KEY (item_id) REFERENCES items(id) ON DELETE RESTRICT,
+                        FOREIGN KEY (unit_id) REFERENCES units(id) ON DELETE RESTRICT,
+                        FOREIGN KEY (tax_id) REFERENCES taxes(id) ON DELETE SET NULL
+                    );
+
+                    """
+                )
+                cursor.execute(
+                    """
+                        CREATE TABLE IF NOT EXISTS vendors (
+                            id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            name TEXT NOT NULL,
+                            email TEXT NOT NULL,
+                            phone TEXT NOT NULL,
+                            address TEXT NOT NULL,
+                            city_id INTEGER NOT NULL,
+                            state TEXT NOT NULL,
+                            postal_code TEXT DEFAULT NULL,
+                            country_id INTEGER NOT NULL,
+                            contact_person TEXT DEFAULT NULL,
+                            tin TEXT DEFAULT NULL,
+                            vrn TEXT DEFAULT NULL,
+                            status TEXT NOT NULL DEFAULT 'active',
+                            created_at TEXT DEFAULT NULL,
+                            updated_at TEXT DEFAULT NULL,
+                            FOREIGN KEY (city_id) REFERENCES cities(id),
+                            FOREIGN KEY (country_id) REFERENCES countries(id)
+                        )
+                        """
+                )
+
+                cursor.execute("""
+                               CREATE TABLE IF NOT EXISTS good_receipt_notes (
+                                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                    grn_number TEXT NOT NULL,
+                                    purchase_order_id INTEGER DEFAULT NULL,
+                                    supplier_id INTEGER NOT NULL,
+                                    received_by INTEGER DEFAULT NULL,
+                                    received_date TEXT NOT NULL,
+                                    delivery_note_number TEXT DEFAULT NULL,
+                                    status TEXT NOT NULL DEFAULT 'Pending',
+                                    remarks TEXT DEFAULT NULL,
+                                    created_at TEXT DEFAULT NULL,
+                                    updated_at TEXT DEFAULT NULL,
+                                    FOREIGN KEY (purchase_order_id) REFERENCES purchase_orders(id),
+                                    FOREIGN KEY (supplier_id) REFERENCES vendors(id),
+                                    FOREIGN KEY (received_by) REFERENCES users(id)
+                                );
+                               """)
+                cursor.execute("""
+                               CREATE TABLE IF NOT EXISTS good_receive_note_items (
+                                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                grn_id INTEGER NOT NULL,
+                                purchase_order_item_id INTEGER DEFAULT NULL,
+                                item_id INTEGER NOT NULL,
+                                ordered_quantity REAL NOT NULL,
+                                received_quantity REAL NOT NULL,
+                                accepted_quantity REAL NOT NULL,
+                                rejected_quantity REAL NOT NULL DEFAULT 0.00,
+                                unit_price REAL NOT NULL,
+                                received_condition TEXT NOT NULL DEFAULT 'Good',
+                                created_at TEXT DEFAULT NULL,
+                                updated_at TEXT DEFAULT NULL,
+                                FOREIGN KEY (grn_id) REFERENCES good_receipt_notes(id),
+                                FOREIGN KEY (purchase_order_item_id) REFERENCES purchase_order_items(id),
+                                FOREIGN KEY (item_id) REFERENCES items(id)
+                            );
+
+                               """)
+                cursor.execute("""
+                               CREATE TABLE IF NOT EXISTS daily_financials (
+                                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                    date TEXT NOT NULL UNIQUE,  -- Date in 'YYYY-MM-DD' format
+                                    total_orders REAL DEFAULT 0.0,  -- Sum of ground_total from completed orders
+                                    total_expenses REAL DEFAULT 0.0,  -- Sum of expenses for the day
+                                    after_expenses REAL DEFAULT 0.0,  -- total_orders - total_expenses
+                                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                                );
+                               """)
                 hashed_password = (
                     "$2y$12$BlLtxbg53w4RNZmkwRq7T.R/6NMzKD0maVtGpMe1aeVBcCjghcckG"
                 )
@@ -635,6 +763,49 @@ class DatabaseManager:
                     INSERT OR IGNORE INTO payments (id, short_code, payment_method, payment_type_id, created_at)
                     VALUES (1, 'Cash', 'Cash payment', 1, CURRENT_TIMESTAMP)
                     """
+                )
+
+                cursor.execute(
+                    "INSERT OR IGNORE INTO countries (name, code) VALUES ('Tanzania', 'TZ')"
+                )
+                cursor.execute(
+                    "INSERT OR IGNORE INTO countries (name, code) VALUES ('Kenya', 'KE')"
+                )
+                cursor.execute(
+                    "INSERT OR IGNORE INTO countries (name, code) VALUES ('China', 'CN')"
+                )
+                cursor.execute(
+                    "INSERT OR IGNORE INTO countries (name, code) VALUES ('United Arab Emirates', 'AE')"
+                )
+                cursor.execute(
+                    "INSERT OR IGNORE INTO cities (country_id, name) VALUES (1, 'Dar es Salaam')"
+                )
+                cursor.execute(
+                    "INSERT OR IGNORE INTO cities (country_id, name) VALUES (1, 'Arusha')"
+                )
+                cursor.execute(
+                    "INSERT OR IGNORE INTO cities (country_id, name) VALUES (1, 'Morogoro')"
+                )
+                cursor.execute(
+                    "INSERT OR IGNORE INTO cities (country_id, name) VALUES (1, 'Mwanza')"
+                )
+                cursor.execute(
+                    "INSERT OR IGNORE INTO cities (country_id, name) VALUES (1, 'Mbeya')"
+                )
+                cursor.execute(
+                    "INSERT OR IGNORE INTO cities (country_id, name) VALUES (1, 'Dodoma')"
+                )
+                cursor.execute(
+                    "INSERT OR IGNORE INTO cities (country_id, name) VALUES (1, 'Nkasi')"
+                )
+                cursor.execute(
+                    "INSERT OR IGNORE INTO cities (country_id, name) VALUES (2, 'Nairobi')"
+                )
+                cursor.execute(
+                    "INSERT OR IGNORE INTO cities (country_id, name) VALUES (3, 'Beijing')"
+                )
+                cursor.execute(
+                    "INSERT OR IGNORE INTO cities (country_id, name) VALUES (4, 'Dubai')"
                 )
 
                 conn.commit()
@@ -844,9 +1015,7 @@ class DatabaseManager:
                     )
                 # Handle selling unit
 
-                cursor.execute(
-                    "SELECT id FROM units WHERE name = ?", (selling_unit,)
-                )
+                cursor.execute("SELECT id FROM units WHERE name = ?", (selling_unit,))
                 selling_unit_row = cursor.fetchone()
                 if selling_unit_row:
                     selling_unit_id = selling_unit_row[0]
@@ -973,7 +1142,6 @@ class DatabaseManager:
             if "conn" in locals():
                 conn.rollback()
             raise
-
 
     def get_payment_types(self):
         try:
@@ -1778,7 +1946,7 @@ class DatabaseManager:
                         i.category_id,
                         i.item_type_id,
                         i.item_group_id,
-                        i.exprire_date,
+                        i.expire_date,
                         b.code AS barcode,
                         u_selling.name AS selling_unit_name,
                         u_buying.name AS buying_unit_name,
@@ -1810,7 +1978,7 @@ class DatabaseManager:
                             "category_id": row[2],
                             "item_type_id": row[3],
                             "item_group_id": row[4],
-                            "exprire_date": row[5],
+                            "expire_date": row[5],
                             "barcode": row[6],
                             "selling_unit_name": row[7],
                             "buying_unit_name": row[8],
@@ -1842,7 +2010,7 @@ class DatabaseManager:
         category_id,
         item_type_id,
         item_group_id,
-        exprire_date,
+        expire_date,
         buying_unit_name,
         selling_unit_name,
         price_dict,
@@ -1857,7 +2025,7 @@ class DatabaseManager:
                 cursor.execute(
                     """
                     UPDATE items 
-                    SET name = ?, category_id = ?, item_type_id = ?, item_group_id = ?, exprire_date = ?, updated_at = CURRENT_TIMESTAMP
+                    SET name = ?, category_id = ?, item_type_id = ?, item_group_id = ?, expire_date = ?, updated_at = CURRENT_TIMESTAMP
                     WHERE id = ?
                     """,
                     (
@@ -1865,7 +2033,7 @@ class DatabaseManager:
                         category_id,
                         item_type_id,
                         item_group_id,
-                        exprire_date,
+                        expire_date,
                         item_id,
                     ),
                 )

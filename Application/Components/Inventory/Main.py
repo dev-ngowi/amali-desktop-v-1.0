@@ -15,16 +15,17 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtCore import Qt
 
 from Application.Components.Inventory.Category.category import CategoriesView
+from Application.Components.Inventory.Customers.view import CustomerView
 from Application.Components.Inventory.Expenses.view import ExpensesView
 from Application.Components.Inventory.ItemCosts.view import CostStockView
 from Application.Components.Inventory.ItemGroup.item_group import ItemGroupView
 from Application.Components.Inventory.ItemType.view import ItemTypeView
 from Application.Components.Inventory.Items.model import ItemManager
-from Application.Components.Inventory.Items.register import AddItemWindow
-from Application.Components.Inventory.Items.update import EditItemWindow
 from Application.Components.Inventory.Items.view import ItemsView
 from Application.Components.Inventory.Stores.store import StoresView
+from Application.Components.Inventory.Suppliers.view import SupplierView
 from Application.Components.Inventory.Units.view import UnitView
+from Application.Components.PurchaseOrders.view import PurchaseOrderView
 from Application.Components.Settings.Payments.view import PaymentsMainView
 
 
@@ -77,16 +78,18 @@ class MainInventoryWindow(QMainWindow):
         self.menu_tree.setRootIsDecorated(False)
 
         stores_item = QTreeWidgetItem(self.menu_tree, ["Stores"])
+        suppliers = QTreeWidgetItem(self.menu_tree, ["Suppliers"])
         expenses = QTreeWidgetItem(self.menu_tree, ["Expenses"])
+        customers = QTreeWidgetItem(self.menu_tree, ["Customers"])
         payments_item = QTreeWidgetItem(self.menu_tree, ["Payments"])
         self.inventory_item = QTreeWidgetItem(self.menu_tree, ["Inventory +"])
-
         item_category_item = QTreeWidgetItem(self.inventory_item, ["Item Category"])
         item_group_item = QTreeWidgetItem(self.inventory_item, ["Item Group"])
         item_type_item = QTreeWidgetItem(self.inventory_item, ["Item Type"])
         unit_item = QTreeWidgetItem(self.inventory_item, ["Unit"])
         items_item = QTreeWidgetItem(self.inventory_item, ["Items"])
         cost_stock_item = QTreeWidgetItem(self.inventory_item, ["Cost & Stock"])
+        purchase_orders = QTreeWidgetItem(self.menu_tree, ["Purchase Orders"])
 
         self.menu_tree.setIndentation(20)
 
@@ -106,8 +109,11 @@ class MainInventoryWindow(QMainWindow):
         self.item_group_view = ItemGroupView()
         self.item_type_view = ItemTypeView()
         self.unit_view = UnitView()
-        self.items_view = ItemsView()  # Only ItemsView is added to the stack
+        self.items_view = ItemsView()  
+        self.customer_view = CustomerView()
+        self.supplier_view = SupplierView()
         self.cost_stock_view = CostStockView()
+        self.purchase_orders_view = PurchaseOrderView()
 
         self.central_widget.addWidget(self.stores_view)
         self.central_widget.addWidget(self.expenses_view)
@@ -118,7 +124,10 @@ class MainInventoryWindow(QMainWindow):
         self.central_widget.addWidget(self.item_type_view)
         self.central_widget.addWidget(self.unit_view)
         self.central_widget.addWidget(self.items_view)
+        self.central_widget.addWidget(self.customer_view)
+        self.central_widget.addWidget(self.supplier_view)
         self.central_widget.addWidget(self.cost_stock_view)
+        self.central_widget.addWidget(self.purchase_orders_view)
 
         self.menu_tree.itemClicked.connect(self.handle_menu_click)
         self.menu_tree.itemExpanded.connect(self.update_indicator_expanded)
@@ -147,6 +156,12 @@ class MainInventoryWindow(QMainWindow):
             self.central_widget.setCurrentWidget(self.stores_view)
         elif text == "Expenses":
             self.central_widget.setCurrentWidget(self.expenses_view)
+        elif text == "Customers":
+            self.central_widget.setCurrentWidget(self.customer_view)
+        elif text == "Suppliers":
+            self.central_widget.setCurrentWidget(self.supplier_view)
+        elif text == "Purchase Orders":
+            self.central_widget.setCurrentWidget(self.purchase_orders_view)
         elif text == "Payments":
             self.central_widget.setCurrentWidget(self.payments_view)
         elif text == "Item Category":

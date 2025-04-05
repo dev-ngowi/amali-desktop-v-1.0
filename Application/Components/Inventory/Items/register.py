@@ -14,9 +14,11 @@ from PyQt5.QtWidgets import (
     QHeaderView,
     QMessageBox,
     QGridLayout,
+    QDialog,
+    QCompleter,
 )
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QDialog
+from PyQt5.QtCore import Qt, QSortFilterProxyModel
+from PyQt5.QtGui import QStandardItemModel, QStandardItem
 import random
 
 from Application.Components.Inventory.Items.model import ItemManager
@@ -25,7 +27,7 @@ from Application.Components.Inventory.Items.model import ItemManager
 class AddItemWindow(QDialog):
     def __init__(self, item_manager, parent=None):
         super().__init__(parent)
-        self.item_manager = item_manager  # Instance of ItemManager passed in
+        self.item_manager = item_manager
         self.parent_widget = parent
         self.setWindowTitle("Add New Item")
         self.setMinimumSize(900, 450)
@@ -47,7 +49,9 @@ class AddItemWindow(QDialog):
         self.category_combo.setEditable(True)
         self.item_type_combo = QComboBox()
         self.buying_unit_combo = QComboBox()
+        self.buying_unit_combo.setEditable(True)  # Enable typing for search
         self.selling_unit_combo = QComboBox()
+        self.selling_unit_combo.setEditable(True)  # Enable typing for search
         self.brand_combo = QComboBox()
         self.expire_date_input = QLineEdit()
         self.image_input = QLineEdit()
@@ -70,7 +74,7 @@ class AddItemWindow(QDialog):
         image_widget = QWidget()
         image_widget.setLayout(image_layout)
 
-        # Add fields to grid layout (Two-Column Example)
+        # Add fields to grid layout
         grid_layout.addWidget(QLabel("Item Name *"), row, 0)
         grid_layout.addWidget(self.name_input, row, 1)
         grid_layout.addWidget(QLabel("Barcode"), row, 2)
@@ -145,11 +149,11 @@ class AddItemWindow(QDialog):
 
         # Load dynamic data into combo boxes
         self.load_combo_data()
-        # Add an initial store row
         self.add_store_row()
 
     def load_combo_data(self):
-        """Load dynamic data into combo boxes from the database using ItemManager"""
+        """Load dynamic data into combo boxes with searchable units"""
+        # Categories
         categories_result = self.item_manager.get_categories()
         if categories_result["success"]:
             self.category_combo.addItem("Select Category", -1)
@@ -163,6 +167,7 @@ class AddItemWindow(QDialog):
             )
             self.category_combo.addItem("Select Category", -1)
 
+        # Item Types
         item_types_result = self.item_manager.get_item_types()
         if item_types_result["success"]:
             self.item_type_combo.addItem("Select Item Type", -1)
@@ -176,13 +181,39 @@ class AddItemWindow(QDialog):
             )
             self.item_type_combo.addItem("Select Item Type", -1)
 
+        # Units with searchable model
         units_result = self.item_manager.get_units()
         if units_result["success"]:
-            self.buying_unit_combo.addItem("Select Unit", -1)
-            self.selling_unit_combo.addItem("Select Unit", -1)
+            # Create a model for searchable combos
+            unit_model = QStandardItemModel()
+            unit_model.appendRow(QStandardItem("Select Unit"))
             for unit in units_result["data"]:
-                self.buying_unit_combo.addItem(unit["name"], unit["id"])
-                self.selling_unit_combo.addItem(unit["name"], unit["id"])
+                item = QStandardItem(unit["name"])
+                item.setData(unit["id"], Qt.UserRole)
+                unit_model.appendRow(item)
+
+            # Set up proxy model for filtering
+            proxy_model = QSortFilterProxyModel()
+            proxy_model.setSourceModel(unit_model)
+            proxy_model.setFilterCaseSensitivity(Qt.CaseInsensitive)
+
+            # Apply to buying unit combo
+            self.buying_unit_combo.setModel(proxy_model)
+            self.buying_unit_combo.setModelColumn(0)
+            self.buying_unit_combo.completer().setCompletionMode(
+                QCompleter.PopupCompletion
+            )
+            self.buying_unit_combo.completer().setFilterMode(Qt.MatchContains)
+            self.buying_unit_combo.setCurrentIndex(0)
+
+            # Apply to selling unit combo
+            self.selling_unit_combo.setModel(proxy_model)
+            self.selling_unit_combo.setModelColumn(0)
+            self.selling_unit_combo.completer().setCompletionMode(
+                QCompleter.PopupCompletion
+            )
+            self.selling_unit_combo.completer().setFilterMode(Qt.MatchContains)
+            self.selling_unit_combo.setCurrentIndex(0)
         else:
             QMessageBox.warning(
                 self, "Error", "Failed to load units: " + units_result["message"]
@@ -190,6 +221,7 @@ class AddItemWindow(QDialog):
             self.buying_unit_combo.addItem("Select Unit", -1)
             self.selling_unit_combo.addItem("Select Unit", -1)
 
+        # Brands
         brands_result = self.item_manager.get_brands()
         if brands_result["success"]:
             self.brand_combo.addItem("None", None)
@@ -234,20 +266,15 @@ class AddItemWindow(QDialog):
         store_combo.setEditable(True)
 
         # Editable fields with default values
-        min_qty = QLineEdit()
-        min_qty.setText("0")
+        min_qty = QLineEdit("0")
         min_qty.setAlignment(Qt.AlignRight)
-        max_qty = QLineEdit()
-        max_qty.setText("0")
+        max_qty = QLineEdit("0")
         max_qty.setAlignment(Qt.AlignRight)
-        stock_qty = QLineEdit()
-        stock_qty.setText("0")
+        stock_qty = QLineEdit("0")
         stock_qty.setAlignment(Qt.AlignRight)
-        purchase_rate = QLineEdit()
-        purchase_rate.setText("0.00")
+        purchase_rate = QLineEdit("0.00")
         purchase_rate.setAlignment(Qt.AlignRight)
-        selling_price = QLineEdit()
-        selling_price.setText("0.00")
+        selling_price = QLineEdit("0.00")
         selling_price.setAlignment(Qt.AlignRight)
 
         # Tax combo box
@@ -278,9 +305,6 @@ class AddItemWindow(QDialog):
         self.store_table.setCellWidget(row_count, 6, tax_combo)
         self.store_table.setCellWidget(row_count, 7, delete_btn)
 
-        # Set focus to min_qty
-        min_qty.setFocus()
-
     def delete_store_row(self, row):
         """Delete a row from the store table if more than one row exists"""
         if self.store_table.rowCount() > 1:
@@ -296,9 +320,15 @@ class AddItemWindow(QDialog):
                 raise ValueError("Category is required")
             if self.item_type_combo.currentData() == -1:
                 raise ValueError("Item Type is required")
-            if self.buying_unit_combo.currentData() == -1:
+            buying_unit_id = self.buying_unit_combo.itemData(
+                self.buying_unit_combo.currentIndex(), Qt.UserRole
+            )
+            selling_unit_id = self.selling_unit_combo.itemData(
+                self.selling_unit_combo.currentIndex(), Qt.UserRole
+            )
+            if buying_unit_id is None or buying_unit_id == -1:
                 raise ValueError("Buying Unit is required")
-            if self.selling_unit_combo.currentData() == -1:
+            if selling_unit_id is None or selling_unit_id == -1:
                 raise ValueError("Selling Unit is required")
 
             # Collect store data
@@ -345,8 +375,8 @@ class AddItemWindow(QDialog):
                 "barcode": self.barcode_input.text() or None,
                 "category_id": self.category_combo.currentData(),
                 "item_type_id": self.item_type_combo.currentData(),
-                "buying_unit_id": self.buying_unit_combo.currentData(),
-                "selling_unit_id": self.selling_unit_combo.currentData(),
+                "buying_unit_id": buying_unit_id,
+                "selling_unit_id": selling_unit_id,
                 "brand_id": self.brand_combo.currentData(),
                 "expire_date": self.expire_date_input.text() or None,
                 "item_image_path": self.image_input.text() or None,

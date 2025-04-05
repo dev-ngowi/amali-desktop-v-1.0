@@ -15,20 +15,58 @@ logger = logging.getLogger(__name__)
 class ItemsView(QWidget):
     def __init__(self, item_manager=None):
         super().__init__()
-        self.item_manager = item_manager or ItemManager() 
+        self.item_manager = item_manager or ItemManager()
         self.init_ui()
 
     def init_ui(self):
         layout = QVBoxLayout()
         self.setLayout(layout)
 
+        # Header layout with search
         header_layout = QHBoxLayout()
         title_label = QLabel("Items")
         title_label.setStyleSheet("font-size: 20px; font-weight: bold;")
         header_layout.addWidget(title_label)
+
+        # Search bar
+        self.search_input = QLineEdit()
+        self.search_input.setPlaceholderText("Search by name or barcode...")
+        self.search_input.textChanged.connect(self.search_items)
+        self.search_input.setMaximumWidth(300)
+        self.search_input.setStyleSheet(
+            """
+            QLineEdit {
+                padding: 5px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+        """
+        )
+        header_layout.addWidget(self.search_input)
+
         header_layout.addStretch(1)
+
+        # Styled Add New Item button
         self.add_new_item = QPushButton("Add New Item")
         self.add_new_item.clicked.connect(self.open_add_item_window)
+        self.add_new_item.setStyleSheet(
+            """
+            QPushButton {
+                background-color: #4CAF50;
+                color: white;
+                padding: 6px 12px;
+                border: none;
+                border-radius: 4px;
+                font-weight: bold;
+            }
+            QPushButton:hover {
+                background-color: #45a049;
+            }
+            QPushButton:pressed {
+                background-color: #3d8b40;
+            }
+        """
+        )
         header_layout.addWidget(self.add_new_item)
         layout.addLayout(header_layout)
 
@@ -37,10 +75,10 @@ class ItemsView(QWidget):
         self.item_table.setHorizontalHeaderLabels(
             ["ID", "Name", "Barcode", "Created At", "Action"]
         )
-        
+
         # Set size policy to expanding
         self.item_table.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
-        
+
         self.item_table.horizontalHeader().setStretchLastSection(True)
         self.item_table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.item_table.setColumnWidth(0, 50)
@@ -52,7 +90,7 @@ class ItemsView(QWidget):
         self.setLayout(layout)
         self.populate_table()
 
-    def populate_table(self):
+    def populate_table(self, search_query=None):
         items_result = self.item_manager.list_items()
         if not items_result["success"]:
             logger.error(f"Failed to fetch items: {items_result['message']}")
@@ -60,9 +98,28 @@ class ItemsView(QWidget):
             return
 
         item_data = items_result["data"]
-        self.item_table.setRowCount(len(item_data))
+        # Deduplicate items by barcode
+        seen_barcodes = set()
+        unique_items = []
 
-        for i, item in enumerate(item_data):
+        for item in item_data:
+            barcode = item.get("barcode", "")
+            if barcode not in seen_barcodes:
+                seen_barcodes.add(barcode)
+                # Apply search filter if query exists
+                if search_query:
+                    search_query = search_query.lower()
+                    if (
+                        search_query in item["name"].lower()
+                        or search_query in item.get("barcode", "").lower()
+                    ):
+                        unique_items.append(item)
+                else:
+                    unique_items.append(item)
+
+        self.item_table.setRowCount(len(unique_items))
+
+        for i, item in enumerate(unique_items):
             self.item_table.setItem(i, 0, QTableWidgetItem(str(item["id"])))
             self.item_table.setItem(i, 1, QTableWidgetItem(item["name"]))
             self.item_table.setItem(i, 2, QTableWidgetItem(item.get("barcode", "")))
@@ -82,14 +139,20 @@ class ItemsView(QWidget):
             action_layout.setContentsMargins(0, 0, 0, 0)
             self.item_table.setCellWidget(i, 4, action_widget)
 
+    def search_items(self, text):
+        """Filter items based on search input"""
+        self.populate_table(search_query=text)
+
     def open_add_item_window(self):
         self.add_window = AddItemWindow(self.item_manager, parent=self)
-        self.add_window.setModal(True)  # Make it a modal dialog
+        self.add_window.setModal(True)
         self.add_window.show()
 
     def open_edit_item_window(self, item_id):
-        self.edit_window = EditItemWindow(self.item_manager, parent=self, item_id=item_id)
-        self.edit_window.setModal(True)  # Make it a modal dialog
+        self.edit_window = EditItemWindow(
+            self.item_manager, parent=self, item_id=item_id
+        )
+        self.edit_window.setModal(True)
         self.edit_window.show()
 
     def delete_item(self, item_id):
@@ -107,6 +170,7 @@ class ItemsView(QWidget):
                 QMessageBox.information(self, "Success", result["message"])
             else:
                 QMessageBox.critical(self, "Error", result["message"])
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

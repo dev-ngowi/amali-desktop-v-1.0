@@ -4,7 +4,8 @@ from datetime import datetime
 from Helper.db_conn import DatabaseManager
 
 logging.basicConfig(
-    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+    level=logging.DEBUG,
+    format="%(asctime)s - %(levelname)s - %(message)s",
 )
 logger = logging.getLogger(__name__)
 
@@ -18,27 +19,29 @@ class ItemManager:
         with self.db_manager.lock:
             conn = sqlite3.connect(self.db_manager.db_path, timeout=30)
             conn.execute("PRAGMA foreign_keys = ON")
-            conn.row_factory = sqlite3.Row  # Consistent use across all methods
+            conn.row_factory = sqlite3.Row
             return conn
 
     def _commit_and_close(self, conn):
         """Commit changes and close connection"""
-        try:
-            conn.commit()
-        except sqlite3.Error as e:
-            logger.error(f"Error committing changes: {str(e)}")
-            raise  # Let the caller handle the exception
-        finally:
-            conn.close()
+        if conn:
+            try:
+                conn.commit()
+            except sqlite3.Error as e:
+                logger.error(f"Error committing changes: {str(e)}")
+                raise
+            finally:
+                conn.close()
 
     def _rollback_and_close(self, conn):
         """Rollback changes and close connection"""
-        try:
-            conn.rollback()
-        except sqlite3.Error as e:
-            logger.error(f"Error rolling back changes: {str(e)}")
-        finally:
-            conn.close()
+        if conn:
+            try:
+                conn.rollback()
+            except sqlite3.Error as e:
+                logger.error(f"Error rolling back changes: {str(e)}")
+            finally:
+                conn.close()
 
     def create_item(self, item_data):
         """Create a new item with all related data"""
@@ -51,18 +54,22 @@ class ItemManager:
             # Validate required fields
             required_fields = [
                 "name",
-                "barcode",
                 "category_id",
                 "item_type_id",
                 "buying_unit_id",
                 "selling_unit_id",
-                "store_data",
             ]
             for field in required_fields:
-                if field not in item_data or not item_data[field]:
+                if field not in item_data or item_data[field] is None:
                     raise ValueError(f"Missing required field: {field}")
 
+            # Handle store_data
+            store_data = item_data.get("store_data")
+            if not store_data or not isinstance(store_data, list):
+                raise ValueError("Store data is required and must be a list")
+
             # Clean nullable values
+            barcode = item_data.get("barcode")
             brand_id = (
                 item_data.get("brand_id")
                 if item_data.get("brand_id") != "None"
@@ -73,44 +80,53 @@ class ItemManager:
                 if item_data.get("item_group_id") != "None"
                 else None
             )
-            exprire_date = item_data.get("exprire_date")  # Fixed spelling
+            expire_date = item_data.get("expire_date")
+            image_path = item_data.get("item_image_path")
+            current_time = datetime.now().isoformat()
 
-            # Insert barcode
-            cursor.execute(
-                "INSERT INTO barcodes (code) VALUES (?)", (item_data["barcode"],)
-            )
-            barcode_id = cursor.lastrowid
+            # Insert barcode if provided
+            barcode_id = None
+            if barcode:
+                cursor.execute(
+                    "INSERT INTO barcodes (code, created_at, updated_at) VALUES (?, ?, ?)",
+                    (barcode, current_time, current_time),
+                )
+                barcode_id = cursor.lastrowid
 
             # Insert image if provided
             image_id = None
-            if "item_image_path" in item_data:
+            if image_path:
                 cursor.execute(
-                    "INSERT INTO images (file_path) VALUES (?)",
-                    (item_data["item_image_path"],),
+                    "INSERT INTO images (file_path, created_at, updated_at) VALUES (?, ?, ?)",
+                    (image_path, current_time, current_time),
                 )
                 image_id = cursor.lastrowid
 
             # Insert item
             cursor.execute(
                 """
-                INSERT INTO items (name, category_id, item_type_id, item_group_id, exprire_date)
-                VALUES (?, ?, ?, ?, ?)
+                INSERT INTO items (name, category_id, item_type_id, item_group_id, expire_date, created_at, updated_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
                     item_data["name"],
                     item_data["category_id"],
                     item_data["item_type_id"],
                     item_group_id,
-                    exprire_date,
+                    expire_date,
+                    current_time,
+                    current_time,
                 ),
             )
             item_id = cursor.lastrowid
+            logger.debug(f"Inserted item: id={item_id}, name={item_data['name']}")
 
             # Insert item barcode relation
-            cursor.execute(
-                "INSERT INTO item_barcodes (item_id, barcode_id) VALUES (?, ?)",
-                (item_id, barcode_id),
-            )
+            if barcode_id:
+                cursor.execute(
+                    "INSERT INTO item_barcodes (item_id, barcode_id, created_at, updated_at) VALUES (?, ?, ?, ?)",
+                    (item_id, barcode_id, current_time, current_time),
+                )
 
             # Insert brand relation if exists
             if brand_id:
@@ -120,20 +136,28 @@ class ItemManager:
                 )
 
             # Process store relationships
-            for store_info in item_data["store_data"]:
-                self._create_store_relations(cursor, item_id, item_data, store_info)
+            for store_info in store_data:
+                self._create_store_relations(
+                    cursor, item_id, item_data, store_info, current_time
+                )
 
             # Insert image relation if exists
             if image_id:
                 cursor.execute(
-                    "INSERT INTO item_images (item_id, image_id) VALUES (?, ?)",
-                    (item_id, image_id),
+                    "INSERT INTO item_images (item_id, image_id, created_at, updated_at) VALUES (?, ?, ?, ?)",
+                    (item_id, image_id, current_time, current_time),
                 )
 
             # Insert unit relationships
             cursor.execute(
-                "INSERT INTO item_units (item_id, buying_unit_id, selling_unit_id) VALUES (?, ?, ?)",
-                (item_id, item_data["buying_unit_id"], item_data["selling_unit_id"]),
+                "INSERT INTO item_units (item_id, buying_unit_id, selling_unit_id, created_at, updated_at) VALUES (?, ?, ?, ?, ?)",
+                (
+                    item_id,
+                    item_data["buying_unit_id"],
+                    item_data["selling_unit_id"],
+                    current_time,
+                    current_time,
+                ),
             )
 
             self._commit_and_close(conn)
@@ -149,61 +173,96 @@ class ItemManager:
             logger.error(f"Error creating item: {str(e)}")
             return {"success": False, "message": str(e)}
 
-    def _create_store_relations(self, cursor, item_id, item_data, store_info):
+    def _create_store_relations(
+        self, cursor, item_id, item_data, store_info, current_time
+    ):
         """Helper method to handle store-related insertions"""
-        store_id = store_info["store_id"]
+        try:
+            store_id = store_info.get("store_id")
+            if not store_id or store_id == -1:
+                raise ValueError(f"Valid Store ID is required for item {item_id}")
 
-        # Insert store relationship
-        cursor.execute(
-            "INSERT INTO item_stores (item_id, store_id) VALUES (?, ?)",
-            (item_id, store_id),
-        )
-
-        # Insert stock record
-        cursor.execute(
-            "INSERT INTO stocks (item_id, store_id, min_quantity, max_quantity) VALUES (?, ?, ?, ?)",
-            (item_id, store_id, store_info["min_quantity"], store_info["max_quantity"]),
-        )
-        stock_id = cursor.lastrowid
-
-        # Insert item stock relationship
-        cursor.execute(
-            "INSERT INTO item_stocks (item_id, stock_id, stock_quantity) VALUES (?, ?, ?)",
-            (item_id, stock_id, store_info["stock_quantity"]),
-        )
-
-        # Insert purchase cost
-        cursor.execute(
-            "INSERT INTO item_costs (item_id, store_id, unit_id, amount) VALUES (?, ?, ?, ?)",
-            (
-                item_id,
-                store_id,
-                item_data["buying_unit_id"],
-                store_info["purchase_rate"],
-            ),
-        )
-
-        # Insert selling price
-        cursor.execute(
-            "INSERT INTO item_prices (item_id, store_id, unit_id, amount) VALUES (?, ?, ?, ?)",
-            (
-                item_id,
-                store_id,
-                item_data["selling_unit_id"],
-                store_info["selling_price"],
-            ),
-        )
-
-        # Insert tax relationship if exists
-        if (
-            "tax_id" in store_info
-            and store_info["tax_id"]
-            and store_info["tax_id"] != "None"
-        ):
+            # Insert stock record
+            min_qty = float(store_info.get("min_quantity", 0) or 0)
+            max_qty = float(store_info.get("max_quantity", 0) or 0)
             cursor.execute(
-                "INSERT INTO item_taxes (item_id, store_id, tax_id) VALUES (?, ?, ?)",
-                (item_id, store_id, store_info["tax_id"]),
+                """
+                INSERT INTO stocks (item_id, store_id, min_quantity, max_quantity, created_at, updated_at)
+                VALUES (?, ?, ?, ?, ?, ?)
+                """,
+                (item_id, store_id, min_qty, max_qty, current_time, current_time),
             )
+            stock_id = cursor.lastrowid
+            logger.debug(
+                f"Inserted stocks: item_id={item_id}, store_id={store_id}, min={min_qty}, max={max_qty}"
+            )
+
+            # Insert item stock relationship
+            stock_qty = float(store_info.get("stock_quantity", 0) or 0)
+            cursor.execute(
+                """
+                INSERT INTO item_stocks (item_id, stock_id, stock_quantity, created_at, updated_at)
+                VALUES (?, ?, ?, ?, ?)
+                """,
+                (item_id, stock_id, stock_qty, current_time, current_time),
+            )
+            logger.debug(
+                f"Inserted item_stocks: item_id={item_id}, stock_id={stock_id}, qty={stock_qty}"
+            )
+
+            # Insert purchase cost
+            purchase_rate = float(store_info.get("purchase_rate", 0) or 0)
+            cursor.execute(
+                """
+                INSERT INTO item_costs (item_id, store_id, unit_id, amount, created_at)
+                VALUES (?, ?, ?, ?, ?)
+                """,
+                (
+                    item_id,
+                    store_id,
+                    item_data["buying_unit_id"],
+                    purchase_rate,
+                    current_time,
+                ),
+            )
+            logger.debug(
+                f"Inserted item_costs: item_id={item_id}, store_id={store_id}, amount={purchase_rate}"
+            )
+
+            # Insert selling price
+            selling_price = float(store_info.get("selling_price", 0) or 0)
+            cursor.execute(
+                """
+                INSERT INTO item_prices (item_id, store_id, unit_id, amount, created_at, updated_at)
+                VALUES (?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    item_id,
+                    store_id,
+                    item_data["selling_unit_id"],
+                    selling_price,
+                    current_time,
+                    current_time,
+                ),
+            )
+            logger.debug(
+                f"Inserted item_prices: item_id={item_id}, store_id={store_id}, amount={selling_price}"
+            )
+
+            # Insert tax relationship if exists
+            tax_id = store_info.get("tax_id")
+            if tax_id and tax_id != "None" and tax_id != -1:
+                cursor.execute(
+                    "INSERT INTO item_taxes (item_id, store_id, tax_id) VALUES (?, ?, ?)",
+                    (item_id, store_id, tax_id),
+                )
+                logger.debug(
+                    f"Inserted item_taxes: item_id={item_id}, store_id={store_id}, tax_id={tax_id}"
+                )
+
+        except Exception as e:
+            logger.error(f"Error in store relations for item_id={item_id}: {str(e)}")
+            raise
 
     def read_item(self, item_id):
         """Read item details with related data"""
@@ -224,9 +283,9 @@ class ItemManager:
             item = cursor.fetchone()
             if not item:
                 return {"success": False, "message": "Item not found"}
-            
+
             item_dict = dict(item)
-            
+
             # Fetch units
             cursor.execute(
                 """
@@ -234,7 +293,7 @@ class ItemManager:
                 FROM item_units
                 WHERE item_id = ?
                 """,
-                (item_id,)
+                (item_id,),
             )
             units = cursor.fetchone()
             if units:
@@ -247,7 +306,7 @@ class ItemManager:
                 FROM brand_applicable_items
                 WHERE item_id = ?
                 """,
-                (item_id,)
+                (item_id,),
             )
             brand = cursor.fetchone()
             if brand:
@@ -261,7 +320,7 @@ class ItemManager:
                 JOIN images i ON ii.image_id = i.id
                 WHERE ii.item_id = ?
                 """,
-                (item_id,)
+                (item_id,),
             )
             image = cursor.fetchone()
             if image:
@@ -273,40 +332,204 @@ class ItemManager:
             self._rollback_and_close(conn)
             logger.error(f"Error reading item: {str(e)}")
             return {"success": False, "message": f"Database error: {str(e)}"}
-        
+
     def update_item(self, item_id, item_data):
-        """Update existing item"""
         conn = self._get_connection()
         cursor = conn.cursor()
         try:
             conn.execute("BEGIN TRANSACTION")
+            current_time = datetime.now().isoformat()
+
+            # Update items table (only columns that exist)
             cursor.execute(
                 """
                 UPDATE items
-                SET name = ?, category_id = ?, item_type_id = ?,
-                    item_group_id = ?, exprire_date = ?, updated_at = ?
+                SET name = ?, category_id = ?, item_type_id = ?, item_group_id = ?, 
+                    expire_date = ?, updated_at = ?
                 WHERE id = ?
                 """,
                 (
-                    item_data.get("name"),
-                    item_data.get("category_id"),
-                    item_data.get("item_type_id"),
+                    item_data["name"],
+                    item_data["category_id"],
+                    item_data["item_type_id"],
                     item_data.get("item_group_id"),
-                    item_data.get("exprire_date"),  # Fixed spelling
-                    datetime.now().isoformat(),
+                    item_data.get("expire_date"),
+                    current_time,
                     item_id,
                 ),
             )
             if cursor.rowcount == 0:
                 raise ValueError("Item not found")
 
-            self._commit_and_close(conn)
-            return {"success": True, "message": "Item updated successfully"}
-        except (ValueError, sqlite3.Error) as e:
-            self._rollback_and_close(conn)
-            logger.error(f"Error updating item: {str(e)}")
-            return {"success": False, "message": str(e)}
+            # Handle barcode
+            barcode = item_data.get("barcode")
+            if barcode:
+                cursor.execute("SELECT id FROM barcodes WHERE code = ?", (barcode,))
+                barcode_row = cursor.fetchone()
+                if barcode_row:
+                    barcode_id = barcode_row["id"]
+                else:
+                    cursor.execute(
+                        """
+                        INSERT INTO barcodes (code, created_at, updated_at)
+                        VALUES (?, ?, ?)
+                        """,
+                        (barcode, current_time, current_time),
+                    )
+                    barcode_id = cursor.lastrowid
 
+                # Update or insert item_barcodes
+                cursor.execute(
+                    """
+                    INSERT OR REPLACE INTO item_barcodes (item_id, barcode_id, created_at, updated_at)
+                    VALUES (?, ?, ?, ?)
+                    """,
+                    (item_id, barcode_id, current_time, current_time),
+                )
+            else:
+                # Remove barcode if it exists and is set to None/empty
+                cursor.execute("DELETE FROM item_barcodes WHERE item_id = ?", (item_id,))
+
+            # Update item_units
+            cursor.execute(
+                """
+                INSERT OR REPLACE INTO item_units (item_id, buying_unit_id, selling_unit_id, created_at, updated_at)
+                VALUES (?, ?, ?, ?, ?)
+                """,
+                (
+                    item_id,
+                    item_data["buying_unit_id"],
+                    item_data["selling_unit_id"],
+                    current_time,
+                    current_time,
+                ),
+            )
+
+            # Handle brand
+            brand_id = item_data.get("brand_id")
+            cursor.execute(
+                "DELETE FROM brand_applicable_items WHERE item_id = ?", (item_id,)
+            )
+            if brand_id and brand_id != "None" and brand_id != -1:
+                cursor.execute(
+                    """
+                    INSERT INTO brand_applicable_items (item_id, brand_id)
+                    VALUES (?, ?)
+                    """,
+                    (item_id, brand_id),
+                )
+
+            # Handle image
+            image_path = item_data.get("item_image_path")
+            cursor.execute("DELETE FROM item_images WHERE item_id = ?", (item_id,))
+            if image_path:
+                cursor.execute(
+                    """
+                    INSERT INTO images (file_path, created_at)
+                    VALUES (?, ?)
+                    """,
+                    (image_path, current_time),
+                )
+                image_id = cursor.lastrowid
+                cursor.execute(
+                    """
+                    INSERT INTO item_images (item_id, image_id, created_at)
+                    VALUES (?, ?, ?)
+                    """,
+                    (item_id, image_id, current_time),
+                )
+
+            # Delete existing store-related data
+            cursor.execute("DELETE FROM stocks WHERE item_id = ?", (item_id,))
+            cursor.execute("DELETE FROM item_stocks WHERE item_id = ?", (item_id,))
+            cursor.execute("DELETE FROM item_costs WHERE item_id = ?", (item_id,))
+            cursor.execute("DELETE FROM item_prices WHERE item_id = ?", (item_id,))
+            cursor.execute("DELETE FROM item_taxes WHERE item_id = ?", (item_id,))
+
+            # Insert new store-related data
+            for store in item_data["store_data"]:
+                # Insert stocks
+                cursor.execute(
+                    """
+                    INSERT INTO stocks (item_id, store_id, min_quantity, max_quantity, created_at, updated_at)
+                    VALUES (?, ?, ?, ?, ?, ?)
+                    """,
+                    (
+                        item_id,
+                        store["store_id"],
+                        store["min_quantity"],
+                        store["max_quantity"],
+                        current_time,
+                        current_time,
+                    ),
+                )
+                stock_id = cursor.lastrowid
+
+                # Insert item_stocks
+                cursor.execute(
+                    """
+                    INSERT INTO item_stocks (item_id, stock_id, stock_quantity, created_at, updated_at)
+                    VALUES (?, ?, ?, ?, ?)
+                    """,
+                    (
+                        item_id,
+                        stock_id,
+                        store["stock_quantity"],
+                        current_time,
+                        current_time,
+                    ),
+                )
+
+                # Insert item_costs
+                cursor.execute(
+                    """
+                    INSERT INTO item_costs (item_id, store_id, unit_id, amount, created_at, updated_at)
+                    VALUES (?, ?, ?, ?, ?, ?)
+                    """,
+                    (
+                        item_id,
+                        store["store_id"],
+                        item_data["buying_unit_id"],
+                        store["purchase_rate"],
+                        current_time,
+                        current_time,
+                    ),
+                )
+
+                # Insert item_prices
+                cursor.execute(
+                    """
+                    INSERT INTO item_prices (item_id, store_id, unit_id, amount, created_at, updated_at)
+                    VALUES (?, ?, ?, ?, ?, ?)
+                    """,
+                    (
+                        item_id,
+                        store["store_id"],
+                        item_data["selling_unit_id"],
+                        store["selling_price"],
+                        current_time,
+                        current_time,
+                    ),
+                )
+
+                # Insert item_taxes if tax_id exists
+                if store.get("tax_id") and store["tax_id"] != "None" and store["tax_id"] != -1:
+                    cursor.execute(
+                        """
+                        INSERT INTO item_taxes (item_id, store_id, tax_id)
+                        VALUES (?, ?, ?)
+                        """,
+                        (item_id, store["store_id"], store["tax_id"]),
+                    )
+
+            self._commit_and_close(conn)
+            logger.info(f"Item {item_id} updated successfully")
+            return {"success": True, "message": "Item updated successfully"}
+        except Exception as e:
+            self._rollback_and_close(conn)
+            logger.error(f"Error updating item {item_id}: {str(e)}")
+            return {"success": False, "message": f"Failed to update item: {str(e)}"}
+        
     def delete_item(self, item_id):
         """Delete item and all related records"""
         conn = self._get_connection()
@@ -322,7 +545,9 @@ class ItemManager:
             cursor.execute("DELETE FROM item_costs WHERE item_id = ?", (item_id,))
             cursor.execute("DELETE FROM item_prices WHERE item_id = ?", (item_id,))
             cursor.execute("DELETE FROM item_taxes WHERE item_id = ?", (item_id,))
-            cursor.execute("DELETE FROM brand_applicable_items WHERE item_id = ?", (item_id,))
+            cursor.execute(
+                "DELETE FROM brand_applicable_items WHERE item_id = ?", (item_id,)
+            )
             cursor.execute("DELETE FROM item_images WHERE item_id = ?", (item_id,))
 
             # Now delete the item itself
@@ -359,7 +584,6 @@ class ItemManager:
             logger.error(f"Error listing items: {str(e)}")
             return {"success": False, "message": f"Database error: {str(e)}"}
 
-    # Helper methods (get_units, get_stores, etc.) can remain largely the same but should follow the same pattern
     def get_units(self):
         """Fetch all units from the database"""
         conn = self._get_connection()
@@ -475,34 +699,3 @@ class ItemManager:
         finally:
             if conn:
                 conn.close()
-
-
-# Example usage:
-if __name__ == "__main__":
-    item_manager = ItemManager()
-
-    # Example item creation
-    item_data = {
-        "name": "Test Item",
-        "barcode": "123456789",
-        "category_id": 1,
-        "item_type_id": 1,
-        "buying_unit_id": 1,
-        "selling_unit_id": 1,
-        "store_data": [
-            {
-                "store_id": 1,
-                "min_quantity": 10,
-                "max_quantity": 100,
-                "stock_quantity": 50,
-                "purchase_rate": 5.99,
-                "selling_price": 9.99,
-            }
-        ],
-        "item_group_id": None,
-        "brand_id": None,
-        "exprire_date": None,
-    }
-
-    result = item_manager.create_item(item_data)
-    print(result)
