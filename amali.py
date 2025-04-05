@@ -23,23 +23,28 @@ class Boot(QDialog):
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setWindowTitle("AMALI Login")
-        screen = QApplication.primaryScreen()
-        screen_size = screen.size()
-        width = screen_size.width()
-        height = screen_size.height()
 
-        self.setGeometry(0, 0, width, height)
-        self.setStyleSheet("background-color: #ffffff;")
+        # Set fixed size for the dialog to 500x500
+        self.setFixedSize(500, 500)
 
+        # Center the dialog on screen
+        screen = QApplication.primaryScreen().geometry()
+        self.move(
+            (screen.width() - self.width()) // 2, (screen.height() - self.height()) // 2
+        )
+
+        self.setStyleSheet("background-color: #2c3e50;")  # Changed to match background
+
+        # Main layout
         self.mainLayout = QVBoxLayout()
         self.mainLayout.setContentsMargins(0, 0, 0, 0)
         self.mainLayout.setSpacing(0)
 
-        backgroundWidget = QWidget()
-        backgroundWidget.setStyleSheet("background-color: #2c3e50;")
-        backgroundLayout = QVBoxLayout()
-        backgroundLayout.setContentsMargins(0, 0, 0, 50)
+        # Center everything vertically and horizontally
+        centerLayout = QVBoxLayout()
+        centerLayout.addStretch(1)  # Add space above
 
+        # Logo
         self.logo_label = QLabel()
         logo_path = get_resource_path("Resources/Images/logo.png")
         self.logo_pixmap = QPixmap(logo_path)
@@ -56,15 +61,16 @@ class Boot(QDialog):
             print(f"Boot: Failed to load logo from: {logo_path}")
         self.logo_label.setAlignment(Qt.AlignCenter)
 
+        # Login container
         centerContainer = QWidget()
-        centerContainer.setMaximumWidth(400)
+        centerContainer.setFixedWidth(350)  # Fixed width for login form
         centerContainer.setStyleSheet(
             "QWidget { background-color: white; border-radius: 8px; }"
         )
 
         formLayout = QVBoxLayout()
-        formLayout.setSpacing(15)
-        formLayout.setContentsMargins(40, 40, 40, 40)
+        formLayout.setSpacing(8)
+        formLayout.setContentsMargins(20, 20, 20, 20)
 
         self.username = QLineEdit()
         self.username.setPlaceholderText("Username")
@@ -77,7 +83,7 @@ class Boot(QDialog):
         centerContainer.setStyleSheet(
             """
             QWidget { background-color: white; border-radius: 8px; }
-            QLineEdit { padding: 10px; border: 1px solid #bdc3c7; border-radius: 5px; margin: 5px 0; }
+            QLineEdit { padding: 8px; border: 1px solid #bdc3c7; border-radius: 5px; margin: 2px 0; }
             QPushButton { background-color: #3498db; color: white; padding: 10px; border: none; border-radius: 5px; font-weight: bold; min-width: 100px; }
             QPushButton:hover { background-color: #2980b9; }
             QLabel { color: #2c3e50; }
@@ -92,15 +98,15 @@ class Boot(QDialog):
         formLayout.addWidget(self.loginBtn)
         centerContainer.setLayout(formLayout)
 
-        centeringLayout = QHBoxLayout()
-        centeringLayout.addStretch()
-        centeringLayout.addWidget(centerContainer)
-        centeringLayout.addStretch()
+        # Add widgets to center layout
+        centerLayout.addWidget(self.logo_label)
+        centerLayout.addWidget(centerContainer, alignment=Qt.AlignHCenter)
+        centerLayout.addStretch(1)  # Add space below
 
-        backgroundLayout.addWidget(self.logo_label)
-        backgroundLayout.addLayout(centeringLayout)
-        backgroundWidget.setLayout(backgroundLayout)
-        self.mainLayout.addWidget(backgroundWidget)
+        # Add centerLayout to mainLayout with horizontal centering
+        mainWidget = QWidget()
+        mainWidget.setLayout(centerLayout)
+        self.mainLayout.addWidget(mainWidget, alignment=Qt.AlignCenter)
         self.setLayout(self.mainLayout)
 
     def onClickLogin(self):
@@ -125,7 +131,7 @@ class Boot(QDialog):
                 ):
                     print("Boot: Login successful!")
                     self.ensure_store_exists()
-                    self.accept()  # Proceed to DashboardView
+                    self.accept() 
                 else:
                     QMessageBox.warning(self, "Error", "Incorrect username or password")
             else:

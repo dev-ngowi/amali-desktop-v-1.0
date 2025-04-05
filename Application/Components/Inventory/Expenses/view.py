@@ -1,4 +1,3 @@
-# view.py
 import sys
 import logging
 from PyQt5.QtWidgets import (
@@ -25,7 +24,6 @@ from PyQt5.QtCore import Qt, QDate
 
 from Application.Components.Inventory.Expenses.model import ExpenseManager
 
-
 # Configure logging
 logging.basicConfig(
     level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
@@ -37,12 +35,13 @@ class AddExpenseDialog(QDialog):
     def __init__(self, expense_manager, parent=None, expense_data=None):
         super().__init__(parent)
         self.expense_manager = expense_manager
-        self.setWindowTitle("Add New Expense")
-        self.setMinimumSize(700, 600)  # Increased dialog size
+        self.setWindowTitle("Add New Expense" if not expense_data else "Edit Expense")
+        self.setMinimumSize(700, 600)
         self.layout = QFormLayout(self)
-        self.expense_id = None  # To store expense ID for editing
-        self.linked_items_prices = {}  # Store prices of linked items
+        self.expense_id = None
+        self.linked_items_prices = {}
 
+        # Form fields
         self.expense_type_combo = QComboBox()
         self.expense_type_combo.addItems(["home", "shop"])
         self.user_combo = QComboBox()
@@ -50,15 +49,13 @@ class AddExpenseDialog(QDialog):
         self.expense_date_edit.setDate(QDate.currentDate())
         self.expense_date_edit.setCalendarPopup(True)
         self.amount_input = QDoubleSpinBox()
-        self.amount_input.setRange(0.0, 1000000.0)  # Set a reasonable range
+        self.amount_input.setRange(0.0, 1000000.0)
         self.amount_input.setDecimals(2)
         self.description_input = QLineEdit()
         self.reference_number_input = QLineEdit()
         self.receipt_path_input = QLineEdit()
         self.receipt_browse_button = QPushButton("Browse")
-        self.linked_shop_items_list = (
-            QListWidget()
-        )  # Changed to QListWidget with checkboxes
+        self.linked_shop_items_list = QListWidget()
         self.linked_shop_items_list.itemChanged.connect(self.update_total_amount)
 
         # Populate user combo box
@@ -70,13 +67,14 @@ class AddExpenseDialog(QDialog):
         items = self.expense_manager.get_items()
         for item in items:
             list_item = QListWidgetItem(item["name"])
-            list_item.setData(Qt.UserRole, item["id"])  # Store item ID
+            list_item.setData(Qt.UserRole, item["id"])
             list_item.setFlags(list_item.flags() | Qt.ItemIsUserCheckable)
             list_item.setCheckState(Qt.Unchecked)
             self.linked_shop_items_list.addItem(list_item)
             price = self.expense_manager.get_item_price(item["id"])
             self.linked_items_prices[item["id"]] = price
 
+        # Add fields to layout
         self.layout.addRow(QLabel("Expense Type:"), self.expense_type_combo)
         self.layout.addRow(QLabel("User:"), self.user_combo)
         self.layout.addRow(QLabel("Expense Date:"), self.expense_date_edit)
@@ -87,10 +85,9 @@ class AddExpenseDialog(QDialog):
         receipt_layout.addWidget(self.receipt_path_input)
         receipt_layout.addWidget(self.receipt_browse_button)
         self.layout.addRow(QLabel("Receipt Path:"), receipt_layout)
-        self.layout.addRow(
-            QLabel("Linked Shop Items:"), self.linked_shop_items_list
-        )  # Changed label
+        self.layout.addRow(QLabel("Linked Shop Items:"), self.linked_shop_items_list)
 
+        # Buttons
         self.buttons_layout = QHBoxLayout()
         self.save_button = QPushButton("Save")
         self.cancel_button = QPushButton("Cancel")
@@ -98,27 +95,26 @@ class AddExpenseDialog(QDialog):
         self.buttons_layout.addWidget(self.cancel_button)
         self.layout.addRow(self.buttons_layout)
 
+        # Connect signals
         self.save_button.clicked.connect(self.accept)
         self.cancel_button.clicked.connect(self.reject)
         self.receipt_browse_button.clicked.connect(self.browse_receipt)
 
+        # Load existing data if editing
         if expense_data:
-            self.setWindowTitle("Edit Expense")
             self.expense_id = expense_data["id"]
             self.expense_type_combo.setCurrentText(expense_data["expense_type"])
-            # Find the index of the user in the combo box
             user_index = self.user_combo.findData(expense_data["user_id"])
             if user_index >= 0:
                 self.user_combo.setCurrentIndex(user_index)
             self.expense_date_edit.setDate(
-                QDate.fromString(expense_data["expense_date"], "YYYY-MM-DD")
+                QDate.fromString(expense_data["expense_date"], "yyyy-MM-dd")
             )
             self.amount_input.setValue(expense_data["amount"])
             self.description_input.setText(expense_data["description"] or "")
             self.reference_number_input.setText(expense_data["reference_number"] or "")
             self.receipt_path_input.setText(expense_data["receipt_path"] or "")
 
-            # Check the linked items
             linked_item_ids = self.expense_manager.get_linked_item_ids(
                 expense_data["id"]
             )
@@ -158,25 +154,31 @@ class AddExpenseDialog(QDialog):
             self.amount_input.setEnabled(False)
         else:
             self.amount_input.setEnabled(True)
-            self.amount_input.setValue(0.0)  # Reset amount if no items selected
+            self.amount_input.setValue(0.0)
 
     def get_expense_data(self):
         expense_type = self.expense_type_combo.currentText()
         user_id = self.user_combo.currentData()
         expense_date = self.expense_date_edit.date().toString("yyyy-MM-dd")
         amount = self.amount_input.value()
-        description = self.description_input.text()
-        reference_number = self.reference_number_input.text()
-        receipt_path = self.receipt_path_input.text()
-        linked_shop_item_ids = []
-        for i in range(self.linked_shop_items_list.count()):
-            item = self.linked_shop_items_list.item(i)
-            if item.checkState() == Qt.Checked:
-                linked_shop_item_ids.append(item.data(Qt.UserRole))
+        description = self.description_input.text().strip() or None
+        reference_number = self.reference_number_input.text().strip() or None
+        receipt_path = self.receipt_path_input.text().strip() or None
+        linked_shop_item_ids = [
+            self.linked_shop_items_list.item(i).data(Qt.UserRole)
+            for i in range(self.linked_shop_items_list.count())
+            if self.linked_shop_items_list.item(i).checkState() == Qt.Checked
+        ]
 
-        if not linked_shop_item_ids and self.amount_input.value() == 0.0:
+        # Validation
+        if not user_id:
+            QMessageBox.warning(self, "Warning", "Please select a valid user.")
+            return None
+        if amount <= 0 and not linked_shop_item_ids:
             QMessageBox.warning(
-                self, "Warning", "Please select items or enter the expense amount."
+                self,
+                "Warning",
+                "Please enter an amount greater than 0 or select linked items.",
             )
             return None
 
@@ -188,7 +190,7 @@ class AddExpenseDialog(QDialog):
             description,
             reference_number,
             receipt_path,
-            linked_shop_item_ids,
+            linked_shop_item_ids or None,  # Convert empty list to None
         )
 
 
@@ -199,6 +201,7 @@ class ExpensesView(QWidget):
 
         layout = QVBoxLayout()
 
+        # Header
         header_layout = QHBoxLayout()
         title_label = QLabel("Expenses")
         title_label.setStyleSheet("font-size: 20px; font-weight: bold;")
@@ -208,8 +211,16 @@ class ExpensesView(QWidget):
         header_layout.addWidget(self.add_expense_button)
         layout.addLayout(header_layout)
 
+        # Financials display
+        self.financials_label = QLabel(
+            "Daily Financials: Orders: 0.0, Expenses: 0.0, After Expenses: 0.0"
+        )
+        self.financials_label.setStyleSheet("font-size: 14px; color: #333;")
+        layout.addWidget(self.financials_label)
+
+        # Expenses table
         self.expenses_table = QTableWidget()
-        self.expenses_table.setColumnCount(7)  # Increased column count
+        self.expenses_table.setColumnCount(7)
         self.expenses_table.setHorizontalHeaderLabels(
             [
                 "Type",
@@ -235,15 +246,15 @@ class ExpensesView(QWidget):
         self.setLayout(layout)
         self.add_expense_button.clicked.connect(self.open_add_expense_dialog)
 
+        # Initial financials update
+        self.update_financials_display(QDate.currentDate().toString("yyyy-MM-dd"))
+
     def populate_table(self):
         expenses_data = self.expense_manager.get_expenses_data()
         self.expenses_table.setRowCount(len(expenses_data))
 
         for i, expense in enumerate(expenses_data):
             self.expenses_table.setItem(i, 0, QTableWidgetItem(expense["expense_type"]))
-            # self.expenses_table.setItem(i, 1, QTableWidgetItem(expense["username"])) # Removed User
-            # self.expenses_table.setItem(i, 2, QTableWidgetItem(expense["expense_date"])) # Removed Date
-
             self.expenses_table.setItem(i, 1, QTableWidgetItem(str(expense["amount"])))
             self.expenses_table.setItem(
                 i, 2, QTableWidgetItem(expense["description"] or "")
@@ -257,7 +268,6 @@ class ExpensesView(QWidget):
             self.expenses_table.setItem(
                 i, 5, QTableWidgetItem(expense["linked_item_names"])
             )
-            # self.expenses_table.setItem(i, 6, QTableWidgetItem(expense["created_at"])) # Created At moved
 
             action_widget = QWidget()
             action_layout = QHBoxLayout(action_widget)
@@ -275,39 +285,24 @@ class ExpensesView(QWidget):
             action_layout.addWidget(delete_button)
             action_layout.setAlignment(Qt.AlignCenter)
             action_layout.setContentsMargins(0, 0, 0, 0)
-            action_widget.setLayout(action_layout)
             self.expenses_table.setCellWidget(i, 6, action_widget)
+
+    def update_financials_display(self, date):
+        financials = self.expense_manager.get_daily_financials(date)
+        self.financials_label.setText(
+            f"Daily Financials: Orders: {financials['total_orders']:.2f}, "
+            f"Expenses: {financials['total_expenses']:.2f}, "
+            f"After Expenses: {financials['after_expenses']:.2f}"
+        )
 
     def open_add_expense_dialog(self):
         dialog = AddExpenseDialog(self.expense_manager, self)
         if dialog.exec_() == QDialog.Accepted:
             expense_data = dialog.get_expense_data()
             if expense_data:
-                (
-                    expense_type,
-                    user_id,
-                    expense_date,
-                    amount,
-                    description,
-                    reference_number,
-                    receipt_path,
-                    linked_shop_item_ids,
-                ) = expense_data
-                self.add_new_expense(
-                    expense_type,
-                    user_id,
-                    expense_date,
-                    amount,
-                    description,
-                    reference_number,
-                    receipt_path,
-                    linked_shop_item_ids,
-                )
+                self.add_new_expense(*expense_data)
             else:
                 logger.warning("Add expense dialog rejected or invalid data.")
-                QMessageBox.warning(
-                    self, "Warning", "Please select items or enter the expense amount."
-                )
 
     def add_new_expense(
         self,
@@ -320,7 +315,7 @@ class ExpensesView(QWidget):
         receipt_path,
         linked_shop_item_ids,
     ):
-        if self.expense_manager.save_expense(
+        success, message = self.expense_manager.save_expense(
             expense_type,
             user_id,
             expense_date,
@@ -329,39 +324,27 @@ class ExpensesView(QWidget):
             reference_number,
             receipt_path,
             linked_shop_item_ids,
-        ):
+        )
+        if success:
             self.populate_table()
-            QMessageBox.information(self, "Success", "Expense added successfully!")
+            self.update_financials_display(expense_date)
+            QMessageBox.information(self, "Success", message)
         else:
-            QMessageBox.critical(self, "Error", "Failed to add expense.")
+            logger.error(f"Failed to save expense: {message}")
+            QMessageBox.critical(self, "Error", message)
 
     def edit_expense(self, expense_id, expense_data):
         dialog = AddExpenseDialog(self.expense_manager, self, expense_data=expense_data)
         if dialog.exec_() == QDialog.Accepted:
             updated_expense_data = dialog.get_expense_data()
             if updated_expense_data:
-                (
-                    expense_type,
-                    user_id,
-                    expense_date,
-                    amount,
-                    description,
-                    reference_number,
-                    receipt_path,
-                    linked_shop_item_ids,
-                ) = updated_expense_data
                 if self.expense_manager.update_expense(
-                    expense_id,
-                    expense_type,
-                    user_id,
-                    expense_date,
-                    amount,
-                    description,
-                    reference_number,
-                    receipt_path,
-                    linked_shop_item_ids,
+                    expense_id, *updated_expense_data
                 ):
                     self.populate_table()
+                    self.update_financials_display(
+                        updated_expense_data[2]
+                    )  # expense_date
                     QMessageBox.information(
                         self, "Success", "Expense updated successfully!"
                     )
@@ -369,9 +352,6 @@ class ExpensesView(QWidget):
                     QMessageBox.critical(self, "Error", "Failed to update expense.")
             else:
                 logger.warning("Edit expense dialog rejected or invalid data.")
-                QMessageBox.warning(
-                    self, "Warning", "Please select items or enter the expense amount."
-                )
 
     def delete_expense(self, expense_id):
         reply = QMessageBox.question(
@@ -382,8 +362,15 @@ class ExpensesView(QWidget):
             QMessageBox.No,
         )
         if reply == QMessageBox.Yes:
+            expenses_data = self.expense_manager.get_expenses_data()
+            expense_date = next(
+                (e["expense_date"] for e in expenses_data if e["id"] == expense_id),
+                None,
+            )
             if self.expense_manager.delete_expense(expense_id):
                 self.populate_table()
+                if expense_date:
+                    self.update_financials_display(expense_date)
                 QMessageBox.information(
                     self, "Success", "Expense deleted successfully!"
                 )

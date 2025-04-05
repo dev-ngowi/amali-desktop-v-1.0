@@ -562,12 +562,16 @@ class PrinterSettingsWindow(QDialog):
             )
 
 
-class SyncWorker(QThread):
-    sync_finished = pyqtSignal(bool)
+# class SyncWorker(QThread):
+#     sync_finished = pyqtSignal(bool)
 
-    def run(self):
-        success = sync_data_with_server()
-        self.sync_finished.emit(success)
+#     def __init__(self, force_full_sync=True, parent=None):
+#         super().__init__(parent)
+#         self.force_full_sync = force_full_sync
+
+#     def run(self):
+#         success = sync_data_with_server(self.force_full_sync)
+#         self.sync_finished.emit(success)
 
 
 class DashboardView(QMainWindow):
@@ -580,7 +584,7 @@ class DashboardView(QMainWindow):
         self.setStyleSheet("background-color: #f5f5f5;")
 
         self.db_helper = DayCloseManager()
-        self.cart_model = CartModel()  # Initialize CartModel
+        self.cart_model = CartModel()
         self.main_widget = QWidget()
         self.setCentralWidget(self.main_widget)
         self.main_layout = QVBoxLayout(self.main_widget)
@@ -641,9 +645,63 @@ class DashboardView(QMainWindow):
             logo_label.setPixmap(logo_pixmap)
         logo_label.setAlignment(Qt.AlignCenter)
         title_layout.addWidget(logo_label)
+        
 
         # Right Controls Layout
         right_controls_layout = QHBoxLayout()
+        
+        # # # Sync Toggle Switch with LED Indicator
+        # sync_layout = QHBoxLayout()
+        # sync_layout.setSpacing(5)
+
+        # self.sync_switch = QCheckBox("Sync")
+        # self.sync_switch.setChecked(True)
+        # self.sync_switch.setStyleSheet(
+        #     """
+        #     QCheckBox {
+        #         color: white;
+        #         font-size: 14px;
+        #         padding: 5px;
+        #         spacing: 5px;
+        #     }
+        #     QCheckBox::indicator {
+        #         width: 40px;
+        #         height: 20px;
+        #         border-radius: 10px;
+        #         background-color: #dc3545;
+        #     }
+        #     QCheckBox::indicator:checked {
+        #         background-color: #28a745;
+        #     }
+        #     QCheckBox::indicator::before {
+        #         content: '';
+        #         width: 16px;
+        #         height: 16px;
+        #         border-radius: 8px;
+        #         background-color: white;
+        #         position: absolute;
+        #         top: 2px;
+        #         left: 2px;
+        #         transition: 0.2s;
+        #     }
+        #     QCheckBox::indicator:checked::before {
+        #         left: 22px;
+        #     }
+        #     """
+        # )
+        # self.sync_switch.stateChanged.connect(self.on_sync_switch_changed)
+        # sync_layout.addWidget(self.sync_switch)
+
+        # self.sync_status_indicator = QLabel()
+        # self.sync_status_indicator.setFixedSize(10, 10)
+        # self.sync_status_indicator.setStyleSheet(
+        #     "background-color: gray; border-radius: 5px;"
+        # )
+        # self.sync_status_indicator.setToolTip("Sync Status: Unknown")
+        # sync_layout.addWidget(self.sync_status_indicator)
+
+        # right_controls_layout.addLayout(sync_layout)
+        
         day_close_btn = QPushButton("Day Close")
         day_close_btn.setStyleSheet(
             """
@@ -944,11 +1002,11 @@ class DashboardView(QMainWindow):
         if item_groups:
             self.update_category_cards(item_groups[0])
 
-        self.sync_timer = QTimer(self)
-        self.sync_timer.timeout.connect(self.start_sync_thread)
-        self.sync_timer.start(10000)
-        self.sync_thread = None
-        self.check_internet_on_startup()
+        # self.sync_timer = QTimer(self)
+        # self.sync_timer.timeout.connect(self.start_sync_thread)
+        # self.sync_timer.start(10000)  # Sync every 10 seconds if enabled
+        # self.sync_thread = None
+        # self.check_internet_on_startup()
 
         # Check and perform day close on startup
         self.check_and_perform_day_close()
@@ -1149,50 +1207,93 @@ class DashboardView(QMainWindow):
             self.product_search.setFocus()
             self.product_barcode_search.clear()
 
-    def start_sync_thread(self):
-        if self.sync_thread is None or not self.sync_thread.isRunning():
-            if self.is_internet_available():
-                print("Internet available, starting sync in background...")
-                self.sync_thread = SyncWorker()
-                self.sync_thread.sync_finished.connect(self.on_sync_finished)
-                self.sync_thread.start()
-            else:
-                print("No internet connection, skipping sync")
+    # def on_sync_switch_changed(self, state):
+    #     """Handle toggle switch state change."""
+    #     is_enabled = bool(state)
+    #     print(f"Sync toggled: {'ON' if is_enabled else 'OFF'}")
+    #     self.update_sync_indicator("gray", "Sync Status: Unknown")
+    #     if is_enabled:
+    #         self.sync_timer.start(10000)
+    #         self.start_sync_thread()
+    #     else:
+    #         self.sync_timer.stop()
+    #         if self.sync_thread and self.sync_thread.isRunning():
+    #             self.sync_thread.quit()
+    #             self.sync_thread.wait()
+    #         self.update_sync_indicator("orange", "Sync Disabled")
 
-    def on_sync_finished(self, success):
-        if success:
-            print("Sync successful, updating UI...")
-            self.update_ui_after_sync()
-        else:
-            print("Sync failed")
-        self.sync_thread = None
+    # def start_sync_thread(self):
+    #     """Start synchronization based on toggle state."""
+    #     if self.sync_thread and self.sync_thread.isRunning():
+    #         print("Sync already in progress, skipping.")
+    #         return
 
-    def check_internet_on_startup(self):
-        if not self.is_internet_available():
-            QMessageBox.warning(
-                self,
-                "Offline Mode",
-                "No internet connection detected. Working in offline mode.",
-                QMessageBox.Ok,
-            )
+    #     if self.sync_switch.isChecked():
+    #         if self.is_internet_available():
+    #             print("Internet available, starting full sync...")
+    #             self.update_sync_indicator("yellow", "Syncing...")
+    #             self.sync_thread = SyncWorker(force_full_sync=True)
+    #             self.sync_thread.sync_finished.connect(self.on_sync_finished)
+    #             self.sync_thread.start()
+    #         else:
+    #             print("No internet connection, skipping sync")
+    #             self.update_sync_indicator("red", "No Internet")
+    #     else:
+    #         if self.is_internet_available():
+    #             print("Sync toggle OFF: Starting partial sync...")
+    #             self.update_sync_indicator("yellow", "Partial Syncing...")
+    #             self.sync_thread = SyncWorker(force_full_sync=False)
+    #             self.sync_thread.sync_finished.connect(self.on_sync_finished)
+    #             self.sync_thread.start()
+    #         else:
+    #             print("No internet, sync disabled")
+    #             self.update_sync_indicator("orange", "Sync Disabled, No Internet")
 
-    def is_internet_available(self):
-        try:
-            socket.create_connection(("www.google.com", 80), timeout=2)
-            return True
-        except OSError:
-            return False
+    # def on_sync_finished(self, success):
+    #     """Handle sync completion."""
+    #     if success:
+    #         print("Sync successful")
+    #         self.update_sync_indicator("green", "Sync Successful")
+    #         self.update_ui_after_sync()
+    #     else:
+    #         print("Sync failed")
+    #         self.update_sync_indicator("red", "Sync Failed")
+    #     self.sync_thread = None
 
-    def update_ui_after_sync(self):
-        self.sidebar.update_group_buttons(db.get_local_item_groups())
-        if self.current_category_id:
-            self.update_product_grid(self.current_category_id)
-        self.customer_types_data = db.get_customer_types()
-        self.customers_data = db.get_customers()
-        self.customer_type.clear()
-        self.customer_type.addItems([ct["name"] for ct in self.customer_types_data])
-        self.populate_customers_combobox()
-        self.refresh_product_cards()
+    # def update_sync_indicator(self, color, tooltip):
+    #     """Update the LED indicator."""
+    #     self.sync_status_indicator.setStyleSheet(
+    #         f"background-color: {color}; border-radius: 5px;"
+    #     )
+    #     self.sync_status_indicator.setToolTip(tooltip)
+    #     QApplication.processEvents()
+
+    # def check_internet_on_startup(self):
+    #     if not self.is_internet_available():
+    #         QMessageBox.warning(
+    #             self,
+    #             "Offline Mode",
+    #             "No internet connection detected. Working in offline mode.",
+    #             QMessageBox.Ok,
+    #         )
+
+    # def is_internet_available(self):
+    #     try:
+    #         socket.create_connection(("www.google.com", 80), timeout=2)
+    #         return True
+    #     except OSError:
+    #         return False
+
+    # def update_ui_after_sync(self):
+    #     self.sidebar.update_group_buttons(db.get_local_item_groups())
+    #     if self.current_category_id:
+    #         self.update_product_grid(self.current_category_id)
+    #     self.customer_types_data = db.get_customer_types()
+    #     self.customers_data = db.get_customers()
+    #     self.customer_type.clear()
+    #     self.customer_type.addItems([ct["name"] for ct in self.customer_types_data])
+    #     self.populate_customers_combobox()
+    #     self.refresh_product_cards()
 
     def refresh_product_cards(self):
         if self.current_category_id:
@@ -1306,7 +1407,9 @@ class DashboardView(QMainWindow):
 
         # Filter items based on 'name' (case-insensitive)
         filtered_items = [
-            item for item in all_items if text.lower() in item.get("name", "Unnamed Item").lower()
+            item
+            for item in all_items
+            if text.lower() in item.get("name", "Unnamed Item").lower()
         ]
 
         # Deduplicate items by 'id' and adapt to expected UI structure
@@ -1320,14 +1423,26 @@ class DashboardView(QMainWindow):
                     "item_id": item_id,
                     "item_name": item.get("name", "Unnamed Item"),
                     "item_unit": item.get("selling_unit_name", ""),
-                    "item_price": list(item.get("prices", {}).values())[0] if item.get("prices") else 0.0,
-                    "stock_quantity": list(item.get("stocks", {}).values())[0].get("stock_quantity", 0.0) if item.get("stocks") else 0.0,
+                    "item_price": (
+                        list(item.get("prices", {}).values())[0]
+                        if item.get("prices")
+                        else 0.0
+                    ),
+                    "stock_quantity": (
+                        list(item.get("stocks", {}).values())[0].get(
+                            "stock_quantity", 0.0
+                        )
+                        if item.get("stocks")
+                        else 0.0
+                    ),
                 }
                 deduplicated_filtered_items.append(ui_item)
                 seen_item_ids.add(item_id)
 
         self.update_product_grid(None, deduplicated_filtered_items)
-        print(f"Filtered {len(deduplicated_filtered_items)} items globally with query: '{text}'")
+        print(
+            f"Filtered {len(deduplicated_filtered_items)} items globally with query: '{text}'"
+        )
 
     def add_item_to_checkout(self, item):
         try:
