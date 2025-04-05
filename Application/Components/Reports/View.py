@@ -300,80 +300,131 @@ class ReportView(QWidget):
                 file_path += ".pdf"
 
             try:
-                doc = SimpleDocTemplate(file_path, pagesize=letter)
+                # Create document
+                doc = SimpleDocTemplate(
+                    file_path,
+                    pagesize=letter,
+                    rightMargin=0.75 * inch,
+                    leftMargin=0.75 * inch,
+                    topMargin=1 * inch,
+                    bottomMargin=0.75 * inch,
+                )
+
                 styles = getSampleStyleSheet()
-                centered_style = styles["Normal"]
-                centered_style.alignment = TA_CENTER
+                normal_style = styles["Normal"]
+                title_style = styles["Heading1"]
+                subtitle_style = styles["Heading3"]
+                normal_style.alignment = TA_CENTER
+                title_style.alignment = TA_CENTER
+                subtitle_style.alignment = TA_CENTER
 
+                # Company Details
                 company_details = self.report_manager.get_company_details()
-                company_name = ""
-                address_lines = []
-                if company_details:
-                    company_info = company_details[0]
-                    company_name = Paragraph(
-                        f"<b>{company_info['company_name']}</b>", centered_style
-                    )
-                    address_lines.append(
-                        Paragraph(company_info["address"], centered_style)
-                    )
-                    if company_info["state"]:
-                        address_lines.append(
-                            Paragraph(company_info["state"], centered_style)
-                        )
-                    if company_info["phone"]:
-                        address_lines.append(
-                            Paragraph(f"Phone: {company_info['phone']}", centered_style)
-                        )
-
-                report_title = Paragraph("<b>Sales Summary</b>", centered_style)
-
                 story = []
-                if company_name:
-                    story.append(company_name)
-                    for line in address_lines:
-                        story.append(line)
-                    story.append(Spacer(1, 0.2 * inch))
-                story.append(report_title)
-                story.append(Spacer(1, 0.2 * inch))
 
+                # Header Section
+                if company_details and company_details[0]:
+                    company_info = company_details[0]
+                    story.append(
+                        Paragraph(f"<b>{company_info['company_name']}</b>", title_style)
+                    )
+                    story.append(Paragraph(company_info["address"], normal_style))
+                    if company_info["state"]:
+                        story.append(Paragraph(company_info["state"], normal_style))
+                    if company_info["phone"]:
+                        story.append(
+                            Paragraph(f"Phone: {company_info['phone']}", normal_style)
+                        )
+                    story.append(Spacer(1, 0.25 * inch))
+
+                # Report Title and Date Range
+                story.append(Paragraph("<b>Sales Summary Report</b>", title_style))
+                start_date = self.start_date_edit.date().toString("yyyy-MM-dd")
+                end_date = self.end_date_edit.date().toString("yyyy-MM-dd")
+                store_name = self.store_combo.currentText()
+                story.append(
+                    Paragraph(f"Period: {start_date} to {end_date}", subtitle_style)
+                )
+                story.append(Paragraph(f"Store: {store_name}", subtitle_style))
+                story.append(Spacer(1, 0.3 * inch))
+
+                # Table Data Preparation
                 table_data = []
-                header = [
+                headers = [
                     model.horizontalHeaderItem(i).text()
                     for i in range(model.columnCount())
                 ]
-                table_data.append(header)
+                table_data.append(headers)
+
                 for row in range(model.rowCount()):
                     row_data = [
                         model.item(row, col).text()
                         for col in range(model.columnCount())
                     ]
                     table_data.append(row_data)
+
                 if table_data and table_data[-1][1] == "Grand Total":
                     last_row = table_data[-1]
                     grand_total_label = last_row[1]
                     totals = last_row[2:]
                     table_data[-1] = ["", grand_total_label] + totals
 
-                table = Table(table_data)
+                # Create and Style Table
+                col_widths = [1.2 * inch] + [0.9 * inch] * (len(headers) - 1)
+                table = Table(table_data, colWidths=col_widths)
                 table.setStyle(
                     TableStyle(
                         [
-                            ("BACKGROUND", (0, 0), (-1, 0), colors.grey),
-                            ("TEXTCOLOR", (0, 0), (-1, 0), colors.whitesmoke),
-                            ("ALIGN", (0, 0), (-1, -1), "CENTER"),
+                            # Header styling
+                            (
+                                "BACKGROUND",
+                                (0, 0),
+                                (-1, 0),
+                                colors.Color(0.2, 0.3, 0.5),
+                            ),  # Dark blue
+                            ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
                             ("FONTNAME", (0, 0), (-1, 0), "Helvetica-Bold"),
-                            ("BOTTOMPADDING", (0, 0), (-1, 0), 12),
-                            ("BACKGROUND", (0, 1), (-1, -2), colors.beige),
-                            ("BACKGROUND", (0, -1), (-1, -1), colors.lightgrey),
+                            ("FONTSIZE", (0, 0), (-1, 0), 10),
+                            ("BOTTOMPADDING", (0, 0), (-1, 0), 8),
+                            ("TOPPADDING", (0, 0), (-1, 0), 8),
+                            # Body styling
+                            ("BACKGROUND", (0, 1), (-1, -2), colors.white),
+                            ("TEXTCOLOR", (0, 1), (-1, -1), colors.black),
+                            ("FONTNAME", (0, 1), (-1, -1), "Helvetica"),
+                            ("FONTSIZE", (0, 1), (-1, -1), 9),
+                            # Grand Total styling
+                            (
+                                "BACKGROUND",
+                                (0, -1),
+                                (-1, -1),
+                                colors.Color(0.9, 0.9, 0.9),
+                            ),  # Light grey
                             ("FONTNAME", (0, -1), (-1, -1), "Helvetica-Bold"),
-                            ("GRID", (0, 0), (-1, -1), 1, colors.black),
+                            ("FONTSIZE", (0, -1), (-1, -1), 10),
+                            # General styling
+                            ("GRID", (0, 0), (-1, -1), 0.5, colors.grey),
+                            ("ALIGN", (1, 0), (-1, -1), "RIGHT"),
+                            ("ALIGN", (0, 0), (0, -1), "LEFT"),
+                            ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
                             ("SPAN", (0, -1), (1, -1)),
                         ]
                     )
                 )
 
                 story.append(table)
-                doc.build(story)
+
+                # Footer function
+                def add_footer(canvas, doc):
+                    canvas.saveState()
+                    canvas.setFont("Helvetica", 8)
+                    canvas.setFillGray(0.4)
+                    page_num = canvas.getPageNumber()
+                    text = f"Page {page_num} | Generated on {QDate.currentDate().toString('yyyy-MM-dd')}"
+                    canvas.drawCentredString(letter[0] / 2, 0.5 * inch, text)
+                    canvas.restoreState()
+
+                # Build document with footer
+                doc.build(story, onFirstPage=add_footer, onLaterPages=add_footer)
                 QMessageBox.information(
                     self, "Success", f"Sales summary downloaded to: {file_path}"
                 )
