@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 
 class DatabaseManager:
     def __init__(self):
-        self.db_path = Path("Helper/main_japango_02.db")
+        self.db_path = Path("Helper/main.db")
         self.db_path.parent.mkdir(exist_ok=True)
         self.lock = threading.Lock()
         self.sync_in_progress = False
