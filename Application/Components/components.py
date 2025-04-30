@@ -3,6 +3,7 @@ import sqlite3
 import os
 import logging
 import sys
+import time
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import *
 from PyQt5.QtGui import *
@@ -1017,81 +1018,124 @@ class PaymentCard(QWidget):
             }
         )
 
-        company["company_name"] = company["company_name"].replace("22", "").strip()
-        logger.debug(f"Company name after cleanup: '{company['company_name']}'")
+        if company["company_name"].startswith("22"):
+            company["company_name"] = company["company_name"][2:].strip()
+        elif "22" in company["company_name"]:
+            logger.warning(f"Company name contains '22' in an unexpected position: '{company['company_name']}'")
 
-        try:
-            VENDOR_ID = 0x1D90
-            PRODUCT_ID = 0x2060
-            printer = Usb(VENDOR_ID, PRODUCT_ID, in_ep=0x81, out_ep=0x2)
-            logger.info(
-                f"Connected to USB printer with VID: {VENDOR_ID:04x}, PID: {PRODUCT_ID:04x}"
-            )
+        VENDOR_ID = 0x1D90
+        PRODUCT_ID = 0x2060
+        max_retries = 3
+        retry_delay = 2 
 
-            printer.cashdraw([0, 25, 25])
-            logger.debug("Sent cash drawer open command (pin 2)")
+        for attempt in range(max_retries):
+            try:
+                # First try to find and release the device if it's already claimed
+                dev = usb.core.find(idVendor=VENDOR_ID, idProduct=PRODUCT_ID)
+                if dev is not None:
+                    # If device is found, try to release any existing interface
+                    try:
+                        # Check if a kernel driver is active and detach it
+                        if dev.is_kernel_driver_active(0):
+                            logger.debug("Detaching kernel driver")
+                            dev.detach_kernel_driver(0)
+                        
+                        # Reset the device
+                        logger.debug("Resetting USB device")
+                        dev.reset()
+                        
+                        # Wait a moment for reset to complete
+                        time.sleep(0.5)
+                    except Exception as e:
+                        logger.warning(f"Error releasing USB device: {e}")
+                
+                # Now try to connect to the printer
+                logger.debug(f"Connecting to USB printer (attempt {attempt+1}/{max_retries})")
+                printer = Usb(VENDOR_ID, PRODUCT_ID, in_ep=0x81, out_ep=0x2, timeout=5000)
+                logger.info(f"Connected to USB printer with VID: {VENDOR_ID:04x}, PID: {PRODUCT_ID:04x}")
 
-            printer.set(align="center")
-            printer.text(f"{company['company_name']}\n")
-            printer.text(f"{company['address']}\n")
-            if company["state"]:
-                printer.text(f"{company['state']}\n")
-            printer.text(f"Tel: {company['phone']}\n")
-            printer.text(f"TIN: {company['tin_no']} VRN: {company['vrn_no']}\n")
-            printer.text("\n")
-            printer.text("RECEIPT\n")
-            printer.text("\n")
-            printer.set(align="left")
-            printer.text(
-                f"Order: {self.order_no_label.text().replace('Order No: ', '')}\n"
-            )
-            printer.text(f"Date: {self.date_label.text().replace('Date: ', '')}\n")
-            printer.text(f"Payment: {self.payment_method.currentText()}\n")
-            printer.text("-" * 42 + "\n")
-            printer.text("Item                Qty  Price Total\n")
-            printer.text("-" * 42 + "\n")
+                # Open cash drawer
+                printer.cashdraw([0, 25, 25])
+                logger.debug("Sent cash drawer open command (pin 2)")
 
-            table = self.dashboard_view.table
-            for row in range(table.rowCount()):
-                item = table.item(row, 0).text()[:18].ljust(18)
-                qty = table.item(row, 2).text().rjust(3)
-                price = f"{float(table.item(row, 3).text()):.2f}".rjust(6)
-                total = f"{float(qty) * float(price):.2f}".rjust(6)
-                printer.text(f"{item} {qty} {price} {total}\n")
+                # Print header
+                printer.set(align="center")
+                printer.text(f"{company['company_name']}\n")
+                printer.text(f"{company['address']}\n")
+                if company["state"]:
+                    printer.text(f"{company['state']}\n")
+                printer.text(f"Tel: {company['phone']}\n")
+                printer.text(f"TIN: {company['tin_no']} VRN: {company['vrn_no']}\n")
+                printer.text("\n")
+                printer.text("RECEIPT\n")
+                printer.text("\n")
+                
+                # Print order details
+                printer.set(align="left")
+                printer.text(f"Order: {self.order_no_label.text().replace('Order No: ', '')}\n")
+                printer.text(f"Date: {self.date_label.text().replace('Date: ', '')}\n")
+                printer.text(f"Payment: {self.payment_method.currentText()}\n")
+                printer.text("-" * 42 + "\n")
+                printer.text("Item                Qty  Price Total\n")
+                printer.text("-" * 42 + "\n")
 
-            printer.text("-" * 42 + "\n")
-            printer.set(align="right")
-            printer.text(f"Subtotal: {self.total_amount:.2f}\n")
-            printer.text(f"Tip:      {self.tip:.2f}\n")
-            printer.text(f"Discount: {self.discount:.2f}\n")
-            printer.text("-" * 32 + "\n")
-            printer.text(
-                f"TOTAL:    {self.total_amount + self.tip - self.discount:.2f}\n"
-            )
-            printer.set(align="center")
-            printer.text("\nThank you for your purchase!\n")
-            printer.text("Visit us again!\n")
-            printer.text("\n\n\n")
+                # Print items
+                table = self.dashboard_view.table
+                for row in range(table.rowCount()):
+                    item = table.item(row, 0).text()[:18].ljust(18)
+                    qty = table.item(row, 2).text().rjust(3)
+                    price = f"{float(table.item(row, 3).text()):.2f}".rjust(6)
+                    total = f"{float(qty) * float(price):.2f}".rjust(6)
+                    printer.text(f"{item} {qty} {price} {total}\n")
 
-            printer.cut()
-            printer.close()
-            logger.info("Receipt printed successfully and cash drawer opened")
+                # Print totals
+                printer.text("-" * 42 + "\n")
+                printer.set(align="right")
+                printer.text(f"Subtotal: {self.total_amount:.2f}\n")
+                printer.text(f"Tip:      {self.tip:.2f}\n")
+                printer.text(f"Discount: {self.discount:.2f}\n")
+                printer.text("-" * 32 + "\n")
+                printer.text(f"TOTAL:    {self.total_amount + self.tip - self.discount:.2f}\n")
+                
+                # Print footer
+                printer.set(align="center")
+                printer.text("\nThank you for your purchase!\n")
+                printer.text("Visit us again!\n")
+                printer.text("\n\n\n")
 
-        except usb.core.USBError as e:
-            logger.error(f"USB error: {str(e)}")
-            QMessageBox.critical(
-                self,
-                "Print Error",
-                f"USB error: {str(e)}\nCheck printer connection or permissions.",
-            )
-        except Exception as e:
-            logger.error(f"Failed to print receipt or open cash drawer: {str(e)}")
-            QMessageBox.critical(
-                self,
-                "Print Error",
-                f"Failed to print or open cash drawer:\n{str(e)}\nCheck printer and cash drawer setup.",
-            )
-
+                # Cut paper and close connection
+                printer.cut()
+                printer.close()
+                logger.info("Receipt printed successfully and cash drawer opened")
+                
+                # If we got here, printing was successful
+                return True
+                
+            except usb.core.USBError as e:
+                if "Resource busy" in str(e) and attempt < max_retries - 1:
+                    logger.warning(f"Printer busy, retry {attempt+1}/{max_retries} in {retry_delay}s")
+                    time.sleep(retry_delay)
+                    continue
+                else:
+                    logger.error(f"USB error: {str(e)}")
+                    QMessageBox.critical(
+                        self,
+                        "Print Error",
+                        f"USB error: {str(e)}\nCheck printer connection or permissions.",
+                    )
+                    return False
+                    
+            except Exception as e:
+                logger.error(f"Failed to print receipt or open cash drawer: {str(e)}")
+                QMessageBox.critical(
+                    self,
+                    "Print Error",
+                    f"Failed to print or open cash drawer:\n{str(e)}\nCheck printer and cash drawer setup.",
+                )
+                return False
+        
+        # If we got through all retries without success
+        return False
     def render_receipt(self, printer, company):
         """Render the receipt content to the 80mm printer with debugging."""
         logger.debug("Starting render_receipt")

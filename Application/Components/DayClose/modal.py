@@ -191,4 +191,30 @@ class DayCloseManager:
         except sqlite3.Error as e:
             logger.error(f"Error saving day close data: {str(e)}")
             self._commit_and_close(conn)
-            return False
+            return False 
+    def is_operational(self):
+        """Check if the application can operate based on the latest day close."""
+        conn = self._get_connection()
+        cursor = conn.cursor()
+        try:
+            cursor.execute(
+                """
+                SELECT next_working_date 
+                FROM day_close 
+                ORDER BY working_date DESC 
+                LIMIT 1
+                """
+            )
+            result = cursor.fetchone()
+            if result:
+                next_working_date = date.fromisoformat(result[0])
+                current_date = date.today()
+                if current_date < next_working_date:
+                    logger.info(f"Application locked until {next_working_date}")
+                    return False, f"Application is locked until {next_working_date}. No actions allowed."
+            return True, "Application is operational."
+        except sqlite3.Error as e:
+            logger.error(f"Error checking operational status: {str(e)}")
+            return False, f"Database error: {str(e)}"
+        finally:
+            self._commit_and_close(conn)

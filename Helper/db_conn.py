@@ -6,10 +6,16 @@ from contextlib import contextmanager
 import threading
 import time
 
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger(__name__)
+
 
 class DatabaseManager:
     def __init__(self):
-        self.db_path = Path("Helper/main_amali.db")
+        self.db_path = Path("Helper/main.db")
         self.db_path.parent.mkdir(exist_ok=True)
         self.lock = threading.Lock()
         self.sync_in_progress = False
@@ -19,7 +25,8 @@ class DatabaseManager:
     def get_connection(self):
         with self.lock:
             conn = sqlite3.connect(self.db_path, timeout=30)
-            conn.execute("PRAGMA foreign_keys = ON")  # Enable foreign key constraints
+            conn.row_factory = sqlite3.Row
+            conn.execute("PRAGMA foreign_keys = ON")
             try:
                 yield conn
             finally:
@@ -78,7 +85,7 @@ class DatabaseManager:
                     category_id INTEGER NOT NULL,
                     item_type_id INTEGER,  -- Nullable
                     item_group_id INTEGER,  -- Nullable
-                    exprire_date TEXT,
+                    expire_date TEXT,
                     status TEXT DEFAULT 'active',
                     created_at TEXT DEFAULT CURRENT_TIMESTAMP,
                     updated_at TEXT DEFAULT CURRENT_TIMESTAMP,
@@ -127,7 +134,7 @@ class DatabaseManager:
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
                         item_id INTEGER NOT NULL,
                         store_id INTEGER NOT NULL,
-                        unit_id INTEGER NOT NULL,
+                        unit_id INTEGER,
                         amount REAL NOT NULL,
                         created_at TEXT DEFAULT CURRENT_TIMESTAMP,
                         updated_at TEXT DEFAULT CURRENT_TIMESTAMP,
@@ -142,14 +149,14 @@ class DatabaseManager:
                    CREATE TABLE IF NOT EXISTS stocks (
                     id INTEGER PRIMARY KEY AUTOINCREMENT,
                     item_id INTEGER NOT NULL,
-                    store_id INTEGER NOT NULL,
+                    store_id INTEGER,
                     min_quantity REAL,
                     max_quantity REAL,
                     created_at TIMESTAMP,
                     updated_at TIMESTAMP,
-                    FOREIGN KEY (item_id) REFERENCES items(id),
+                    FOREIGN KEY (item_id) REFERENCES items(id) ON DELETE CASCADE,
                     FOREIGN KEY (store_id) REFERENCES stores(id),
-                    UNIQUE(item_id, store_id)  -- Ensure uniqueness per item and store
+                    UNIQUE(item_id, store_id)
                 )
                 """
                 )
@@ -157,7 +164,7 @@ class DatabaseManager:
                     """
                     CREATE TABLE IF NOT EXISTS images (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        file_path TEXT NOT NULL,
+                        file_path TEXT,
                         created_at TIMESTAMP
                     )
                 """
@@ -169,7 +176,7 @@ class DatabaseManager:
                         item_id INTEGER,
                         image_id INTEGER,
                         created_at TIMESTAMP,
-                        FOREIGN KEY (item_id) REFERENCES items(id),
+                        FOREIGN KEY (item_id) REFERENCES items(id) ON DELETE CASCADE,
                         FOREIGN KEY (image_id) REFERENCES images(id)
                     )
                 """
@@ -184,16 +191,7 @@ class DatabaseManager:
                     )
                 """
                 )
-                cursor.execute(
-                    """
-                    CREATE TABLE IF NOT EXISTS customers (
-                        id INTEGER PRIMARY KEY AUTOINCREMENT,
-                        customer_name TEXT NOT NULL,
-                        active INTEGER DEFAULT 1,
-                        created_at TIMESTAMP
-                    )
-                """
-                )
+
                 cursor.execute(
                     """
                     CREATE TABLE IF NOT EXISTS payment_types (
@@ -238,6 +236,52 @@ class DatabaseManager:
                 )
                 cursor.execute(
                     """
+                        CREATE TABLE IF NOT EXISTS customers (
+                            id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            customer_name TEXT NOT NULL,
+                            customer_type_id INTEGER NOT NULL,
+                            city_id INTEGER NOT NULL,
+                            phone TEXT DEFAULT NULL,
+                            email TEXT DEFAULT NULL,
+                            address TEXT DEFAULT NULL,
+                            active INTEGER NOT NULL DEFAULT 1,
+                            created_at TEXT DEFAULT NULL,
+                            updated_at TEXT DEFAULT NULL,
+                            FOREIGN KEY (customer_type_id) REFERENCES customer_types(id),
+                            FOREIGN KEY (city_id) REFERENCES cities(id)
+                        );
+                        """
+                )
+                cursor.execute(
+                    """        
+                               CREATE TABLE IF NOT EXISTS countries (
+                                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                name TEXT NOT NULL,
+                                code TEXT DEFAULT NULL,
+                                created_at TEXT DEFAULT NULL,
+                                updated_at TEXT DEFAULT NULL,
+                                deleted_at TEXT DEFAULT NULL
+                                );
+                               """
+                )
+
+                cursor.execute(
+                    """
+                        CREATE TABLE IF NOT EXISTS cities (
+                            id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            country_id INTEGER NOT NULL,
+                            name TEXT NOT NULL,
+                            latitude REAL DEFAULT NULL,
+                            longitude REAL DEFAULT NULL,
+                            created_at TEXT DEFAULT NULL,
+                            updated_at TEXT DEFAULT NULL,
+                            deleted_at TEXT DEFAULT NULL
+                        );
+                        """
+                )
+
+                cursor.execute(
+                    """
                     CREATE TABLE IF NOT EXISTS customer_orders (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
                         customer_id INTEGER,
@@ -268,7 +312,7 @@ class DatabaseManager:
                         price REAL,
                         created_at TIMESTAMP,
                         FOREIGN KEY (order_id) REFERENCES orders(id),
-                        FOREIGN KEY (item_id) REFERENCES items(id)
+                        FOREIGN KEY (item_id) REFERENCES items(id) ON DELETE CASCADE
                     )
                 """
                 )
@@ -281,7 +325,7 @@ class DatabaseManager:
                         movement_type TEXT,
                         quantity INTEGER,
                         movement_date TIMESTAMP,
-                        FOREIGN KEY (item_id) REFERENCES items(id),
+                        FOREIGN KEY (item_id) REFERENCES items(id) ON DELETE CASCADE,
                         FOREIGN KEY (order_id) REFERENCES orders(id)
                     )
                 """
@@ -380,8 +424,8 @@ class DatabaseManager:
                     CREATE TABLE IF NOT EXISTS stores (
                         id INTEGER PRIMARY KEY AUTOINCREMENT,
                         name TEXT NOT NULL,
-                        location TEXT NOT NULL,
-                        manager_id INTEGER NOT NULL,
+                        location TEXT,
+                        manager_id INTEGER,
                         created_at DATETIME DEFAULT NULL,
                         updated_at DATETIME DEFAULT NULL,
                         FOREIGN KEY (manager_id) REFERENCES users(id)
@@ -396,7 +440,9 @@ class DatabaseManager:
                     item_id INTEGER NOT NULL,
                     store_id INTEGER NOT NULL,
                     created_at timestamp NULL DEFAULT NULL,
-                    updated_at timestamp NULL DEFAULT NULL
+                    updated_at timestamp NULL DEFAULT NULL,
+                    FOREIGN KEY (item_id) REFERENCES items(id) ON DELETE CASCADE,
+                    FOREIGN KEY (store_id) REFERENCES stores(id) ON DELETE CASCADE
                     );
                     """
                 )
@@ -433,7 +479,7 @@ class DatabaseManager:
                         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                         updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
                         FOREIGN KEY (cart_id) REFERENCES carts(id),
-                        FOREIGN KEY (item_id) REFERENCES items(id)
+                        FOREIGN KEY (item_id) REFERENCES items(id) ON DELETE CASCADE
                     )
                 """
                 )
@@ -503,7 +549,193 @@ class DatabaseManager:
                     )
                     """
                 )
+                cursor.execute(
+                    """
+                    CREATE TABLE IF NOT EXISTS brand_applicable_items (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        item_id INTEGER,
+                        brand_id INTEGER,
+                        FOREIGN KEY (item_id) REFERENCES items(id) ON DELETE CASCADE,
+                        FOREIGN KEY (brand_id) REFERENCES item_brands(id)
+                    );
+                    
+                    """
+                )
+                cursor.execute(
+                    """
+                    CREATE TABLE IF NOT EXISTS item_costs (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        item_id INTEGER,
+                        store_id INTEGER,
+                        unit_id INTEGER,
+                        amount REAL,
+                        created_at TIMESTAMP,
+                        updated_at TIMESTAMP,
+                        FOREIGN KEY (item_id) REFERENCES items(id) ON DELETE CASCADE,
+                        FOREIGN KEY (store_id) REFERENCES stores(id),
+                        FOREIGN KEY (unit_id) REFERENCES units(id)
+                    );
+                    """
+                )
 
+                cursor.execute(
+                    """
+                    CREATE TABLE IF NOT EXISTS item_taxes (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        item_id INTEGER,
+                        store_id INTEGER,
+                        tax_id INTEGER,
+                        FOREIGN KEY (item_id) REFERENCES items(id) ON DELETE CASCADE,
+                        FOREIGN KEY (store_id) REFERENCES stores(id),
+                        FOREIGN KEY (tax_id) REFERENCES taxes(id)
+                    );
+                    """
+                )
+                cursor.execute(
+                    """
+                    CREATE TABLE IF NOT EXISTS taxes (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        name VARCHAR(255) NOT NULL,
+                        tax_type TEXT NOT NULL DEFAULT 'exclusive',
+                        tax_mode TEXT NOT NULL DEFAULT 'percentage',
+                        tax_percentage REAL DEFAULT NULL,
+                        tax_amount REAL DEFAULT NULL,
+                        created_at TIMESTAMP NULL DEFAULT NULL,
+                        updated_at TIMESTAMP NULL DEFAULT NULL
+                    );
+                    """
+                )
+                cursor.execute(
+                    """
+                        CREATE TABLE IF NOT EXISTS item_brands (
+                            id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            name VARCHAR(255) NOT NULL,
+                            description TEXT DEFAULT NULL,
+                            is_active INTEGER NOT NULL DEFAULT 1,
+                            created_at TIMESTAMP NULL DEFAULT NULL,
+                            updated_at TIMESTAMP NULL DEFAULT NULL
+                        );
+                        """
+                )
+                cursor.execute(
+                    """
+                    CREATE TABLE IF NOT EXISTS purchase_orders (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        order_number TEXT NOT NULL UNIQUE,
+                        supplier_id INTEGER NOT NULL,
+                        order_date TEXT NOT NULL,
+                        expected_delivery_date TEXT DEFAULT NULL,
+                        status TEXT NOT NULL CHECK(status IN ('Pending', 'Approved', 'Shipped', 'Received', 'Cancelled')) DEFAULT 'Pending',
+                        total_amount REAL NOT NULL DEFAULT 0.00 CHECK(total_amount >= 0),
+                        currency TEXT NOT NULL DEFAULT 'TZS' CHECK(currency IN ('USD', 'TZS', 'KES', 'CNY', 'AED')), -- Add more as needed
+                        notes TEXT DEFAULT NULL,
+                        created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+                        updated_at TEXT DEFAULT CURRENT_TIMESTAMP,
+                        FOREIGN KEY (supplier_id) REFERENCES vendors(id) ON DELETE RESTRICT
+                    );
+                    """
+                )
+                cursor.execute(
+                    """
+                    CREATE TABLE IF NOT EXISTS purchase_order_items (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        purchase_order_id INTEGER NOT NULL,
+                        item_id INTEGER NOT NULL,
+                        unit_id INTEGER NOT NULL,
+                        quantity INTEGER NOT NULL CHECK(quantity > 0),
+                        discount REAL DEFAULT 0.0 CHECK(discount >= 0),
+                        unit_price REAL NOT NULL CHECK(unit_price >= 0),
+                        tax_id INTEGER DEFAULT NULL,
+                        total_price REAL NOT NULL CHECK(total_price >= 0),
+                        created_at TEXT DEFAULT CURRENT_TIMESTAMP,
+                        updated_at TEXT DEFAULT CURRENT_TIMESTAMP,
+                        FOREIGN KEY (purchase_order_id) REFERENCES purchase_orders(id) ON DELETE CASCADE,
+                        FOREIGN KEY (item_id) REFERENCES items(id) ON DELETE RESTRICT,
+                        FOREIGN KEY (unit_id) REFERENCES units(id) ON DELETE RESTRICT,
+                        FOREIGN KEY (tax_id) REFERENCES taxes(id) ON DELETE SET NULL
+                    );
+
+                    """
+                )
+                cursor.execute(
+                    """
+                        CREATE TABLE IF NOT EXISTS vendors (
+                            id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            name TEXT NOT NULL,
+                            email TEXT NOT NULL,
+                            phone TEXT NOT NULL,
+                            address TEXT NOT NULL,
+                            city_id INTEGER NOT NULL,
+                            state TEXT NOT NULL,
+                            postal_code TEXT DEFAULT NULL,
+                            country_id INTEGER NOT NULL,
+                            contact_person TEXT DEFAULT NULL,
+                            tin TEXT DEFAULT NULL,
+                            vrn TEXT DEFAULT NULL,
+                            status TEXT NOT NULL DEFAULT 'active',
+                            created_at TEXT DEFAULT NULL,
+                            updated_at TEXT DEFAULT NULL,
+                            FOREIGN KEY (city_id) REFERENCES cities(id),
+                            FOREIGN KEY (country_id) REFERENCES countries(id)
+                        )
+                        """
+                )
+
+                cursor.execute(
+                    """
+                               CREATE TABLE IF NOT EXISTS good_receipt_notes (
+                                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                    grn_number TEXT NOT NULL,
+                                    purchase_order_id INTEGER DEFAULT NULL,
+                                    supplier_id INTEGER NOT NULL,
+                                    received_by INTEGER DEFAULT NULL,
+                                    received_date TEXT NOT NULL,
+                                    delivery_note_number TEXT DEFAULT NULL,
+                                    status TEXT NOT NULL DEFAULT 'Pending',
+                                    remarks TEXT DEFAULT NULL,
+                                    created_at TEXT DEFAULT NULL,
+                                    updated_at TEXT DEFAULT NULL,
+                                    FOREIGN KEY (purchase_order_id) REFERENCES purchase_orders(id),
+                                    FOREIGN KEY (supplier_id) REFERENCES vendors(id),
+                                    FOREIGN KEY (received_by) REFERENCES users(id)
+                                );
+                               """
+                )
+                cursor.execute(
+                    """
+                               CREATE TABLE IF NOT EXISTS good_receive_note_items (
+                                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                grn_id INTEGER NOT NULL,
+                                purchase_order_item_id INTEGER DEFAULT NULL,
+                                item_id INTEGER NOT NULL,
+                                ordered_quantity REAL NOT NULL,
+                                received_quantity REAL NOT NULL,
+                                accepted_quantity REAL NOT NULL,
+                                rejected_quantity REAL NOT NULL DEFAULT 0.00,
+                                unit_price REAL NOT NULL,
+                                received_condition TEXT NOT NULL DEFAULT 'Good',
+                                created_at TEXT DEFAULT NULL,
+                                updated_at TEXT DEFAULT NULL,
+                                FOREIGN KEY (grn_id) REFERENCES good_receipt_notes(id),
+                                FOREIGN KEY (purchase_order_item_id) REFERENCES purchase_order_items(id),
+                                FOREIGN KEY (item_id) REFERENCES items(id)
+                            );
+
+                               """
+                )
+                cursor.execute(
+                    """
+                               CREATE TABLE IF NOT EXISTS daily_financials (
+                                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                    date TEXT NOT NULL UNIQUE,  -- Date in 'YYYY-MM-DD' format
+                                    total_orders REAL DEFAULT 0.0,  -- Sum of ground_total from completed orders
+                                    total_expenses REAL DEFAULT 0.0,  -- Sum of expenses for the day
+                                    after_expenses REAL DEFAULT 0.0,  -- total_orders - total_expenses
+                                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                                );
+                               """
+                )
                 hashed_password = (
                     "$2y$12$BlLtxbg53w4RNZmkwRq7T.R/6NMzKD0maVtGpMe1aeVBcCjghcckG"
                 )
@@ -539,41 +771,148 @@ class DatabaseManager:
                     """
                 )
 
-                conn.commit()
-                # Verify insertions
-                cursor.execute("SELECT id FROM users WHERE username = 'admin'")
-                admin_user = cursor.fetchone()
-                if admin_user:
-                    print(f"Admin user created with ID: {admin_user[0]}")
-                else:
-                    print("Failed to create admin user!")
+                cursor.execute(
+                    "INSERT OR IGNORE INTO countries (name, code) VALUES ('Tanzania', 'TZ')"
+                )
+                cursor.execute(
+                    "INSERT OR IGNORE INTO countries (name, code) VALUES ('Kenya', 'KE')"
+                )
+                cursor.execute(
+                    "INSERT OR IGNORE INTO countries (name, code) VALUES ('China', 'CN')"
+                )
+                cursor.execute(
+                    "INSERT OR IGNORE INTO countries (name, code) VALUES ('United Arab Emirates', 'AE')"
+                )
+                cursor.execute(
+                    "INSERT OR IGNORE INTO cities (country_id, name) VALUES (1, 'Dar es Salaam')"
+                )
+                cursor.execute(
+                    "INSERT OR IGNORE INTO cities (country_id, name) VALUES (1, 'Arusha')"
+                )
+                cursor.execute(
+                    "INSERT OR IGNORE INTO cities (country_id, name) VALUES (1, 'Morogoro')"
+                )
+                cursor.execute(
+                    "INSERT OR IGNORE INTO cities (country_id, name) VALUES (1, 'Mwanza')"
+                )
+                cursor.execute(
+                    "INSERT OR IGNORE INTO cities (country_id, name) VALUES (1, 'Mbeya')"
+                )
+                cursor.execute(
+                    "INSERT OR IGNORE INTO cities (country_id, name) VALUES (1, 'Dodoma')"
+                )
+                cursor.execute(
+                    "INSERT OR IGNORE INTO cities (country_id, name) VALUES (1, 'Nkasi')"
+                )
+                cursor.execute(
+                    "INSERT OR IGNORE INTO cities (country_id, name) VALUES (2, 'Nairobi')"
+                )
+                cursor.execute(
+                    "INSERT OR IGNORE INTO cities (country_id, name) VALUES (3, 'Beijing')"
+                )
+                cursor.execute(
+                    "INSERT OR IGNORE INTO cities (country_id, name) VALUES (4, 'Dubai')"
+                )
+               
+            #         cursor.execute(
+            #             """
+            #             UPDATE good_receipt_notes
+            #             SET store_id = (SELECT store_id FROM purchase_orders po WHERE po.id = good_receipt_notes.purchase_order_id)
+            #             WHERE purchase_order_id IS NOT NULL
+            #             """
+            #         )
+            #         cursor.execute(
+            #         """
+            #         ALTER TABLE orders ADD COLUMN store_id INTEGER
+            #         """
+            #         )
+            #         cursor.execute(
+            #             """
+            #             UPDATE orders
+            #             SET store_id = 1
+            #             WHERE store_id IS NULL
+            #             """
+            #         )
 
-                cursor.execute("SELECT id FROM stores WHERE name = 'Mohalal Shop'")
-                store = cursor.fetchone()
-                if store:
-                    print(f"Store created with ID: {store[0]}")
-                else:
-                    print("Failed to create default store!")
+            #         conn.commit()
+            #         # Verify insertions
+            #         cursor.execute("SELECT id FROM users WHERE username = 'admin'")
+            #         admin_user = cursor.fetchone()
+            #         if admin_user:
+            #             print(f"Admin user created with ID: {admin_user[0]}")
+            #         else:
+            #             print("Failed to create admin user!")
 
-                cursor.execute("SELECT id FROM payment_types WHERE name = 'Cash'")
-                payment_type = cursor.fetchone()
-                if payment_type:
-                    print(f"Payment type created with ID: {payment_type[0]}")
-                else:
-                    print("Failed to create default payment type!")
+            #         cursor.execute("SELECT id FROM stores WHERE name = 'Mohalal Shop'")
+            #         store = cursor.fetchone()
+            #         if store:
+            #             print(f"Store created with ID: {store[0]}")
+            #         else:
+            #             print("Failed to create default store!")
 
-                cursor.execute("SELECT id FROM payments WHERE short_code = 'Cash'")
-                payment = cursor.fetchone()
-                if payment:
-                    print(f"Payment created with ID: {payment[0]}")
-                else:
-                    print("Failed to create default payment!")
+            #         cursor.execute("SELECT id FROM payment_types WHERE name = 'Cash'")
+            #         payment_type = cursor.fetchone()
+            #         if payment_type:
+            #             print(f"Payment type created with ID: {payment_type[0]}")
+            #         else:
+            #             print("Failed to create default payment type!")
 
+            #         cursor.execute("SELECT id FROM payments WHERE short_code = 'Cash'")
+            #         payment = cursor.fetchone()
+            #         if payment:
+            #             print(f"Payment created with ID: {payment[0]}")
+            #         else:
+            #             print("Failed to create default payment!")
+
+            # except sqlite3.Error as e:
+            #     print(f"Error initializing database: {e}")
+            #     if "conn" in locals():
+            #         conn.rollback()
+            #     raise
+            # Check if store_id column exists in good_receipt_notes before adding
+            cursor.execute("PRAGMA table_info(good_receipt_notes)")
+            columns = [col[1] for col in cursor.fetchall()]
+            if "store_id" not in columns:
+                cursor.execute(
+                    """
+                    ALTER TABLE good_receipt_notes ADD COLUMN store_id INTEGER
+                    """
+                )
+                cursor.execute(
+                    """
+                    UPDATE good_receipt_notes
+                    SET store_id = (SELECT store_id FROM purchase_orders po WHERE po.id = good_receipt_notes.purchase_order_id)
+                    WHERE purchase_order_id IS NOT NULL
+                    """
+                )
+
+            # Check if store_id column exists in orders before adding
+            cursor.execute("PRAGMA table_info(orders)")
+            columns = [col[1] for col in cursor.fetchall()]
+            if "store_id" not in columns:
+                cursor.execute(
+                    """
+                    ALTER TABLE orders ADD COLUMN store_id INTEGER
+                    """
+                )
+                cursor.execute(
+                    """
+                    UPDATE orders
+                    SET store_id = 1  -- Default to a store ID, e.g., Mohalal Shop (id=1)
+                    WHERE store_id IS NULL
+                    """
+                )
+
+            conn.commit()
         except sqlite3.Error as e:
-            print(f"Error initializing database: {e}")
-            if "conn" in locals():
-                conn.rollback()
-            raise
+            print(f"Database error: {e}")
+            conn.rollback()  # Rollback before closing the connection
+            raise  # Re-raise the exception for debugging
+        finally:
+            conn.close()  # Close the connection after rollback (if needed)
+
+    def get_connection(self):
+        return sqlite3.connect(self.db_path)
 
     def get_local_item_groups(self):
         try:
@@ -677,22 +1016,34 @@ class DatabaseManager:
             print(f"Database error inserting category: {e}")
 
     def insert_item(
-        self, item_id, name, barcode, item_unit, item_price, stock_quantity, category_id
+        self,
+        item_id,
+        name,
+        barcode,
+        selling_unit,
+        item_price,
+        item_cost,
+        stock_quantity,
+        category_id,
+        min_quantity,
+        max_quantity,
+        store_id,
+        store_name,
+        expire_date,
+        buying_unit,
     ):
         try:
             with self.get_connection() as conn:
                 cursor = conn.cursor()
-
-                # Insert or update item (this part is fine as is)
+                # Insert or update items
                 cursor.execute(
                     """
-                    INSERT OR REPLACE INTO items (id, name, category_id, item_type_id, item_group_id, status, created_at, updated_at)
-                    VALUES (?, ?, ?, 1, NULL, 'active', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+                    INSERT OR REPLACE INTO items (id, name, category_id, expire_date, status, created_at, updated_at)
+                    VALUES (?, ?, ?, ?, 'active', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
                     """,
-                    (item_id, name, category_id),
+                    (item_id, name, category_id, expire_date),
                 )
-
-                # Handle barcode: Check if the barcode already exists for this item
+                # Insert or update barcode
                 if barcode and barcode.strip():
                     cursor.execute("SELECT id FROM barcodes WHERE code = ?", (barcode,))
                     barcode_row = cursor.fetchone()
@@ -704,38 +1055,53 @@ class DatabaseManager:
                             (barcode,),
                         )
                         barcode_id = cursor.lastrowid
-
-                    # Check if the item already has this barcode to avoid duplicates
                     cursor.execute(
                         "SELECT id FROM item_barcodes WHERE item_id = ? AND barcode_id = ?",
                         (item_id, barcode_id),
                     )
                     if not cursor.fetchone():
                         cursor.execute(
-                            """
-                            INSERT INTO item_barcodes (item_id, barcode_id, created_at, updated_at)
-                            VALUES (?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
-                            """,
+                            "INSERT INTO item_barcodes (item_id, barcode_id, created_at, updated_at) VALUES (?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)",
                             (item_id, barcode_id),
                         )
-
-                # Handle unit: Check if the unit exists, create if not
-                unit_name = item_unit if item_unit and item_unit.strip() else "Unit"
-                cursor.execute("SELECT id FROM units WHERE name = ?", (unit_name,))
-                unit_row = cursor.fetchone()
-                if unit_row:
-                    unit_id = unit_row[0]
+                # Handle buying unit
+                buying_unit_name = (
+                    buying_unit if buying_unit and buying_unit.strip() else "Unit"
+                )
+                cursor.execute(
+                    "SELECT id FROM units WHERE name = ?", (buying_unit_name,)
+                )
+                buying_unit_row = cursor.fetchone()
+                if buying_unit_row:
+                    buying_unit_id = buying_unit_row[0]
                 else:
                     cursor.execute(
                         "INSERT INTO units (name, created_at) VALUES (?, CURRENT_TIMESTAMP)",
-                        (unit_name,),
+                        (buying_unit_name,),
                     )
-                    unit_id = cursor.lastrowid
+                    buying_unit_id = cursor.lastrowid
+                    print(
+                        f"Inserted new buying unit: {buying_unit_name} with ID {buying_unit_id}"
+                    )
+                # Handle selling unit
 
-                # Check if item_units already exists to avoid duplicates
+                cursor.execute("SELECT id FROM units WHERE name = ?", (selling_unit,))
+                selling_unit_row = cursor.fetchone()
+                if selling_unit_row:
+                    selling_unit_id = selling_unit_row[0]
+                else:
+                    cursor.execute(
+                        "INSERT INTO units (name, created_at) VALUES (?, CURRENT_TIMESTAMP)",
+                        (selling_unit,),
+                    )
+                    selling_unit_id = cursor.lastrowid
+                    print(
+                        f"Inserted new selling unit: {selling_unit} with ID {selling_unit_id}"
+                    )
+                # Insert or update item_units with separate buying and selling units
                 cursor.execute(
                     "SELECT id FROM item_units WHERE item_id = ? AND buying_unit_id = ? AND selling_unit_id = ?",
-                    (item_id, unit_id, unit_id),
+                    (item_id, buying_unit_id, selling_unit_id),
                 )
                 if not cursor.fetchone():
                     cursor.execute(
@@ -743,53 +1109,86 @@ class DatabaseManager:
                         INSERT INTO item_units (item_id, buying_unit_id, selling_unit_id, created_at, updated_at)
                         VALUES (?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
                         """,
-                        (item_id, unit_id, unit_id),
+                        (item_id, buying_unit_id, selling_unit_id),
                     )
-
-                # Insert or update item_prices: Check if price exists for this item and store
+                    print(
+                        f"Inserted item_units for item {item_id}: buying_unit_id={buying_unit_id}, selling_unit_id={selling_unit_id}"
+                    )
+                # Insert or update item prices (using selling_unit_id)
                 price = float(item_price) if item_price is not None else 0.0
                 cursor.execute(
                     "SELECT id FROM item_prices WHERE item_id = ? AND store_id = ? AND unit_id = ?",
-                    (item_id, 1, unit_id),
+                    (item_id, store_id, selling_unit_id),
                 )
                 price_row = cursor.fetchone()
                 if price_row:
                     cursor.execute(
-                        """
-                        UPDATE item_prices 
-                        SET amount = ?, updated_at = CURRENT_TIMESTAMP 
-                        WHERE id = ?
-                        """,
+                        "UPDATE item_prices SET amount = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?",
                         (price, price_row[0]),
                     )
                 else:
                     cursor.execute(
                         """
                         INSERT INTO item_prices (item_id, store_id, unit_id, amount, created_at, updated_at)
-                        VALUES (?, 1, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+                        VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
                         """,
-                        (item_id, unit_id, price),
+                        (item_id, store_id, selling_unit_id, price),
                     )
-
-                # Insert or update stocks: Check if stock exists for this item and store
+                # Insert or update item costs (using buying_unit_id)
+                item_cost_price = float(item_cost) if item_cost is not None else 0.0
                 cursor.execute(
-                    "SELECT id FROM stocks WHERE item_id = ? AND store_id = 1",
-                    (item_id,),
+                    "SELECT id FROM item_costs WHERE item_id = ? AND store_id = ? AND unit_id = ?",
+                    (item_id, store_id, buying_unit_id),
+                )
+                item_cost_row = cursor.fetchone()
+                if item_cost_row:
+                    cursor.execute(
+                        "UPDATE item_costs SET amount = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?",
+                        (item_cost_price, item_cost_row[0]),
+                    )
+                else:
+                    cursor.execute(
+                        """
+                        INSERT INTO item_costs (item_id, store_id, unit_id, amount, created_at, updated_at)
+                        VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+                        """,
+                        (item_id, store_id, buying_unit_id, item_cost_price),
+                    )
+                # Insert or update store info
+                cursor.execute(
+                    "INSERT OR IGNORE INTO stores (id, name, created_at) VALUES (?, ?, CURRENT_TIMESTAMP)",
+                    (store_id, store_name),
+                )
+
+                cursor.execute(
+                    "INSERT OR IGNORE INTO item_stores (item_id, store_id, created_at) VALUES (?, ?, CURRENT_TIMESTAMP)",
+                    (item_id, store_id),
+                )
+                # Insert or update stocks
+                cursor.execute(
+                    "SELECT id FROM stocks WHERE item_id = ? AND store_id = ?",
+                    (item_id, store_id),
                 )
                 stock_row = cursor.fetchone()
                 if stock_row:
                     stock_id = stock_row[0]
+                    cursor.execute(
+                        """
+                        UPDATE stocks SET min_quantity = ?, max_quantity = ?, updated_at = CURRENT_TIMESTAMP
+                        WHERE id = ?
+                        """,
+                        (min_quantity, max_quantity, stock_id),
+                    )
                 else:
                     cursor.execute(
                         """
                         INSERT INTO stocks (item_id, store_id, min_quantity, max_quantity, created_at, updated_at)
-                        VALUES (?, 1, 0, 0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
+                        VALUES (?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
                         """,
-                        (item_id,),
+                        (item_id, store_id, min_quantity, max_quantity),
                     )
                     stock_id = cursor.lastrowid
-
-                # Insert or update item_stocks: Check if item_stocks exists for this item
+                # Insert or update item_stocks
                 stock_qty = float(stock_quantity) if stock_quantity is not None else 0.0
                 cursor.execute(
                     "SELECT id FROM item_stocks WHERE item_id = ? AND stock_id = ?",
@@ -798,24 +1197,16 @@ class DatabaseManager:
                 item_stock_row = cursor.fetchone()
                 if item_stock_row:
                     cursor.execute(
-                        """
-                        UPDATE item_stocks 
-                        SET stock_quantity = ?, updated_at = CURRENT_TIMESTAMP 
-                        WHERE id = ?
-                        """,
+                        "UPDATE item_stocks SET stock_quantity = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?",
                         (stock_qty, item_stock_row[0]),
                     )
                 else:
                     cursor.execute(
-                        """
-                        INSERT INTO item_stocks (item_id, stock_id, stock_quantity, created_at, updated_at)
-                        VALUES (?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
-                        """,
+                        "INSERT INTO item_stocks (item_id, stock_id, stock_quantity, created_at, updated_at) VALUES (?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)",
                         (item_id, stock_id, stock_qty),
                     )
-
                 conn.commit()
-                print(f"Inserted/Updated item {item_id} ({name}) into local database")
+                print(f"Inserted/Updated item {item_id} ({name}) successfully.")
         except sqlite3.Error as e:
             print(f"Error inserting item {item_id} ({name}): {e}")
             if "conn" in locals():
@@ -1575,6 +1966,7 @@ class DatabaseManager:
         except sqlite3.Error as e:
             print(f"Error getting all local companies: {e}")
             return []
+
     def get_item_by_id(self, item_id):
         try:
             with self.get_connection() as conn:
@@ -1599,15 +1991,18 @@ class DatabaseManager:
                 if row:
                     return {
                         "item_name": row[0],
-                        "item_unit": row[1] if row[1] else "Unit",  # Default to "Unit" if null
+                        "item_unit": (
+                            row[1] if row[1] else "Unit"
+                        ),  # Default to "Unit" if null
                         "item_price": float(row[2]) if row[2] is not None else 0.0,
-                        "stock_quantity": float(row[3]) if row[3] is not None else 0.0
+                        "stock_quantity": float(row[3]) if row[3] is not None else 0.0,
                     }
                 print(f"No item found with ID {item_id}")
                 return None
         except sqlite3.Error as e:
             print(f"Error fetching item by ID {item_id}: {e}")
             return None
+
     def get_all_local_items(self):
         """Get all items from local database with barcode and store details"""
         try:
@@ -1621,7 +2016,7 @@ class DatabaseManager:
                         i.category_id,
                         i.item_type_id,
                         i.item_group_id,
-                        i.exprire_date,
+                        i.expire_date,
                         b.code AS barcode,
                         u_selling.name AS selling_unit_name,
                         u_buying.name AS buying_unit_name,
@@ -1653,7 +2048,7 @@ class DatabaseManager:
                             "category_id": row[2],
                             "item_type_id": row[3],
                             "item_group_id": row[4],
-                            "exprire_date": row[5],
+                            "expire_date": row[5],
                             "barcode": row[6],
                             "selling_unit_name": row[7],
                             "buying_unit_name": row[8],
@@ -1685,7 +2080,7 @@ class DatabaseManager:
         category_id,
         item_type_id,
         item_group_id,
-        exprire_date,
+        expire_date,
         buying_unit_name,
         selling_unit_name,
         price_dict,
@@ -1700,7 +2095,7 @@ class DatabaseManager:
                 cursor.execute(
                     """
                     UPDATE items 
-                    SET name = ?, category_id = ?, item_type_id = ?, item_group_id = ?, exprire_date = ?, updated_at = CURRENT_TIMESTAMP
+                    SET name = ?, category_id = ?, item_type_id = ?, item_group_id = ?, expire_date = ?, updated_at = CURRENT_TIMESTAMP
                     WHERE id = ?
                     """,
                     (
@@ -1708,7 +2103,7 @@ class DatabaseManager:
                         category_id,
                         item_type_id,
                         item_group_id,
-                        exprire_date,
+                        expire_date,
                         item_id,
                     ),
                 )

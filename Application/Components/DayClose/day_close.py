@@ -79,10 +79,10 @@ class AuditWidget(QWidget):
 
         # Buttons
         buttons_layout = QHBoxLayout()
-        back_button = QPushButton("Back to Summaryxxx")
+        back_button = QPushButton("Back to Summary")
         back_button.clicked.connect(self.back_to_summary)
         buttons_layout.addWidget(back_button)
-        finish_button = QPushButton("Finishxxx")
+        finish_button = QPushButton("Finish")
         finish_button.clicked.connect(self.finish_and_redirect)
         buttons_layout.addWidget(finish_button)
         layout.addLayout(buttons_layout)

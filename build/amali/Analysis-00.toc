@@ -39,6 +39,186 @@
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/DayClose/modal.py',
    'DATA'),
+  ('Application/Components/Inventory/Category/__pycache__/category.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Category/__pycache__/category.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Category/__pycache__/model.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Category/__pycache__/model.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Category/category.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Category/category.py',
+   'DATA'),
+  ('Application/Components/Inventory/Category/model.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Category/model.py',
+   'DATA'),
+  ('Application/Components/Inventory/Customers/__pycache__/model.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Customers/__pycache__/model.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Customers/__pycache__/register.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Customers/__pycache__/register.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Customers/__pycache__/update.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Customers/__pycache__/update.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Customers/__pycache__/view.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Customers/__pycache__/view.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Customers/model.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Customers/model.py',
+   'DATA'),
+  ('Application/Components/Inventory/Customers/register.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Customers/register.py',
+   'DATA'),
+  ('Application/Components/Inventory/Customers/update.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Customers/update.py',
+   'DATA'),
+  ('Application/Components/Inventory/Customers/view.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Customers/view.py',
+   'DATA'),
+  ('Application/Components/Inventory/Expenses/__pycache__/model.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Expenses/__pycache__/model.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Expenses/__pycache__/view.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Expenses/__pycache__/view.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Expenses/model.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Expenses/model.py',
+   'DATA'),
+  ('Application/Components/Inventory/Expenses/view.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Expenses/view.py',
+   'DATA'),
+  ('Application/Components/Inventory/ItemCosts/__pycache__/model.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/ItemCosts/__pycache__/model.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/ItemCosts/__pycache__/view.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/ItemCosts/__pycache__/view.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/ItemCosts/model.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/ItemCosts/model.py',
+   'DATA'),
+  ('Application/Components/Inventory/ItemCosts/view.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/ItemCosts/view.py',
+   'DATA'),
+  ('Application/Components/Inventory/ItemGroup/__pycache__/item_group.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/ItemGroup/__pycache__/item_group.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/ItemGroup/__pycache__/model.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/ItemGroup/__pycache__/model.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/ItemGroup/item_group.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/ItemGroup/item_group.py',
+   'DATA'),
+  ('Application/Components/Inventory/ItemGroup/model.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/ItemGroup/model.py',
+   'DATA'),
+  ('Application/Components/Inventory/ItemType/__pycache__/model.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/ItemType/__pycache__/model.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/ItemType/__pycache__/view.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/ItemType/__pycache__/view.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/ItemType/model.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/ItemType/model.py',
+   'DATA'),
+  ('Application/Components/Inventory/ItemType/view.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/ItemType/view.py',
+   'DATA'),
+  ('Application/Components/Inventory/Items/__pycache__/model.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Items/__pycache__/model.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Items/__pycache__/register.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Items/__pycache__/register.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Items/__pycache__/update.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Items/__pycache__/update.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Items/__pycache__/view.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Items/__pycache__/view.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Items/model.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Items/model.py',
+   'DATA'),
+  ('Application/Components/Inventory/Items/register.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Items/register.py',
+   'DATA'),
+  ('Application/Components/Inventory/Items/update.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Items/update.py',
+   'DATA'),
+  ('Application/Components/Inventory/Items/view.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Items/view.py',
+   'DATA'),
   ('Application/Components/Inventory/Main.py',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
@@ -64,10 +244,100 @@
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Stores/store.py',
    'DATA'),
+  ('Application/Components/Inventory/Suppliers/__pycache__/model.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Suppliers/__pycache__/model.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Suppliers/__pycache__/register.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Suppliers/__pycache__/register.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Suppliers/__pycache__/update.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Suppliers/__pycache__/update.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Suppliers/__pycache__/view.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Suppliers/__pycache__/view.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Suppliers/model.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Suppliers/model.py',
+   'DATA'),
+  ('Application/Components/Inventory/Suppliers/register.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Suppliers/register.py',
+   'DATA'),
+  ('Application/Components/Inventory/Suppliers/update.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Suppliers/update.py',
+   'DATA'),
+  ('Application/Components/Inventory/Suppliers/view.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Suppliers/view.py',
+   'DATA'),
+  ('Application/Components/Inventory/Units/__pycache__/model.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Units/__pycache__/model.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Units/__pycache__/view.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Units/__pycache__/view.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Units/model.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Units/model.py',
+   'DATA'),
+  ('Application/Components/Inventory/Units/view.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Units/view.py',
+   'DATA'),
   ('Application/Components/Inventory/__pycache__/Main.cpython-312.pyc',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/__pycache__/Main.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/OrderSummary/Carts/__pycache__/modal.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/OrderSummary/Carts/__pycache__/modal.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/OrderSummary/Carts/modal.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/OrderSummary/Carts/modal.py',
+   'DATA'),
+  ('Application/Components/OrderSummary/Carts/view.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/OrderSummary/Carts/view.py',
+   'DATA'),
+  ('Application/Components/OrderSummary/Recall/__pycache__/view.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/OrderSummary/Recall/__pycache__/view.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/OrderSummary/Recall/modal.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/OrderSummary/Recall/modal.py',
+   'DATA'),
+  ('Application/Components/OrderSummary/Recall/view.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/OrderSummary/Recall/view.py',
    'DATA'),
   ('Application/Components/OrderSummary/__pycache__/modal.cpython-312.pyc',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
@@ -88,6 +358,66 @@
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/OrderSummary/order_summary.py',
+   'DATA'),
+  ('Application/Components/PurchaseOrders/__pycache__/invoice.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/__pycache__/invoice.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/PurchaseOrders/__pycache__/model.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/__pycache__/model.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/PurchaseOrders/__pycache__/received.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/__pycache__/received.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/PurchaseOrders/__pycache__/register.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/__pycache__/register.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/PurchaseOrders/__pycache__/update.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/__pycache__/update.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/PurchaseOrders/__pycache__/view.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/__pycache__/view.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/PurchaseOrders/invoice.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/invoice.py',
+   'DATA'),
+  ('Application/Components/PurchaseOrders/model.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/model.py',
+   'DATA'),
+  ('Application/Components/PurchaseOrders/received.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/received.py',
+   'DATA'),
+  ('Application/Components/PurchaseOrders/register.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/register.py',
+   'DATA'),
+  ('Application/Components/PurchaseOrders/update.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/update.py',
+   'DATA'),
+  ('Application/Components/PurchaseOrders/view.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/view.py',
    'DATA'),
   ('Application/Components/Reports/View.py',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
@@ -158,46 +488,6 @@
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Settings/View.py',
-   'DATA'),
-  ('Application/Components/Stock/CustomHeader.py',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Stock/CustomHeader.py',
-   'DATA'),
-  ('Application/Components/Stock/CustomHeaderModel.py',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Stock/CustomHeaderModel.py',
-   'DATA'),
-  ('Application/Components/Stock/FilterModel.py',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Stock/FilterModel.py',
-   'DATA'),
-  ('Application/Components/Stock/View.py',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Stock/View.py',
-   'DATA'),
-  ('Application/Components/Stock/__pycache__/CustomHeader.cpython-312.pyc',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Stock/__pycache__/CustomHeader.cpython-312.pyc',
-   'DATA'),
-  ('Application/Components/Stock/__pycache__/CustomHeaderModel.cpython-312.pyc',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Stock/__pycache__/CustomHeaderModel.cpython-312.pyc',
-   'DATA'),
-  ('Application/Components/Stock/__pycache__/FilterModel.cpython-312.pyc',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Stock/__pycache__/FilterModel.cpython-312.pyc',
-   'DATA'),
-  ('Application/Components/Stock/__pycache__/View.cpython-312.pyc',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Stock/__pycache__/View.cpython-312.pyc',
    'DATA'),
   ('Application/Components/UserManagement/Users/UsersView.py',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
@@ -404,10 +694,50 @@
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Helper/db_conn.py',
    'DATA'),
+  ('Helper/local.db',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Helper/local.db',
+   'DATA'),
   ('Helper/local_db.db',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Helper/local_db.db',
+   'DATA'),
+  ('Helper/local_db.sqbpro',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Helper/local_db.sqbpro',
+   'DATA'),
+  ('Helper/main.db',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Helper/main.db',
+   'DATA'),
+  ('Helper/main_amali.db',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Helper/main_amali.db',
+   'DATA'),
+  ('Helper/main_japango.db',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Helper/main_japango.db',
+   'DATA'),
+  ('Helper/main_japango_01.db',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Helper/main_japango_01.db',
+   'DATA'),
+  ('Helper/main_japango_02.db',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Helper/main_japango_02.db',
+   'DATA'),
+  ('Helper/main_japango_03.db',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Helper/main_japango_03.db',
    'DATA'),
   ('Helper/modal.py',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
@@ -423,6 +753,26 @@
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Helper/pos_amali_local.db',
+   'DATA'),
+  ('Helper/test.db',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Helper/test.db',
+   'DATA'),
+  ('Helper/test_01.db',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Helper/test_01.db',
+   'DATA'),
+  ('Helper/test_02.db',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Helper/test_02.db',
+   'DATA'),
+  ('Helper/test_amali.db',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Helper/test_amali.db',
    'DATA'),
   ('Layouts/Sidebar.py',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
@@ -545,6 +895,16 @@
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyInstaller/hooks/rthooks/pyi_rth_inspect.py',
    'PYSOURCE'),
+  ('pyi_rth_pkgutil',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyInstaller/hooks/rthooks/pyi_rth_pkgutil.py',
+   'PYSOURCE'),
+  ('pyi_rth_multiprocessing',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyInstaller/hooks/rthooks/pyi_rth_multiprocessing.py',
+   'PYSOURCE'),
   ('pyi_rth_pkgres',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
@@ -554,16 +914,6 @@
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyInstaller/hooks/rthooks/pyi_rth_setuptools.py',
-   'PYSOURCE'),
-  ('pyi_rth_multiprocessing',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyInstaller/hooks/rthooks/pyi_rth_multiprocessing.py',
-   'PYSOURCE'),
-  ('pyi_rth_pkgutil',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyInstaller/hooks/rthooks/pyi_rth_pkgutil.py',
    'PYSOURCE'),
   ('pyi_rth_usb',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
@@ -612,6 +962,8 @@
   ('tempfile', '/usr/lib/python3.12/tempfile.py', 'PYMODULE'),
   ('random', '/usr/lib/python3.12/random.py', 'PYMODULE'),
   ('_strptime', '/usr/lib/python3.12/_strptime.py', 'PYMODULE'),
+  ('datetime', '/usr/lib/python3.12/datetime.py', 'PYMODULE'),
+  ('_pydatetime', '/usr/lib/python3.12/_pydatetime.py', 'PYMODULE'),
   ('calendar', '/usr/lib/python3.12/calendar.py', 'PYMODULE'),
   ('argparse', '/usr/lib/python3.12/argparse.py', 'PYMODULE'),
   ('copy', '/usr/lib/python3.12/copy.py', 'PYMODULE'),
@@ -814,108 +1166,6 @@
   ('glob', '/usr/lib/python3.12/glob.py', 'PYMODULE'),
   ('ctypes', '/usr/lib/python3.12/ctypes/__init__.py', 'PYMODULE'),
   ('ctypes._endian', '/usr/lib/python3.12/ctypes/_endian.py', 'PYMODULE'),
-  ('pkgutil', '/usr/lib/python3.12/pkgutil.py', 'PYMODULE'),
-  ('zipimport', '/usr/lib/python3.12/zipimport.py', 'PYMODULE'),
-  ('multiprocessing.spawn',
-   '/usr/lib/python3.12/multiprocessing/spawn.py',
-   'PYMODULE'),
-  ('multiprocessing.resource_tracker',
-   '/usr/lib/python3.12/multiprocessing/resource_tracker.py',
-   'PYMODULE'),
-  ('multiprocessing.util',
-   '/usr/lib/python3.12/multiprocessing/util.py',
-   'PYMODULE'),
-  ('multiprocessing.forkserver',
-   '/usr/lib/python3.12/multiprocessing/forkserver.py',
-   'PYMODULE'),
-  ('multiprocessing.connection',
-   '/usr/lib/python3.12/multiprocessing/connection.py',
-   'PYMODULE'),
-  ('multiprocessing.resource_sharer',
-   '/usr/lib/python3.12/multiprocessing/resource_sharer.py',
-   'PYMODULE'),
-  ('xmlrpc.client', '/usr/lib/python3.12/xmlrpc/client.py', 'PYMODULE'),
-  ('xmlrpc', '/usr/lib/python3.12/xmlrpc/__init__.py', 'PYMODULE'),
-  ('xml.parsers.expat', '/usr/lib/python3.12/xml/parsers/expat.py', 'PYMODULE'),
-  ('xml.parsers', '/usr/lib/python3.12/xml/parsers/__init__.py', 'PYMODULE'),
-  ('xml', '/usr/lib/python3.12/xml/__init__.py', 'PYMODULE'),
-  ('xml.sax.expatreader',
-   '/usr/lib/python3.12/xml/sax/expatreader.py',
-   'PYMODULE'),
-  ('xml.sax.saxutils', '/usr/lib/python3.12/xml/sax/saxutils.py', 'PYMODULE'),
-  ('urllib.request', '/usr/lib/python3.12/urllib/request.py', 'PYMODULE'),
-  ('getpass', '/usr/lib/python3.12/getpass.py', 'PYMODULE'),
-  ('nturl2path', '/usr/lib/python3.12/nturl2path.py', 'PYMODULE'),
-  ('ftplib', '/usr/lib/python3.12/ftplib.py', 'PYMODULE'),
-  ('netrc', '/usr/lib/python3.12/netrc.py', 'PYMODULE'),
-  ('mimetypes', '/usr/lib/python3.12/mimetypes.py', 'PYMODULE'),
-  ('http.cookiejar', '/usr/lib/python3.12/http/cookiejar.py', 'PYMODULE'),
-  ('http', '/usr/lib/python3.12/http/__init__.py', 'PYMODULE'),
-  ('ssl', '/usr/lib/python3.12/ssl.py', 'PYMODULE'),
-  ('urllib.response', '/usr/lib/python3.12/urllib/response.py', 'PYMODULE'),
-  ('urllib.error', '/usr/lib/python3.12/urllib/error.py', 'PYMODULE'),
-  ('xml.sax', '/usr/lib/python3.12/xml/sax/__init__.py', 'PYMODULE'),
-  ('xml.sax.handler', '/usr/lib/python3.12/xml/sax/handler.py', 'PYMODULE'),
-  ('xml.sax._exceptions',
-   '/usr/lib/python3.12/xml/sax/_exceptions.py',
-   'PYMODULE'),
-  ('xml.sax.xmlreader', '/usr/lib/python3.12/xml/sax/xmlreader.py', 'PYMODULE'),
-  ('http.client', '/usr/lib/python3.12/http/client.py', 'PYMODULE'),
-  ('hmac', '/usr/lib/python3.12/hmac.py', 'PYMODULE'),
-  ('multiprocessing.context',
-   '/usr/lib/python3.12/multiprocessing/context.py',
-   'PYMODULE'),
-  ('multiprocessing.popen_spawn_win32',
-   '/usr/lib/python3.12/multiprocessing/popen_spawn_win32.py',
-   'PYMODULE'),
-  ('multiprocessing.popen_forkserver',
-   '/usr/lib/python3.12/multiprocessing/popen_forkserver.py',
-   'PYMODULE'),
-  ('multiprocessing.popen_spawn_posix',
-   '/usr/lib/python3.12/multiprocessing/popen_spawn_posix.py',
-   'PYMODULE'),
-  ('multiprocessing.popen_fork',
-   '/usr/lib/python3.12/multiprocessing/popen_fork.py',
-   'PYMODULE'),
-  ('multiprocessing.sharedctypes',
-   '/usr/lib/python3.12/multiprocessing/sharedctypes.py',
-   'PYMODULE'),
-  ('multiprocessing.heap',
-   '/usr/lib/python3.12/multiprocessing/heap.py',
-   'PYMODULE'),
-  ('multiprocessing.pool',
-   '/usr/lib/python3.12/multiprocessing/pool.py',
-   'PYMODULE'),
-  ('multiprocessing.dummy',
-   '/usr/lib/python3.12/multiprocessing/dummy/__init__.py',
-   'PYMODULE'),
-  ('multiprocessing.dummy.connection',
-   '/usr/lib/python3.12/multiprocessing/dummy/connection.py',
-   'PYMODULE'),
-  ('queue', '/usr/lib/python3.12/queue.py', 'PYMODULE'),
-  ('multiprocessing.queues',
-   '/usr/lib/python3.12/multiprocessing/queues.py',
-   'PYMODULE'),
-  ('multiprocessing.synchronize',
-   '/usr/lib/python3.12/multiprocessing/synchronize.py',
-   'PYMODULE'),
-  ('multiprocessing.managers',
-   '/usr/lib/python3.12/multiprocessing/managers.py',
-   'PYMODULE'),
-  ('multiprocessing.shared_memory',
-   '/usr/lib/python3.12/multiprocessing/shared_memory.py',
-   'PYMODULE'),
-  ('secrets', '/usr/lib/python3.12/secrets.py', 'PYMODULE'),
-  ('multiprocessing.reduction',
-   '/usr/lib/python3.12/multiprocessing/reduction.py',
-   'PYMODULE'),
-  ('multiprocessing.process',
-   '/usr/lib/python3.12/multiprocessing/process.py',
-   'PYMODULE'),
-  ('runpy', '/usr/lib/python3.12/runpy.py', 'PYMODULE'),
-  ('multiprocessing',
-   '/usr/lib/python3.12/multiprocessing/__init__.py',
-   'PYMODULE'),
   ('_distutils_hack',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
@@ -952,6 +1202,7 @@
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/setuptools/_vendor/more_itertools/more.py',
    'PYMODULE'),
+  ('queue', '/usr/lib/python3.12/queue.py', 'PYMODULE'),
   ('json', '/usr/lib/python3.12/json/__init__.py', 'PYMODULE'),
   ('json.encoder', '/usr/lib/python3.12/json/encoder.py', 'PYMODULE'),
   ('json.decoder', '/usr/lib/python3.12/json/decoder.py', 'PYMODULE'),
@@ -1041,6 +1292,8 @@
   ('difflib', '/usr/lib/python3.12/difflib.py', 'PYMODULE'),
   ('unittest.result', '/usr/lib/python3.12/unittest/result.py', 'PYMODULE'),
   ('unittest.util', '/usr/lib/python3.12/unittest/util.py', 'PYMODULE'),
+  ('pkgutil', '/usr/lib/python3.12/pkgutil.py', 'PYMODULE'),
+  ('zipimport', '/usr/lib/python3.12/zipimport.py', 'PYMODULE'),
   ('asyncio', '/usr/lib/python3.12/asyncio/__init__.py', 'PYMODULE'),
   ('asyncio.unix_events',
    '/usr/lib/python3.12/asyncio/unix_events.py',
@@ -1055,6 +1308,7 @@
   ('asyncio.selector_events',
    '/usr/lib/python3.12/asyncio/selector_events.py',
    'PYMODULE'),
+  ('ssl', '/usr/lib/python3.12/ssl.py', 'PYMODULE'),
   ('asyncio.proactor_events',
    '/usr/lib/python3.12/asyncio/proactor_events.py',
    'PYMODULE'),
@@ -1113,6 +1367,104 @@
    'PYMODULE'),
   ('concurrent.futures.process',
    '/usr/lib/python3.12/concurrent/futures/process.py',
+   'PYMODULE'),
+  ('multiprocessing.synchronize',
+   '/usr/lib/python3.12/multiprocessing/synchronize.py',
+   'PYMODULE'),
+  ('multiprocessing.heap',
+   '/usr/lib/python3.12/multiprocessing/heap.py',
+   'PYMODULE'),
+  ('multiprocessing.resource_tracker',
+   '/usr/lib/python3.12/multiprocessing/resource_tracker.py',
+   'PYMODULE'),
+  ('multiprocessing.spawn',
+   '/usr/lib/python3.12/multiprocessing/spawn.py',
+   'PYMODULE'),
+  ('runpy', '/usr/lib/python3.12/runpy.py', 'PYMODULE'),
+  ('multiprocessing.util',
+   '/usr/lib/python3.12/multiprocessing/util.py',
+   'PYMODULE'),
+  ('multiprocessing.forkserver',
+   '/usr/lib/python3.12/multiprocessing/forkserver.py',
+   'PYMODULE'),
+  ('multiprocessing.process',
+   '/usr/lib/python3.12/multiprocessing/process.py',
+   'PYMODULE'),
+  ('multiprocessing.context',
+   '/usr/lib/python3.12/multiprocessing/context.py',
+   'PYMODULE'),
+  ('multiprocessing.popen_spawn_win32',
+   '/usr/lib/python3.12/multiprocessing/popen_spawn_win32.py',
+   'PYMODULE'),
+  ('multiprocessing.popen_forkserver',
+   '/usr/lib/python3.12/multiprocessing/popen_forkserver.py',
+   'PYMODULE'),
+  ('multiprocessing.popen_spawn_posix',
+   '/usr/lib/python3.12/multiprocessing/popen_spawn_posix.py',
+   'PYMODULE'),
+  ('multiprocessing.popen_fork',
+   '/usr/lib/python3.12/multiprocessing/popen_fork.py',
+   'PYMODULE'),
+  ('multiprocessing.sharedctypes',
+   '/usr/lib/python3.12/multiprocessing/sharedctypes.py',
+   'PYMODULE'),
+  ('multiprocessing.pool',
+   '/usr/lib/python3.12/multiprocessing/pool.py',
+   'PYMODULE'),
+  ('multiprocessing.dummy',
+   '/usr/lib/python3.12/multiprocessing/dummy/__init__.py',
+   'PYMODULE'),
+  ('multiprocessing.dummy.connection',
+   '/usr/lib/python3.12/multiprocessing/dummy/connection.py',
+   'PYMODULE'),
+  ('multiprocessing.managers',
+   '/usr/lib/python3.12/multiprocessing/managers.py',
+   'PYMODULE'),
+  ('multiprocessing.shared_memory',
+   '/usr/lib/python3.12/multiprocessing/shared_memory.py',
+   'PYMODULE'),
+  ('secrets', '/usr/lib/python3.12/secrets.py', 'PYMODULE'),
+  ('hmac', '/usr/lib/python3.12/hmac.py', 'PYMODULE'),
+  ('multiprocessing.reduction',
+   '/usr/lib/python3.12/multiprocessing/reduction.py',
+   'PYMODULE'),
+  ('multiprocessing.resource_sharer',
+   '/usr/lib/python3.12/multiprocessing/resource_sharer.py',
+   'PYMODULE'),
+  ('multiprocessing.queues',
+   '/usr/lib/python3.12/multiprocessing/queues.py',
+   'PYMODULE'),
+  ('multiprocessing.connection',
+   '/usr/lib/python3.12/multiprocessing/connection.py',
+   'PYMODULE'),
+  ('xmlrpc.client', '/usr/lib/python3.12/xmlrpc/client.py', 'PYMODULE'),
+  ('xmlrpc', '/usr/lib/python3.12/xmlrpc/__init__.py', 'PYMODULE'),
+  ('xml.parsers.expat', '/usr/lib/python3.12/xml/parsers/expat.py', 'PYMODULE'),
+  ('xml.parsers', '/usr/lib/python3.12/xml/parsers/__init__.py', 'PYMODULE'),
+  ('xml', '/usr/lib/python3.12/xml/__init__.py', 'PYMODULE'),
+  ('xml.sax.expatreader',
+   '/usr/lib/python3.12/xml/sax/expatreader.py',
+   'PYMODULE'),
+  ('xml.sax.saxutils', '/usr/lib/python3.12/xml/sax/saxutils.py', 'PYMODULE'),
+  ('urllib.request', '/usr/lib/python3.12/urllib/request.py', 'PYMODULE'),
+  ('getpass', '/usr/lib/python3.12/getpass.py', 'PYMODULE'),
+  ('nturl2path', '/usr/lib/python3.12/nturl2path.py', 'PYMODULE'),
+  ('ftplib', '/usr/lib/python3.12/ftplib.py', 'PYMODULE'),
+  ('netrc', '/usr/lib/python3.12/netrc.py', 'PYMODULE'),
+  ('mimetypes', '/usr/lib/python3.12/mimetypes.py', 'PYMODULE'),
+  ('http.cookiejar', '/usr/lib/python3.12/http/cookiejar.py', 'PYMODULE'),
+  ('http', '/usr/lib/python3.12/http/__init__.py', 'PYMODULE'),
+  ('urllib.response', '/usr/lib/python3.12/urllib/response.py', 'PYMODULE'),
+  ('urllib.error', '/usr/lib/python3.12/urllib/error.py', 'PYMODULE'),
+  ('xml.sax', '/usr/lib/python3.12/xml/sax/__init__.py', 'PYMODULE'),
+  ('xml.sax.handler', '/usr/lib/python3.12/xml/sax/handler.py', 'PYMODULE'),
+  ('xml.sax._exceptions',
+   '/usr/lib/python3.12/xml/sax/_exceptions.py',
+   'PYMODULE'),
+  ('xml.sax.xmlreader', '/usr/lib/python3.12/xml/sax/xmlreader.py', 'PYMODULE'),
+  ('http.client', '/usr/lib/python3.12/http/client.py', 'PYMODULE'),
+  ('multiprocessing',
+   '/usr/lib/python3.12/multiprocessing/__init__.py',
    'PYMODULE'),
   ('concurrent.futures._base',
    '/usr/lib/python3.12/concurrent/futures/_base.py',
@@ -1997,24 +2349,9 @@
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/escpos/version.py',
    'PYMODULE'),
-  ('_py_abc', '/usr/lib/python3.12/_py_abc.py', 'PYMODULE'),
-  ('stringprep', '/usr/lib/python3.12/stringprep.py', 'PYMODULE'),
   ('tracemalloc', '/usr/lib/python3.12/tracemalloc.py', 'PYMODULE'),
-  ('Application.Components.DayClose.modal',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/DayClose/modal.py',
-   'PYMODULE'),
-  ('Application.Components.DayClose', '-', 'PYMODULE'),
-  ('Application.Components', '-', 'PYMODULE'),
-  ('Application', '-', 'PYMODULE'),
-  ('Application.Components.DayClose.day_close',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/DayClose/day_close.py',
-   'PYMODULE'),
-  ('datetime', '/usr/lib/python3.12/datetime.py', 'PYMODULE'),
-  ('_pydatetime', '/usr/lib/python3.12/_pydatetime.py', 'PYMODULE'),
+  ('stringprep', '/usr/lib/python3.12/stringprep.py', 'PYMODULE'),
+  ('_py_abc', '/usr/lib/python3.12/_py_abc.py', 'PYMODULE'),
   ('bcrypt',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
@@ -2025,6 +2362,8 @@
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/main.py',
    'PYMODULE'),
+  ('Application.Components', '-', 'PYMODULE'),
+  ('Application', '-', 'PYMODULE'),
   ('Helper.api',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
@@ -2607,6 +2946,17 @@
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/OrderSummary/order_summary.py',
    'PYMODULE'),
   ('Application.Components.OrderSummary', '-', 'PYMODULE'),
+  ('Application.Components.OrderSummary.modal',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/OrderSummary/modal.py',
+   'PYMODULE'),
+  ('Application.Components.OrderSummary.Recall.view',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/OrderSummary/Recall/view.py',
+   'PYMODULE'),
+  ('Application.Components.OrderSummary.Recall', '-', 'PYMODULE'),
   ('Application.Components.components',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
@@ -3906,6 +4256,12 @@
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Reports/modal.py',
    'PYMODULE'),
+  ('Application.Components.OrderSummary.Carts.modal',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/OrderSummary/Carts/modal.py',
+   'PYMODULE'),
+  ('Application.Components.OrderSummary.Carts', '-', 'PYMODULE'),
   ('Application.Components.Inventory.Main',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
@@ -3924,6 +4280,69 @@
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Settings/Payments/modal.py',
    'PYMODULE'),
+  ('Application.Components.PurchaseOrders.view',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/view.py',
+   'PYMODULE'),
+  ('Application.Components.PurchaseOrders', '-', 'PYMODULE'),
+  ('Application.Components.PurchaseOrders.received',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/received.py',
+   'PYMODULE'),
+  ('Application.Components.PurchaseOrders.update',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/update.py',
+   'PYMODULE'),
+  ('Application.Components.PurchaseOrders.register',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/register.py',
+   'PYMODULE'),
+  ('Application.Components.PurchaseOrders.model',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/model.py',
+   'PYMODULE'),
+  ('Application.Components.PurchaseOrders.invoice',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/invoice.py',
+   'PYMODULE'),
+  ('Application.Components.Inventory.Units.view',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Units/view.py',
+   'PYMODULE'),
+  ('Application.Components.Inventory.Units', '-', 'PYMODULE'),
+  ('Application.Components.Inventory.Units.model',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Units/model.py',
+   'PYMODULE'),
+  ('Application.Components.Inventory.Suppliers.view',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Suppliers/view.py',
+   'PYMODULE'),
+  ('Application.Components.Inventory.Suppliers', '-', 'PYMODULE'),
+  ('Application.Components.Inventory.Suppliers.update',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Suppliers/update.py',
+   'PYMODULE'),
+  ('Application.Components.Inventory.Suppliers.register',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Suppliers/register.py',
+   'PYMODULE'),
+  ('Application.Components.Inventory.Suppliers.model',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Suppliers/model.py',
+   'PYMODULE'),
   ('Application.Components.Inventory.Stores.store',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
@@ -3934,6 +4353,114 @@
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Stores/modal.py',
+   'PYMODULE'),
+  ('Application.Components.Inventory.Items.view',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Items/view.py',
+   'PYMODULE'),
+  ('Application.Components.Inventory.Items', '-', 'PYMODULE'),
+  ('Application.Components.Inventory.Items.update',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Items/update.py',
+   'PYMODULE'),
+  ('Application.Components.Inventory.Items.register',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Items/register.py',
+   'PYMODULE'),
+  ('Application.Components.Inventory.Items.model',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Items/model.py',
+   'PYMODULE'),
+  ('Application.Components.Inventory.ItemType.view',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/ItemType/view.py',
+   'PYMODULE'),
+  ('Application.Components.Inventory.ItemType', '-', 'PYMODULE'),
+  ('Application.Components.Inventory.ItemType.model',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/ItemType/model.py',
+   'PYMODULE'),
+  ('Application.Components.Inventory.ItemGroup.item_group',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/ItemGroup/item_group.py',
+   'PYMODULE'),
+  ('Application.Components.Inventory.ItemGroup', '-', 'PYMODULE'),
+  ('Application.Components.Inventory.ItemGroup.model',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/ItemGroup/model.py',
+   'PYMODULE'),
+  ('Application.Components.Inventory.ItemCosts.view',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/ItemCosts/view.py',
+   'PYMODULE'),
+  ('Application.Components.Inventory.ItemCosts', '-', 'PYMODULE'),
+  ('Application.Components.Inventory.ItemCosts.model',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/ItemCosts/model.py',
+   'PYMODULE'),
+  ('Application.Components.Inventory.Expenses.view',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Expenses/view.py',
+   'PYMODULE'),
+  ('Application.Components.Inventory.Expenses', '-', 'PYMODULE'),
+  ('Application.Components.Inventory.Customers.view',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Customers/view.py',
+   'PYMODULE'),
+  ('Application.Components.Inventory.Customers', '-', 'PYMODULE'),
+  ('Application.Components.Inventory.Customers.update',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Customers/update.py',
+   'PYMODULE'),
+  ('Application.Components.Inventory.Customers.register',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Customers/register.py',
+   'PYMODULE'),
+  ('Application.Components.Inventory.Customers.model',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Customers/model.py',
+   'PYMODULE'),
+  ('Application.Components.Inventory.Category.category',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Category/category.py',
+   'PYMODULE'),
+  ('Application.Components.Inventory.Category', '-', 'PYMODULE'),
+  ('Application.Components.Inventory.Category.model',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Category/model.py',
+   'PYMODULE'),
+  ('Application.Components.Inventory.Expenses.model',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Expenses/model.py',
+   'PYMODULE'),
+  ('Application.Components.DayClose.day_close',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/DayClose/day_close.py',
+   'PYMODULE'),
+  ('Application.Components.DayClose', '-', 'PYMODULE'),
+  ('Application.Components.DayClose.modal',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/DayClose/modal.py',
    'PYMODULE'),
   ('Helper.db_conn',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
@@ -3954,60 +4481,40 @@
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/printsupport/libcupsprintersupport.so',
    'BINARY'),
-  ('PyQt5/Qt5/plugins/wayland-graphics-integration-client/libqt-plugin-wayland-egl.so',
+  ('PyQt5/Qt5/plugins/platformthemes/libqxdgdesktopportal.so',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/wayland-graphics-integration-client/libqt-plugin-wayland-egl.so',
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/platformthemes/libqxdgdesktopportal.so',
+   'BINARY'),
+  ('PyQt5/Qt5/plugins/generic/libqevdevmouseplugin.so',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/generic/libqevdevmouseplugin.so',
+   'BINARY'),
+  ('PyQt5/Qt5/plugins/wayland-shell-integration/libfullscreen-shell-v1.so',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/wayland-shell-integration/libfullscreen-shell-v1.so',
    'BINARY'),
   ('PyQt5/Qt5/plugins/wayland-graphics-integration-client/libshm-emulation-server.so',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/wayland-graphics-integration-client/libshm-emulation-server.so',
    'BINARY'),
-  ('PyQt5/Qt5/plugins/platforms/libqlinuxfb.so',
+  ('PyQt5/Qt5/plugins/imageformats/libqicns.so',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/platforms/libqlinuxfb.so',
-   'BINARY'),
-  ('PyQt5/Qt5/plugins/imageformats/libqwebp.so',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/imageformats/libqwebp.so',
-   'BINARY'),
-  ('PyQt5/Qt5/plugins/wayland-graphics-integration-client/libdmabuf-server.so',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/wayland-graphics-integration-client/libdmabuf-server.so',
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/imageformats/libqicns.so',
    'BINARY'),
   ('PyQt5/Qt5/plugins/iconengines/libqsvgicon.so',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/iconengines/libqsvgicon.so',
    'BINARY'),
-  ('PyQt5/Qt5/plugins/imageformats/libqtiff.so',
+  ('PyQt5/Qt5/plugins/platforms/libqoffscreen.so',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/imageformats/libqtiff.so',
-   'BINARY'),
-  ('PyQt5/Qt5/plugins/platformthemes/libqxdgdesktopportal.so',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/platformthemes/libqxdgdesktopportal.so',
-   'BINARY'),
-  ('PyQt5/Qt5/plugins/platforms/libqminimalegl.so',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/platforms/libqminimalegl.so',
-   'BINARY'),
-  ('PyQt5/Qt5/plugins/imageformats/libqico.so',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/imageformats/libqico.so',
-   'BINARY'),
-  ('PyQt5/Qt5/plugins/wayland-shell-integration/libivi-shell.so',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/wayland-shell-integration/libivi-shell.so',
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/platforms/libqoffscreen.so',
    'BINARY'),
   ('PyQt5/Qt5/plugins/wayland-shell-integration/libxdg-shell-v5.so',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
@@ -4019,10 +4526,75 @@
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/imageformats/libqwbmp.so',
    'BINARY'),
-  ('PyQt5/Qt5/plugins/wayland-shell-integration/libwl-shell.so',
+  ('PyQt5/Qt5/plugins/xcbglintegrations/libqxcb-egl-integration.so',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/wayland-shell-integration/libwl-shell.so',
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/xcbglintegrations/libqxcb-egl-integration.so',
+   'BINARY'),
+  ('PyQt5/Qt5/plugins/wayland-graphics-integration-client/libdrm-egl-server.so',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/wayland-graphics-integration-client/libdrm-egl-server.so',
+   'BINARY'),
+  ('PyQt5/Qt5/plugins/platforms/libqeglfs.so',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/platforms/libqeglfs.so',
+   'BINARY'),
+  ('PyQt5/Qt5/plugins/platforms/libqxcb.so',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/platforms/libqxcb.so',
+   'BINARY'),
+  ('PyQt5/Qt5/plugins/imageformats/libqwebp.so',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/imageformats/libqwebp.so',
+   'BINARY'),
+  ('PyQt5/Qt5/plugins/imageformats/libqgif.so',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/imageformats/libqgif.so',
+   'BINARY'),
+  ('PyQt5/Qt5/plugins/generic/libqevdevtabletplugin.so',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/generic/libqevdevtabletplugin.so',
+   'BINARY'),
+  ('PyQt5/Qt5/plugins/platforms/libqlinuxfb.so',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/platforms/libqlinuxfb.so',
+   'BINARY'),
+  ('PyQt5/Qt5/plugins/wayland-graphics-integration-client/libxcomposite-glx.so',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/wayland-graphics-integration-client/libxcomposite-glx.so',
+   'BINARY'),
+  ('PyQt5/Qt5/plugins/platforms/libqminimal.so',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/platforms/libqminimal.so',
+   'BINARY'),
+  ('PyQt5/Qt5/plugins/wayland-graphics-integration-client/libqt-plugin-wayland-egl.so',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/wayland-graphics-integration-client/libqt-plugin-wayland-egl.so',
+   'BINARY'),
+  ('PyQt5/Qt5/plugins/imageformats/libqsvg.so',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/imageformats/libqsvg.so',
+   'BINARY'),
+  ('PyQt5/Qt5/plugins/generic/libqevdevkeyboardplugin.so',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/generic/libqevdevkeyboardplugin.so',
+   'BINARY'),
+  ('PyQt5/Qt5/plugins/platforms/libqvnc.so',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/platforms/libqvnc.so',
    'BINARY'),
   ('PyQt5/Qt5/plugins/platforminputcontexts/libibusplatforminputcontextplugin.so',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
@@ -4034,150 +4606,105 @@
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/generic/libqevdevtouchplugin.so',
    'BINARY'),
-  ('PyQt5/Qt5/plugins/wayland-graphics-integration-client/libxcomposite-glx.so',
+  ('PyQt5/Qt5/plugins/imageformats/libqtga.so',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/wayland-graphics-integration-client/libxcomposite-glx.so',
-   'BINARY'),
-  ('PyQt5/Qt5/plugins/platforminputcontexts/libcomposeplatforminputcontextplugin.so',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/platforminputcontexts/libcomposeplatforminputcontextplugin.so',
-   'BINARY'),
-  ('PyQt5/Qt5/plugins/wayland-graphics-integration-client/libdrm-egl-server.so',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/wayland-graphics-integration-client/libdrm-egl-server.so',
-   'BINARY'),
-  ('PyQt5/Qt5/plugins/xcbglintegrations/libqxcb-egl-integration.so',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/xcbglintegrations/libqxcb-egl-integration.so',
-   'BINARY'),
-  ('PyQt5/Qt5/plugins/generic/libqevdevkeyboardplugin.so',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/generic/libqevdevkeyboardplugin.so',
-   'BINARY'),
-  ('PyQt5/Qt5/plugins/platforms/libqwayland-generic.so',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/platforms/libqwayland-generic.so',
-   'BINARY'),
-  ('PyQt5/Qt5/plugins/platforms/libqwebgl.so',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/platforms/libqwebgl.so',
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/imageformats/libqtga.so',
    'BINARY'),
   ('PyQt5/Qt5/plugins/imageformats/libqjpeg.so',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/imageformats/libqjpeg.so',
    'BINARY'),
-  ('PyQt5/Qt5/plugins/imageformats/libqtga.so',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/imageformats/libqtga.so',
-   'BINARY'),
   ('PyQt5/Qt5/plugins/platforms/libqwayland-xcomposite-glx.so',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/platforms/libqwayland-xcomposite-glx.so',
    'BINARY'),
-  ('PyQt5/Qt5/plugins/platforms/libqeglfs.so',
+  ('PyQt5/Qt5/plugins/imageformats/libqtiff.so',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/platforms/libqeglfs.so',
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/imageformats/libqtiff.so',
    'BINARY'),
-  ('PyQt5/Qt5/plugins/xcbglintegrations/libqxcb-glx-integration.so',
+  ('PyQt5/Qt5/plugins/platforms/libqwayland-generic.so',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/xcbglintegrations/libqxcb-glx-integration.so',
-   'BINARY'),
-  ('PyQt5/Qt5/plugins/wayland-decoration-client/libbradient.so',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/wayland-decoration-client/libbradient.so',
-   'BINARY'),
-  ('PyQt5/Qt5/plugins/platforms/libqwayland-egl.so',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/platforms/libqwayland-egl.so',
-   'BINARY'),
-  ('PyQt5/Qt5/plugins/generic/libqevdevmouseplugin.so',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/generic/libqevdevmouseplugin.so',
-   'BINARY'),
-  ('PyQt5/Qt5/plugins/generic/libqevdevtabletplugin.so',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/generic/libqevdevtabletplugin.so',
-   'BINARY'),
-  ('PyQt5/Qt5/plugins/generic/libqtuiotouchplugin.so',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/generic/libqtuiotouchplugin.so',
-   'BINARY'),
-  ('PyQt5/Qt5/plugins/imageformats/libqgif.so',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/imageformats/libqgif.so',
-   'BINARY'),
-  ('PyQt5/Qt5/plugins/imageformats/libqicns.so',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/imageformats/libqicns.so',
-   'BINARY'),
-  ('PyQt5/Qt5/plugins/platforms/libqminimal.so',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/platforms/libqminimal.so',
-   'BINARY'),
-  ('PyQt5/Qt5/plugins/wayland-shell-integration/libxdg-shell-v6.so',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/wayland-shell-integration/libxdg-shell-v6.so',
-   'BINARY'),
-  ('PyQt5/Qt5/plugins/wayland-graphics-integration-client/libxcomposite-egl.so',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/wayland-graphics-integration-client/libxcomposite-egl.so',
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/platforms/libqwayland-generic.so',
    'BINARY'),
   ('PyQt5/Qt5/plugins/wayland-shell-integration/libxdg-shell.so',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/wayland-shell-integration/libxdg-shell.so',
    'BINARY'),
-  ('PyQt5/Qt5/plugins/wayland-shell-integration/libfullscreen-shell-v1.so',
+  ('PyQt5/Qt5/plugins/wayland-graphics-integration-client/libxcomposite-egl.so',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/wayland-shell-integration/libfullscreen-shell-v1.so',
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/wayland-graphics-integration-client/libxcomposite-egl.so',
    'BINARY'),
-  ('PyQt5/Qt5/plugins/platforms/libqoffscreen.so',
+  ('PyQt5/Qt5/plugins/platforms/libqwayland-egl.so',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/platforms/libqoffscreen.so',
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/platforms/libqwayland-egl.so',
    'BINARY'),
-  ('PyQt5/Qt5/plugins/imageformats/libqsvg.so',
+  ('PyQt5/Qt5/plugins/wayland-shell-integration/libxdg-shell-v6.so',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/imageformats/libqsvg.so',
-   'BINARY'),
-  ('PyQt5/Qt5/plugins/platforms/libqxcb.so',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/platforms/libqxcb.so',
-   'BINARY'),
-  ('PyQt5/Qt5/plugins/platforms/libqvnc.so',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/platforms/libqvnc.so',
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/wayland-shell-integration/libxdg-shell-v6.so',
    'BINARY'),
   ('PyQt5/Qt5/plugins/platforms/libqwayland-xcomposite-egl.so',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/platforms/libqwayland-xcomposite-egl.so',
+   'BINARY'),
+  ('PyQt5/Qt5/plugins/generic/libqtuiotouchplugin.so',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/generic/libqtuiotouchplugin.so',
+   'BINARY'),
+  ('PyQt5/Qt5/plugins/imageformats/libqico.so',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/imageformats/libqico.so',
+   'BINARY'),
+  ('PyQt5/Qt5/plugins/wayland-shell-integration/libwl-shell.so',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/wayland-shell-integration/libwl-shell.so',
+   'BINARY'),
+  ('PyQt5/Qt5/plugins/platforms/libqwebgl.so',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/platforms/libqwebgl.so',
+   'BINARY'),
+  ('PyQt5/Qt5/plugins/wayland-shell-integration/libivi-shell.so',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/wayland-shell-integration/libivi-shell.so',
+   'BINARY'),
+  ('PyQt5/Qt5/plugins/wayland-decoration-client/libbradient.so',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/wayland-decoration-client/libbradient.so',
+   'BINARY'),
+  ('PyQt5/Qt5/plugins/wayland-graphics-integration-client/libdmabuf-server.so',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/wayland-graphics-integration-client/libdmabuf-server.so',
+   'BINARY'),
+  ('PyQt5/Qt5/plugins/platforms/libqminimalegl.so',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/platforms/libqminimalegl.so',
+   'BINARY'),
+  ('PyQt5/Qt5/plugins/platforminputcontexts/libcomposeplatforminputcontextplugin.so',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/platforminputcontexts/libcomposeplatforminputcontextplugin.so',
+   'BINARY'),
+  ('PyQt5/Qt5/plugins/xcbglintegrations/libqxcb-glx-integration.so',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/plugins/xcbglintegrations/libqxcb-glx-integration.so',
    'BINARY'),
   ('lib-dynload/_contextvars.cpython-312-x86_64-linux-gnu.so',
    '/usr/lib/python3.12/lib-dynload/_contextvars.cpython-312-x86_64-linux-gnu.so',
@@ -4197,32 +4724,32 @@
   ('lib-dynload/_ctypes.cpython-312-x86_64-linux-gnu.so',
    '/usr/lib/python3.12/lib-dynload/_ctypes.cpython-312-x86_64-linux-gnu.so',
    'EXTENSION'),
-  ('lib-dynload/_posixshmem.cpython-312-x86_64-linux-gnu.so',
-   '/usr/lib/python3.12/lib-dynload/_posixshmem.cpython-312-x86_64-linux-gnu.so',
-   'EXTENSION'),
-  ('lib-dynload/_multiprocessing.cpython-312-x86_64-linux-gnu.so',
-   '/usr/lib/python3.12/lib-dynload/_multiprocessing.cpython-312-x86_64-linux-gnu.so',
-   'EXTENSION'),
-  ('lib-dynload/termios.cpython-312-x86_64-linux-gnu.so',
-   '/usr/lib/python3.12/lib-dynload/termios.cpython-312-x86_64-linux-gnu.so',
-   'EXTENSION'),
-  ('lib-dynload/_ssl.cpython-312-x86_64-linux-gnu.so',
-   '/usr/lib/python3.12/lib-dynload/_ssl.cpython-312-x86_64-linux-gnu.so',
-   'EXTENSION'),
-  ('lib-dynload/_hashlib.cpython-312-x86_64-linux-gnu.so',
-   '/usr/lib/python3.12/lib-dynload/_hashlib.cpython-312-x86_64-linux-gnu.so',
-   'EXTENSION'),
-  ('lib-dynload/mmap.cpython-312-x86_64-linux-gnu.so',
-   '/usr/lib/python3.12/lib-dynload/mmap.cpython-312-x86_64-linux-gnu.so',
-   'EXTENSION'),
   ('lib-dynload/_queue.cpython-312-x86_64-linux-gnu.so',
    '/usr/lib/python3.12/lib-dynload/_queue.cpython-312-x86_64-linux-gnu.so',
    'EXTENSION'),
   ('lib-dynload/_json.cpython-312-x86_64-linux-gnu.so',
    '/usr/lib/python3.12/lib-dynload/_json.cpython-312-x86_64-linux-gnu.so',
    'EXTENSION'),
+  ('lib-dynload/_ssl.cpython-312-x86_64-linux-gnu.so',
+   '/usr/lib/python3.12/lib-dynload/_ssl.cpython-312-x86_64-linux-gnu.so',
+   'EXTENSION'),
   ('lib-dynload/_asyncio.cpython-312-x86_64-linux-gnu.so',
    '/usr/lib/python3.12/lib-dynload/_asyncio.cpython-312-x86_64-linux-gnu.so',
+   'EXTENSION'),
+  ('lib-dynload/mmap.cpython-312-x86_64-linux-gnu.so',
+   '/usr/lib/python3.12/lib-dynload/mmap.cpython-312-x86_64-linux-gnu.so',
+   'EXTENSION'),
+  ('lib-dynload/_posixshmem.cpython-312-x86_64-linux-gnu.so',
+   '/usr/lib/python3.12/lib-dynload/_posixshmem.cpython-312-x86_64-linux-gnu.so',
+   'EXTENSION'),
+  ('lib-dynload/_hashlib.cpython-312-x86_64-linux-gnu.so',
+   '/usr/lib/python3.12/lib-dynload/_hashlib.cpython-312-x86_64-linux-gnu.so',
+   'EXTENSION'),
+  ('lib-dynload/_multiprocessing.cpython-312-x86_64-linux-gnu.so',
+   '/usr/lib/python3.12/lib-dynload/_multiprocessing.cpython-312-x86_64-linux-gnu.so',
+   'EXTENSION'),
+  ('lib-dynload/termios.cpython-312-x86_64-linux-gnu.so',
+   '/usr/lib/python3.12/lib-dynload/termios.cpython-312-x86_64-linux-gnu.so',
    'EXTENSION'),
   ('lib-dynload/readline.cpython-312-x86_64-linux-gnu.so',
    '/usr/lib/python3.12/lib-dynload/readline.cpython-312-x86_64-linux-gnu.so',
@@ -4330,149 +4857,149 @@
   ('libexpat.so.1', '/lib/x86_64-linux-gnu/libexpat.so.1', 'BINARY'),
   ('libcap.so.2', '/lib/x86_64-linux-gnu/libcap.so.2', 'BINARY'),
   ('libudev.so.1', '/lib/x86_64-linux-gnu/libudev.so.1', 'BINARY'),
+  ('libgnutls.so.30', '/lib/x86_64-linux-gnu/libgnutls.so.30', 'BINARY'),
+  ('PyQt5/Qt5/lib/libQt5Core.so.5',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/lib/libQt5Core.so.5',
+   'BINARY'),
+  ('libnettle.so.8', '/lib/x86_64-linux-gnu/libnettle.so.8', 'BINARY'),
+  ('libkeyutils.so.1', '/lib/x86_64-linux-gnu/libkeyutils.so.1', 'BINARY'),
+  ('PyQt5/Qt5/lib/libicui18n.so.56',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/lib/libicui18n.so.56',
+   'BINARY'),
   ('libunistring.so.5', '/lib/x86_64-linux-gnu/libunistring.so.5', 'BINARY'),
+  ('libpcre2-8.so.0', '/lib/x86_64-linux-gnu/libpcre2-8.so.0', 'BINARY'),
+  ('libgpg-error.so.0', '/lib/x86_64-linux-gnu/libgpg-error.so.0', 'BINARY'),
+  ('libgssapi_krb5.so.2',
+   '/lib/x86_64-linux-gnu/libgssapi_krb5.so.2',
+   'BINARY'),
+  ('libtasn1.so.6', '/lib/x86_64-linux-gnu/libtasn1.so.6', 'BINARY'),
+  ('libglib-2.0.so.0', '/lib/x86_64-linux-gnu/libglib-2.0.so.0', 'BINARY'),
+  ('libkrb5.so.3', '/lib/x86_64-linux-gnu/libkrb5.so.3', 'BINARY'),
   ('PyQt5/Qt5/lib/libQt5PrintSupport.so.5',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/lib/libQt5PrintSupport.so.5',
    'BINARY'),
-  ('PyQt5/Qt5/lib/libicudata.so.56',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/lib/libicudata.so.56',
+  ('libdbus-1.so.3', '/lib/x86_64-linux-gnu/libdbus-1.so.3', 'BINARY'),
+  ('libX11.so.6', '/lib/x86_64-linux-gnu/libX11.so.6', 'BINARY'),
+  ('libXau.so.6', '/lib/x86_64-linux-gnu/libXau.so.6', 'BINARY'),
+  ('libkrb5support.so.0',
+   '/lib/x86_64-linux-gnu/libkrb5support.so.0',
    'BINARY'),
+  ('libsystemd.so.0', '/lib/x86_64-linux-gnu/libsystemd.so.0', 'BINARY'),
+  ('libhogweed.so.6', '/lib/x86_64-linux-gnu/libhogweed.so.6', 'BINARY'),
+  ('libmd.so.0', '/lib/x86_64-linux-gnu/libmd.so.0', 'BINARY'),
   ('PyQt5/Qt5/lib/libQt5Gui.so.5',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/lib/libQt5Gui.so.5',
    'BINARY'),
   ('libgcrypt.so.20', '/lib/x86_64-linux-gnu/libgcrypt.so.20', 'BINARY'),
-  ('libp11-kit.so.0', '/lib/x86_64-linux-gnu/libp11-kit.so.0', 'BINARY'),
-  ('PyQt5/Qt5/lib/libicuuc.so.56',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/lib/libicuuc.so.56',
-   'BINARY'),
-  ('libcups.so.2', '/lib/x86_64-linux-gnu/libcups.so.2', 'BINARY'),
-  ('libavahi-client.so.3',
-   '/lib/x86_64-linux-gnu/libavahi-client.so.3',
-   'BINARY'),
-  ('libtasn1.so.6', '/lib/x86_64-linux-gnu/libtasn1.so.6', 'BINARY'),
-  ('libsystemd.so.0', '/lib/x86_64-linux-gnu/libsystemd.so.0', 'BINARY'),
-  ('libbsd.so.0', '/lib/x86_64-linux-gnu/libbsd.so.0', 'BINARY'),
-  ('libkrb5support.so.0',
-   '/lib/x86_64-linux-gnu/libkrb5support.so.0',
-   'BINARY'),
-  ('PyQt5/Qt5/lib/libQt5Core.so.5',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/lib/libQt5Core.so.5',
-   'BINARY'),
-  ('libdbus-1.so.3', '/lib/x86_64-linux-gnu/libdbus-1.so.3', 'BINARY'),
   ('libgcc_s.so.1', '/lib/x86_64-linux-gnu/libgcc_s.so.1', 'BINARY'),
+  ('libavahi-common.so.3',
+   '/lib/x86_64-linux-gnu/libavahi-common.so.3',
+   'BINARY'),
   ('liblz4.so.1', '/lib/x86_64-linux-gnu/liblz4.so.1', 'BINARY'),
-  ('libgpg-error.so.0', '/lib/x86_64-linux-gnu/libgpg-error.so.0', 'BINARY'),
+  ('libXdmcp.so.6', '/lib/x86_64-linux-gnu/libXdmcp.so.6', 'BINARY'),
+  ('libzstd.so.1', '/lib/x86_64-linux-gnu/libzstd.so.1', 'BINARY'),
   ('PyQt5/Qt5/lib/libQt5Widgets.so.5',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/lib/libQt5Widgets.so.5',
    'BINARY'),
-  ('libk5crypto.so.3', '/lib/x86_64-linux-gnu/libk5crypto.so.3', 'BINARY'),
-  ('libX11.so.6', '/lib/x86_64-linux-gnu/libX11.so.6', 'BINARY'),
-  ('libpcre2-8.so.0', '/lib/x86_64-linux-gnu/libpcre2-8.so.0', 'BINARY'),
-  ('libgssapi_krb5.so.2',
-   '/lib/x86_64-linux-gnu/libgssapi_krb5.so.2',
+  ('PyQt5/Qt5/lib/libicuuc.so.56',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/lib/libicuuc.so.56',
    'BINARY'),
-  ('libcom_err.so.2', '/lib/x86_64-linux-gnu/libcom_err.so.2', 'BINARY'),
-  ('libavahi-common.so.3',
-   '/lib/x86_64-linux-gnu/libavahi-common.so.3',
-   'BINARY'),
-  ('libglib-2.0.so.0', '/lib/x86_64-linux-gnu/libglib-2.0.so.0', 'BINARY'),
-  ('libkrb5.so.3', '/lib/x86_64-linux-gnu/libkrb5.so.3', 'BINARY'),
-  ('libXdmcp.so.6', '/lib/x86_64-linux-gnu/libXdmcp.so.6', 'BINARY'),
-  ('libkeyutils.so.1', '/lib/x86_64-linux-gnu/libkeyutils.so.1', 'BINARY'),
-  ('liblzma.so.5', '/lib/x86_64-linux-gnu/liblzma.so.5', 'BINARY'),
   ('libidn2.so.0', '/lib/x86_64-linux-gnu/libidn2.so.0', 'BINARY'),
-  ('libgmp.so.10', '/lib/x86_64-linux-gnu/libgmp.so.10', 'BINARY'),
-  ('libgnutls.so.30', '/lib/x86_64-linux-gnu/libgnutls.so.30', 'BINARY'),
-  ('libnettle.so.8', '/lib/x86_64-linux-gnu/libnettle.so.8', 'BINARY'),
-  ('libstdc++.so.6', '/lib/x86_64-linux-gnu/libstdc++.so.6', 'BINARY'),
+  ('PyQt5/Qt5/lib/libicudata.so.56',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/lib/libicudata.so.56',
+   'BINARY'),
+  ('liblzma.so.5', '/lib/x86_64-linux-gnu/liblzma.so.5', 'BINARY'),
+  ('libcom_err.so.2', '/lib/x86_64-linux-gnu/libcom_err.so.2', 'BINARY'),
+  ('libp11-kit.so.0', '/lib/x86_64-linux-gnu/libp11-kit.so.0', 'BINARY'),
+  ('libffi.so.8', '/lib/x86_64-linux-gnu/libffi.so.8', 'BINARY'),
   ('libgthread-2.0.so.0',
    '/lib/x86_64-linux-gnu/libgthread-2.0.so.0',
    'BINARY'),
-  ('libhogweed.so.6', '/lib/x86_64-linux-gnu/libhogweed.so.6', 'BINARY'),
-  ('libffi.so.8', '/lib/x86_64-linux-gnu/libffi.so.8', 'BINARY'),
-  ('libzstd.so.1', '/lib/x86_64-linux-gnu/libzstd.so.1', 'BINARY'),
-  ('libXau.so.6', '/lib/x86_64-linux-gnu/libXau.so.6', 'BINARY'),
-  ('PyQt5/Qt5/lib/libicui18n.so.56',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/lib/libicui18n.so.56',
+  ('libcups.so.2', '/lib/x86_64-linux-gnu/libcups.so.2', 'BINARY'),
+  ('libavahi-client.so.3',
+   '/lib/x86_64-linux-gnu/libavahi-client.so.3',
    'BINARY'),
-  ('libmd.so.0', '/lib/x86_64-linux-gnu/libmd.so.0', 'BINARY'),
-  ('libxkbcommon.so.0', '/lib/x86_64-linux-gnu/libxkbcommon.so.0', 'BINARY'),
-  ('libfreetype.so.6', '/lib/x86_64-linux-gnu/libfreetype.so.6', 'BINARY'),
-  ('libfontconfig.so.1', '/lib/x86_64-linux-gnu/libfontconfig.so.1', 'BINARY'),
-  ('libbrotlicommon.so.1',
-   '/lib/x86_64-linux-gnu/libbrotlicommon.so.1',
-   'BINARY'),
-  ('libbrotlidec.so.1', '/lib/x86_64-linux-gnu/libbrotlidec.so.1', 'BINARY'),
-  ('libbz2.so.1.0', '/lib/x86_64-linux-gnu/libbz2.so.1.0', 'BINARY'),
-  ('PyQt5/Qt5/lib/libQt5WaylandClient.so.5',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/lib/libQt5WaylandClient.so.5',
-   'BINARY'),
-  ('libpng16.so.16', '/lib/x86_64-linux-gnu/libpng16.so.16', 'BINARY'),
+  ('libstdc++.so.6', '/lib/x86_64-linux-gnu/libstdc++.so.6', 'BINARY'),
+  ('libgmp.so.10', '/lib/x86_64-linux-gnu/libgmp.so.10', 'BINARY'),
+  ('libbsd.so.0', '/lib/x86_64-linux-gnu/libbsd.so.0', 'BINARY'),
+  ('libk5crypto.so.3', '/lib/x86_64-linux-gnu/libk5crypto.so.3', 'BINARY'),
   ('PyQt5/Qt5/lib/libQt5DBus.so.5',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/lib/libQt5DBus.so.5',
    'BINARY'),
-  ('libXext.so.6', '/lib/x86_64-linux-gnu/libXext.so.6', 'BINARY'),
+  ('libbrotlidec.so.1', '/lib/x86_64-linux-gnu/libbrotlidec.so.1', 'BINARY'),
+  ('libxkbcommon.so.0', '/lib/x86_64-linux-gnu/libxkbcommon.so.0', 'BINARY'),
+  ('PyQt5/Qt5/lib/libQt5WaylandClient.so.5',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/lib/libQt5WaylandClient.so.5',
+   'BINARY'),
+  ('libfontconfig.so.1', '/lib/x86_64-linux-gnu/libfontconfig.so.1', 'BINARY'),
+  ('libpng16.so.16', '/lib/x86_64-linux-gnu/libpng16.so.16', 'BINARY'),
+  ('libbz2.so.1.0', '/lib/x86_64-linux-gnu/libbz2.so.1.0', 'BINARY'),
+  ('libfreetype.so.6', '/lib/x86_64-linux-gnu/libfreetype.so.6', 'BINARY'),
+  ('libbrotlicommon.so.1',
+   '/lib/x86_64-linux-gnu/libbrotlicommon.so.1',
+   'BINARY'),
   ('PyQt5/Qt5/lib/libQt5Svg.so.5',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/lib/libQt5Svg.so.5',
    'BINARY'),
-  ('libXcomposite.so.1', '/lib/x86_64-linux-gnu/libXcomposite.so.1', 'BINARY'),
-  ('libxcb-image.so.0', '/lib/x86_64-linux-gnu/libxcb-image.so.0', 'BINARY'),
-  ('libxcb-xfixes.so.0', '/lib/x86_64-linux-gnu/libxcb-xfixes.so.0', 'BINARY'),
-  ('libxcb-render-util.so.0',
-   '/lib/x86_64-linux-gnu/libxcb-render-util.so.0',
-   'BINARY'),
-  ('libxcb-render.so.0', '/lib/x86_64-linux-gnu/libxcb-render.so.0', 'BINARY'),
+  ('libXext.so.6', '/lib/x86_64-linux-gnu/libXext.so.6', 'BINARY'),
   ('libX11-xcb.so.1', '/lib/x86_64-linux-gnu/libX11-xcb.so.1', 'BINARY'),
+  ('libxcb-xinerama.so.0',
+   '/lib/x86_64-linux-gnu/libxcb-xinerama.so.0',
+   'BINARY'),
+  ('libxcb-xfixes.so.0', '/lib/x86_64-linux-gnu/libxcb-xfixes.so.0', 'BINARY'),
+  ('libxcb-icccm.so.4', '/lib/x86_64-linux-gnu/libxcb-icccm.so.4', 'BINARY'),
+  ('libxcb-keysyms.so.1',
+   '/lib/x86_64-linux-gnu/libxcb-keysyms.so.1',
+   'BINARY'),
+  ('libxcb-xkb.so.1', '/lib/x86_64-linux-gnu/libxcb-xkb.so.1', 'BINARY'),
   ('libxcb-randr.so.0', '/lib/x86_64-linux-gnu/libxcb-randr.so.0', 'BINARY'),
+  ('libxkbcommon-x11.so.0',
+   '/lib/x86_64-linux-gnu/libxkbcommon-x11.so.0',
+   'BINARY'),
+  ('libxcb-shm.so.0', '/lib/x86_64-linux-gnu/libxcb-shm.so.0', 'BINARY'),
   ('PyQt5/Qt5/lib/libQt5XcbQpa.so.5',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/lib/libQt5XcbQpa.so.5',
    'BINARY'),
-  ('libxcb-shm.so.0', '/lib/x86_64-linux-gnu/libxcb-shm.so.0', 'BINARY'),
-  ('libxcb-keysyms.so.1',
-   '/lib/x86_64-linux-gnu/libxcb-keysyms.so.1',
-   'BINARY'),
-  ('libxcb-util.so.1', '/lib/x86_64-linux-gnu/libxcb-util.so.1', 'BINARY'),
-  ('libxcb-sync.so.1', '/lib/x86_64-linux-gnu/libxcb-sync.so.1', 'BINARY'),
-  ('libxcb-xinerama.so.0',
-   '/lib/x86_64-linux-gnu/libxcb-xinerama.so.0',
-   'BINARY'),
-  ('libxkbcommon-x11.so.0',
-   '/lib/x86_64-linux-gnu/libxkbcommon-x11.so.0',
-   'BINARY'),
-  ('libxcb-icccm.so.4', '/lib/x86_64-linux-gnu/libxcb-icccm.so.4', 'BINARY'),
-  ('libxcb-xkb.so.1', '/lib/x86_64-linux-gnu/libxcb-xkb.so.1', 'BINARY'),
   ('libxcb-shape.so.0', '/lib/x86_64-linux-gnu/libxcb-shape.so.0', 'BINARY'),
+  ('libxcb-render-util.so.0',
+   '/lib/x86_64-linux-gnu/libxcb-render-util.so.0',
+   'BINARY'),
+  ('libxcb-sync.so.1', '/lib/x86_64-linux-gnu/libxcb-sync.so.1', 'BINARY'),
+  ('libxcb-render.so.0', '/lib/x86_64-linux-gnu/libxcb-render.so.0', 'BINARY'),
+  ('libxcb-image.so.0', '/lib/x86_64-linux-gnu/libxcb-image.so.0', 'BINARY'),
+  ('libxcb-util.so.1', '/lib/x86_64-linux-gnu/libxcb-util.so.1', 'BINARY'),
+  ('PyQt5/Qt5/lib/libQt5EglFSDeviceIntegration.so.5',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/lib/libQt5EglFSDeviceIntegration.so.5',
+   'BINARY'),
+  ('libXcomposite.so.1', '/lib/x86_64-linux-gnu/libXcomposite.so.1', 'BINARY'),
   ('PyQt5/Qt5/lib/libQt5Network.so.5',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/lib/libQt5Network.so.5',
-   'BINARY'),
-  ('PyQt5/Qt5/lib/libQt5QmlModels.so.5',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/lib/libQt5QmlModels.so.5',
    'BINARY'),
   ('PyQt5/Qt5/lib/libQt5Quick.so.5',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
@@ -4489,26 +5016,16 @@
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/lib/libQt5WebSockets.so.5',
    'BINARY'),
-  ('PyQt5/Qt5/lib/libQt5EglFSDeviceIntegration.so.5',
+  ('PyQt5/Qt5/lib/libQt5QmlModels.so.5',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/lib/libQt5EglFSDeviceIntegration.so.5',
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/lib/libQt5QmlModels.so.5',
    'BINARY'),
   ('libxcb-glx.so.0', '/lib/x86_64-linux-gnu/libxcb-glx.so.0', 'BINARY'),
   ('libssl.so.3', '/lib/x86_64-linux-gnu/libssl.so.3', 'BINARY'),
   ('libcrypto.so.3', '/lib/x86_64-linux-gnu/libcrypto.so.3', 'BINARY'),
-  ('libtinfo.so.6', '/lib/x86_64-linux-gnu/libtinfo.so.6', 'BINARY'),
   ('libreadline.so.8', '/lib/x86_64-linux-gnu/libreadline.so.8', 'BINARY'),
-  ('pillow.libs/libwebp-0feb04d2.so.7.1.10',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/pillow.libs/libwebp-0feb04d2.so.7.1.10',
-   'BINARY'),
-  ('pillow.libs/libwebpdemux-e5426797.so.2.0.16',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/pillow.libs/libwebpdemux-e5426797.so.2.0.16',
-   'BINARY'),
+  ('libtinfo.so.6', '/lib/x86_64-linux-gnu/libtinfo.so.6', 'BINARY'),
   ('pillow.libs/libwebpmux-f0bc54e2.so.3.1.1',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
@@ -4519,40 +5036,55 @@
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/pillow.libs/libsharpyuv-f67a7212.so.0.1.1',
    'BINARY'),
+  ('pillow.libs/libwebp-0feb04d2.so.7.1.10',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/pillow.libs/libwebp-0feb04d2.so.7.1.10',
+   'BINARY'),
+  ('pillow.libs/libwebpdemux-e5426797.so.2.0.16',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/pillow.libs/libwebpdemux-e5426797.so.2.0.16',
+   'BINARY'),
   ('pillow.libs/liblcms2-525547ec.so.2.0.16',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/pillow.libs/liblcms2-525547ec.so.2.0.16',
-   'BINARY'),
-  ('pillow.libs/libopenjp2-ca16f087.so.2.5.3',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/pillow.libs/libopenjp2-ca16f087.so.2.5.3',
-   'BINARY'),
-  ('pillow.libs/libXau-154567c4.so.6.0.0',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/pillow.libs/libXau-154567c4.so.6.0.0',
-   'BINARY'),
-  ('pillow.libs/liblzma-a5872208.so.5.6.3',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/pillow.libs/liblzma-a5872208.so.5.6.3',
-   'BINARY'),
-  ('pillow.libs/libjpeg-0988b44a.so.62.4.0',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/pillow.libs/libjpeg-0988b44a.so.62.4.0',
    'BINARY'),
   ('pillow.libs/libxcb-0b763ed5.so.1.1.0',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/pillow.libs/libxcb-0b763ed5.so.1.1.0',
    'BINARY'),
+  ('pillow.libs/libjpeg-0988b44a.so.62.4.0',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/pillow.libs/libjpeg-0988b44a.so.62.4.0',
+   'BINARY'),
+  ('pillow.libs/liblzma-a5872208.so.5.6.3',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/pillow.libs/liblzma-a5872208.so.5.6.3',
+   'BINARY'),
   ('pillow.libs/libtiff-a92b430c.so.6.0.2',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/pillow.libs/libtiff-a92b430c.so.6.0.2',
+   'BINARY'),
+  ('pillow.libs/libXau-154567c4.so.6.0.0',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/pillow.libs/libXau-154567c4.so.6.0.0',
+   'BINARY'),
+  ('pillow.libs/libopenjp2-ca16f087.so.2.5.3',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/pillow.libs/libopenjp2-ca16f087.so.2.5.3',
+   'BINARY'),
+  ('pillow.libs/libfreetype-edd71024.so.6.20.1',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/pillow.libs/libfreetype-edd71024.so.6.20.1',
    'BINARY'),
   ('pillow.libs/libharfbuzz-07d0ad17.so.0.61010.0',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
@@ -4564,20 +5096,15 @@
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/pillow.libs/libpng16-2a828d05.so.16.44.0',
    'BINARY'),
-  ('pillow.libs/libfreetype-edd71024.so.6.20.1',
+  ('pillow.libs/libbrotlicommon-5b2eba61.so.1.1.0',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/pillow.libs/libfreetype-edd71024.so.6.20.1',
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/pillow.libs/libbrotlicommon-5b2eba61.so.1.1.0',
    'BINARY'),
   ('pillow.libs/libbrotlidec-a621e7f2.so.1.1.0',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/pillow.libs/libbrotlidec-a621e7f2.so.1.1.0',
-   'BINARY'),
-  ('pillow.libs/libbrotlicommon-5b2eba61.so.1.1.0',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/pillow.libs/libbrotlicommon-5b2eba61.so.1.1.0',
    'BINARY'),
   ('libsqlite3.so.0', '/lib/x86_64-linux-gnu/libsqlite3.so.0', 'BINARY')],
  [],
@@ -4601,6 +5128,186 @@
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/DayClose/modal.py',
+   'DATA'),
+  ('Application/Components/Inventory/Category/__pycache__/category.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Category/__pycache__/category.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Category/__pycache__/model.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Category/__pycache__/model.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Category/category.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Category/category.py',
+   'DATA'),
+  ('Application/Components/Inventory/Category/model.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Category/model.py',
+   'DATA'),
+  ('Application/Components/Inventory/Customers/__pycache__/model.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Customers/__pycache__/model.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Customers/__pycache__/register.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Customers/__pycache__/register.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Customers/__pycache__/update.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Customers/__pycache__/update.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Customers/__pycache__/view.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Customers/__pycache__/view.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Customers/model.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Customers/model.py',
+   'DATA'),
+  ('Application/Components/Inventory/Customers/register.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Customers/register.py',
+   'DATA'),
+  ('Application/Components/Inventory/Customers/update.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Customers/update.py',
+   'DATA'),
+  ('Application/Components/Inventory/Customers/view.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Customers/view.py',
+   'DATA'),
+  ('Application/Components/Inventory/Expenses/__pycache__/model.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Expenses/__pycache__/model.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Expenses/__pycache__/view.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Expenses/__pycache__/view.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Expenses/model.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Expenses/model.py',
+   'DATA'),
+  ('Application/Components/Inventory/Expenses/view.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Expenses/view.py',
+   'DATA'),
+  ('Application/Components/Inventory/ItemCosts/__pycache__/model.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/ItemCosts/__pycache__/model.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/ItemCosts/__pycache__/view.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/ItemCosts/__pycache__/view.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/ItemCosts/model.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/ItemCosts/model.py',
+   'DATA'),
+  ('Application/Components/Inventory/ItemCosts/view.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/ItemCosts/view.py',
+   'DATA'),
+  ('Application/Components/Inventory/ItemGroup/__pycache__/item_group.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/ItemGroup/__pycache__/item_group.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/ItemGroup/__pycache__/model.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/ItemGroup/__pycache__/model.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/ItemGroup/item_group.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/ItemGroup/item_group.py',
+   'DATA'),
+  ('Application/Components/Inventory/ItemGroup/model.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/ItemGroup/model.py',
+   'DATA'),
+  ('Application/Components/Inventory/ItemType/__pycache__/model.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/ItemType/__pycache__/model.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/ItemType/__pycache__/view.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/ItemType/__pycache__/view.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/ItemType/model.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/ItemType/model.py',
+   'DATA'),
+  ('Application/Components/Inventory/ItemType/view.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/ItemType/view.py',
+   'DATA'),
+  ('Application/Components/Inventory/Items/__pycache__/model.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Items/__pycache__/model.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Items/__pycache__/register.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Items/__pycache__/register.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Items/__pycache__/update.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Items/__pycache__/update.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Items/__pycache__/view.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Items/__pycache__/view.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Items/model.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Items/model.py',
+   'DATA'),
+  ('Application/Components/Inventory/Items/register.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Items/register.py',
+   'DATA'),
+  ('Application/Components/Inventory/Items/update.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Items/update.py',
+   'DATA'),
+  ('Application/Components/Inventory/Items/view.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Items/view.py',
    'DATA'),
   ('Application/Components/Inventory/Main.py',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
@@ -4627,10 +5334,100 @@
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Stores/store.py',
    'DATA'),
+  ('Application/Components/Inventory/Suppliers/__pycache__/model.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Suppliers/__pycache__/model.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Suppliers/__pycache__/register.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Suppliers/__pycache__/register.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Suppliers/__pycache__/update.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Suppliers/__pycache__/update.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Suppliers/__pycache__/view.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Suppliers/__pycache__/view.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Suppliers/model.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Suppliers/model.py',
+   'DATA'),
+  ('Application/Components/Inventory/Suppliers/register.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Suppliers/register.py',
+   'DATA'),
+  ('Application/Components/Inventory/Suppliers/update.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Suppliers/update.py',
+   'DATA'),
+  ('Application/Components/Inventory/Suppliers/view.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Suppliers/view.py',
+   'DATA'),
+  ('Application/Components/Inventory/Units/__pycache__/model.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Units/__pycache__/model.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Units/__pycache__/view.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Units/__pycache__/view.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/Inventory/Units/model.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Units/model.py',
+   'DATA'),
+  ('Application/Components/Inventory/Units/view.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/Units/view.py',
+   'DATA'),
   ('Application/Components/Inventory/__pycache__/Main.cpython-312.pyc',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Inventory/__pycache__/Main.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/OrderSummary/Carts/__pycache__/modal.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/OrderSummary/Carts/__pycache__/modal.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/OrderSummary/Carts/modal.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/OrderSummary/Carts/modal.py',
+   'DATA'),
+  ('Application/Components/OrderSummary/Carts/view.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/OrderSummary/Carts/view.py',
+   'DATA'),
+  ('Application/Components/OrderSummary/Recall/__pycache__/view.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/OrderSummary/Recall/__pycache__/view.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/OrderSummary/Recall/modal.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/OrderSummary/Recall/modal.py',
+   'DATA'),
+  ('Application/Components/OrderSummary/Recall/view.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/OrderSummary/Recall/view.py',
    'DATA'),
   ('Application/Components/OrderSummary/__pycache__/modal.cpython-312.pyc',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
@@ -4651,6 +5448,66 @@
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/OrderSummary/order_summary.py',
+   'DATA'),
+  ('Application/Components/PurchaseOrders/__pycache__/invoice.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/__pycache__/invoice.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/PurchaseOrders/__pycache__/model.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/__pycache__/model.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/PurchaseOrders/__pycache__/received.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/__pycache__/received.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/PurchaseOrders/__pycache__/register.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/__pycache__/register.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/PurchaseOrders/__pycache__/update.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/__pycache__/update.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/PurchaseOrders/__pycache__/view.cpython-312.pyc',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/__pycache__/view.cpython-312.pyc',
+   'DATA'),
+  ('Application/Components/PurchaseOrders/invoice.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/invoice.py',
+   'DATA'),
+  ('Application/Components/PurchaseOrders/model.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/model.py',
+   'DATA'),
+  ('Application/Components/PurchaseOrders/received.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/received.py',
+   'DATA'),
+  ('Application/Components/PurchaseOrders/register.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/register.py',
+   'DATA'),
+  ('Application/Components/PurchaseOrders/update.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/update.py',
+   'DATA'),
+  ('Application/Components/PurchaseOrders/view.py',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/PurchaseOrders/view.py',
    'DATA'),
   ('Application/Components/Reports/View.py',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
@@ -4721,46 +5578,6 @@
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Settings/View.py',
-   'DATA'),
-  ('Application/Components/Stock/CustomHeader.py',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Stock/CustomHeader.py',
-   'DATA'),
-  ('Application/Components/Stock/CustomHeaderModel.py',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Stock/CustomHeaderModel.py',
-   'DATA'),
-  ('Application/Components/Stock/FilterModel.py',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Stock/FilterModel.py',
-   'DATA'),
-  ('Application/Components/Stock/View.py',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Stock/View.py',
-   'DATA'),
-  ('Application/Components/Stock/__pycache__/CustomHeader.cpython-312.pyc',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Stock/__pycache__/CustomHeader.cpython-312.pyc',
-   'DATA'),
-  ('Application/Components/Stock/__pycache__/CustomHeaderModel.cpython-312.pyc',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Stock/__pycache__/CustomHeaderModel.cpython-312.pyc',
-   'DATA'),
-  ('Application/Components/Stock/__pycache__/FilterModel.cpython-312.pyc',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Stock/__pycache__/FilterModel.cpython-312.pyc',
-   'DATA'),
-  ('Application/Components/Stock/__pycache__/View.cpython-312.pyc',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Application/Components/Stock/__pycache__/View.cpython-312.pyc',
    'DATA'),
   ('Application/Components/UserManagement/Users/UsersView.py',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
@@ -4967,10 +5784,50 @@
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Helper/db_conn.py',
    'DATA'),
+  ('Helper/local.db',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Helper/local.db',
+   'DATA'),
   ('Helper/local_db.db',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Helper/local_db.db',
+   'DATA'),
+  ('Helper/local_db.sqbpro',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Helper/local_db.sqbpro',
+   'DATA'),
+  ('Helper/main.db',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Helper/main.db',
+   'DATA'),
+  ('Helper/main_amali.db',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Helper/main_amali.db',
+   'DATA'),
+  ('Helper/main_japango.db',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Helper/main_japango.db',
+   'DATA'),
+  ('Helper/main_japango_01.db',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Helper/main_japango_01.db',
+   'DATA'),
+  ('Helper/main_japango_02.db',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Helper/main_japango_02.db',
+   'DATA'),
+  ('Helper/main_japango_03.db',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Helper/main_japango_03.db',
    'DATA'),
   ('Helper/modal.py',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
@@ -4986,6 +5843,26 @@
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Helper/pos_amali_local.db',
+   'DATA'),
+  ('Helper/test.db',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Helper/test.db',
+   'DATA'),
+  ('Helper/test_01.db',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Helper/test_01.db',
+   'DATA'),
+  ('Helper/test_02.db',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Helper/test_02.db',
+   'DATA'),
+  ('Helper/test_amali.db',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/Helper/test_amali.db',
    'DATA'),
   ('Layouts/Sidebar.py',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
@@ -5112,40 +5989,40 @@
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/certifi/py.typed',
    'DATA'),
-  ('setuptools/_vendor/importlib_metadata-8.0.0.dist-info/top_level.txt',
+  ('setuptools/_vendor/importlib_metadata-8.0.0.dist-info/REQUESTED',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/setuptools/_vendor/importlib_metadata-8.0.0.dist-info/top_level.txt',
-   'DATA'),
-  ('setuptools/_vendor/importlib_metadata-8.0.0.dist-info/RECORD',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/setuptools/_vendor/importlib_metadata-8.0.0.dist-info/RECORD',
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/setuptools/_vendor/importlib_metadata-8.0.0.dist-info/REQUESTED',
    'DATA'),
   ('setuptools/_vendor/importlib_metadata-8.0.0.dist-info/METADATA',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/setuptools/_vendor/importlib_metadata-8.0.0.dist-info/METADATA',
    'DATA'),
-  ('setuptools/_vendor/importlib_metadata-8.0.0.dist-info/REQUESTED',
+  ('setuptools/_vendor/importlib_metadata-8.0.0.dist-info/WHEEL',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/setuptools/_vendor/importlib_metadata-8.0.0.dist-info/REQUESTED',
-   'DATA'),
-  ('setuptools/_vendor/importlib_metadata-8.0.0.dist-info/INSTALLER',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/setuptools/_vendor/importlib_metadata-8.0.0.dist-info/INSTALLER',
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/setuptools/_vendor/importlib_metadata-8.0.0.dist-info/WHEEL',
    'DATA'),
   ('setuptools/_vendor/importlib_metadata-8.0.0.dist-info/LICENSE',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/setuptools/_vendor/importlib_metadata-8.0.0.dist-info/LICENSE',
    'DATA'),
-  ('setuptools/_vendor/importlib_metadata-8.0.0.dist-info/WHEEL',
+  ('setuptools/_vendor/importlib_metadata-8.0.0.dist-info/top_level.txt',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/setuptools/_vendor/importlib_metadata-8.0.0.dist-info/WHEEL',
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/setuptools/_vendor/importlib_metadata-8.0.0.dist-info/top_level.txt',
+   'DATA'),
+  ('setuptools/_vendor/importlib_metadata-8.0.0.dist-info/INSTALLER',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/setuptools/_vendor/importlib_metadata-8.0.0.dist-info/INSTALLER',
+   'DATA'),
+  ('setuptools/_vendor/importlib_metadata-8.0.0.dist-info/RECORD',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/setuptools/_vendor/importlib_metadata-8.0.0.dist-info/RECORD',
    'DATA'),
   ('setuptools/_vendor/jaraco/text/Lorem ipsum.txt',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
@@ -5153,155 +6030,385 @@
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/setuptools/_vendor/jaraco/text/Lorem '
    'ipsum.txt',
    'DATA'),
-  ('PyQt5/Qt5/translations/qt_de.qm',
+  ('PyQt5/Qt5/translations/qtbase_en.qm',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_de.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_help_ru.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_ru.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qtbase_zh_CN.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_zh_CN.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qtbase_it.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_it.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qtbase_hr.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_hr.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qtbase_da.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_da.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_ca.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_ca.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qtbase_hu.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_hu.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_lt.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_lt.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_ru.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_ru.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qtbase_sk.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_sk.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_help_fr.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_fr.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_help_de.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_de.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qtbase_fr.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_fr.qm',
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_en.qm',
    'DATA'),
   ('PyQt5/Qt5/translations/qt_help_tr.qm',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_tr.qm',
    'DATA'),
-  ('PyQt5/Qt5/translations/qt_ar.qm',
+  ('PyQt5/Qt5/translations/qtbase_hu.qm',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_ar.qm',
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_hu.qm',
    'DATA'),
-  ('PyQt5/Qt5/translations/qtbase_es.qm',
+  ('PyQt5/Qt5/translations/qtbase_fr.qm',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_es.qm',
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_fr.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qtbase_ru.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_ru.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_lt.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_lt.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_ko.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_ko.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qtbase_ca.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_ca.qm',
    'DATA'),
   ('PyQt5/Qt5/translations/qt_fi.qm',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_fi.qm',
    'DATA'),
-  ('PyQt5/Qt5/translations/qt_help_sl.qm',
+  ('PyQt5/Qt5/translations/qt_help_en.qm',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_sl.qm',
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_en.qm',
    'DATA'),
-  ('PyQt5/Qt5/translations/qt_help_cs.qm',
+  ('PyQt5/Qt5/translations/qt_help_hu.qm',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_cs.qm',
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_hu.qm',
    'DATA'),
-  ('PyQt5/Qt5/translations/qt_sk.qm',
+  ('PyQt5/Qt5/translations/qtbase_nn.qm',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_sk.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_help_pl.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_pl.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_es.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_es.qm',
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_nn.qm',
    'DATA'),
   ('PyQt5/Qt5/translations/qt_it.qm',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_it.qm',
    'DATA'),
-  ('PyQt5/Qt5/translations/qtbase_pt_BR.qm',
+  ('PyQt5/Qt5/translations/qt_pt_BR.qm',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_pt_BR.qm',
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_pt_BR.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_en.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_en.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_ja.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_ja.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_help_de.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_de.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qtbase_cs.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_cs.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_tr.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_tr.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_help_zh_CN.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_zh_CN.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_gd.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_gd.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qtbase_ja.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_ja.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_help_ru.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_ru.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_ru.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_ru.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_he.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_he.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_da.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_da.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_pl.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_pl.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qtbase_de.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_de.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_cs.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_cs.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qtbase_fa.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_fa.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qtbase_ar.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_ar.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qtbase_bg.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_bg.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_ar.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_ar.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_sk.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_sk.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_de.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_de.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_help_sk.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_sk.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qtbase_gd.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_gd.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qtbase_he.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_he.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_zh_CN.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_zh_CN.qm',
    'DATA'),
   ('PyQt5/Qt5/translations/qtbase_uk.qm',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_uk.qm',
    'DATA'),
-  ('PyQt5/Qt5/translations/qt_help_en.qm',
+  ('PyQt5/Qt5/translations/qt_fr.qm',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_en.qm',
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_fr.qm',
    'DATA'),
-  ('PyQt5/Qt5/translations/qtbase_nl.qm',
+  ('PyQt5/Qt5/translations/qt_sv.qm',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_nl.qm',
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_sv.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_uk.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_uk.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qtbase_pt_BR.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_pt_BR.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_help_pt_BR.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_pt_BR.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qtbase_es.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_es.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qtbase_hr.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_hr.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qtbase_it.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_it.qm',
    'DATA'),
   ('PyQt5/Qt5/translations/qt_help_bg.qm',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_bg.qm',
    'DATA'),
+  ('PyQt5/Qt5/translations/qtbase_nl.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_nl.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_help_uk.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_uk.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_help_ko.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_ko.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_help_ca.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_ca.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_help_gl.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_gl.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_gl.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_gl.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qtbase_zh_TW.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_zh_TW.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_nl.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_nl.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_es.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_es.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qtbase_ko.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_ko.qm',
+   'DATA'),
   ('PyQt5/Qt5/translations/qtbase_tr.qm',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_tr.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_help_hr.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_hr.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_help_sl.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_sl.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_hu.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_hu.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_hr.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_hr.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_help_ja.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_ja.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qtbase_zh_CN.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_zh_CN.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qtbase_lv.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_lv.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_nn.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_nn.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_help_zh_TW.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_zh_TW.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_fa.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_fa.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_help_nl.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_nl.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_lv.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_lv.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_sl.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_sl.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_zh_TW.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_zh_TW.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qtbase_pl.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_pl.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_bg.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_bg.qm',
    'DATA'),
   ('PyQt5/Qt5/translations/qt_pt_PT.qm',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
@@ -5313,353 +6420,129 @@
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_fi.qm',
    'DATA'),
-  ('PyQt5/Qt5/translations/qt_help_nn.qm',
+  ('PyQt5/Qt5/translations/qt_help_da.qm',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_nn.qm',
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_da.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_help_pl.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_pl.qm',
+   'DATA'),
+  ('PyQt5/Qt5/translations/qt_help_fr.qm',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_fr.qm',
    'DATA'),
   ('PyQt5/Qt5/translations/qt_help_ar.qm',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_ar.qm',
    'DATA'),
-  ('PyQt5/Qt5/translations/qt_en.qm',
+  ('PyQt5/Qt5/translations/qt_ca.qm',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_en.qm',
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_ca.qm',
    'DATA'),
-  ('PyQt5/Qt5/translations/qtbase_pl.qm',
+  ('PyQt5/Qt5/translations/qt_help_nn.qm',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_pl.qm',
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_nn.qm',
    'DATA'),
-  ('PyQt5/Qt5/translations/qtbase_de.qm',
+  ('PyQt5/Qt5/translations/qtbase_sk.qm',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_de.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_fa.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_fa.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_sl.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_sl.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_help_ja.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_ja.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_nl.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_nl.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_zh_TW.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_zh_TW.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_help_zh_TW.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_zh_TW.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qtbase_nn.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_nn.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_bg.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_bg.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_gl.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_gl.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qtbase_bg.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_bg.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_help_nl.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_nl.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qtbase_gd.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_gd.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_uk.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_uk.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_da.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_da.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qtbase_zh_TW.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_zh_TW.qm',
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_sk.qm',
    'DATA'),
   ('PyQt5/Qt5/translations/qt_help_it.qm',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_it.qm',
    'DATA'),
-  ('PyQt5/Qt5/translations/qt_he.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_he.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_ja.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_ja.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_zh_CN.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_zh_CN.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_help_sk.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_sk.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_help_ko.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_ko.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_hr.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_hr.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_help_pt_BR.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_pt_BR.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qtbase_cs.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_cs.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_help_hr.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_hr.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_help_hu.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_hu.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_cs.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_cs.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qtbase_ca.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_ca.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qtbase_ko.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_ko.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_lv.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_lv.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qtbase_ru.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_ru.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qtbase_ja.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_ja.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_help_da.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_da.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qtbase_he.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_he.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qtbase_lv.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_lv.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_gd.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_gd.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_nn.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_nn.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qtbase_en.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_en.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qtbase_ar.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_ar.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_pt_BR.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_pt_BR.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_pl.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_pl.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_ko.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_ko.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_sv.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_sv.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_help_ca.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_ca.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_hu.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_hu.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_help_uk.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_uk.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_fr.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_fr.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_help_gl.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_gl.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_tr.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_tr.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qtbase_fa.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_fa.qm',
-   'DATA'),
-  ('PyQt5/Qt5/translations/qt_help_zh_CN.qm',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_zh_CN.qm',
-   'DATA'),
   ('PyQt5/Qt5/translations/qt_help_es.qm',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_es.qm',
    'DATA'),
-  ('setuptools/_vendor/wheel-0.45.1.dist-info/METADATA',
+  ('PyQt5/Qt5/translations/qtbase_da.qm',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/setuptools/_vendor/wheel-0.45.1.dist-info/METADATA',
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qtbase_da.qm',
    'DATA'),
-  ('setuptools/_vendor/wheel-0.45.1.dist-info/WHEEL',
+  ('PyQt5/Qt5/translations/qt_help_cs.qm',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/setuptools/_vendor/wheel-0.45.1.dist-info/WHEEL',
-   'DATA'),
-  ('setuptools/_vendor/wheel-0.45.1.dist-info/INSTALLER',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/setuptools/_vendor/wheel-0.45.1.dist-info/INSTALLER',
-   'DATA'),
-  ('setuptools/_vendor/wheel-0.45.1.dist-info/RECORD',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/setuptools/_vendor/wheel-0.45.1.dist-info/RECORD',
-   'DATA'),
-  ('setuptools/_vendor/wheel-0.45.1.dist-info/entry_points.txt',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/setuptools/_vendor/wheel-0.45.1.dist-info/entry_points.txt',
-   'DATA'),
-  ('setuptools/_vendor/wheel-0.45.1.dist-info/REQUESTED',
-   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
-   'COMPANIES/2025/COMPANY '
-   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/setuptools/_vendor/wheel-0.45.1.dist-info/REQUESTED',
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/PyQt5/Qt5/translations/qt_help_cs.qm',
    'DATA'),
   ('setuptools/_vendor/wheel-0.45.1.dist-info/LICENSE.txt',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/setuptools/_vendor/wheel-0.45.1.dist-info/LICENSE.txt',
    'DATA'),
+  ('setuptools/_vendor/wheel-0.45.1.dist-info/entry_points.txt',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/setuptools/_vendor/wheel-0.45.1.dist-info/entry_points.txt',
+   'DATA'),
+  ('setuptools/_vendor/wheel-0.45.1.dist-info/WHEEL',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/setuptools/_vendor/wheel-0.45.1.dist-info/WHEEL',
+   'DATA'),
+  ('setuptools/_vendor/wheel-0.45.1.dist-info/RECORD',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/setuptools/_vendor/wheel-0.45.1.dist-info/RECORD',
+   'DATA'),
+  ('setuptools/_vendor/wheel-0.45.1.dist-info/METADATA',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/setuptools/_vendor/wheel-0.45.1.dist-info/METADATA',
+   'DATA'),
+  ('setuptools/_vendor/wheel-0.45.1.dist-info/INSTALLER',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/setuptools/_vendor/wheel-0.45.1.dist-info/INSTALLER',
+   'DATA'),
+  ('setuptools/_vendor/wheel-0.45.1.dist-info/REQUESTED',
+   '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
+   'COMPANIES/2025/COMPANY '
+   'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/v-1.1_env/lib/python3.12/site-packages/setuptools/_vendor/wheel-0.45.1.dist-info/REQUESTED',
+   'DATA'),
   ('base_library.zip',
    '/home/japango/Desktop/JAPANGO COMPANY LIMITED/JAPANGO GROUP OF '
    'COMPANIES/2025/COMPANY '
    'PROJECTS/AMALI-POS-SYSTEM/AMALI-DESKTOP/v-1.1/build/amali/base_library.zip',
    'DATA'),
+  ('libQt5Core.so.5', 'PyQt5/Qt5/lib/libQt5Core.so.5', 'SYMLINK'),
+  ('libicui18n.so.56', 'PyQt5/Qt5/lib/libicui18n.so.56', 'SYMLINK'),
   ('libQt5PrintSupport.so.5',
    'PyQt5/Qt5/lib/libQt5PrintSupport.so.5',
    'SYMLINK'),
-  ('libicudata.so.56', 'PyQt5/Qt5/lib/libicudata.so.56', 'SYMLINK'),
   ('libQt5Gui.so.5', 'PyQt5/Qt5/lib/libQt5Gui.so.5', 'SYMLINK'),
-  ('libicuuc.so.56', 'PyQt5/Qt5/lib/libicuuc.so.56', 'SYMLINK'),
-  ('libQt5Core.so.5', 'PyQt5/Qt5/lib/libQt5Core.so.5', 'SYMLINK'),
   ('libQt5Widgets.so.5', 'PyQt5/Qt5/lib/libQt5Widgets.so.5', 'SYMLINK'),
-  ('libicui18n.so.56', 'PyQt5/Qt5/lib/libicui18n.so.56', 'SYMLINK'),
+  ('libicuuc.so.56', 'PyQt5/Qt5/lib/libicuuc.so.56', 'SYMLINK'),
+  ('libicudata.so.56', 'PyQt5/Qt5/lib/libicudata.so.56', 'SYMLINK'),
+  ('libQt5DBus.so.5', 'PyQt5/Qt5/lib/libQt5DBus.so.5', 'SYMLINK'),
   ('libQt5WaylandClient.so.5',
    'PyQt5/Qt5/lib/libQt5WaylandClient.so.5',
    'SYMLINK'),
-  ('libQt5DBus.so.5', 'PyQt5/Qt5/lib/libQt5DBus.so.5', 'SYMLINK'),
   ('libQt5Svg.so.5', 'PyQt5/Qt5/lib/libQt5Svg.so.5', 'SYMLINK'),
   ('libQt5XcbQpa.so.5', 'PyQt5/Qt5/lib/libQt5XcbQpa.so.5', 'SYMLINK'),
+  ('libQt5EglFSDeviceIntegration.so.5',
+   'PyQt5/Qt5/lib/libQt5EglFSDeviceIntegration.so.5',
+   'SYMLINK'),
   ('libQt5Network.so.5', 'PyQt5/Qt5/lib/libQt5Network.so.5', 'SYMLINK'),
-  ('libQt5QmlModels.so.5', 'PyQt5/Qt5/lib/libQt5QmlModels.so.5', 'SYMLINK'),
   ('libQt5Quick.so.5', 'PyQt5/Qt5/lib/libQt5Quick.so.5', 'SYMLINK'),
   ('libQt5Qml.so.5', 'PyQt5/Qt5/lib/libQt5Qml.so.5', 'SYMLINK'),
   ('libQt5WebSockets.so.5', 'PyQt5/Qt5/lib/libQt5WebSockets.so.5', 'SYMLINK'),
-  ('libQt5EglFSDeviceIntegration.so.5',
-   'PyQt5/Qt5/lib/libQt5EglFSDeviceIntegration.so.5',
+  ('libQt5QmlModels.so.5', 'PyQt5/Qt5/lib/libQt5QmlModels.so.5', 'SYMLINK'),
+  ('libwebpmux-f0bc54e2.so.3.1.1',
+   'pillow.libs/libwebpmux-f0bc54e2.so.3.1.1',
+   'SYMLINK'),
+  ('libsharpyuv-f67a7212.so.0.1.1',
+   'pillow.libs/libsharpyuv-f67a7212.so.0.1.1',
    'SYMLINK'),
   ('libwebp-0feb04d2.so.7.1.10',
    'pillow.libs/libwebp-0feb04d2.so.7.1.10',
@@ -5667,32 +6550,29 @@
   ('libwebpdemux-e5426797.so.2.0.16',
    'pillow.libs/libwebpdemux-e5426797.so.2.0.16',
    'SYMLINK'),
-  ('libwebpmux-f0bc54e2.so.3.1.1',
-   'pillow.libs/libwebpmux-f0bc54e2.so.3.1.1',
-   'SYMLINK'),
-  ('libsharpyuv-f67a7212.so.0.1.1',
-   'pillow.libs/libsharpyuv-f67a7212.so.0.1.1',
-   'SYMLINK'),
   ('liblcms2-525547ec.so.2.0.16',
    'pillow.libs/liblcms2-525547ec.so.2.0.16',
-   'SYMLINK'),
-  ('libopenjp2-ca16f087.so.2.5.3',
-   'pillow.libs/libopenjp2-ca16f087.so.2.5.3',
-   'SYMLINK'),
-  ('libXau-154567c4.so.6.0.0',
-   'pillow.libs/libXau-154567c4.so.6.0.0',
-   'SYMLINK'),
-  ('liblzma-a5872208.so.5.6.3',
-   'pillow.libs/liblzma-a5872208.so.5.6.3',
-   'SYMLINK'),
-  ('libjpeg-0988b44a.so.62.4.0',
-   'pillow.libs/libjpeg-0988b44a.so.62.4.0',
    'SYMLINK'),
   ('libxcb-0b763ed5.so.1.1.0',
    'pillow.libs/libxcb-0b763ed5.so.1.1.0',
    'SYMLINK'),
+  ('libjpeg-0988b44a.so.62.4.0',
+   'pillow.libs/libjpeg-0988b44a.so.62.4.0',
+   'SYMLINK'),
+  ('liblzma-a5872208.so.5.6.3',
+   'pillow.libs/liblzma-a5872208.so.5.6.3',
+   'SYMLINK'),
   ('libtiff-a92b430c.so.6.0.2',
    'pillow.libs/libtiff-a92b430c.so.6.0.2',
+   'SYMLINK'),
+  ('libXau-154567c4.so.6.0.0',
+   'pillow.libs/libXau-154567c4.so.6.0.0',
+   'SYMLINK'),
+  ('libopenjp2-ca16f087.so.2.5.3',
+   'pillow.libs/libopenjp2-ca16f087.so.2.5.3',
+   'SYMLINK'),
+  ('libfreetype-edd71024.so.6.20.1',
+   'pillow.libs/libfreetype-edd71024.so.6.20.1',
    'SYMLINK'),
   ('libharfbuzz-07d0ad17.so.0.61010.0',
    'pillow.libs/libharfbuzz-07d0ad17.so.0.61010.0',
@@ -5700,12 +6580,9 @@
   ('libpng16-2a828d05.so.16.44.0',
    'pillow.libs/libpng16-2a828d05.so.16.44.0',
    'SYMLINK'),
-  ('libfreetype-edd71024.so.6.20.1',
-   'pillow.libs/libfreetype-edd71024.so.6.20.1',
+  ('libbrotlicommon-5b2eba61.so.1.1.0',
+   'pillow.libs/libbrotlicommon-5b2eba61.so.1.1.0',
    'SYMLINK'),
   ('libbrotlidec-a621e7f2.so.1.1.0',
    'pillow.libs/libbrotlidec-a621e7f2.so.1.1.0',
-   'SYMLINK'),
-  ('libbrotlicommon-5b2eba61.so.1.1.0',
-   'pillow.libs/libbrotlicommon-5b2eba61.so.1.1.0',
    'SYMLINK')])
